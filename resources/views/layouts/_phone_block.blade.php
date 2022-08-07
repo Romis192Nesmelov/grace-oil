@@ -1,0 +1,1 @@
+<a href="tel:{{ str_replace([' ','(',')','-'],'',$phone) }}"><nobr>{{ $phone }}</nobr></a>
