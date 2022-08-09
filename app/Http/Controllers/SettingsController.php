@@ -27,6 +27,6 @@ class SettingsController extends Controller
     // Settings
     public function getSettings()
     {
-        return $this->xml->settings;
+        return (array)$this->xml->settings;
     }
 }

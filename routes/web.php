@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [
-    'as' => 'home',
-    'uses' => 'StaticController@index'
-]);
+//Route::auth();
+
+Route::get('/', 'StaticController@index');
+Route::get('/change-lang', 'StaticController@changeLang');
