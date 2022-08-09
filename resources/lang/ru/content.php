@@ -12,5 +12,10 @@ return [
     'your_question' => 'Ваш вопрос',
     'i_agree' => 'Я согласен на обработку персональных данных и ознакомлен с ',
     'user_agreement' => 'Пользовательским соглашением.',
-    'send' => 'Отправить'
+    'send' => 'Отправить',
+    'thanx_feedback' => 'Спасибо за Ваше обращение!',
+    'message_from' => 'Сообщение от :from',
+    'feedback_from' => 'Обращение от :name',
+    'feedback_email' => 'с E-mail: :email',
+    'question' => 'Вопрос:'
 ];

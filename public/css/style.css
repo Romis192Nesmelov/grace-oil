@@ -6,11 +6,11 @@ html {
     bottom: 0;
     height: 100%;
     left: 0;
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 0;
     width: 100%;
-    z-index: 9999; }
+    z-index: 99995; }
     html .loader .loader_inner {
       background-image: url("../images/preloader.gif");
       background-size: cover;
@@ -3612,8 +3612,6 @@ script{
 -ms-touch-action: none;
 touch-action: none;
 } */
-
-/*# sourceMappingURL=style.css.map */
 
 
 .white_block{

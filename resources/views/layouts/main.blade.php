@@ -43,6 +43,8 @@
     <script src="{{ asset('js/libs/tabs/tabs.jquery.js') }}"></script>
     <script src="{{ asset('js/libs/lazyload.min.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
+
+    <script src="{{ asset('js/feedback.js') }}"></script>
 </head>
 <body>
 <!-- Page container -->
@@ -220,25 +222,44 @@
         @include('layouts._input_block',[
             'inputName' => 'name',
             'inputId' => 'firstName',
-            'inputLabel' => trans('content.name').'*'
+            'inputLabel' => trans('content.name').'*',
+            'useAjax' => true,
         ])
         @include('layouts._input_block',[
-            'inputName' => 'mail',
-            'inputId' => 'mail',
-            'inputLabel' => trans('content.email').'*'
+            'inputName' => 'email',
+            'inputId' => 'email',
+            'inputLabel' => trans('content.email').'*',
+            'useAjax' => true,
         ])
         @include('layouts._textarea_block',[
-            'taName' => 'commm',
-            'taId' => 'textarea',
-            'taLabel' => trans('content.your_question')
+            'taName' => 'question',
+            'taId' => 'question',
+            'taLabel' => trans('content.your_question'),
+            'useAjax' => true,
         ])
 
         @include('layouts._popup_block',[
             'popupId' => 'consl_popup',
-            'popupUri' => '#',
+            'popupUri' => 'feedback',
             'popupHead' => trans('content.feedback'),
             'popupContent' => ob_get_clean()
         ])
+
+        <div class="hidden">
+            <div id="thanx_popup" class="popup">
+                <h1>{{ Session::has('message') ? Session::get('message') : '' }}</h1>
+            </div>
+            @if (Session::has('message'))
+                <script>
+                    $(document).ready(function ($) {
+                        $.fancybox.open({
+                            src: '#thanx_popup',
+                            type: 'inline'
+                        });
+                    });
+                </script>
+            @endif
+        </div>
         <!-- /popups -->
 
         <div class="loader">

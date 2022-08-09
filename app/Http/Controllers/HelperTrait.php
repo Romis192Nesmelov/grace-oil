@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 trait HelperTrait
 {
@@ -23,5 +25,63 @@ trait HelperTrait
     public function transliteration($string)
     {
         return str_replace('_',' ',str_slug($string));
+    }
+
+    public function processingFields(Request $request, $checkboxFields=null, $ignoreFields=null, $timeFields=null, $colorFields=null)
+    {
+
+        $exceptFields = ['_token','id'];
+        if ($ignoreFields) {
+            if (is_array($ignoreFields)) $exceptFields = array_merge($exceptFields, $ignoreFields);
+            else $exceptFields[] = $ignoreFields;
+        }
+
+//        $exceptFields = array_merge($exceptFields, $this->ignoringFields);
+        $fields = $request->except($exceptFields);
+
+        if ($checkboxFields) {
+            if (is_array($checkboxFields)) {
+                foreach ($checkboxFields as $field) {
+                    $fields[$field] = isset($fields[$field]) && $fields[$field] == 'on' ? 1 : 0;
+                }
+            } else {
+                $fields[$checkboxFields] = isset($fields[$checkboxFields]) && $fields[$checkboxFields] == 'on' ? 1 : 0;
+            }
+        }
+
+        if ($timeFields) {
+            if (is_array($timeFields)) {
+                foreach ($timeFields as $field) {
+//                    $fields[$field] = Carbon::createFromTimestamp($this->convertDate($fields[$field]))->toDateTimeString();
+                    $fields[$field] = $this->convertDate($fields[$field]);
+                }
+            } else {
+//                $fields[$timeFields] = Carbon::createFromTimestamp($this->convertDate($fields[$timeFields]))->toDateTimeString();
+                $fields[$timeFields] = $this->convertDate($fields[$timeFields]);
+            }
+        }
+
+        if ($colorFields) {
+            if (is_array($colorFields)) {
+                foreach ($colorFields as $field) {
+                    $fields[$field] = $this->convertColor($fields[$field]);
+                }
+            } else {
+                $fields[$colorFields] = $this->convertColor($fields[$colorFields]);
+            }
+        }
+        return $fields;
+    }
+
+    public function sendMessage($template, array $fields, $pathToFile=null, $copyTo=null)
+    {
+        $title = trans('content.company_name');
+        $fields['title'] = $title;
+        Mail::send('emails.'.$template, $fields, function($message) use ($title, $pathToFile, $copyTo) {
+            $message->subject(trans('content.message_from',['from' => $title]));
+            $message->to(env('MAIL_TO'));
+            if ($copyTo) $message->cc($copyTo);
+            if ($pathToFile) $message->attach($pathToFile);
+        });
     }
 }

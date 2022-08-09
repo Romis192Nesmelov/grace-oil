@@ -12,5 +12,10 @@ return [
     'your_question' => 'Your question',
     'i_agree' => 'I agree to the processing of personal data and read the ',
     'user_agreement' => 'User Agreement.',
-    'send' => 'Send'
+    'send' => 'Send',
+    'thanx_feedback' => 'Thank you for your feedback!',
+    'message_from' => 'Message from :from',
+    'feedback_from' => 'Feedback from :name',
+    'feedback_email' => 'with E-mail: :email',
+    'question' => 'question:'
 ];
