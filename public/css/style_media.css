@@ -3,7 +3,7 @@
 /*fonts*/
 @media screen and (max-width: 1560px) {
   .h-adress {
-    font-size: 11px;
+    font-size: 12px;
     padding-right: 20px; }
   .h-top .phone-wp {
     padding-right: 30px; }
@@ -12,7 +12,7 @@
   .h-menu li {
     margin-right: 4px; }
     .h-menu li a {
-      font-size: 12px; }
+      font-size: 11px; }
   .h-bot .search-inp {
     width: 100%; }
   .sidebar .site-list {
