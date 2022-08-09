@@ -239,68 +239,12 @@
             'popupHead' => trans('content.feedback'),
             'popupContent' => ob_get_clean()
         ])
-
-            {{--<div id="zayvka_popup" class="base-form popup">--}}
-                {{--<form action="#" method="post" class="sendLead">--}}
-                    {{--<span class="title-base-big">Оставить заявку</span>--}}
-                    {{--<div class="form-body">--}}
-                        {{--<div class="inp-wp">--}}
-                            {{--<input type="text" name="name" placeholder="" title="Имя" id="firstName">--}}
-                            {{--<label for="firstName">Имя*</label>--}}
-                        {{--</div>--}}
-                        {{--<div class="inp-wp">--}}
-                            {{--<input type="text" name="mail" placeholder="" title="Эл.почта" id="mail">--}}
-                            {{--<label for="mail">Эл.почта</label>--}}
-                        {{--</div>--}}
-                        {{--<div class="inp-wp last">--}}
-                            {{--<input type="text" name="phone" placeholder="" title="Телефон" id="phone">--}}
-                            {{--<label for="phone">Телефон</label>--}}
-                        {{--</div>--}}
-                        {{--<div class="wrap-textarea">--}}
-                            {{--<textarea type="text" name="commm" placeholder="" title="Ваш вопрос" class="textarea-default" id="textarea"></textarea>--}}
-                            {{--<label for="textarea">Ваш вопрос</label>--}}
-                        {{--</div>--}}
-                        {{--<div class="confid">--}}
-                            {{--<div class="left-pos"><input type="checkbox" checked focused></div>--}}
-                            {{--<div class="right-pos">--}}
-                                {{--<p>Я согласен на обработку персональных данных и ознакомлен с <a href="#">Пользовательским соглашением</a>.</p>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<button class="def-btn" type="submit">Отправить</button>--}}
-                    {{--</div>--}}
-                {{--</form>--}}
-            {{--</div>--}}
-            {{--<div id="phone_popup" class="base-form popup phone-form">--}}
-                {{--<form action="#" method="post" class="sendLead">--}}
-                    {{--<span class="title-base-big">Заказать звонок</span>--}}
-                    {{--<p>Хотите сделать заказ или договориться о сотрудничестве? Отправьте нам заявку!</p>--}}
-                    {{--<div class="form-body">--}}
-                        {{--<div class="inp-wp">--}}
-                            {{--<input type="text" name="name" placeholder="" title="Имя" id="firstName">--}}
-                            {{--<label for="firstName">Имя*</label>--}}
-                        {{--</div>--}}
-                        {{--<div class="inp-wp last">--}}
-                            {{--<input type="text" name="phone" placeholder="" title="Телефон" id="phone">--}}
-                            {{--<label for="phone">Телефон</label>--}}
-                        {{--</div>--}}
-                        {{--<div class="confid">--}}
-                            {{--<div class="left-pos"><input type="checkbox" checked focused></div>--}}
-                            {{--<div class="right-pos">--}}
-                                {{--<p>Я согласен на обработку персональных данных и ознакомлен с <a href="#">Пользовательским соглашением</a>.</p>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<button class="def-btn" type="submit">Отправить</button>--}}
-                    {{--</div>--}}
-                {{--</form>--}}
-            {{--</div>--}}
-        </div>
         <!-- /popups -->
 
         <div class="loader">
             <div class="loader_inner"></div>
         </div>
     </div>
-</div>
 <!-- /page container -->
 </body>
 </html>
