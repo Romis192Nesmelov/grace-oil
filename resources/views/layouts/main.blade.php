@@ -245,6 +245,7 @@
             <div class="loader_inner"></div>
         </div>
     </div>
+</div>
 <!-- /page container -->
 </body>
 </html>
