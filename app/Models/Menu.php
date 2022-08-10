@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    protected $fillable = ['ru','en','href','active'];
+    protected $fillable = ['ru','en','href','active','manager_id'];
 
     use HasSlug;
 
@@ -30,6 +30,16 @@ class Menu extends Model
 
     public function subMenu()
     {
-        return $this->hasMany('App\Models\SubMenu');
+        return $this->hasMany('App\Models\SubMenu')->where('active',1);
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo('App\Models\Manager');
+    }
+
+    public function content()
+    {
+        return $this->belongsTo('App\Models\Content');
     }
 }

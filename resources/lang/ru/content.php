@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'home' => 'Главнвя',
     'feedback' => 'Обратная связь',
     'search' => 'Поиск',
     'more_details' => 'Подробнее',
@@ -17,5 +18,15 @@ return [
     'message_from' => 'Сообщение от :from',
     'feedback_from' => 'Обращение от :name',
     'feedback_email' => 'с E-mail: :email',
-    'question' => 'Вопрос:'
+    'question' => 'Вопрос:',
+    'results_of_our_work' => 'Результаты нашей работы',
+    'send_resume' => 'Отправить резюме',
+    'years' => 'лет',
+
+    'job_experience_required' => 'Требуемый опыт работы:',
+    'duties' => 'Обязанности:',
+    'requirements' => 'Требования:',
+    'you_will_be_provided_with' => 'Предоставляем Вам:',
+
+    'download' => 'Скачать'
 ];

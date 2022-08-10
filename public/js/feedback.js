@@ -23,6 +23,9 @@ $(document).ready(function ($) {
             radio = form.find('input[type=radio]'),
             checkboxes = form.find('input[type=checkbox]'),
             agree = form.find('input[name=i_agree]').is(':checked'),
+            loader = $('<div></div>').addClass('loader').append(
+                $('<div></div>').addClass('loader_inner')
+            ),
             fields = {};
     
         if (!agree) return false;
@@ -38,11 +41,12 @@ $(document).ready(function ($) {
     
         $('.error_text').html('');
         form.find('input, select, textarea, button').attr('disabled','disabled');
+        $('body').prepend(loader);
 
         $.post(form.attr('action'), fields)
             .done(function(data) {
                 closePopuo(popup.attr('id'));
-                unlockAll(form);
+                unlockAll(form,loader);
                 form.find('input, textarea').val('');
                 $('#thanx_popup h1').html(data.message);
 
@@ -68,8 +72,8 @@ $(document).ready(function ($) {
                     });
                     errorBlock.html(errorMsg);
                 });
-                unlockAll(form);
-            });
+                unlockAll(form,loader);
+        });
     });
 });
 
@@ -104,8 +108,9 @@ function unlockSendButton(obj) {
     else button.attr('disabled','disabled');
 }
 
-function unlockAll(form) {
+function unlockAll(form,loader) {
     form.find('input, select, textarea, button').removeAttr('disabled');
+    loader.remove();
 }
 
 function closePopuo(id) {

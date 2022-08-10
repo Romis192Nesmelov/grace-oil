@@ -10,8 +10,12 @@ class SubMenuTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['ru' => 'О продукции', 'en' => 'About products', 'menu_id' => 2],
-            ['ru' => 'О GRACE® Lubricants', 'en' => 'About GRACE® Lubricants', 'menu_id' => 2],
+            ['ru' => 'О компании', 'en' => 'About company', 'menu_id' => 1, 'manager_id' => 1],
+            ['ru' => 'Достижения', 'en' => 'Achievements', 'menu_id' => 1, 'manager_id' => 2, 'content_id' => 1],
+            ['ru' => 'Вакансии', 'en' => 'Vacancies', 'menu_id' => 1, 'manager_id' => 3, 'content_id' => 2],
+
+            ['ru' => 'О продукции', 'en' => 'About products', 'menu_id' => 2, 'manager_id' => 4, 'content_id' => 3],
+            ['ru' => 'О GRACE® Lubricants', 'en' => 'About GRACE® Lubricants', 'menu_id' => 2, 'manager_id' => 5, 'content_id' => 4],
             ['ru' => 'Отраслевые решения', 'en' => 'Industry Solutions', 'menu_id' => 2],
 
             ['ru' => 'Универсальные моторные масла', 'en' => 'Multipurpose Engine Oils', 'menu_id' => 3],

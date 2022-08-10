@@ -10,7 +10,7 @@ html {
     right: 0;
     top: 0;
     width: 100%;
-    z-index: 99995; }
+    z-index: 99999; }
     html .loader .loader_inner {
       background-image: url("../images/preloader.gif");
       background-size: cover;

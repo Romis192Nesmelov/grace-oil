@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubMenu extends Model
 {
-    protected $fillable = ['ru','en','active','menu_id'];
+    protected $fillable = ['ru','en','active','menu_id','manager_id'];
 
     use HasSlug;
 
@@ -31,5 +31,15 @@ class SubMenu extends Model
     public function menu()
     {
         return $this->belongsTo('App\Models\Menu');
+    }
+
+    public function manager()
+    {
+        return $this->belongsTo('App\Models\Manager');
+    }
+
+    public function content()
+    {
+        return $this->belongsTo('App\Models\Content');
     }
 }

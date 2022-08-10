@@ -10,7 +10,7 @@ class MenuTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['ru' => 'О компании', 'en' => 'About company', 'href' => 1],
+            ['ru' => 'О компании', 'en' => 'About company', 'href' => 0],
             ['ru' => 'О продукции', 'en' => 'About products', 'href' => 0],
             ['ru' => 'Каталог', 'en' => 'Catalogue', 'href' => 1],
             ['ru' => 'Grace Test', 'en' => 'Grace Test', 'href' => 0],

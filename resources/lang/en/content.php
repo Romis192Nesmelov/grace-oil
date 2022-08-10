@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'home' => 'Home',
     'feedback' => 'Feedback',
     'search' => 'Search',
     'more_details' => 'More details',
@@ -17,5 +18,15 @@ return [
     'message_from' => 'Message from :from',
     'feedback_from' => 'Feedback from :name',
     'feedback_email' => 'with E-mail: :email',
-    'question' => 'question:'
+    'question' => 'question:',
+    'results_of_our_work' => 'Results of our work',
+    'send_resume' => 'Send CV',
+    'years' => 'years',
+
+    'job_experience_required' => 'Job experience required:',
+    'duties' => 'Duties:',
+    'requirements' => 'Requirements:',
+    'you_will_be_provided_with' => 'You will be provided with',
+    
+    'download' => 'Download'
 ];
