@@ -6,13 +6,7 @@ use Illuminate\Support\Facades\App;
 use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Slide;
-use App\Models\Content;
 use App\Models\HomeBlock;
-use App\Models\HistoryPoint;
-use App\Models\Diploma;
-use App\Models\Vacancy;
-use App\Models\AboutProduct;
-use App\Models\AboutLubricant;
 
 class StaticController extends Controller
 {
@@ -26,44 +20,10 @@ class StaticController extends Controller
         $this->data['home_blocks'] = HomeBlock::where('active', 1)->orderBy('created_at', 'desc')->limit(3)->get();
         return $this->showView('home');
     }
-    
-    public function aboutCompany()
-    {
-        $this->getBreadcrumbs(1, 1);
-        $this->data['points'] = HistoryPoint::where('active',1)->get();
-        return $this->showView('about_company');
-    }
-    
-    public function achievements()
-    {
-        $this->getBreadcrumbs(1, 2);
-        $this->data['content'] = Content::find(1);
-        $this->data['diplomas'] = Diploma::where('active',1)->get();
-        return $this->showView('achievements');
-    }
 
-    public function vacancies()
+    public function _default(Request $request)
     {
-        $this->getBreadcrumbs(1, 3);
-        $this->data['content'] = Content::find(2);
-        $this->data['vacancies'] = Vacancy::where('active',1)->get();
-        return $this->showView('vacancies');
-    }
-
-    public function aboutProducts()
-    {
-        $this->getBreadcrumbs(2, 1);
-        $this->data['content'] = Content::find(3);
-        $this->data['products'] = AboutProduct::where('active',1)->get();
-        return $this->showView('about_product');
-    }
-
-    public function graceLubricants()
-    {
-        $this->getBreadcrumbs(2, 2);
-        $this->data['content'] = Content::find(4);
-        $this->data['icons'] = AboutLubricant::where('active',1)->get();
-        return $this->showView('about_lubricants');
+        return $this->showView($this->crumbsAndContent($request));
     }
 
     public function changeLang(Request $request)
@@ -73,20 +33,46 @@ class StaticController extends Controller
         return redirect()->back();
     }
 
-    protected function getBreadcrumbs($menuId, $subMenuId=null)
+    protected function crumbsAndContent(Request $request)
     {
         $this->data['crumbs'] = [];
-        $menu = Menu::find($menuId);
-        if ($subMenuId) $subMenu = SubMenu::find($subMenuId);
+        $uri = str_replace('/','',$request->getPathInfo());
+        $menu = Menu::where('slug',$uri)->first();
+        $view = '';
+        if ($menu && $menu->href) {
+            $this->data['breadcrumbs'][] = ['href' => ($menu->href ? $menu->slug : null), 'name' => $menu[App::getLocale()]];
+            $this->data['head'] = $menu[App::getLocale()];
+            $this->data['menu_active_id'] = $menu->id;
+            $this->getContent($menu->content);
+            if (isset($menu->add_content_model)) $this->getAddContent($menu->add_content_model);
+            if (isset($menu->view)) $view = $menu->view;
+        } else {
+            $subMenu = SubMenu::where('slug',$uri)->first();
+            $this->data['breadcrumbs'][] = ['href' => ($subMenu->menu->href ? $subMenu->menu->slug : null), 'name' => $subMenu->menu[App::getLocale()]];
+            $this->data['menu_active_id'] = $subMenu->menu->id;
 
-        $this->data['breadcrumbs'][] = ['href' => ($menu->href ? $menu->slug : null), 'name' => $menu[App::getLocale()]];
-        
-        if (isset($subMenu)) {
             $this->data['breadcrumbs'][] = ['href' => $subMenu->slug, 'name' => $subMenu[App::getLocale()]];
             $this->data['head'] = $subMenu[App::getLocale()];
-        } else {
-            $this->data['head'] = $menu[App::getLocale()];
+            $this->data['sub_menu_active_id'] = $subMenu->id;
+            $this->getContent($subMenu->content);
+            if (isset($subMenu->add_content_model)) $this->getAddContent($subMenu->add_content_model);
+            if (isset($subMenu->view)) $view = $subMenu->view;
         }
+        return $view;
+    }
+
+    protected function getAddContent($modelName)
+    {
+        if ($modelName) {
+            $model = app('App\Models'.$modelName);
+            $this->data['add_content'] = $model->where('active',1)->get();
+        }
+    }
+
+    protected function getContent($content)
+    {
+        if ($content) $this->data['content'] = count($content) == 1 ? $content[0] : $content;
+        else $this->data['content'] = null;
     }
 
     protected function showView($view)

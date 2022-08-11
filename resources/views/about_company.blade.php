@@ -8,7 +8,7 @@
                 <h1>{{ $data['head'] }}</h1>
                 <div class="about-comp-item-list">
                     <div class="row row-flex">
-                        @foreach($data['points'] as $point)
+                        @foreach($data['add_content'] as $point)
                             <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs">
                                 <div class="about-comp-item">
                                     <div class="prev">

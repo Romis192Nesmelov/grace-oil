@@ -19,7 +19,7 @@
                     <div class="title-base">{{ trans('content.results_of_our_work') }}</div>
                     <div class="sertificate-list">
                         <div class="row">
-                            @foreach($data['diplomas'] as $diploma)
+                            @foreach($data['add_content'] as $diploma)
                                 <div class="col-md-3 col-sm-4 col-xs-6 col-xxs">
                                     <div class="sertificate-item">
                                         @include('_image_block',[

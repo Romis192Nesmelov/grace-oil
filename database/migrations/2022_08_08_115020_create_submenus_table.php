@@ -18,6 +18,8 @@ class CreateSubmenusTable extends Migration
             $table->string('slug');
             $table->string('ru')->unique();
             $table->string('en')->unique();
+            $table->string('add_content_model')->nullable();
+            $table->string('view')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

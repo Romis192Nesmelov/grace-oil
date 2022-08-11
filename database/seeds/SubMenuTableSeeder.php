@@ -10,13 +10,13 @@ class SubMenuTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['ru' => 'О компании', 'en' => 'About company', 'menu_id' => 1, 'manager_id' => 1],
-            ['ru' => 'Достижения', 'en' => 'Achievements', 'menu_id' => 1, 'manager_id' => 2, 'content_id' => 1],
-            ['ru' => 'Вакансии', 'en' => 'Vacancies', 'menu_id' => 1, 'manager_id' => 3, 'content_id' => 2],
+            ['ru' => 'О компании', 'en' => 'About company', 'menu_id' => 1, 'add_content_model' => '\HistoryPoint', 'view' => 'about_company', 'manager_id' => 1],
+            ['ru' => 'Достижения', 'en' => 'Achievements', 'menu_id' => 1, 'add_content_model' => '\Diploma', 'view' => 'achievements', 'manager_id' => 1],
+            ['ru' => 'Вакансии', 'en' => 'Vacancies', 'menu_id' => 1, 'add_content_model' => '\Vacancy', 'view' => 'vacancies', 'manager_id' => 1],
 
-            ['ru' => 'О продукции', 'en' => 'About products', 'menu_id' => 2, 'manager_id' => 4, 'content_id' => 3],
-            ['ru' => 'О GRACE® Lubricants', 'en' => 'About GRACE® Lubricants', 'menu_id' => 2, 'manager_id' => 5, 'content_id' => 4],
-            ['ru' => 'Отраслевые решения', 'en' => 'Industry Solutions', 'menu_id' => 2],
+            ['ru' => 'О продукции', 'en' => 'About products', 'menu_id' => 2, 'add_content_model' => '\AboutProduct', 'view' => 'about_products', 'manager_id' => 1],
+            ['ru' => 'О GRACE® Lubricants', 'en' => 'About GRACE® Lubricants', 'menu_id' => 2, 'add_content_model' => '\AboutLubricant', 'view' => 'about_lubricants', 'manager_id' => 1],
+            ['ru' => 'Отраслевые решения', 'en' => 'Industry Solutions', 'menu_id' => 2, 'add_content_model' => null, 'view' => 'industry_solutions', 'manager_id' => 1],
 
             ['ru' => 'Универсальные моторные масла', 'en' => 'Multipurpose Engine Oils', 'menu_id' => 3],
             ['ru' => 'Оригинальные моторные масла', 'en' => 'Original engine oils',  'menu_id' => 3],
@@ -37,9 +37,13 @@ class SubMenuTableSeeder extends Seeder
             ['ru' => 'Индустриальные масла', 'en' => 'Industrial Oils', 'menu_id' => 3],
             ['ru' => 'Охлаждающие жидкости', 'en' => 'Coolants', 'menu_id' => 3],
 
-            ['ru' => 'Сотрудничество', 'en' => 'Cooperation', 'menu_id' => 4],
-            ['ru' => 'Партнерские программы', 'en' => 'Partner Programs', 'menu_id' => 4],
-            ['ru' => 'Наши потребности', 'en' => 'Our Needs', 'menu_id' => 4],
+            ['ru' => 'Производство', 'en' => 'Production', 'menu_id' => 4],
+            ['ru' => 'Программа GRACE Test', 'en' => 'GRACE Test Program', 'menu_id' => 4],
+            ['ru' => 'Отзывы', 'en' => '', 'menu_id' => 4],
+
+            ['ru' => 'Сотрудничество', 'en' => 'Cooperation', 'menu_id' => 5],
+            ['ru' => 'Партнерские программы', 'en' => 'Partner Programs', 'menu_id' => 5],
+            ['ru' => 'Наши потребности', 'en' => 'Our Needs', 'menu_id' => 5],
 
             ['ru' => 'Классификации и стандарты', 'en' => 'Classifications and standards', 'menu_id' => 7],
             ['ru' => 'Маркетинговые материалы', 'en' => 'Marketing materials', 'menu_id' => 7],

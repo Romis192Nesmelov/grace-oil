@@ -1388,7 +1388,8 @@ header {
         color: #FFFFFF;
         background: #808285;
         text-decoration: none; }
-  .h-menu li.active > a {
+  .h-menu li.active > a,
+  .h-menu li > a.active {
     color: #FFFFFF;
     background: #808285;
     text-decoration: none; }

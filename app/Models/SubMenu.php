@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubMenu extends Model
 {
-    protected $fillable = ['ru','en','active','menu_id','manager_id'];
+    protected $fillable = [
+        'ru',
+        'en',
+        'add_content_model',
+        'view',
+        'active',
+        'manager_id'
+    ];
 
     use HasSlug;
 
@@ -40,6 +47,6 @@ class SubMenu extends Model
 
     public function content()
     {
-        return $this->belongsTo('App\Models\Content');
+        return $this->hasMany('App\Models\Content')->where('active',1);
     }
 }

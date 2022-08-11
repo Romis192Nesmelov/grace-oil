@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    protected $fillable = ['ru','en','href','active','manager_id'];
+    protected $fillable = [
+        'ru',
+        'en',
+        'href',
+        'add_content_model',
+        'view',
+        'active',
+        'manager_id'
+    ];
 
     use HasSlug;
 
@@ -40,6 +48,6 @@ class Menu extends Model
 
     public function content()
     {
-        return $this->belongsTo('App\Models\Content');
+        return $this->hasMany('App\Models\Content')->where('active',1);
     }
 }

@@ -10,11 +10,7 @@ class ManagerTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['controller' => 'StaticController', 'method' => 'aboutCompany'],
-            ['controller' => 'StaticController', 'method' => 'achievements'],
-            ['controller' => 'StaticController', 'method' => 'vacancies'],
-            ['controller' => 'StaticController', 'method' => 'aboutProducts'],
-            ['controller' => 'StaticController', 'method' => 'graceLubricants'],
+            ['controller' => 'StaticController', 'method' => '_default'],
         ];
         
         foreach ($data as $item) {

@@ -11,9 +11,12 @@ class AboutProduct extends Model
         'head_en',
         'text_ru',
         'text_en',
-        'brochure',
-        'description_ru',
-        'description_en',
-        'active'
+        'active',
+        'brochure_id'
     ];
+
+    public function brochure()
+    {
+        return $this->belongsTo('App\Models\Brochure');
+    }
 }

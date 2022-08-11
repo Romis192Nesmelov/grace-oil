@@ -12,7 +12,9 @@ class Content extends Model
         'head_en',
         'text_ru',
         'text_en',
-        'active'
+        'active',
+        'menu_id',
+        'sub_menu_id'
     ];
 
     public function menu()

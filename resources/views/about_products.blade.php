@@ -14,9 +14,9 @@
                         {!! $data['content']['text_'.App::getLocale()] !!}
                     </div>
                 </div>
-                @if (count($data['products']))
+                @if (count($data['add_content']))
                     <div class="lubricants-list">
-                        @foreach($data['products'] as $product)
+                        @foreach($data['add_content'] as $product)
                             <div class="title-base">{{ $product['head_'.App::getLocale()] }}</div>
                             <div class="lubricant-item">
                                 <div class="lubricant-prev">
@@ -28,8 +28,8 @@
                                     </div>
                                 </div>
                                 <div class="lubricant-download">
-                                    <div class="title-download">{{ $product['description_'.App::getLocale()] }}</div>
-                                    <a href="{{ asset($product->brochure) }}" target="_blank" class="def-btn">{{ trans('content.download') }}</a>
+                                    <div class="title-download">{{ $product->brochure['description_'.App::getLocale()] }}</div>
+                                    <a href="{{ asset($product->brochure->link) }}" target="_blank" class="def-btn">{{ trans('content.download') }}</a>
                                 </div>
                             </div>
                         @endforeach

@@ -14,10 +14,10 @@
                         {!! $data['content']['text_'.App::getLocale()] !!}
                     </div>
                 </div>
-                @if (count($data['icons']))
+                @if (count($data['add_content']))
                     <div class="about-comp-item-list">
                         <div class="row row-flex">
-                            @foreach($data['icons'] as $icon)
+                            @foreach($data['add_content'] as $icon)
                                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs">
                                     <div class="about-comp-item">
                                         <div class="prev">

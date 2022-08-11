@@ -19,6 +19,8 @@ class CreateMenuTable extends Migration
             $table->string('ru')->unique();
             $table->string('en')->unique();
             $table->boolean('href');
+            $table->string('add_content_model')->nullable();
+            $table->string('view')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });
