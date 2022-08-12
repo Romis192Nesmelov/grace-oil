@@ -27,10 +27,10 @@
                                         {!! $product['text_'.App::getLocale()] !!}
                                     </div>
                                 </div>
-                                <div class="lubricant-download">
-                                    <div class="title-download">{{ $product->brochure['description_'.App::getLocale()] }}</div>
-                                    <a href="{{ asset($product->brochure->link) }}" target="_blank" class="def-btn">{{ trans('content.download') }}</a>
-                                </div>
+                                @include('_brochure_download_block', [
+                                    'description' => $product->brochure['description_'.App::getLocale()],
+                                    'link' => $product->brochure->link
+                                ])
                             </div>
                         @endforeach
                     </div>

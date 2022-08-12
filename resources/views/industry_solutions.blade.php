@@ -13,6 +13,23 @@
                 </div>
                 {!! $data['content']['text_'.App::getLocale()] !!}
             </div>
+
+            @if (count($data['add_content']))
+                <div class="industry-list">
+                    @foreach($data['add_content'] as $solution)
+                        <div class="industry-item">
+                            <div class="prev">
+                                <a href="{{ Request::getPathInfo().'/'.$solution->slug }}">
+                                    <img class="lazyload" data-src="{{ asset($solution->image) }}" src="{{ asset($solution->image) }}" alt="{{ $solution['name_'.App::getLocale()] }}">
+                                </a>
+                            </div>
+                            <div class="descr">
+                                <a href="{{ Request::getPathInfo().'/'.$solution->slug }}" class="industry-item-title">{{ $solution['name_'.App::getLocale()] }}</a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 @endsection

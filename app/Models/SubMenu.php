@@ -12,6 +12,7 @@ class SubMenu extends Model
         'en',
         'add_content_model',
         'view',
+        'slug_view',
         'active',
         'manager_id'
     ];
@@ -21,7 +22,7 @@ class SubMenu extends Model
     public function getSlugOptions()
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('ru')
+            ->generateSlugsFrom('en')
             ->saveSlugsTo('slug');
     }
 

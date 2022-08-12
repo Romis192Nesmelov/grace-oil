@@ -16,7 +16,7 @@ class SubMenuTableSeeder extends Seeder
 
             ['ru' => 'О продукции', 'en' => 'About products', 'menu_id' => 2, 'add_content_model' => '\AboutProduct', 'view' => 'about_products', 'manager_id' => 1],
             ['ru' => 'О GRACE® Lubricants', 'en' => 'About GRACE® Lubricants', 'menu_id' => 2, 'add_content_model' => '\AboutLubricant', 'view' => 'about_lubricants', 'manager_id' => 1],
-            ['ru' => 'Отраслевые решения', 'en' => 'Industry Solutions', 'menu_id' => 2, 'add_content_model' => null, 'view' => 'industry_solutions', 'manager_id' => 1],
+            ['ru' => 'Отраслевые решения', 'en' => 'Industry Solutions', 'menu_id' => 2, 'add_content_model' => '\IndustrySolution', 'slug_model' => '\IndustrySolution', 'view' => 'industry_solutions', 'slug_view' => 'industry_solution', 'manager_id' => 1],
 
             ['ru' => 'Универсальные моторные масла', 'en' => 'Multipurpose Engine Oils', 'menu_id' => 3],
             ['ru' => 'Оригинальные моторные масла', 'en' => 'Original engine oils',  'menu_id' => 3],

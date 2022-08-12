@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Menu;
+use App\Models\SubMenu;
 //Route::auth();
 
 Route::get('/', 'StaticController@index');
@@ -16,7 +17,7 @@ foreach (Menu::where('active',1)->get() as $menu) {
     if (count($menu->subMenu)) {
         foreach ($menu->subMenu as $subMenu) {
             if ($subMenu->manager) {
-                Route::get('/'.$subMenu->slug, $subMenu->manager->controller.'@'.$subMenu->manager->method);
+                Route::get('/'.$subMenu->slug.(isset($subMenu->slug_model) && $subMenu->slug_model ? '/{slug?}' : ''), $subMenu->manager->controller.'@'.$subMenu->manager->method);
             }
         }
     }

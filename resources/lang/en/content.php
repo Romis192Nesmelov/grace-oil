@@ -28,5 +28,7 @@ return [
     'requirements' => 'Requirements:',
     'you_will_be_provided_with' => 'You will be provided with',
     
-    'download' => 'Download'
+    'download' => 'Download',
+    
+    'other_sections_of_the_catalog' => 'Other sections of the catalog',
 ];

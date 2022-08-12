@@ -28,5 +28,7 @@ return [
     'requirements' => 'Требования:',
     'you_will_be_provided_with' => 'Предоставляем Вам:',
 
-    'download' => 'Скачать'
+    'download' => 'Скачать',
+
+    'other_sections_of_the_catalog' => 'Другие разделы каталога',
 ];

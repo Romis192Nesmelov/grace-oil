@@ -12,6 +12,7 @@ class Menu extends Model
         'en',
         'href',
         'add_content_model',
+        'slug_model',
         'view',
         'active',
         'manager_id'
@@ -22,7 +23,7 @@ class Menu extends Model
     public function getSlugOptions()
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('ru')
+            ->generateSlugsFrom('en')
             ->saveSlugsTo('slug');
     }
 

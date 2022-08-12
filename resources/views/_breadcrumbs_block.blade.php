@@ -6,7 +6,7 @@
                 @if ($bc == count($data['breadcrumbs'])-1)
                     <li class="active">{{ $data['breadcrumbs'][$bc]['name'] }}</li>
                 @else
-                    <li><a {{ $data['breadcrumbs'][$bc]['href'] ? 'href='.$data['breadcrumbs'][$bc]['href'] : '' }}>{{ $data['breadcrumbs'][$bc]['name'] }}</a></li>
+                    <li><a {{ $data['breadcrumbs'][$bc]['href'] ? 'href=/'.$data['breadcrumbs'][$bc]['href'] : '' }}>{{ $data['breadcrumbs'][$bc]['name'] }}</a></li>
                 @endif
             @endfor
         @endif

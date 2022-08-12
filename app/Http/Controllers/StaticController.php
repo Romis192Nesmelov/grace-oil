@@ -21,9 +21,9 @@ class StaticController extends Controller
         return $this->showView('home');
     }
 
-    public function _default(Request $request)
+    public function _default(Request $request, $slug=null)
     {
-        return $this->showView($this->crumbsAndContent($request));
+        return $this->showView($this->crumbsAndContent($request, $slug));
     }
 
     public function changeLang(Request $request)
@@ -33,39 +33,63 @@ class StaticController extends Controller
         return redirect()->back();
     }
 
-    protected function crumbsAndContent(Request $request)
+    protected function crumbsAndContent(Request $request, $slug)
     {
         $this->data['crumbs'] = [];
         $uri = str_replace('/','',$request->getPathInfo());
+        if ($slug) $uri = str_replace($slug,'',$uri);
+
         $menu = Menu::where('slug',$uri)->first();
-        $view = '';
         if ($menu && $menu->href) {
+            
             $this->data['breadcrumbs'][] = ['href' => ($menu->href ? $menu->slug : null), 'name' => $menu[App::getLocale()]];
             $this->data['head'] = $menu[App::getLocale()];
             $this->data['menu_active_id'] = $menu->id;
-            $this->getContent($menu->content);
-            if (isset($menu->add_content_model)) $this->getAddContent($menu->add_content_model);
-            if (isset($menu->view)) $view = $menu->view;
+
+            if (!$slug) {
+                $this->data['head'] = $menu[App::getLocale()];
+                $this->getContent($menu->content);
+                $this->getAddContent($menu);
+            } else {
+                $this->getSlugContent($menu, $uri, $slug);
+            }
+            $view = $this->getView($menu, $slug);
         } else {
             $subMenu = SubMenu::where('slug',$uri)->first();
+            if (!$subMenu) abort(404);
             $this->data['breadcrumbs'][] = ['href' => ($subMenu->menu->href ? $subMenu->menu->slug : null), 'name' => $subMenu->menu[App::getLocale()]];
             $this->data['menu_active_id'] = $subMenu->menu->id;
 
             $this->data['breadcrumbs'][] = ['href' => $subMenu->slug, 'name' => $subMenu[App::getLocale()]];
-            $this->data['head'] = $subMenu[App::getLocale()];
             $this->data['sub_menu_active_id'] = $subMenu->id;
-            $this->getContent($subMenu->content);
-            if (isset($subMenu->add_content_model)) $this->getAddContent($subMenu->add_content_model);
-            if (isset($subMenu->view)) $view = $subMenu->view;
+
+            if (!$slug) {
+                $this->data['head'] = $subMenu[App::getLocale()];
+                $this->getContent($subMenu->content);
+                $this->getAddContent($subMenu);
+            } else {
+                $this->getSlugContent($subMenu, $uri, $slug);
+            }
+            $view = $this->getView($subMenu, $slug);
         }
         return $view;
     }
 
-    protected function getAddContent($modelName)
+    protected function getAddContent($menu)
     {
-        if ($modelName) {
-            $model = app('App\Models'.$modelName);
+        if (isset($menu->add_content_model) && $menu->add_content_model) {
+            $model = app('App\Models'.$menu->add_content_model);
             $this->data['add_content'] = $model->where('active',1)->get();
+        }
+    }
+    
+    protected function getSlugContent($menu, $uri, $slug)
+    {
+        if (isset($menu->slug_model) && $menu->slug_model) {
+            $slugModel = app('App\Models'.$menu->slug_model);
+            $this->data['all_slug_in_model'] = $slugModel->where('active',1)->pluck('name_'.App::getLocale(),'slug');
+            $this->data['slug_content'] = $slugModel->where('active',1)->where('slug',$slug)->first();
+            $this->data['breadcrumbs'][] = ['href' => $uri.'/'.$slug, 'name' => $this->data['slug_content']['name_'.App::getLocale()]];
         }
     }
 
@@ -73,6 +97,13 @@ class StaticController extends Controller
     {
         if ($content) $this->data['content'] = count($content) == 1 ? $content[0] : $content;
         else $this->data['content'] = null;
+    }
+    
+    protected function getView($menu, $slug)
+    {
+        if ( (isset($menu->view) && $menu->view) || (isset($menu->slug_view) && $menu->slug_view)  ) {
+            return $slug ? $menu->slug_view : $menu->view;
+        } else return null;
     }
 
     protected function showView($view)
