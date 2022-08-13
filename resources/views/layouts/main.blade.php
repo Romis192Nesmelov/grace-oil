@@ -185,9 +185,9 @@
                     <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
                         <div class="f-menu-wp">
                             <ul class="f-menu">
-                                <li><a href="#">{{ trans('footer.grace_partner') }}</a></li>
-                                <li><a href="#">{{ trans('footer.how_to_become_a_dealer') }}</a></li>
-                                <li><a href="#">{{ trans('footer.industry_solutions') }}</a></li>
+                                <li><a href="#}">{{ trans('footer.grace_partner') }}</a></li>
+                                <li><a href="{{ url('/how-to-become-a-dealer') }}">{{ trans('footer.how_to_become_a_dealer') }}</a></li>
+                                <li><a href="{{ url('/'.App\Models\SubMenu::find(6)->slug) }}">{{ App\Models\SubMenu::find(6)[App::getLocale()] }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -195,8 +195,8 @@
                         <div class="f-menu-wp">
                             <ul class="f-menu">
                                 <li><a href="#">{{ trans('footer.site_map') }}</a></li>
-                                <li><a href="{{ url('/polzovatelskoe-soglashenie') }}">{{ trans('footer.user_agreement') }}</a></li>
-                                <li><a href="#">{{ trans('footer.vacancies') }}</a></li>
+                                <li><a href="{{ url('/terms-of-use') }}">{{ trans('footer.user_agreement') }}</a></li>
+                                <li><a href="{{ url('/'.App\Models\SubMenu::find(3)->slug) }}">{{ App\Models\SubMenu::find(3)[App::getLocale()] }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -214,36 +214,15 @@
     </footer>
     <!-- /footer -->
     <!-- Popups -->
-    <?php ob_start(); ?>
-    @include('layouts._input_block',[
-        'inputName' => 'name',
-        'inputId' => 'firstName',
-        'inputLabel' => trans('content.name').'*',
-        'useAjax' => true,
-    ])
-    @include('layouts._input_block',[
-        'inputName' => 'email',
-        'inputId' => 'email',
-        'inputLabel' => trans('content.email').'*',
-        'useAjax' => true,
-    ])
-    @include('layouts._textarea_block',[
-        'taName' => 'question',
-        'taId' => 'question',
-        'taLabel' => trans('content.your_question'),
-        'useAjax' => true,
-    ])
-
-    @include('layouts._popup_block',[
+    @include('layouts._feedback_def_popup_block',[
         'popupId' => 'consl_popup',
         'popupUri' => 'feedback',
         'popupHead' => trans('content.feedback'),
-        'popupContent' => ob_get_clean()
     ])
 
     <div class="hidden">
         <div id="thanx_popup" class="popup">
-            <h1>{{ Session::has('message') ? Session::get('message') : '' }}</h1>
+            <h3>{{ Session::has('message') ? Session::get('message') : '' }}</h3>
         </div>
         @if (Session::has('message'))
             <script>

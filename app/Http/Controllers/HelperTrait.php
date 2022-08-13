@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 trait HelperTrait
 {
+    public $validationPhone = 'regex:/^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/';
+    public $validationFeedback = [
+        'name' => 'required|min:3|max:100',
+        'email' => 'required|email',
+        'question' => 'max:2000',
+        'i_agree' => 'required|accepted'
+    ];
+    
     private $metas = [
         'meta_description' => ['name' => 'description', 'property' => false],
         'meta_keywords' => ['name' => 'keywords', 'property' => false],

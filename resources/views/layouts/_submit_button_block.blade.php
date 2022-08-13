@@ -1,0 +1,1 @@
+<button class="def-btn" type="submit">{{ isset($btnText) && $btnText ? $btnText : trans('content.send') }}</button>

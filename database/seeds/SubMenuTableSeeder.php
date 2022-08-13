@@ -37,13 +37,13 @@ class SubMenuTableSeeder extends Seeder
             ['ru' => 'Индустриальные масла', 'en' => 'Industrial Oils', 'menu_id' => 3],
             ['ru' => 'Охлаждающие жидкости', 'en' => 'Coolants', 'menu_id' => 3],
 
-            ['ru' => 'Производство', 'en' => 'Production', 'menu_id' => 4],
-            ['ru' => 'Программа GRACE Test', 'en' => 'GRACE Test Program', 'menu_id' => 4],
-            ['ru' => 'Отзывы', 'en' => '', 'menu_id' => 4],
+            ['ru' => 'Производство', 'en' => 'Production', 'menu_id' => 4, 'view' => 'production', 'manager_id' => 1],
+            ['ru' => 'Программа GRACE Test', 'en' => 'GRACE Test Program', 'menu_id' => 4, 'view' => 'grace_test', 'manager_id' => 1],
+            ['ru' => 'Отзывы', 'en' => 'Reviews', 'menu_id' => 4],
 
-            ['ru' => 'Сотрудничество', 'en' => 'Cooperation', 'menu_id' => 5],
-            ['ru' => 'Партнерские программы', 'en' => 'Partner Programs', 'menu_id' => 5],
-            ['ru' => 'Наши потребности', 'en' => 'Our Needs', 'menu_id' => 5],
+            ['ru' => 'Сотрудничество', 'en' => 'Cooperation', 'menu_id' => 5, 'view' => 'cooperation', 'manager_id' => 1],
+            ['ru' => 'Партнерские программы', 'en' => 'Partner Programs', 'menu_id' => 5, 'add_content_model' => '\PartnerProgram', 'view' => 'partner_programs', 'manager_id' => 1],
+            ['ru' => 'Наши потребности', 'en' => 'Our Needs', 'menu_id' => 5, 'view' => 'our_needs', 'manager_id' => 1],
 
             ['ru' => 'Классификации и стандарты', 'en' => 'Classifications and standards', 'menu_id' => 7],
             ['ru' => 'Маркетинговые материалы', 'en' => 'Marketing materials', 'menu_id' => 7],

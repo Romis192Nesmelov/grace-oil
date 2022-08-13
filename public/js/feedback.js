@@ -11,7 +11,7 @@ $(document).ready(function ($) {
         unlockSendButton($(this));
     });
 
-    $('form.sendLead button[type=submit]').click(function(e) {
+    $('form.useAjax button[type=submit]').click(function(e) {
         e.preventDefault();
 
         var self = $(this),

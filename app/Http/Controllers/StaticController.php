@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Slide;
 use App\Models\HomeBlock;
+use App\Models\Content;
 
 class StaticController extends Controller
 {
@@ -31,6 +32,19 @@ class StaticController extends Controller
         $this->validate($request, ['lang' => 'required|in:en,ru']);
         setcookie('lang', $request->input('lang'), time()+(60*60*24*365));
         return redirect()->back();
+    }
+    
+    public function howToBecomeADealer()
+    {
+        $this->data['breadcrumbs'] = [['href' => '#', 'name' => trans('footer.how_to_become_a_dealer')]];
+        return $this->showView('dealer');
+    }
+    
+    public function termsOfUse()
+    {
+        $this->data['breadcrumbs'] = [['href' => '#', 'name' => trans('footer.user_agreement')]];
+        $this->data['content'] = Content::find(10)['text_'.App::getLocale()];
+        return $this->showView('user_agreement');
     }
 
     protected function crumbsAndContent(Request $request, $slug)

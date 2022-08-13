@@ -15,7 +15,8 @@ use Database\Seeders\BrochuresTableSeeder;
 use Database\Seeders\AboutProductsTableSeeder;
 use Database\Seeders\AboutLubricantTableSeeder;
 use Database\Seeders\IndustrySolutionsTableSeeder;
-use Database\Seeders\OilTypesTableSeeder;
+//use Database\Seeders\OilTypesTableSeeder;
+use Database\Seeders\PartnerProgramsTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,5 +42,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AboutLubricantTableSeeder::class);
         $this->call(IndustrySolutionsTableSeeder::class);
 //        $this->call(OilTypesTableSeeder::class);
+        $this->call(PartnerProgramsTableSeeder::class);
     }
 }
