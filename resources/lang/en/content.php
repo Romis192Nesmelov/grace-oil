@@ -66,4 +66,6 @@ return [
     'in_case_of_any_questions' => 'In case of any questions, feel free to clarify them by the following phone: ',
     'back_to_news' => 'Back to news',
     'read_more' => 'Read more',
+    'here_you_can_find_marketing_materials' => 'Here you can find up-to-date marketing materials on various types of GRACE products - catalogs, booklets, brochures, guides, leaflets.',
+    'catalogs_and_brochures' => 'Catalogs and brochures',
 ];

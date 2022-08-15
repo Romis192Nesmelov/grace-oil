@@ -45,9 +45,10 @@ class SubMenuTableSeeder extends Seeder
             ['ru' => 'Партнерские программы', 'en' => 'Partner Programs', 'menu_id' => 5, 'add_content_model' => '\PartnerProgram', 'view' => 'partner_programs', 'manager_id' => 1],
             ['ru' => 'Наши потребности', 'en' => 'Our Needs', 'menu_id' => 5, 'view' => 'our_needs', 'manager_id' => 1],
 
-            ['ru' => 'Классификации и стандарты', 'en' => 'Classifications and standards', 'menu_id' => 7],
-            ['ru' => 'Маркетинговые материалы', 'en' => 'Marketing materials', 'menu_id' => 7],
-            ['ru' => 'Энциклопедия', 'en' => 'Encyclopedia', 'menu_id' => 7]
+            ['ru' => 'Классификации и стандарты', 'en' => 'Classifications and standards', 'menu_id' => 7, 'add_content_model' => '\Classification', 'view' => 'classification', 'manager_id' => 1],
+            ['ru' => 'Маркетинговые материалы', 'en' => 'Marketing materials', 'menu_id' => 7, 'add_content_model' => '\Brochure', 'view' => 'marketing_materials', 'manager_id' => 1],
+            ['ru' => 'Энциклопедия', 'en' => 'Encyclopedia', 'menu_id' => 7],
+            ['ru' => 'Прочая документация', 'en' => 'Other documentation', 'menu_id' => 7],
         ];
         
         foreach ($data as $item) {
