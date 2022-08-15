@@ -92,13 +92,13 @@
                     </div>
                 @endforeach
 
-                @include('layouts._button_tyoe2_block',[
+                @include('layouts._button_type1_block',[
                     'btnHref' => asset('brochures/grace_test.pdf'),
                     'btnText' => trans('content.download_grace_test_presentation'),
                     'btnBlank' => true
                 ])
 
-                @include('layouts._button_tyoe2_block',[
+                @include('layouts._button_type1_block',[
                     'btnHref' => '#test_popup',
                     'btnText' => trans('content.request_for_grace_test'),
                     'addClass' => 'fancybox'

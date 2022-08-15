@@ -64,4 +64,6 @@ return [
     'become_a_member' => 'Become a member/<br>get the program',
     'programs_aimed_at_supporting' => 'Programs aimed at supporting and developing the business of Grace Lubricants partners:',
     'in_case_of_any_questions' => 'In case of any questions, feel free to clarify them by the following phone: ',
+    'back_to_news' => 'Back to news',
+    'read_more' => 'Read more',
 ];

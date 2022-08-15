@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('js/libs/fancybox/dist/jquery.fancybox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style_media.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/paginator.css') }}" />
 
     <script src="{{ asset('js/libs/modernizr/modernizr.js') }}"></script>
     <script src="{{ asset('js/libs/jquery/jquery-1.11.2.min.js') }}"></script>

@@ -11,6 +11,7 @@ class ManagerTableSeeder extends Seeder
     {
         $data = [
             ['controller' => 'StaticController', 'method' => '_default'],
+            ['controller' => 'NewsController', 'method' => '_default'],
         ];
         
         foreach ($data as $item) {

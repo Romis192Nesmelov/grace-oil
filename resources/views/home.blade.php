@@ -36,7 +36,7 @@
                                    <a href="#" class="title-item">{!! $block['head_'.App::getLocale()] !!}</a>
                                    {!! $block['text_'.App::getLocale()] !!}
                                </div>
-                               @include('layouts._button_tyoe2_block',[
+                               @include('layouts._button_type1_block',[
                                     'btnHref' => '/',
                                     'btnText' => trans('content.more_details')
                                 ])

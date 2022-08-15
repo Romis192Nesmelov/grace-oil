@@ -49,16 +49,10 @@ class StaticController extends Controller
 
     protected function crumbsAndContent(Request $request, $slug)
     {
-        $this->data['crumbs'] = [];
-        $uri = str_replace('/','',$request->getPathInfo());
-        if ($slug) $uri = str_replace($slug,'',$uri);
-
-        $menu = Menu::where('slug',$uri)->first();
+        list($menu, $uri) = $this->getMenu($request, $slug);
+        
         if ($menu && $menu->href) {
-            
-            $this->data['breadcrumbs'][] = ['href' => ($menu->href ? $menu->slug : null), 'name' => $menu[App::getLocale()]];
-            $this->data['head'] = $menu[App::getLocale()];
-            $this->data['menu_active_id'] = $menu->id;
+            $this->getBreadcrumbsMenu($menu);
 
             if (!$slug) {
                 $this->data['head'] = $menu[App::getLocale()];
@@ -71,8 +65,9 @@ class StaticController extends Controller
         } else {
             $subMenu = SubMenu::where('slug',$uri)->first();
             if (!$subMenu) abort(404);
-            $this->data['breadcrumbs'][] = ['href' => ($subMenu->menu->href ? $subMenu->menu->slug : null), 'name' => $subMenu->menu[App::getLocale()]];
-            $this->data['menu_active_id'] = $subMenu->menu->id;
+
+            $this->getBreadcrumbsMenu($subMenu->menu);
+            $this->getBreadcrumbsSubMenu($subMenu);
 
             $this->data['breadcrumbs'][] = ['href' => $subMenu->slug, 'name' => $subMenu[App::getLocale()]];
             $this->data['sub_menu_active_id'] = $subMenu->id;
@@ -88,6 +83,26 @@ class StaticController extends Controller
         }
         return $view;
     }
+    
+    protected function getMenu(Request $request, $slug)
+    {
+        $uri = str_replace('/','',$request->getPathInfo());
+        if ($slug) $uri = str_replace($slug,'',$uri);
+        return [Menu::where('slug',$uri)->first(), $uri];
+    }
+
+    protected function getBreadcrumbsMenu($menu)
+    {
+        $this->data['breadcrumbs'][] = ['href' => ($menu->href ? $menu->slug : null), 'name' => $menu[App::getLocale()]];
+        $this->data['head'] = $menu[App::getLocale()];
+        $this->data['menu_active_id'] = $menu->id;
+    }
+
+    protected function getBreadcrumbsSubMenu($subMenu)
+    {
+        $this->data['breadcrumbs'][] = ['href' => $subMenu->slug, 'name' => $subMenu[App::getLocale()]];
+        $this->data['sub_menu_active_id'] = $subMenu->id;
+    }
 
     protected function getAddContent($menu)
     {
@@ -101,10 +116,15 @@ class StaticController extends Controller
     {
         if (isset($menu->slug_model) && $menu->slug_model) {
             $slugModel = app('App\Models'.$menu->slug_model);
-            $this->data['all_slug_in_model'] = $slugModel->where('active',1)->pluck('name_'.App::getLocale(),'slug');
+            $this->data['all_slug_in_model'] = $slugModel->where('active',1)->get();
             $this->data['slug_content'] = $slugModel->where('active',1)->where('slug',$slug)->first();
-            $this->data['breadcrumbs'][] = ['href' => $uri.'/'.$slug, 'name' => $this->data['slug_content']['name_'.App::getLocale()]];
+            $this->getBreadcrumbsSlug($uri, $slug, 'name_');
         }
+    }
+    
+    protected function getBreadcrumbsSlug($uri, $slug, $partHeadField)
+    {
+        $this->data['breadcrumbs'][] = ['href' => $uri.'/'.$slug, 'name' => $this->data['slug_content'][$partHeadField.App::getLocale()]];
     }
 
     protected function getContent($content)

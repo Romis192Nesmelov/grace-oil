@@ -29,8 +29,8 @@
                                     <ul>
                                         <li style="padding-top: 3px;" class="parent active"><a href="#">{{ trans('content.other_sections_of_the_catalog') }}<div class="trigger-arrow"></div></a>
                                             <ul>
-                                                @foreach($data['all_slug_in_model'] as $slug => $name)
-                                                    <li style="padding-top: 5px;" {{ $data['slug_content']->slug == $slug ? 'class=active' : '' }}><a href="{{ Request::getPathInfo().'/'.$data['slug_content']->slug }}">{{ $name }}</a></li>
+                                                @foreach($data['all_slug_in_model'] as $oilType)
+                                                    <li style="padding-top: 5px;" {{ $data['slug_content']->slug == $oilType->slug ? 'class=active' : '' }}><a href="/{{ $data['breadcrumbs'][count($data['breadcrumbs'])-2]['href'].'/'.$oilType->slug }}">{{ $oilType['name_'.App::getLocale()] }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>

@@ -81,6 +81,12 @@ trait HelperTrait
         return $fields;
     }
 
+    public function convertTime($time)
+    {
+        $time = explode('/', $time);
+        return $time[1].'/'.$time[0].'/'.$time[2];
+    }
+
     public function sendMessage($template, array $fields, $pathToFile=null, $copyTo=null)
     {
         $title = trans('content.company_name');

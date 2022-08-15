@@ -12,7 +12,6 @@ class Menu extends Model
         'en',
         'href',
         'add_content_model',
-        'slug_model',
         'view',
         'active',
         'manager_id'

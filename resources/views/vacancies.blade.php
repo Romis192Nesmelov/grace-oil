@@ -34,7 +34,7 @@
                 @endforeach
                 {!! $data['content']['text_'.App::getLocale()] !!}
 
-                @include('layouts._button_tyoe2_block',[
+                @include('layouts._button_type1_block',[
                     'btnHref' => '#',
                     'btnText' => trans('content.send_resume'),
                     'addClass' => ''

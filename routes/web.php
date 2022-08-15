@@ -15,7 +15,7 @@ Route::post('/program_application', 'FeedbackController@programApplication');
 
 foreach (Menu::where('active',1)->get() as $menu) {
     if ($menu->href && $menu->manager) {
-        Route::get('/'.$menu->slug, $menu->manager->controller.'@'.$menu->manager->method);
+        Route::get('/'.$menu->slug.(isset($menu->use_slug) && $menu->use_slug ? '/{slug?}' : ''), $menu->manager->controller.'@'.$menu->manager->method);
     }
     
     if (count($menu->subMenu)) {

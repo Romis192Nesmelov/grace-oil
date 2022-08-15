@@ -44,7 +44,7 @@
 
                         @foreach($data['add_content'] as $programNName)
                             <td data-label="{{ $program['name_'.App::getLocale()] }}">
-                                @include('layouts._button_tyoe2_block',[
+                                @include('layouts._button_type1_block',[
                                     'btnHref' => '#partner_popup',
                                     'btnText' => trans('content.request'),
                                     'addClass' => 'fancybox'

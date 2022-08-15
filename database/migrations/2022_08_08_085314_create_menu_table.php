@@ -21,6 +21,7 @@ class CreateMenuTable extends Migration
             $table->boolean('href');
             $table->string('add_content_model')->nullable();
             $table->string('view')->nullable();
+            $table->boolean('use_slug')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });
