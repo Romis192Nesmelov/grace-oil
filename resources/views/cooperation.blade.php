@@ -4,7 +4,7 @@
     @include('layouts._feedback_def_popup_block',[
         'popupId' => 'partner_popup',
         'popupUri' => 'partner',
-        'popupHead' => trans('content.to_make_a_partner'),
+        'popupHead' => trans('content.submit_request'),
     ])
 
     <div class="main internal">

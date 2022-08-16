@@ -8,11 +8,22 @@ trait HelperTrait
 {
     public $validationPhone = 'regex:/^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/';
     public $validationFeedback = [
-        'name' => 'required|min:3|max:100',
+        'organization_name' => 'required|min:3|max:255',
         'email' => 'required|email',
-        'question' => 'max:2000',
+        'phone' => 'max:2000',
         'i_agree' => 'required|accepted'
     ];
+    
+    public function getRequestValidation()
+    {
+        return [
+            'organization_name' => 'required|min:3|max:255',
+            'email' => 'required|email',
+            'phone' => $this->validationPhone, 
+            'field_of_activity' => 'max:1000',
+            'i_agree' => 'required|accepted'
+        ];
+    }
     
     private $metas = [
         'meta_description' => ['name' => 'description', 'property' => false],

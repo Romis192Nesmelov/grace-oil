@@ -68,4 +68,10 @@ return [
     'read_more' => 'Read more',
     'here_you_can_find_marketing_materials' => 'Here you can find up-to-date marketing materials on various types of GRACE products - catalogs, booklets, brochures, guides, leaflets.',
     'catalogs_and_brochures' => 'Catalogs and brochures',
+    'consolidated_statement' => 'Consolidated statement',
+    'name_of_organization' => 'Name of organization',
+    'field_of_activity' => 'Field of activity',
+    'you_have_a_question' => 'Have questions? Do you want to place an order or agree on cooperation? Send us a request!',
+    'head_office' => 'Центральный офис:',
+    'telephone_number_on_general_issues' => 'Телефон (по общим вопросам):',
 ];

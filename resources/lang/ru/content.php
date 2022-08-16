@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'home' => 'Главнвя',
+    'home' => 'Главная',
     'feedback' => 'Обратная связь',
     'search' => 'Поиск',
     'more_details' => 'Подробнее',
@@ -68,4 +68,10 @@ return [
     'read_more' => 'Читайте еще',
     'here_you_can_find_marketing_materials' => 'Здесь вы можете найти актуальные маркетинговые материалы по различным видам продукции GRACE — каталоги, буклеты, брошюры, справочники, лифлеты.',
     'catalogs_and_brochures' => 'Каталоги и брошюры',
+    'consolidated_statement' => 'Сводная ведомость',
+    'name_of_organization' => 'Название организации',
+    'field_of_activity' => 'Сфера деятельности',
+    'you_have_a_question' => 'Есть вопросы? Хотите сделать заказ или договориться о сотрудничестве? Отправьте нам заявку!',
+    'head_office' => 'Head office:',
+    'telephone_number_on_general_issues' => 'Telephone number (on general issues):',
 ];

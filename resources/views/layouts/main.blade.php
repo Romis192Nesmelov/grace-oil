@@ -7,7 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ $seo['title'] }}</title>
+    <title>
+        @if (isset($data['content']) && isset($data['content']['head_'.App::getLocale()]))
+            {{ $data['content']['head_'.App::getLocale()] }}
+        @elseif (isset($data['slug_content']) && isset($data['slug_content']['head_'.App::getLocale()]))
+            {{ $data['slug_content']['head_'.App::getLocale()] }}
+        @elseif (isset($data['slug_content']) && isset($data['slug_content']['name_'.App::getLocale()]))
+            {{ $data['slug_content']['name_'.App::getLocale()] }}
+        @elseif (isset($data['head']))
+            {{ $data['head'] }}
+        @else
+            {{ $seo['title'] }}
+        @endif
+    </title>
     @foreach($metas as $meta => $params)
         @if ($seo[$meta])
             <meta {{ $params['name'] ? 'name='.$params['name'] : 'property='.$params['property'] }} content="{{ $seo[$meta] }}">
@@ -214,11 +226,33 @@
         </div>
     </footer>
     <!-- /footer -->
-    <!-- Popups -->
-    @include('layouts._feedback_def_popup_block',[
+    <!-- Popup -->
+    <?php ob_start(); ?>
+    @include('layouts._input_block',[
+        'inputName' => 'name',
+        'inputId' => 'firstName',
+        'inputLabel' => trans('content.name').'*',
+        'useAjax' => true,
+    ])
+    @include('layouts._input_block',[
+        'inputName' => 'email',
+        'inputId' => 'email',
+        'inputLabel' => trans('content.email').'*',
+        'useAjax' => true,
+    ])
+    @include('layouts._textarea_block',[
+        'taName' => 'question',
+        'taId' => 'question',
+        'taLabel' => trans('content.your_question'),
+        'useAjax' => true,
+    ])
+
+    @include('layouts._popup_block',[
+        'popupContent' => ob_get_clean(),
         'popupId' => 'consl_popup',
         'popupUri' => 'feedback',
         'popupHead' => trans('content.feedback'),
+        'useAjax' => true
     ])
 
     <div class="hidden">

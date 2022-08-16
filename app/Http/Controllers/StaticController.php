@@ -69,9 +69,6 @@ class StaticController extends Controller
             $this->getBreadcrumbsMenu($subMenu->menu);
             $this->getBreadcrumbsSubMenu($subMenu);
 
-            $this->data['breadcrumbs'][] = ['href' => $subMenu->slug, 'name' => $subMenu[App::getLocale()]];
-            $this->data['sub_menu_active_id'] = $subMenu->id;
-
             if (!$slug) {
                 $this->data['head'] = $subMenu[App::getLocale()];
                 $this->getContent($subMenu->content);

@@ -9,7 +9,12 @@ class FeedbackController extends Controller
 
     public function feedback(Request $request)
     {
-        $this->validate($request, $this->validationFeedback);
+        $this->validate($request, [
+            'name' => 'required|min:3|max:100',
+            'email' => 'required|email',
+            'question' => 'max:2000',
+            'i_agree' => 'required|accepted'
+        ]);
         $fields = $this->processingFields($request);
         $fields['mailTitle'] = trans('content.feedback');
         return $this->sendMail($request,'feedback',$fields);
@@ -17,18 +22,18 @@ class FeedbackController extends Controller
 
     public function toBeAPartner(Request $request)
     {
-        $this->validate($request, $this->validationFeedback);
+        $this->validate($request, $this->getRequestValidation());
         $fields = $this->processingFields($request);
         $fields['mailTitle'] = trans('content.to_make_a_partner');
-        return $this->sendMail($request,'feedback',$fields);
+        return $this->sendMail($request,'request',$fields);
     }
 
     public function programApplication(Request $request)
     {
-        $this->validate($request, $this->validationFeedback);
+        $this->validate($request, $this->getRequestValidation());
         $fields = $this->processingFields($request);
         $fields['mailTitle'] = trans('content.affiliate_program_application');
-        return $this->sendMail($request,'feedback',$fields);
+        return $this->sendMail($request,'request',$fields);
     }
 
     public function becomeDealer(Request $request)
