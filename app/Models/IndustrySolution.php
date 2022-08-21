@@ -42,4 +42,9 @@ class IndustrySolution extends Model
     {
         return $this->belongsTo('App\Models\Brochure');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\ReviewToSolution');
+    }
 }

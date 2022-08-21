@@ -12,6 +12,8 @@ Route::post('/become_dealer', 'FeedbackController@becomeDealer');
 Route::post('/grace_test_request', 'FeedbackController@graceTestRequest');
 Route::post('/partner', 'FeedbackController@toBeAPartner');
 Route::post('/program_application', 'FeedbackController@programApplication');
+Route::post('/resume', 'FeedbackController@resume');
+Route::post('/offer', 'FeedbackController@offer');
 
 foreach (Menu::where('active',1)->get() as $menu) {
     if ($menu->href && $menu->manager) {

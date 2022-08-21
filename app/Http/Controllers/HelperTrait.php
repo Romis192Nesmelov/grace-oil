@@ -13,6 +13,7 @@ trait HelperTrait
         'phone' => 'max:2000',
         'i_agree' => 'required|accepted'
     ];
+    public $validationDoc = 'required|mimes:doc,docx';
     
     public function getRequestValidation()
     {

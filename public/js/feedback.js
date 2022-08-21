@@ -22,40 +22,47 @@ $(document).ready(function ($) {
             select = form.find('select'),
             radio = form.find('input[type=radio]'),
             checkboxes = form.find('input[type=checkbox]'),
+            file = form.find('input[type=file]'),
             agree = form.find('input[name=i_agree]').is(':checked'),
             loader = $('<div></div>').addClass('loader').append(
                 $('<div></div>').addClass('loader_inner')
-            ),
-            fields = {};
+            );
     
         if (!agree) return false;
-    
-        fields = processingFields(fields,inputs);
-        fields = processingFields(fields,select);
-        fields = processingFields(fields,textarea);
-        fields = processingCheckFields(fields,radio);
-        fields = processingCheckFields(fields,checkboxes);
-    
-        fields['_token'] = form.find('input[name=_token]').val();
-        fields['i_agree'] = agree;
+
+        var formData = new FormData;
+        formData = processingFields(formData,inputs);
+        formData = processingFields(formData,select);
+        formData = processingFields(formData,textarea);
+        formData = processingCheckFields(formData,radio);
+        formData = processingCheckFields(formData,checkboxes);
+
+        if (file.length) formData.append(file.attr('name'),file[0].files[0]);
     
         $('.error_text').html('');
         form.find('input, select, textarea, button').attr('disabled','disabled');
         $('body').prepend(loader);
 
-        $.post(form.attr('action'), fields)
-            .done(function(data) {
-                closePopuo(popup.attr('id'));
+
+        $.ajax({
+            url: form.attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (data) {
+                closePopup(popup.attr('id'));
                 unlockAll(form,loader);
                 form.find('input, textarea').val('');
-                $('#thanx_popup h1').html(data.message);
-
+                
+                $('#thanx_popup h3').html(data.message);
+                
                 $.fancybox.open({
                     src: '#thanx_popup',
                     type: 'inline'
                 });
-            })
-            .fail(function(jqXHR, textStatus, errorThrown) {
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
                 var responseMsg = jQuery.parseJSON(jqXHR.responseText),
                     replaceErr = {
                         'phone':'«Телефон»',
@@ -65,7 +72,7 @@ $(document).ready(function ($) {
 
                 $.each(responseMsg, function (field, error) {
                     var errorMsg = error[0],
-                        errorBlock = $('.input-'+field);
+                        errorBlock = form.find('.input-'+field);
 
                     $.each(replaceErr, function (src,replace) {
                         errorMsg = errorMsg.replace(src,replace);
@@ -73,28 +80,32 @@ $(document).ready(function ($) {
                     errorBlock.html(errorMsg);
                 });
                 unlockAll(form,loader);
+            }
         });
     });
 });
 
-function processingFields(fields, inputObj) {
+function processingFields(formData, inputObj) {
     if (inputObj.length) {
         $.each(inputObj, function (key, obj) {
-            if (obj.type != 'checkbox' && obj.type != 'radio') fields[obj.name] = obj.value;
-        });
-    }
-    return fields;
-}
-
-function processingCheckFields(fields, inputObj) {
-    if (inputObj.length) {
-        inputObj.each(function(){
-            if($(this).is(':checked')) {
-                fields[$(this).attr('name')] = $(this).val();
+            if (obj.type != 'checkbox' && obj.type != 'radio') {
+                formData.append(obj.name,obj.value);
             }
         });
     }
-    return fields;
+    return formData;
+}
+
+function processingCheckFields(formData, inputObj) {
+    if (inputObj.length) {
+        inputObj.each(function(){
+            var _self = $(this);
+            if(_self.is(':checked')) {
+                formData.append(_self.attr('name'),_self.val());
+            }
+        });
+    }
+    return formData;
 }
 
 function unlockSendButton(obj) {
@@ -113,6 +124,6 @@ function unlockAll(form,loader) {
     loader.remove();
 }
 
-function closePopuo(id) {
+function closePopup(id) {
     $.fancybox.close({src: '#'+id});
 }

@@ -68,10 +68,51 @@ class FeedbackController extends Controller
         return $this->sendMail($request,'grace_test',$fields);
     }
     
-    private function sendMail(Request $request, $template, $fields)
+    public function resume(Request $request)
+    {
+        $this->validate($request, [
+            'surname' => 'required|min:3|max:200',
+            'name' => 'required|min:3|max:200',
+            'patronymic' => 'required|min:3|max:200',
+            'city' => 'required|min:3|max:100',
+            'last_work' => 'max:200',
+            'position_held' => 'max:200',
+            'email' => 'required|email',
+            'resume_file' => $this->validationDoc,
+            'i_agree' => 'required|accepted'
+        ]);
+
+        $fields = $this->processingFields($request);
+        return $this->sendMail($request,'resume',$fields,'resume_file');
+    }
+
+    public function offer(Request $request)
+    {
+        $this->validate($request, [
+            'company_name' => 'required|min:3|max:255',
+            'name' => 'required|min:3|max:100',
+            'email' => 'required|email',
+            'offer_file' => $this->validationDoc,
+            'i_agree' => 'required|accepted'
+        ]);
+        $fields = $this->processingFields($request);
+        return $this->sendMail($request,'offer',$fields,'offer_file');
+    }
+    
+    private function sendMail(Request $request, $template, $fields, $fileName=null)
     {
         $message = trans('content.thanx_feedback');
-        $this->sendMessage($template,$fields);
+        if ($fileName) {
+            $file = $request->file($fileName);
+            $fileName = $file->getClientOriginalName();
+            $file->move(base_path('files'), $fileName);
+            $pathToFile = base_path('files').'/'.$fileName;
+        } else $pathToFile = null;
+
+        $this->sendMessage($template, $fields, $pathToFile);
+
+        if ($pathToFile) unlink($pathToFile);
+
         return $request->ajax()
             ? response()->json(['success' => true, 'message' => $message])
             : redirect()->back()->with('message', $message);
