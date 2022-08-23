@@ -15,10 +15,11 @@ use Database\Seeders\BrochuresTableSeeder;
 use Database\Seeders\AboutProductsTableSeeder;
 use Database\Seeders\AboutLubricantTableSeeder;
 use Database\Seeders\IndustrySolutionsTableSeeder;
-//use Database\Seeders\OilTypesTableSeeder;
+use Database\Seeders\OilTypesTableSeeder;
 use Database\Seeders\PartnerProgramsTableSeeder;
 use Database\Seeders\NewsTableSeeder;
 use Database\Seeders\ClassificationsTableSeeder;
+use Database\Seeders\ReviewsTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,5 +48,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PartnerProgramsTableSeeder::class);
         $this->call(NewsTableSeeder::class);
         $this->call(ClassificationsTableSeeder::class);
+        $this->call(ReviewsTableSeeder::class);
     }
 }

@@ -5,9 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $fillable = ['preview','full','active'];
+    protected $fillable = [
+        'preview',
+        'full',
+        'name_ru',
+        'name_en',
+        'active'
+    ];
 
-    public function brochure()
+    public function solutions()
     {
         return $this->hasMany('App\Models\ReviewToSolution');
     }

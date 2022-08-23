@@ -47,4 +47,9 @@ class IndustrySolution extends Model
     {
         return $this->hasMany('App\Models\ReviewToSolution');
     }
+
+//    public function oilTypes()
+//    {
+//        return $this->hasMany('App\Models\OilType');
+//    }
 }

@@ -5,5 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class OilType extends Model
 {
-    protected $fillable = ['name_ru', 'name_en', 'active'];
+    protected $fillable = [
+        'icon',
+        'name_ru',
+        'name_en',
+        'active'
+    ];
+
+//    public function industrySolution()
+//    {
+//        return $this->belongsTo('App\Models\IndustrySolution');
+//    }
 }

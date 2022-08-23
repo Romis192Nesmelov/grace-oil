@@ -57,6 +57,7 @@
     <script src="{{ asset('js/common.js') }}"></script>
 
     <script src="{{ asset('js/feedback.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </head>
 <body>
 <!-- Page container -->

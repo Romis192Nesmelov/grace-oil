@@ -85,6 +85,8 @@ return [
     'name_of_organization' => 'Name of organization',
     'field_of_activity' => 'Field of activity',
     'you_have_a_question' => 'Have questions? Do you want to place an order or agree on cooperation? Send us a request!',
-    'head_office' => 'Центральный офис:',
-    'telephone_number_on_general_issues' => 'Телефон (по общим вопросам):',
+    'head_office' => 'Head office:',
+    'telephone_number_on_general_issues' => 'Telephone number (on general issues):',
+    'dealer_review' => 'Dealer review',
+    'segment' => 'Segment',
 ];

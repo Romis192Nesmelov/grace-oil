@@ -17,6 +17,8 @@ class CreateReviewsTable extends Migration
             $table->increments('id');
             $table->string('preview')->unique();
             $table->string('full')->unique();
+            $table->string('name_ru')->unique();
+            $table->string('name_en')->unique();
             $table->boolean('active');
             $table->timestamps();
         });

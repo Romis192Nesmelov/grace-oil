@@ -14,7 +14,7 @@ class ReviewToSolution extends Model
         return $this->belongsTo('App\Models\News');
     }
 
-    public function similar()
+    public function industrySolution()
     {
         return $this->belongsTo('App\Models\IndustrySolution');
     }
