@@ -4,6 +4,7 @@ return [
     'home' => 'Главная',
     'feedback' => 'Обратная связь',
     'search' => 'Поиск',
+    'search_results' => 'Результаты поиска',
     'more_details' => 'Подробнее',
     'go_to_catalogue' => 'Перейти в каталог',
     'about_products' => 'О продукции',

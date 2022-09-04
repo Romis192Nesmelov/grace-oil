@@ -11,6 +11,14 @@ class NewsController extends StaticController
 
     public function _default(Request $request, $slug=null)
     {
+//        $search = News::whereRaw(
+//            "MATCH(head_ru,head_en,text_full_ru,text_full_en) AGAINST(? IN BOOLEAN MODE)",
+//            array('одобрение')
+//        )->get();
+
+//        $model = new News();
+//        dd($model->getFillable());
+
         list($menu, $uri) = $this->getMenu($request, $slug);
         $this->getBreadcrumbsMenu($menu);
 

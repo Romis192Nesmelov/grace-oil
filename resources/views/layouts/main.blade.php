@@ -129,8 +129,8 @@
                     </div>
                     <div class="header-search-wp">
                         <div class="search-inp">
-                            <form action="#">
-                                <input type="text" placeholder="Поиск" title="Поиск" id="form-top-search">
+                            <form method="get" action="{{ url('/search') }}">
+                                <input name="find" type="text" placeholder="{{ trans('content.search') }}" title="{{ trans('content.search') }}" id="form-top-search">
                                 <button type="submit" class="search-btn"><i class="material-icons">search</i></button>
                             </form>
                         </div>

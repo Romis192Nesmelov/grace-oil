@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AboutProductsTableSeeder::class);
         $this->call(AboutLubricantTableSeeder::class);
         $this->call(IndustrySolutionsTableSeeder::class);
-//        $this->call(OilTypesTableSeeder::class);
+        $this->call(OilTypesTableSeeder::class);
         $this->call(PartnerProgramsTableSeeder::class);
         $this->call(NewsTableSeeder::class);
         $this->call(ClassificationsTableSeeder::class);

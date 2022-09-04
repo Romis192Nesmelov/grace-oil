@@ -13,6 +13,8 @@ class Menu extends Model
         'href',
         'add_content_model',
         'view',
+        'use_sub_slug',
+        'use_slug',
         'active',
         'manager_id'
     ];

@@ -89,6 +89,7 @@ class OilTypesTableSeeder extends Seeder
             $item['icon'] = 'images/oil_types/icon'.$count.'.png';
             $item['active'] = 1;
             OilType::create($item);
+            $count++;
         }
     }
 }

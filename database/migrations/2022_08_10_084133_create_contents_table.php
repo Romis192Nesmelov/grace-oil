@@ -24,6 +24,7 @@ class CreateContentsTable extends Migration
             $table->boolean('active');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE contents ADD FULLTEXT search(head_ru,head_en,text_ru,text_en)');
     }
 
     /**
@@ -33,6 +34,9 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
+        Schema::table('contents', function($table) {
+            $table->dropIndex('search');
+        });
         Schema::dropIfExists('contents');
     }
 }

@@ -6,6 +6,7 @@ use App\Models\SubMenu;
 //Route::auth();
 
 Route::get('/', 'StaticController@index');
+Route::get('/search', 'SearchController@find');
 Route::get('/change-lang', 'StaticController@changeLang');
 Route::post('/feedback', 'FeedbackController@feedback');
 Route::post('/become_dealer', 'FeedbackController@becomeDealer');
@@ -17,7 +18,7 @@ Route::post('/offer', 'FeedbackController@offer');
 
 foreach (Menu::where('active',1)->get() as $menu) {
     if ($menu->href && $menu->manager) {
-        Route::get('/'.$menu->slug.(isset($menu->use_slug) && $menu->use_slug ? '/{slug?}' : ''), $menu->manager->controller.'@'.$menu->manager->method);
+        Route::get('/'.$menu->slug.(isset($menu->use_slug) && $menu->use_slug ? '/{slug?}' : '').(isset($menu->use_sub_slug) && $menu->use_sub_slug ? '/{sub_slug?}' : ''), $menu->manager->controller.'@'.$menu->manager->method);
     }
     
     if (count($menu->subMenu)) {

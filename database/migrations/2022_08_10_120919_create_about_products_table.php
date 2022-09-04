@@ -23,6 +23,7 @@ class CreateAboutProductsTable extends Migration
             $table->boolean('active');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE about_products ADD FULLTEXT search(head_ru,head_en,text_ru,text_en)');
     }
 
     /**
@@ -32,6 +33,9 @@ class CreateAboutProductsTable extends Migration
      */
     public function down()
     {
+        Schema::table('about_products', function($table) {
+            $table->dropIndex('search');
+        });
         Schema::dropIfExists('about_products');
     }
 }

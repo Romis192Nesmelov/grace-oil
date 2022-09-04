@@ -4,6 +4,7 @@ return [
     'home' => 'Home',
     'feedback' => 'Feedback',
     'search' => 'Search',
+    'search_results' => 'Search results',
     'more_details' => 'More details',
     'go_to_catalogue' => 'Go to catalogue',
     'about_products' => 'About products',

@@ -27,6 +27,7 @@ class CreateNewsTable extends Migration
             $table->boolean('active');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE news ADD FULLTEXT search(head_ru,head_en,text_short_ru,text_short_en)');
     }
 
     /**
@@ -36,6 +37,9 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
+        Schema::table('news', function($table) {
+            $table->dropIndex('search');
+        });
         Schema::dropIfExists('news');
     }
 }

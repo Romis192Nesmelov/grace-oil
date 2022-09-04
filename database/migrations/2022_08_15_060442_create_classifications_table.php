@@ -22,6 +22,7 @@ class CreateClassificationsTable extends Migration
             $table->boolean('active');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE classifications ADD FULLTEXT search(name_ru,name_en,text_ru,text_en)');
     }
 
     /**
@@ -31,6 +32,9 @@ class CreateClassificationsTable extends Migration
      */
     public function down()
     {
+        Schema::table('classifications', function($table) {
+            $table->dropIndex('search');
+        });
         Schema::dropIfExists('classifications');
     }
 }
