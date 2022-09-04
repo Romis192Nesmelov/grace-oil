@@ -17,7 +17,11 @@
                             <div class="item_descr">
                                 <p>{{ mb_substr(strip_tags($item['text_'.App::getLocale()]),0,500,'UTF-8') }}…</p>
                             </div>
-                            <div class="btn_more_wrap"><a href="{{ $item['href'] }}" class="def-btn empty">{{ trans('content.more_details') }}</a></div>
+                            @include('layouts._button_type2_block',[
+                                'btnHref' => $item['href'],
+                                'btnBlank' => true,
+                                'btnText' => trans('content.more_details')
+                            ])
                         </div>
                     </div>
                 @endforeach

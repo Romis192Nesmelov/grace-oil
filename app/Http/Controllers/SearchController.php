@@ -25,7 +25,7 @@ class SearchController extends StaticController
         foreach ($foundContents as $content) {
             if ($content->menu_id || $content->sub_menu_id) {
                 $this->data['found']->push([
-                    'href' => url($content->menu_id ? '/'.$content->menu->slug : '/'.$content->subMenu->slug),
+                    'href' => url($content->menu_id ? '/'.$content->menu->slug : '/'.$content->subMenu->slug.($content->sub_menu_id == 33 ? '?id='.$content->id.'#enc_'.$content->id : '')),
                     'title_ru' => $content->head_ru,
                     'title_en' => $content->head_en,
                     'text_ru' => $content->text_ru,
