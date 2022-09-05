@@ -1,5 +1,13 @@
 $(document).ready(function ($) {
 
+    // Get search
+    var findForm = $('#search-form');
+    findForm.find('button').click(function (e) {
+        e.preventDefault();
+        location.href = '/search/'+findForm.find('input').val();
+    });
+
+
     // Review filters
     var checkBoxesContainer = $('.checkbox-toggle-list.review-filters'),
         allCheckboxes = checkBoxesContainer.find('.jq-checkbox'),

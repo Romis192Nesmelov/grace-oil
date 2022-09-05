@@ -6,7 +6,7 @@ use App\Models\SubMenu;
 //Route::auth();
 
 Route::get('/', 'StaticController@index');
-Route::get('/search', 'SearchController@find');
+Route::get('/search/{slug}', 'SearchController@find');
 Route::get('/change-lang', 'StaticController@changeLang');
 Route::post('/feedback', 'FeedbackController@feedback');
 Route::post('/become_dealer', 'FeedbackController@becomeDealer');
