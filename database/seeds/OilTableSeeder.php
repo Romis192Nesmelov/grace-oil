@@ -8,6 +8,7 @@ use App\Models\Oil;
 use App\Models\OilTolerance;
 use App\Models\Subsection;
 use App\Models\Documentation;
+use App\Models\OilSolution;
 
 class OilTableSeeder extends Seeder
 {
@@ -139,6 +140,7 @@ class OilTableSeeder extends Seeder
 
         $toleranceCounter = 1;
         $maxOil = rand(100,200);
+
         for ($o=0;$o<$maxOil;$o++) {
             $item = $oilTemplate;
             $item['active'] = 1;
@@ -167,6 +169,11 @@ class OilTableSeeder extends Seeder
             $documentation['oil_id'] = $oil->id;
 
             Documentation::create($documentation);
+            
+            OilSolution::create([
+                'oil_id' => $oil->id,
+                'industry_solution_id' => rand(1,12),
+            ]);
         }
     }
 }

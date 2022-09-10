@@ -629,46 +629,67 @@ th {
   list-style: none;
   padding: 0 0 0 33px;
   margin-bottom: 16px;
-  margin-top: 16px; }
-  .text_edit ul li {
+  margin-top: 16px;
+}
+
+.text_edit ul.tabs {
+  padding: 0;
+  margin: 0;
+}
+
+.text_edit ul li {
     margin: 0 0 17px 0;
     font-size: 17px;
     line-height: 23px;
     font-family: "Open Sans", sans-serif;
     color: #18191A;
-    position: relative; }
-    .text_edit ul li:last-of-type {
-      margin: 0; }
-    .text_edit ul li:before {
-      content: '\e061';
-      position: absolute;
-      font-family: Material Icons;
-      font-size: 8px;
-      line-height: 8px;
-      display: block;
-      color: #EB7C1E;
-      left: -15px;
-      top: 11px; }
-  .text_edit ul.check-list {
-    margin-top: 25px; }
-    .text_edit ul.check-list li {
-      margin: 0 0 9px 0; }
-      .text_edit ul.check-list li:before {
-        content: '\e876';
-        font-size: 20px;
-        line-height: 20px;
-        top: 4px;
-        left: -32px; }
-  .text_edit ul.round-list li:before {
-    content: '';
-    position: absolute;
-    border-radius: 100%;
-    width: 5px;
-    height: 5px;
-    display: block;
-    background: #EB7C1E;
-    left: -24px;
-    top: 10px; }
+    position: relative;
+}
+
+.text_edit ul.tabs li {
+  text-align: left;
+  font-size: 14px;
+  margin: 0;
+}
+
+.text_edit ul li:last-of-type {
+  margin: 0;
+}
+.text_edit ul li:before {
+  content: '\e061';
+  position: absolute;
+  font-family: Material Icons;
+  font-size: 8px;
+  line-height: 8px;
+  display: block;
+  color: #EB7C1E;
+  left: -15px;
+  top: 11px;
+}
+.text_edit ul.check-list {
+  margin-top: 25px;
+}
+.text_edit ul.check-list li {
+  margin: 0 0 9px 0;
+}
+.text_edit ul.check-list li:before {
+  content: '\e876';
+  font-size: 20px;
+  line-height: 20px;
+  top: 4px;
+  left: -32px;
+}
+.text_edit ul.round-list li:before {
+  content: '';
+  position: absolute;
+  border-radius: 100%;
+  width: 5px;
+  height: 5px;
+  display: block;
+  background: #EB7C1E;
+  left: -24px;
+  top: 10px;
+}
 
 .text_edit ol {
   counter-reset: myCounter;

@@ -11,7 +11,7 @@ class Tolerance extends Model
 
     public $timestamps = false;
 
-    public function toOils()
+    public function toOil()
     {
         return $this->hasMany('App\Models\OilsTolerance');
     }

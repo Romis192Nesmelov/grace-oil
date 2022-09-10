@@ -73,4 +73,9 @@ class Oil extends Model
     {
         return $this->belongsTo('App\Models\Subsection');
     }
+
+    public function toIndustrySolutions()
+    {
+        return $this->hasMany('App\Models\OilSolution');
+    }
 }
