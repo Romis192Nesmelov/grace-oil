@@ -13,11 +13,11 @@ class SearchController extends StaticController
 {
     use HelperTrait;
 
-    public function find(Request $request)
+    public function find($searchString)
     {
-        $this->validate($request, ['find' => 'required|min:3']);
-        
-        $searchString = $request->input('find');
+//        $this->validate($request, ['find' => 'required|min:3']);
+
+//        $searchString = $request->input('find');
         $this->data['breadcrumbs'][] = ['href' => url('/search?find='.$searchString), 'name' => trans('content.search_results')];
         $this->data['found'] = collect();
 
@@ -26,8 +26,8 @@ class SearchController extends StaticController
             if ($content->menu_id || $content->sub_menu_id) {
                 $this->data['found']->push([
                     'href' => url($content->menu_id ? '/'.$content->menu->slug : '/'.$content->subMenu->slug.($content->sub_menu_id == 33 ? '?id='.$content->id.'#enc_'.$content->id : '')),
-                    'title_ru' => $content->head_ru,
-                    'title_en' => $content->head_en,
+                    'title_ru' => $content->head_ru ? $content->head_ru : ($content->menu_id ? $content->menu->ru : $content->subMenu->ru),
+                    'title_en' => $content->head_en ? $content->head_en : ($content->menu_id ? $content->menu->en : $content->subMenu->en),
                     'text_ru' => $content->text_ru,
                     'text_en' => $content->text_en,
                 ]);
@@ -51,7 +51,7 @@ class SearchController extends StaticController
         $this->getFound('\Classification', $searchString);
 
         $this->data['found'] = $this->data['found']->paginate(10);
-        
+
         return $this->showView('search');
     }
 
