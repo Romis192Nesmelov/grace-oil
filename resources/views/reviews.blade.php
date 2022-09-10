@@ -12,9 +12,9 @@
                             <div class="sidebar">
                                 <div class="site-list site-list-reviews">
                                     <div id="filter-mob" class="filter-side popup-filter">
-                                        <div class="filter-category-block" id="mse2_tv|segment_filter">
+                                        <div class="filter-category-block" id="checkboxes-list">
                                            <div class="trigger-filter-title">{{ trans('content.segment') }}</div>
-                                            <div class="checkbox-toggle-list review-filters open">
+                                            <div class="checkbox-toggle-list open">
                                                 <?php $segments = []; ?>
                                                 @foreach($data['add_content'] as $review)
                                                     @if (count($review->solutions))
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="col-lg-9 col-md-8">
-                            <div class="reviews_list" id="mse2_results">
+                            <div id="mse2_results">
 
                                 @foreach($data['add_content'] as $review)
                                     <div class="item">

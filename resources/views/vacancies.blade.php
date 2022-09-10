@@ -64,30 +64,30 @@
             <div class="text_edit page_title">
                 <h1>{{ $data['head'] }}</h1>
                 @foreach($data['add_content'] as $vacancy)
-                    <div class="tovar-slide-item">
-                        <div class="trigger-title">{{ $vacancy['name_'.App::getLocale()] }}</div>
-                        <div class="tovar-slide-text">
-                            <div class="text_edit">
-                                <h3>{{ trans('content.job_experience_required').' '.$vacancy->skills.' '.trans('content.years') }}</h3>
-                                <p>{{ $vacancy['employment_'.App::getLocale()] }}</p>
 
-                                @include('_vacancy_point_block',[
-                                    'pointHead' => trans('content.duties'),
-                                    'pointItems' => $vacancy->duties
-                                ])
+                    <?php ob_start(); ?>
+                    <h3>{{ trans('content.job_experience_required').' '.$vacancy->skills.' '.trans('content.years') }}</h3>
+                    <p>{{ $vacancy['employment_'.App::getLocale()] }}</p>
+                    @include('_vacancy_point_block',[
+                        'pointHead' => trans('content.duties'),
+                        'pointItems' => $vacancy->duties
+                    ])
 
-                                @include('_vacancy_point_block',[
-                                    'pointHead' => trans('content.requirements'),
-                                    'pointItems' => $vacancy->requirements
-                                ])
+                    @include('_vacancy_point_block',[
+                        'pointHead' => trans('content.requirements'),
+                        'pointItems' => $vacancy->requirements
+                    ])
 
-                                @include('_vacancy_point_block',[
-                                    'pointHead' => trans('content.you_will_be_provided_with'),
-                                    'pointItems' => $vacancy->terms
-                                ])
-                            </div>
-                        </div>
-                    </div>
+                    @include('_vacancy_point_block',[
+                        'pointHead' => trans('content.you_will_be_provided_with'),
+                        'pointItems' => $vacancy->terms
+                    ])
+
+                    @include('_accordion_block',[
+                        'title' => $vacancy['name_'.App::getLocale()],
+                        'text' => ob_get_clean(),
+                    ])
+
                 @endforeach
                 {!! $data['content']['text_'.App::getLocale()] !!}
 

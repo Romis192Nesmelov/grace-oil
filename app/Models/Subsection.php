@@ -5,14 +5,9 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 
-class OilType extends Model
+class Subsection extends Model
 {
-    protected $fillable = [
-        'icon',
-        'name_ru',
-        'name_en',
-        'active'
-    ];
+    protected $fillable = ['name_ru','name_en'];
 
     use HasSlug;
 
@@ -37,9 +32,4 @@ class OilType extends Model
     {
         return $this->hasMany('App\Models\Oil');
     }
-    
-//    public function industrySolution()
-//    {
-//        return $this->belongsTo('App\Models\IndustrySolution');
-//    }
 }

@@ -6,16 +6,11 @@
             @include('_breadcrumbs_block')
             <div class="text_edit page_title">
                 <h1>{{ $data['head'] }}</h1>
-
                 @foreach($data['add_content'] as $classification)
-                <div class="tovar-slide-item">
-                    <div class="trigger-title">{{ $classification['name_'.App::getLocale()] }}</div>
-                    <div class="tovar-slide-text">
-                        <div class="text_edit">
-                            {!! $classification['text_'.App::getLocale()] !!}
-                        </div>
-                    </div>
-                </div>
+                    @include('_accordion_block',[
+                        'title' => $classification['name_'.App::getLocale()],
+                        'text' => $classification['text_'.App::getLocale()]
+                    ])
                 @endforeach
 
             </div>

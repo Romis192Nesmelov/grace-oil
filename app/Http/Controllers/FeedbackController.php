@@ -42,11 +42,24 @@ class FeedbackController extends Controller
             'name' => 'required|min:3|max:100',
             'phone' => $this->validationPhone,
             'email' => 'required|email',
-            'my_message' => 'max:2000',
+            'question' => 'max:2000',
             'i_agree' => 'required|accepted'
         ]);
         $fields = $this->processingFields($request);
         return $this->sendMail($request,'dealer',$fields);
+    }
+
+    public function submitApplication(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:3|max:100',
+            'phone' => $this->validationPhone,
+            'email' => 'required|email',
+            'my_message' => 'max:2000',
+            'i_agree' => 'required|accepted'
+        ]);
+        $fields = $this->processingFields($request);
+        return $this->sendMail($request,'application',$fields);
     }
 
     public function graceTestRequest(Request $request)

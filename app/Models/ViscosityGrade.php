@@ -5,21 +5,18 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 
-class OilType extends Model
+class ViscosityGrade extends Model
 {
-    protected $fillable = [
-        'icon',
-        'name_ru',
-        'name_en',
-        'active'
-    ];
+    protected $fillable = ['name'];
+
+    public $timestamps = false;
 
     use HasSlug;
 
     public function getSlugOptions()
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name_en')
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 
@@ -33,13 +30,8 @@ class OilType extends Model
         return 'slug';
     }
 
-    public function oils()
+    public function oil()
     {
         return $this->hasMany('App\Models\Oil');
     }
-    
-//    public function industrySolution()
-//    {
-//        return $this->belongsTo('App\Models\IndustrySolution');
-//    }
 }

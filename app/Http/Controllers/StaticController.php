@@ -8,6 +8,7 @@ use App\Models\SubMenu;
 use App\Models\Slide;
 use App\Models\HomeBlock;
 use App\Models\Content;
+use App\Models\OilType;
 
 class StaticController extends Controller
 {
@@ -146,6 +147,7 @@ class StaticController extends Controller
             'metas' => $this->metas,
             'settings' => $settings->getSettings(),
             'menu' => Menu::where('active',1)->get(),
+            'catalogue' => OilType::where('active',1)->get(),
             'data' => $this->data
         ]);
     }

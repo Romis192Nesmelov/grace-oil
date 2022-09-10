@@ -29,7 +29,7 @@ class NewsController extends StaticController
             return $this->showView('new');
         } else {
             $this->data['head'] = $menu[App::getLocale()];
-            $this->data['news'] = News::where('active', 1)->orderBy('id', 'desc')->paginate(8);
+            $this->data['news'] = News::where('active',1)->orderBy('id', 'desc')->paginate(8);
             return $this->showView('news');
         }
     }

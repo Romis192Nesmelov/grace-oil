@@ -1,13 +1,13 @@
 $(document).ready(function ($) {
 
     // Review filters
-    var checkBoxesContainer = $('.checkbox-toggle-list.review-filters'),
+    var checkBoxesContainer = $('#checkboxes-list'),
         allCheckboxes = checkBoxesContainer.find('.jq-checkbox'),
-        reviewsItems = $('.reviews_list .item')
+        items = $('#mse2_results .item');
 
     checkBoxesContainer.find('input[type=checkbox]').change(function () {
-        var mainBlockReviews = $('#mse2_results');
-        mainBlockReviews.fadeOut('fast',function () {
+        var mainBlock = $('#mse2_results');
+        mainBlock.fadeOut('fast',function () {
             var oneOfChecked = false;
 
             allCheckboxes.each(function () {
@@ -16,24 +16,27 @@ $(document).ready(function ($) {
 
                 if (checked) {
                     oneOfChecked = true;
+                    items.each(function () {
+                        var item = $(this),
+                            matchSegment = false,
+                            reviewSegments = item.find('.review-segments');
+                        
+                        if (reviewSegments.length) {
+                            item.find('.review-segments span').each(function () {
+                                if ($(this).attr('class') == segmentId) matchSegment = true;
+                            });
+                        } else {
+                            if (item.hasClass(segmentId)) matchSegment = true;
+                        }
 
-                    reviewsItems.each(function () {
-                        var reviewItem = $(this),
-                            matchSegment = false;
-
-                        reviewItem.find('.review-segments span').each(function () {
-                            if ($(this).attr('class') == segmentId) matchSegment = true;
-                        });
-
-                        if (matchSegment && reviewItem.hasClass('hidden')) reviewItem.removeClass('hidden');
-                        else if (!matchSegment && !reviewItem.hasClass('hidden')) reviewItem.addClass('hidden');
+                        if (matchSegment && item.hasClass('hidden')) item.removeClass('hidden');
+                        else if (!matchSegment && !item.hasClass('hidden')) item.addClass('hidden');
                     });
                 }
             });
 
-            if (!oneOfChecked) reviewsItems.removeClass('hidden');
-
-            mainBlockReviews.fadeIn('fast');
+            if (!oneOfChecked) items.removeClass('hidden');
+            mainBlock.fadeIn('fast');
         });
     });
 });

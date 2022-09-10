@@ -11,7 +11,7 @@ class OilTypesTableSeeder extends Seeder
     {
         $data = [
             [
-                'name_ru' => 'Масла универсальные для легковых автомобилей, микроавтобусов и внедорожников',
+                'name_ru' => 'Универсальные моторные масла',
                 'name_en' => 'Multipurpose Engine Oils'
             ],
             [
