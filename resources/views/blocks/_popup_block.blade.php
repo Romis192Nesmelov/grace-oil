@@ -5,8 +5,8 @@
             <span class="title-base-big">{{ $popupHead }}</span>
             <div class="form-body">
                 {!! $popupContent !!}
-                @include('layouts._agreement_block')
-                @include('layouts._submit_button_block')
+                @include('blocks._agreement_block')
+                @include('blocks._submit_button_block')
             </div>
         </form>
     </div>

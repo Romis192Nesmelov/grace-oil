@@ -16,8 +16,8 @@ class SettingsController extends Controller
     // Seo
     public function getSeoTags()
     {
-        $tags = [];
-        $tags['title'] = (string)$this->xml->seo->title;
+        $seo = (array)$this->xml->seo;
+        $tags = ['title' => $seo['title_'.app()->getLocale()]];
         foreach ($this->metas as $meta => $params) {
             $tags[$meta] = (string)$this->xml->seo->$meta;
         }

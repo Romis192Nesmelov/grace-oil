@@ -1,11 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.main',['title' => $head])
 
 @section('content')
     <div class="main internal">
         <div class="container">
-            @include('_breadcrumbs_block')
+            @include('blocks._breadcrumbs_block')
             <div class="text_edit page_title">
-                <h1>{{ $data['head'] }}</h1>
+                <h1>{{ $head }}</h1>
                 <div class="main-struct">
                     <div class="row" id="mse2_mfilter">
                         <div class="col-lg-3 col-md-4">
@@ -15,30 +15,8 @@
                                         <div class="filter-category-block" id="checkboxes-list">
                                            <div class="trigger-filter-title">{{ trans('content.segment') }}</div>
                                             <div class="checkbox-toggle-list open">
-                                                <?php $segments = []; ?>
-                                                @foreach($data['add_content'] as $review)
-                                                    @if (count($review->solutions))
-                                                        @foreach($review->solutions as $solution)
-
-                                                            <?php
-                                                                $name = $solution->industrySolution['name_'.App::getLocale()];
-                                                                $key = strtolower(str_replace(' ','_',$solution->industrySolution->name_en));
-                                                            ?>
-
-                                                            @if (!count($segments) || !in_array($key, array_keys($segments)))
-                                                                <?php $segments[$key] = ['counter' => 1, 'name' => $name]; ?>
-                                                            @else
-                                                                <?php $segments[$key]['counter']++; ?>
-                                                            @endif
-
-                                                        @endforeach
-                                                    @else
-                                                        <?php $segments['dealer'] = ['counter'  => 1, 'name' => trans('content.dealer_review')]; ?>
-                                                    @endif
-                                                @endforeach
-
                                                 @foreach($segments as $key => $segment)
-                                                    @include('layouts._checkbox_block',[
+                                                    @include('blocks._checkbox_block',[
                                                         'inputId' => $key,
                                                         'inputName' => $key,
                                                         'inputVal' => $key,
@@ -54,25 +32,24 @@
 
                         <div class="col-lg-9 col-md-8">
                             <div id="mse2_results">
-
-                                @foreach($data['add_content'] as $review)
+                                @foreach($add_content as $review)
                                     <div class="item">
                                         <div class="item_image">
                                             <div class="img_wrap">
-                                                @include('_image_block',[
+                                                @include('blocks._image_block',[
                                                     'full' => $review->full,
                                                     'preview' => $review->preview,
-                                                    'alt' => $review['name_'.App::getLocale()]
+                                                    'alt' => $review['name_'.app()->getLocale()]
                                                 ])
                                             </div>
                                         </div>
                                         <div class="item_info">
-                                            <div class="item_name title-base">{{ $review['name_'.App::getLocale()] }}</div>
+                                            <div class="item_name title-base">{{ $review['name_'.app()->getLocale()] }}</div>
                                             <div class="item_segment">
                                                 <p class="review-segments">{{ trans('content.segment') }}:
                                                     @if (count($review->solutions))
                                                         @foreach($review->solutions as $counter => $solution)
-                                                            <span class="{{ strtolower(str_replace(' ','_',$solution->industrySolution->name_en)) }}">{{ $solution->industrySolution['name_'.App::getLocale()].($counter != count($review->solutions)-1 ? ', ' : '') }}</span>
+                                                            <span class="{{ strtolower(str_replace(' ','_',$solution->industrySolution->name_en)) }}">{{ $solution->industrySolution['name_'.app()->getLocale()].($counter != count($review->solutions)-1 ? ', ' : '') }}</span>
                                                         @endforeach
                                                     @else
                                                         <span class="dealer">{{ trans('content.dealer_review') }}</span>

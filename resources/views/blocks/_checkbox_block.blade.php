@@ -6,6 +6,6 @@
         <div class="right-pos">
             <p class="name">{!! $inputLabel !!}</p>
         </div>
-        @include('layouts._input_error_block')
+        @include('blocks._input_error_block')
     </label>
 </div>

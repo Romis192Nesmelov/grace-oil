@@ -50,7 +50,7 @@ trait HelperTrait
     public function processingFields(Request $request, $checkboxFields=null, $ignoreFields=null, $timeFields=null, $colorFields=null)
     {
 
-        $exceptFields = ['_token','id'];
+        $exceptFields = ['id'];
         if ($ignoreFields) {
             if (is_array($ignoreFields)) $exceptFields = array_merge($exceptFields, $ignoreFields);
             else $exceptFields[] = $ignoreFields;

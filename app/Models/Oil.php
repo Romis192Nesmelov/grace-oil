@@ -64,18 +64,13 @@ class Oil extends Model
         return $this->hasMany('App\Models\Documentation');
     }
 
-    public function toTolerances()
+    public function tolerances()
     {
-        return $this->hasMany('App\Models\OilTolerance');
+        return $this->belongsToMany('App\Models\Tolerance','oil_tolerances');
     }
 
     public function subsection()
     {
         return $this->belongsTo('App\Models\Subsection');
-    }
-
-    public function toIndustrySolutions()
-    {
-        return $this->hasMany('App\Models\OilSolution');
     }
 }

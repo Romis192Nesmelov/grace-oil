@@ -7,19 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>
-        @if (isset($data['content']) && isset($data['content']['head_'.App::getLocale()]))
-            {{ $data['content']['head_'.App::getLocale()] }}
-        @elseif (isset($data['slug_content']) && isset($data['slug_content']['head_'.App::getLocale()]))
-            {{ $data['slug_content']['head_'.App::getLocale()] }}
-        @elseif (isset($data['slug_content']) && isset($data['slug_content']['name_'.App::getLocale()]))
-            {{ $data['slug_content']['name_'.App::getLocale()] }}
-        @elseif (isset($data['head']))
-            {{ $data['head'] }}
-        @else
-            {{ $seo['title'] }}
-        @endif
-    </title>
+    <title>{{ $seo['title'].(isset($title) ? ' '.$title : '') }}</title>
     @foreach($metas as $meta => $params)
         @if ($seo[$meta])
             <meta {{ $params['name'] ? 'name='.$params['name'] : 'property='.$params['property'] }} content="{{ $seo[$meta] }}">
@@ -63,13 +51,13 @@
 <!-- Page container -->
 <div class="page-wrapper">
     <div id="mob-menu-list">
-        @include('layouts._main_menu_block')
+        @include('blocks._main_menu_block')
     </div>
     <div class="mobile-info-block">
         <div class="container">
-            <div class="h-adress">{{ $settings['address_'.App::getLocale()] }}</div>
-            @include('layouts._phone_block')
-            @include('layouts._button_feedback_block',[
+            <div class="h-adress">{{ $settings['address_'.app()->getLocale()] }}</div>
+            @include('blocks._phone_block')
+            @include('blocks._button_feedback_block',[
                 'btnHref' => '#consl_popup',
                 'btnText' => trans('content.feedback')
             ])
@@ -90,15 +78,15 @@
                     <div class="h-contact-wp">
                         <div class="row-flex">
                             <div class="btn-wp">
-                                @include('layouts._phone_block', ['className' => 'phone-header'])
+                                @include('blocks._phone_block', ['className' => 'phone-header'])
                                 <div class="chahge-lang">
-                                    <span class="lang-btn"><img src="{{ asset('images/'.(App::getLocale() == 'ru' ? 'flag.png' : 'flag-amer.png')) }}" alt="flag"><i>{{ ucfirst(App::getLocale()) }}</i></span>
+                                    <span class="lang-btn"><img src="{{ asset('images/'.(app()->getLocale() == 'ru' ? 'flag.png' : 'flag-amer.png')) }}" alt="flag"><i>{{ ucfirst(app()->getLocale()) }}</i></span>
                                     <ul class="lan-list">
                                         <li data-flag-ico="{{ asset('images/flag.png') }}"><a href="{{ url('/change-lang?lang=ru') }}"><img src="{{ asset('images/flag.png') }}" alt="flag"><i>RU</i></a></li>
                                         <li data-flag-ico="{{ asset('images/flag-amer.png') }}"><a href="{{ url('/change-lang?lang=en') }}"><img src="{{ asset('images/flag-amer.png') }}" alt="flag"><i>EN</i></a></li>
                                     </ul>
                                 </div>
-                                @include('layouts._button_feedback_block')
+                                @include('blocks._button_feedback_block')
                                 <a href="#mob-menu-list">
                                     <div class="nav-icon">
                                         <span></span>
@@ -117,7 +105,7 @@
                 <div class="row-flex">
                     <div class="h-menu-wp">
                         <div class="h-menu">
-                            @include('layouts._main_menu_block')
+                            @include('blocks._main_menu_block')
                         </div>
                         <a href="#mob-menu-list">
                             <div class="nav-icon">
@@ -135,7 +123,7 @@
                             </form>
                         </div>
                         <div class="phone-wp">
-                            @include('layouts._phone_block')
+                            @include('blocks._phone_block')
                         </div>
                         <a class="search-btn-trigger"><i class="material-icons">search</i></a>
                     </div>
@@ -149,7 +137,7 @@
                 <div class="row-flex">
                     <div class="h-menu-wp">
                         <div class="h-menu">
-                            @include('layouts._main_menu_block')
+                            @include('blocks._main_menu_block')
                         </div>
                         <a href="#mob-menu-list">
                             <div class="nav-icon">
@@ -167,7 +155,7 @@
                             </form>
                         </div>
                         <div class="phone-wp">
-                            @include('layouts._phone_block')
+                            @include('blocks._phone_block')
                         </div>
                         <a class="search-btn-trigger"><i class="material-icons">search</i></a>
                     </div>
@@ -192,7 +180,7 @@
                             </div>
                             <div class="footer-info">
                                 <div class="rights">{{ trans('content.company_name') }}</div>
-                                <div class="footer-adress">{{ $settings['address_'.App::getLocale()] }}</div>
+                                <div class="footer-adress">{{ $settings['address_'.app()->getLocale()] }}</div>
                             </div>
                         </div>
                     </div>
@@ -201,7 +189,7 @@
                             <ul class="f-menu">
                                 <li><a href="#}">{{ trans('footer.grace_partner') }}</a></li>
                                 <li><a href="{{ url('/how-to-become-a-dealer') }}">{{ trans('footer.how_to_become_a_dealer') }}</a></li>
-                                <li><a href="{{ url('/'.App\Models\SubMenu::find(6)->slug) }}">{{ App\Models\SubMenu::find(6)[App::getLocale()] }}</a></li>
+                                <li><a href="{{ url('/'.App\Models\SubMenu::find(6)->slug) }}">{{ App\Models\SubMenu::find(6)[app()->getLocale()] }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -210,15 +198,15 @@
                             <ul class="f-menu">
                                 <li><a href="#">{{ trans('footer.site_map') }}</a></li>
                                 <li><a href="{{ url('/terms-of-use') }}">{{ trans('footer.user_agreement') }}</a></li>
-                                <li><a href="{{ url('/'.App\Models\SubMenu::find(3)->slug) }}">{{ App\Models\SubMenu::find(3)[App::getLocale()] }}</a></li>
+                                <li><a href="{{ url('/'.App\Models\SubMenu::find(3)->slug) }}">{{ App\Models\SubMenu::find(3)[app()->getLocale()] }}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs hidden-xxs">
                         <div class="f-btn-wp">
                             <div class="foot-phone">
-                                @include('layouts._phone_block')
-                                @include('layouts._button_feedback_block')
+                                @include('blocks._phone_block')
+                                @include('blocks._button_feedback_block')
                             </div>
                         </div>
                     </div>
@@ -228,27 +216,27 @@
     </footer>
     <!-- /footer -->
     <!-- Popup -->
-    <?php ob_start(); ?>
-    @include('layouts._input_block',[
+    @php ob_start(); @endphp
+    @include('blocks._input_block',[
         'inputName' => 'name',
         'inputId' => 'firstName',
         'inputLabel' => trans('content.name').'*',
         'useAjax' => true,
     ])
-    @include('layouts._input_block',[
+    @include('blocks._input_block',[
         'inputName' => 'email',
         'inputId' => 'email',
         'inputLabel' => trans('content.email').'*',
         'useAjax' => true,
     ])
-    @include('layouts._textarea_block',[
+    @include('blocks._textarea_block',[
         'taName' => 'question',
         'taId' => 'question',
         'taLabel' => trans('content.your_question'),
         'useAjax' => true,
     ])
 
-    @include('layouts._popup_block',[
+    @include('blocks._popup_block',[
         'popupContent' => ob_get_clean(),
         'popupId' => 'consl_popup',
         'popupUri' => 'feedback',

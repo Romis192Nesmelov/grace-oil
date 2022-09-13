@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OilTolerance extends Model
 {
+    protected $table = 'oil_tolerances';
+
     protected $fillable = [
         'oil_id',
         'tolerance_id',

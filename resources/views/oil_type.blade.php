@@ -1,11 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.main',['title' => end($breadcrumbs)['name']])
 
 @section('content')
     <div class="main internal">
         <div class="container">
-            @include('_breadcrumbs_block')
+            @include('blocks._breadcrumbs_block')
             <div class="text_edit page_title">
-                <h1>{{ $data['breadcrumbs'][count($data['breadcrumbs'])-1]['name'] }}</h1>
+                <h1>{{ end($breadcrumbs)['name'] }}</h1>
             </div>
             <div class="main-struct">
                 <div class="row" id="mse2_mfilter">
@@ -15,9 +15,9 @@
                                 <ul>
                                     <li class="parent active"><a href="">{{ trans('content.other_sections_of_the_catalog') }}<div class="trigger-arrow"></div></a>
                                         <ul>
-                                            @foreach ($data['types'] as $type)
-                                                <li class="{{ $type->id == $data['oil_type_id'] ? 'active' : '' }}">
-                                                    <a href="{{ url('/'.$data['breadcrumbs'][0]['href'].'/'.$type->slug) }}">{{ $type['name_'.App::getLocale()] }}</a>
+                                            @foreach ($types as $type)
+                                                <li class="{{ $type->id == $oil_type_id ? 'active' : '' }}">
+                                                    <a href="{{ url('/'.$breadcrumbs[0]['href'].'/'.$type->slug) }}">{{ $type['name_'.app()->getLocale()] }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -25,36 +25,8 @@
                                             <div class="filter-category-block" id="viscosity_grade">
                                                 <div class="trigger-filter-title">{{ trans('content.viscosity_grade') }}</div>
                                                 <div class="checkbox-toggle-list open">
-                                                    <?php $viscosity = []; $gasEngineCount = 0; $dieselEngineCount = 0; $tolerances = []; ?>
-
-                                                    @foreach($data['oil'] as $oil)
-                                                        <?php $viscosityName = $oil->viscosity->name; $viscosityKey = strtolower(str_replace(' ','_',$oil->viscosity->slug));?>
-
-                                                        @if (!count($viscosity) || !in_array($viscosityKey, array_keys($viscosity)))
-                                                            <?php $viscosity[$viscosityKey] = ['counter' => 1, 'name' => $viscosityName]; ?>
-                                                        @else
-                                                            <?php $viscosity[$viscosityKey]['counter']++; ?>
-                                                        @endif
-
-                                                        @if (!$oil->engine_type)
-                                                            <?php $gasEngineCount++; ?>
-                                                        @else
-                                                            <?php $dieselEngineCount++; ?>
-                                                        @endif
-
-                                                        @foreach($oil->toTolerances as $toTolerance)
-                                                            <?php $toleranceName = $toTolerance->tolerance->name; $toleranceKey = strtolower(str_replace([' ','/','.','`'],'_',$toleranceName)); ?>
-
-                                                            @if (!count($tolerances) || !in_array($toleranceKey, array_keys($tolerances)))
-                                                                <?php $tolerances[$toleranceKey] = ['counter' => 1, 'name' => $toleranceName]; ?>
-                                                            @else
-                                                                <?php $tolerances[$toleranceKey]['counter']++; ?>
-                                                            @endif
-                                                        @endforeach
-                                                    @endforeach
-
                                                     @foreach($viscosity as $key => $item)
-                                                        @include('layouts._checkbox_block',[
+                                                        @include('blocks._checkbox_block',[
                                                             'inputId' => 'viscosity_'.$key,
                                                             'inputName' => 'viscosity_'.$key,
                                                             'inputVal' => 'viscosity_'.$key,
@@ -68,21 +40,21 @@
                                                 <div class="trigger-filter-title">{{ trans('content.engine_type') }}</div>
                                                 <div class="checkbox-toggle-list open">
 
-                                                    @if ($gasEngineCount)
-                                                        @include('layouts._checkbox_block',[
+                                                    @if ($gas_engine_count)
+                                                        @include('blocks._checkbox_block',[
                                                             'inputId' => 'engine_type_0',
                                                             'inputName' => 'engine_type_0',
                                                             'inputVal' => 'engine_type_0',
-                                                            'inputLabel' => trans('content.gas_engine').'<span>('.$gasEngineCount.')</span>'
+                                                            'inputLabel' => trans('content.gas_engine').'<span>('.$gas_engine_count.')</span>'
                                                         ])
                                                     @endif
 
-                                                    @if ($dieselEngineCount)
-                                                        @include('layouts._checkbox_block',[
+                                                    @if ($diesel_engine_count)
+                                                        @include('blocks._checkbox_block',[
                                                             'inputId' => 'engine_type_1',
                                                             'inputName' => 'engine_type_1',
                                                             'inputVal' => 'engine_type_1',
-                                                            'inputLabel' => trans('content.diesel_engine').'<span>('.$dieselEngineCount.')</span>'
+                                                            'inputLabel' => trans('content.diesel_engine').'<span>('.$diesel_engine_count.')</span>'
                                                         ])
                                                     @endif
                                                 </div>
@@ -91,7 +63,7 @@
                                                 <div class="trigger-filter-title">{{ trans('content.tolerances_and_compliances') }}</div>
                                                 <div class="checkbox-toggle-list open">
                                                     @foreach($tolerances as $key => $item)
-                                                        @include('layouts._checkbox_block',[
+                                                        @include('blocks._checkbox_block',[
                                                             'inputId' => 'tolerance_'.$key,
                                                             'inputName' => 'tolerance_'.$key,
                                                             'inputVal' => 'tolerance_'.$key,
@@ -107,38 +79,38 @@
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-8">
-                        @if (count($data['subsections']))
+                        @if (count($subsections))
                             <div class="category_menu">
-                                <a href="{{ url('/'.$data['breadcrumbs'][1]['href']) }}" {{ !isset($data['subsection_id']) ? 'class=active' : '' }}>{{ trans('content.all') }}</a>
+                                <a href="{{ url('/'.$breadcrumbs[1]['href']) }}" {{ !isset($subsection_id) ? 'class=active' : '' }}>{{ trans('content.all') }}</a>
                                 <ul>
-                                    @foreach ($data['subsections'] as $oil)
-                                        <li {{ isset($data['subsection_id']) && $oil->subsection_id == $data['subsection_id'] ? 'class=active' : '' }}><a href="{{ url('/'.$data['breadcrumbs'][1]['href'].'/'.$oil->subsection->slug) }}">{{ $oil->subsection['name_'.App::getLocale()] }}</a></li>
+                                    @foreach ($subsections as $item)
+                                        <li {{ isset($subsection_id) && $item->subsection_id == $subsection_id ? 'class=active' : '' }}><a href="{{ url('/'.$breadcrumbs[1]['href'].'/'.$item->subsection->slug) }}">{{ $item->subsection['name_'.app()->getLocale()] }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
                         @endif
 
                         <div class="tovar-list" id="mse2_results">
-                            @foreach($data['oil'] as $oil)
+                            @foreach($oil as $item)
 
-                                <?php $toleranceClassName = ''; ?>
-                                @foreach($oil->toTolerances as $toTolerance)
-                                    <?php $toleranceClassName .= 'tolerance_'.strtolower(str_replace([' ','/','.','`'],'_',$toTolerance->tolerance->name)).' '; ?>
+                                @php $toleranceClassName = ''; @endphp
+                                @foreach($item->tolerances as $tolerance)
+                                    @php $toleranceClassName .= 'tolerance_'.strtolower(str_replace([' ','/','.','`'],'_',$tolerance->name)).' '; @endphp
                                 @endforeach
 
-                                <div class="tovar-item item viscosity_{{ strtolower(str_replace(' ','_',$oil->viscosity->slug)) }} engine_type_{{ $oil->engine_type }} {{ $toleranceClassName }}">
+                                <div class="tovar-item item viscosity_{{ strtolower(str_replace(' ','_',$item->viscosity->slug)) }} engine_type_{{ $item->engine_type }} {{ $toleranceClassName }}">
                                     <div class="prev">
-                                        <a href="{{ url('/'.$data['breadcrumbs'][0]['href'].'/'.$oil->oilType->slug.'/'.$oil->slug) }}">
-                                            <img class="lazyload" data-src="{{ asset($oil->image_base) }}" src="{{ asset($oil->image_base) }}" alt="{{ $oil->name }}">
+                                        <a href="{{ url('/'.$breadcrumbs[0]['href'].'/'.$item->oilType->slug.'/'.$item->slug) }}">
+                                            <img class="lazyload" data-src="{{ asset($item->image_base) }}" src="{{ asset($item->image_base) }}" alt="{{ $item->name }}">
                                         </a>
                                     </div>
                                     <div class="descr">
-                                        <a href="{{ url('/'.$data['breadcrumbs'][0]['href'].'/'.$oil->oilType->slug.'/'.$oil->slug) }}" class="tovar-title">{{ $oil->name }}</a>
+                                        <a href="{{ url('/'.$breadcrumbs[0]['href'].'/'.$item->oilType->slug.'/'.$item->slug) }}" class="tovar-title">{{ $item->name }}</a>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        <div class="mse2_pagination text-center">{{ $data['oil']->render() }}</div>
+                        <div class="mse2_pagination text-center">{{ $oil->render() }}</div>
                     </div>
                 </div>
             </div>
