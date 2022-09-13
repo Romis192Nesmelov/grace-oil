@@ -28,14 +28,6 @@ class FeedbackController extends Controller
         return $this->sendMail($request,'request',$fields);
     }
 
-    public function programApplication(Request $request)
-    {
-        $this->validate($request, $this->getRequestValidation());
-        $fields = $this->processingFields($request);
-        $fields['mailTitle'] = trans('content.affiliate_program_application');
-        return $this->sendMail($request,'request',$fields);
-    }
-
     public function becomeDealer(Request $request)
     {
         $this->validate($request, [

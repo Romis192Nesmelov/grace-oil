@@ -29,7 +29,7 @@
     @include('blocks._popup_block',[
         'popupContent' => ob_get_clean(),
         'popupId' => 'offer_popup',
-        'popupUri' => 'offer',
+        'popupRoute' => 'offer',
         'popupHead' => trans('content.send_offer'),
         'useAjax' => true
     ])

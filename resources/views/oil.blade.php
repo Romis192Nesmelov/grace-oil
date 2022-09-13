@@ -31,7 +31,7 @@
     @include('blocks._popup_block',[
         'popupContent' => ob_get_clean(),
         'popupId' => 'request_popup',
-        'popupUri' => 'submit_application',
+        'popupRoute' => 'submit_application',
         'popupHead' => trans('content.submit_your_application'),
         'useAjax' => true
     ])

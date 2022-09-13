@@ -68,7 +68,7 @@
 
     @include('blocks._popup_block',[
         'popupId' => 'test_popup',
-        'popupUri' => 'grace_test_request',
+        'popupRoute' => 'grace_test_request',
         'popupHead' => trans('content.test_application'),
         'popupContent' => ob_get_clean(),
         'useAjax' => true

@@ -70,7 +70,7 @@
                 <div class="row-flex">
                     <div class="logo-wp">
                         <div class="logo">
-                            <a href="#">
+                            <a href="{{ route('home') }}">
                                 <img src="{{ asset('images/logo.png') }}" alt="logo">
                             </a>
                         </div>
@@ -82,8 +82,8 @@
                                 <div class="chahge-lang">
                                     <span class="lang-btn"><img src="{{ asset('images/'.(app()->getLocale() == 'ru' ? 'flag.png' : 'flag-amer.png')) }}" alt="flag"><i>{{ ucfirst(app()->getLocale()) }}</i></span>
                                     <ul class="lan-list">
-                                        <li data-flag-ico="{{ asset('images/flag.png') }}"><a href="{{ url('/change-lang?lang=ru') }}"><img src="{{ asset('images/flag.png') }}" alt="flag"><i>RU</i></a></li>
-                                        <li data-flag-ico="{{ asset('images/flag-amer.png') }}"><a href="{{ url('/change-lang?lang=en') }}"><img src="{{ asset('images/flag-amer.png') }}" alt="flag"><i>EN</i></a></li>
+                                        <li data-flag-ico="{{ asset('images/flag.png') }}"><a href="{{ route('change_lang',['lang' => 'ru']) }}"><img src="{{ asset('images/flag.png') }}" alt="flag"><i>RU</i></a></li>
+                                        <li data-flag-ico="{{ asset('images/flag-amer.png') }}"><a href="{{ route('change_lang',['lang' => 'en']) }}"><img src="{{ asset('images/flag-amer.png') }}" alt="flag"><i>EN</i></a></li>
                                     </ul>
                                 </div>
                                 @include('blocks._button_feedback_block')
@@ -239,7 +239,7 @@
     @include('blocks._popup_block',[
         'popupContent' => ob_get_clean(),
         'popupId' => 'consl_popup',
-        'popupUri' => 'feedback',
+        'popupRoute' => 'feedback',
         'popupHead' => trans('content.feedback'),
         'useAjax' => true
     ])

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Slide;
@@ -179,8 +179,12 @@ class StaticController extends Controller
                 'seo' => $settings->getSeoTags(),
                 'metas' => $this->metas,
                 'settings' => $settings->getSettings(),
-                'menu' => Menu::where('active',1)->get(),
-                'catalogue' => OilType::where('active',1)->get()
+                'menu' => Cache::remember('menu', 60*60*24*365, function () {
+                    return Menu::where('active',1)->get();
+                }),
+                'catalogue' => Cache::remember('oil_types', 60*60*24*365, function () {
+                    return OilType::where('active',1)->get();
+                })
             ]));
     }
 }

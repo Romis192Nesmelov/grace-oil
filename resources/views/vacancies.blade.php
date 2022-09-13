@@ -53,7 +53,7 @@
     @include('blocks._popup_block',[
         'popupContent' => ob_get_clean(),
         'popupId' => 'resume_popup',
-        'popupUri' => 'resume',
+        'popupRoute' => 'resume',
         'popupHead' => trans('content.submit_request'),
         'useAjax' => true
     ])

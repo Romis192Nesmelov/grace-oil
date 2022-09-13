@@ -3,7 +3,7 @@
 @section('content')
     @include('blocks._feedback_def_popup_block',[
         'popupId' => 'partner_popup',
-        'popupUri' => 'partner_programs',
+        'popupRoute' => 'partner',
         'popupHead' => trans('content.submit_request'),
     ])
 
