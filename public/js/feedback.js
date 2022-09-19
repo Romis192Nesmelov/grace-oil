@@ -1,48 +1,33 @@
 $(document).ready(function ($) {
-    // window.phoneRegExp = /^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/gi;
-
-    // $('input[name=phone]').keyup(function () {
-    //     unlockSendButton($(this));
-    // }).mask("+7(999)999-99-99",{completed:function(){
-    //     unlockSendButton($(this));
-    // }});
-
-    $('input[name=i_agree]').change(function () {
-        unlockSendButton($(this));
-    });
-
     $('form.useAjax button[type=submit]').click(function(e) {
         e.preventDefault();
 
-        var self = $(this),
-            popup = self.parents('.base-form.popup'),
-            form = self.parents('form'),
-            inputs = form.find('input'),
-            textarea = form.find('textarea'),
-            select = form.find('select'),
-            radio = form.find('input[type=radio]'),
-            checkboxes = form.find('input[type=checkbox]'),
-            file = form.find('input[type=file]'),
+        var popup = $(this).parents('.base-form.popup'),
+            form = $(this),
+            button = form.find('button[type=submit]'),
             agree = form.find('input[name=i_agree]').is(':checked'),
             loader = $('<div></div>').addClass('loader').append(
                 $('<div></div>').addClass('loader_inner')
-            );
-    
+            ),
+            formData = new FormData;
+
         if (!agree) return false;
 
-        var formData = new FormData;
-        formData = processingFields(formData,inputs);
-        formData = processingFields(formData,select);
-        formData = processingFields(formData,textarea);
-        formData = processingCheckFields(formData,radio);
-        formData = processingCheckFields(formData,checkboxes);
+        agree.change(function () {
+            if (agree.is(':checked')) button.removeAttr('disabled');
+            else button.attr('disabled','disabled');
+        });
 
-        if (file.length) formData.append(file.attr('name'),file[0].files[0]);
-    
+        form.find('input, textarea, select').each(function () {
+            var self = $(this);
+            if (self.attr('type') == 'file') formData.append(self.attr('name'),self[0].files[0]);
+            else if (self.attr('type') == 'checkbox' || self.attr('type') == 'radio') formData = processingCheckFields(formData,self);
+            else formData = processingFields(formData,self);
+        });
+
         $('.error_text').html('');
         form.find('input, select, textarea, button').attr('disabled','disabled');
         $('body').prepend(loader);
-
 
         $.ajax({
             url: form.attr('action'),
@@ -54,9 +39,9 @@ $(document).ready(function ($) {
                 closePopup(popup.attr('id'));
                 unlockAll(form,loader);
                 form.find('input, textarea').val('');
-                
+
                 $('#thanx_popup h3').html(data.message);
-                
+
                 $.fancybox.open({
                     src: '#thanx_popup',
                     type: 'inline'
