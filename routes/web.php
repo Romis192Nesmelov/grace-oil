@@ -43,3 +43,5 @@ foreach (Cache::remember('menu', 60*60*24*365, function () {
 
 Route::get('/how-to-become-a-dealer', 'StaticController@howToBecomeADealer');
 Route::get('/terms-of-use', 'StaticController@termsOfUse');
+
+Route::get('/processing_catalogue', 'StaticController@processingCatalogue');

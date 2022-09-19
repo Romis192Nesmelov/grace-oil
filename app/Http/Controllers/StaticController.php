@@ -187,4 +187,9 @@ class StaticController extends Controller
                 })
             ]));
     }
+
+    public function processingCatalogue()
+    {
+        
+    }
 }
