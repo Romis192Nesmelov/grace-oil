@@ -27,7 +27,7 @@ $(document).ready(function ($) {
 
         $('.error_text').html('');
         form.find('input, select, textarea, button').attr('disabled','disabled');
-        $('body').prepend(loader);
+        $('body').prepend(loader.css('top',window.scrollY));
 
         $.ajax({
             url: form.attr('action'),
@@ -91,17 +91,6 @@ function processingCheckFields(formData, inputObj) {
         });
     }
     return formData;
-}
-
-function unlockSendButton(obj) {
-    var form = obj.parents('form'),
-        button = form.find('button[type=submit]'),
-        checkBox = form.find('input[name=i_agree]');
-        // phoneInput = form.find('input[name=phone]');
-
-    // if (checkBox.is(':checked') && phoneInput.val().match(window.phoneRegExp)) button.removeAttr('disabled');
-    if (checkBox.is(':checked')) button.removeAttr('disabled');
-    else button.attr('disabled','disabled');
 }
 
 function unlockAll(form,loader) {
