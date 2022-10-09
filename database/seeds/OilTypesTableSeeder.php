@@ -19,19 +19,19 @@ class OilTypesTableSeeder extends Seeder
                 'name_en' => 'Original Engine Oils'
             ],
             [
-                'name_ru' => 'Моторные масла для спортивных автомобилей',
+                'name_ru' => 'Масла для спортивных автомобилей',
                 'name_en' => 'Engine Oils for Sports Cars'
             ],
             [
-                'name_ru' => 'Моторные масла для дизельных легковых автомобилей',
+                'name_ru' => 'Масла для дизельных легковых автомобилей',
                 'name_en' => 'Engine Oils for Diesel Passenger Cars'
             ],
             [
-                'name_ru' => 'Моторные масла для двигателей, работающих на газе',
+                'name_ru' => 'Моторные масла для двигателей работающих на газе и малозольные масла для стационарных газовых двигателей',
                 'name_en' => 'Engine Oils for Gas Engines'
             ],
             [
-                'name_ru' => 'Моторные масла для коммерческой техники',
+                'name_ru' => 'Моторные масла для коммерческого транспорта',
                 'name_en' => 'Engine Oils for Commercial Vehicles'
             ],
             [
@@ -55,7 +55,7 @@ class OilTypesTableSeeder extends Seeder
                 'name_en' => 'Automatic Transmission Oils'
             ],
             [
-                'name_ru' => 'Трансмиссионные масла для вариаторов',
+                'name_ru' => 'Трансмиссионные масла для вариаторов, мостов и дифференциалов',
                 'name_en' => 'Transmission Oils for Infinitely Variable Speed ​​Transmissions'
             ],
             [
