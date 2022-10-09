@@ -339,14 +339,10 @@ class StaticController extends Controller
 //                }
             }
         }
-
-
-
-
     }
 
     private function formatingString($string)
     {
-        return strtoupper(str_replace(' ','_',$string));
+        return strtoupper(str_replace(' ', '_', $string));
     }
 }
