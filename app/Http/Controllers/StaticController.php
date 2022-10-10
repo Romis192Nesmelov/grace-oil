@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\IndustrySolution;
+use App\Models\Oil;
+use App\Models\Tolerance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Menu;
@@ -8,10 +11,15 @@ use App\Models\SubMenu;
 use App\Models\Slide;
 use App\Models\HomeBlock;
 use App\Models\Content;
+
 use App\Models\OilType;
 use App\Models\Subsection;
+use App\Models\EngineType;
+use App\Models\OilEngineType;
 use App\Models\ViscosityGrade;
 use App\Models\Documentation;
+use App\Models\OilTolerance;
+use App\Models\OilSolution;
 
 class StaticController extends Controller
 {
@@ -189,160 +197,5 @@ class StaticController extends Controller
                     return OilType::where('active',1)->get();
                 })
             ]));
-    }
-    
-    public function temp()
-    {
-        $srcFile = base_path('resources/catalogue.txt');
-        if (file_exists($srcFile)) {
-            $rows = explode('$',file_get_contents($srcFile));
-
-            $oilTypes = OilType::all();
-            $subsections = Subsection::all();
-            $viscosityGrades = ViscosityGrade::all();
-            $subsectionsDone = [];
-            $viscosityGradesDone = [];
-
-            $imagesFilesDir = base_path('public/documentations/');
-
-            $docsSuffixes = [
-                'td' => 'Technical description/Техническое описание',
-                'dc' => 'Declaration of Conformity/Декларация соответствия',
-                'cc' => 'Сертификат соответствия/Certificate of conformity'
-            ];
-            $specialDocs = [
-                'GRACE_PERFECT_FSJ_10W-30' => [
-                    'apr' => 'Одобрения Volvo VDS-4, Mack EO-N PP, Renault RLD-3;Approvals Volvo VDS-4, Mack EO-N PP, Renault RLD-3'
-                ],
-                'GRACE_PERFECT_FLS_5W-30' => [
-                    'reg' => 'Регистрация ACEA E6;Registration ACEA E6'
-                ],
-                'GRACE_PERFECT_FLS_10W-40' => [
-                    'reg' => 'Регистрация ACEA E6;Registration ACEA E6'
-                ],
-                'GRACE_PERFECT_FS_LONG_10W-40' => [
-                    'reg' => 'Регистрация ACEA E4, E7;Registration ACEA E4, E7',
-                    'apr' => 'Одобрение MAN M 3277;MAN approval M 3277'
-                ],
-                'GRACE_PERFECT_FS_10W-40' => [
-                    'reg' => 'Регистрация ACEA E7, A3/B4;Registration ACEA E7, A3/B4',
-                    'apr' => 'Одобрения Volvo VDS-3, Mack EO-N, Renault RLD-2;Approvals Volvo VDS-3, Mack EO-N, Renault RLD-2',
-                ],
-                'GRACE_PERFECT_C_15W-40' => [
-                    'reg' => 'Регистрация ACEA E7, A3/B4;Registration ACEA E7, A3/B4',
-                    'apr' => 'Одобрения Volvo VDS-3, Mack EO-N, Renault RLD-2;Approvals Volvo VDS-3, Mack EO-N, Renault RLD-2',
-                ],
-                'GRACE_ABSOLUTE_C3_5W-30' => [
-                    'reg' => 'Регистрация ACEA C3;ACEA C3 registration'
-                ],
-                'GRACE_ABSOLUTE_FS_5W-40' => [
-                    'reg' =>'Регистрация ACEA A3/B4;Registration ACEA A3/B4'
-                ],
-                'GRACE_ABSOLUTE_FFD_5W-30' => [
-                    'reg' =>'Регистрация ACEA A5/B5;Registration ACEA A5/B5'
-                ]
-            ];
-
-            foreach ($rows as $row) {
-                $cells = explode('>',$row);
-
-                // Get oil type
-                $oilTypeNameRu = str_replace("\r",'',$cells[0]);
-                $oilType = $oilTypes->where('name_ru',$oilTypeNameRu)->first();
-
-                // Get subsections
-                if ($cells[1] && $cells[1] != 'empty') {
-                    $subsectionKey = str_slug($cells[2]);
-                    if (!isset($subsectionsDone[$subsectionKey])) {
-                        if (!$subsection = $subsections->where('name_ru',$cells[1])->first()) {
-                            $subsection = Subsection::create(['name_ru' => $cells[1],'name_en' => $cells[2]]);
-                            $subsectionsDone[$subsectionKey] = $subsection->id;
-                        }
-                        $subsectionId = $subsection->id;
-                    } else $subsectionId = $subsectionsDone[$subsectionKey];
-                } else $subsectionId = null;
-
-                // Get base image
-                $oilUpperName = $this->formatingString($cells[3]);
-                $baseImage = 'images/catalogue/'.$oilType->slug.'/'.$oilUpperName.'.jpg';
-
-                // Get tare images
-                $tares = [];
-                $baseImageTare = 'images/catalogue/'.$oilType->slug.'/packaging/'.$oilUpperName.'/';
-                $docFilesDefImagesDir = 'images/oil/';
-
-                foreach (explode(',',$cells[5]) as $k => $tareVal) {
-                    //Mask 1,4,5,10,20,29,180,210,230,1000
-                    if ($k < 6 && (int)$tareVal) {
-                        $image = $baseImageTare.$tareVal.'L.jpg';
-                        $tares[] = file_exists(base_path('public/'.$image)) ? $image : $docFilesDefImagesDir.'oil_'.$tareVal.'L.jpg';
-                    }
-                    elseif ($k >= 6 && $k < 9 && (int)$tareVal) $tares[] = $docFilesDefImagesDir.'oil_180kg.jpg';
-                    elseif ((int)$tareVal) $tares[] = $docFilesDefImagesDir.'oil_1000L.jpg';
-                    else $tares[] = null;
-                }
-
-                //Get Viscosity grade
-                $oilNameAPart = explode(' ',$cells[3]);
-                $viscosityGradeName = strtoupper(end($oilNameAPart));
-                if (!isset($viscosityGradesDone[$viscosityGradeName])) {
-                    if (!$viscosityGrade = $viscosityGrades->where('name',$viscosityGradeName)->first()) {
-                        $viscosityGrade = ViscosityGrade::create(['name' => $viscosityGradeName]);
-                        $viscosityGradesDone[$viscosityGradeName] = $viscosityGrade->id;
-                    } else $viscosityGradeId = $viscosityGrade->id;
-                } else $subsectionId = $viscosityGradesDone[$viscosityGradeName];
-
-                $oilFields = [
-                    'image_base' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : $docFilesDefImagesDir.'oil_4L.jpg',
-                    'image_1' => $tares[0],
-                    'image_4' => $tares[1],
-                    'image_5' => $tares[2],
-                    'image_10' => $tares[3],
-                    'image_20' => $tares[4],
-                    'image_29' => $tares[5],
-                    'image_180' => $tares[6],
-                    'image_210' => $tares[7],
-                    'image_230' => $tares[8],
-                    'image_1000' => $tares[9],
-                    'name' => $cells[3],
-                    'head_ru' => $cells[6] != 'empty' ? $cells[6] : '',
-                    'head_en' => $cells[7] != 'empty' ? $cells[7] : '',
-                    'description_ru' => $cells[8],
-                    'description_en' => $cells[9],
-                    'application_area_ru' => $cells[10],
-                    'application_area_en' => $cells[11],
-                    'advantages_ru' => $cells[12],
-                    'advantages_en' => $cells[13],
-                    'engine_type' => $cells[15] != 'нет' ? $cells[15] : null,
-                    'active' => 1,
-                    'oil_type_id' => $oilType->id,
-                    'viscosity_grade_id' => $viscosityGradeId,
-                    'subsection_id' => $subsectionId
-                ];
-
-//                dd($oilFields);
-
-                // Get docs
-//                $oilDocs = glob($docFiles.$oilType->slug.'/'.str_replace(' ','_',strtoupper($cells[2])).'*');
-//                if (count($oilDocs)) {
-//                    foreach ($oilDocs as $oilDoc) {
-//                        $doc = pathinfo($oilDoc);
-//                        $docType = substr($doc['filename'],-3);
-//
-//                        if ($docType == 'reg' || $docType == 'apr') {
-//                            // adding exstended docs
-//                        } else {
-//                            $docType = str_replace('_','',$docType);
-//                            // adding standart docs
-//                        }
-//                    }
-//                }
-            }
-        }
-    }
-
-    private function formatingString($string)
-    {
-        return strtoupper(str_replace(' ', '_', $string));
     }
 }

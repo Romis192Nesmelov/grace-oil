@@ -3,13 +3,13 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class OilSolution extends Model
+class OilEngineType extends Model
 {
-    protected $table = 'oil_solutions';
+    protected $table = 'oil_engine_types';
 
     protected $fillable = [
         'oil_id',
-        'industry_solution_id',
+        'engine_type_id',
     ];
 
     public $timestamps = false;
@@ -19,8 +19,8 @@ class OilSolution extends Model
         return $this->belongsTo('App\Models\Oil');
     }
 
-    public function industrySolution()
+    public function tolerance()
     {
-        return $this->belongsTo('App\Models\IndustrySolution');
+        return $this->belongsTo('App\Models\EngineType');
     }
 }

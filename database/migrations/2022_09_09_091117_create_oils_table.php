@@ -16,11 +16,11 @@ class CreateOilsTable extends Migration
         Schema::create('oil', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image_base');
-            $table->boolean('image_1')->nullable();
+            $table->string('image_1')->nullable();
             $table->string('image_4')->nullable();
             $table->string('image_5')->nullable();
+            $table->string('image_10')->nullable();
             $table->string('image_20')->nullable();
-            $table->string('image_29')->nullable();
             $table->string('image_180')->nullable();
             $table->string('image_210')->nullable();
             $table->string('image_230')->nullable();
@@ -35,7 +35,6 @@ class CreateOilsTable extends Migration
             $table->text('application_area_en');
             $table->text('advantages_ru');
             $table->text('advantages_en');
-            $table->string('engine_type');
             $table->boolean('active');
             $table->timestamps();
         });

@@ -14,7 +14,6 @@ class Oil extends Model
         'image_5',
         'image_10',
         'image_20',
-        'image_29',
         'image_180',
         'image_210',
         'image_230',
@@ -28,7 +27,6 @@ class Oil extends Model
         'application_area_en',
         'advantages_ru',
         'advantages_en',
-        'engine_type',
         'active',
         'oil_type_id',
         'viscosity_grade_id',
@@ -72,6 +70,16 @@ class Oil extends Model
     public function tolerances()
     {
         return $this->belongsToMany('App\Models\Tolerance','oil_tolerances');
+    }
+
+    public function engineTypes()
+    {
+        return $this->belongsToMany('App\Models\EngineType','oil_engine_types');
+    }
+
+    public function solutions()
+    {
+        return $this->belongsToMany('App\Models\IndustrySolution','oil_solutions');
     }
 
     public function subsection()
