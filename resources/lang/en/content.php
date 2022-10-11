@@ -106,5 +106,5 @@ return [
     'all' => 'All',
     'description' => 'description',
     'application_area' => 'Application area',
-    'documentation' => 'Documentation',
+    'documentation' => 'Documentation'
 ];

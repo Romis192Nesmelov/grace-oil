@@ -39,24 +39,14 @@
                                             <div class="filter-category-block" id="engine_type">
                                                 <div class="trigger-filter-title">{{ trans('content.engine_type') }}</div>
                                                 <div class="checkbox-toggle-list open">
-
-                                                    @if ($gas_engine_count)
+                                                    @foreach($engine_types as $key => $item)
                                                         @include('blocks._checkbox_block',[
-                                                            'inputId' => 'engine_type_0',
-                                                            'inputName' => 'engine_type_0',
-                                                            'inputVal' => 'engine_type_0',
-                                                            'inputLabel' => trans('content.gas_engine').'<span>('.$gas_engine_count.')</span>'
+                                                            'inputId' => 'engine_type_'.$key,
+                                                            'inputName' => 'engine_type_'.$key,
+                                                            'inputVal' => 'engine_type_'.$key,
+                                                            'inputLabel' => $item['name'].'<span>('.$item['counter'].')</span>'
                                                         ])
-                                                    @endif
-
-                                                    @if ($diesel_engine_count)
-                                                        @include('blocks._checkbox_block',[
-                                                            'inputId' => 'engine_type_1',
-                                                            'inputName' => 'engine_type_1',
-                                                            'inputVal' => 'engine_type_1',
-                                                            'inputLabel' => trans('content.diesel_engine').'<span>('.$diesel_engine_count.')</span>'
-                                                        ])
-                                                    @endif
+                                                    @endforeach
                                                 </div>
                                             </div>
                                             <div class="filter-category-block" id="specification">
@@ -98,7 +88,12 @@
                                     @php $toleranceClassName .= 'tolerance_'.strtolower(str_replace([' ','/','.','`'],'_',$tolerance->name)).' '; @endphp
                                 @endforeach
 
-                                <div class="tovar-item item viscosity_{{ strtolower(str_replace(' ','_',$item->viscosity->slug)) }} engine_type_{{ $item->engine_type }} {{ $toleranceClassName }}">
+                                @php $engineTypeClassName = ''; @endphp
+                                @foreach($item->engineTypes as $engineType)
+                                    @php $engineTypeClassName .= 'engine_type_'.$engineType->slug.' '; @endphp
+                                @endforeach
+
+                                <div class="tovar-item item viscosity_{{ strtolower(str_replace(' ','_',$item->viscosity->slug)) }} {{ $engineTypeClassName }} {{ $toleranceClassName }}">
                                     <div class="prev">
                                         <a href="{{ url('/'.$breadcrumbs[0]['href'].'/'.$item->oilType->slug.'/'.$item->slug) }}">
                                             <img class="lazyload" data-src="{{ asset($item->image_base) }}" src="{{ asset($item->image_base) }}" alt="{{ $item->name }}">

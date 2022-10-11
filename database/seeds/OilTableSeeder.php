@@ -33,6 +33,101 @@ class OilTableSeeder extends Seeder
             $engineTypesDone = [];
             $tolerancesDone = [];
 
+//            $exceptingOilImagesBase = [
+//                'GRACE FF-D 5w-30',
+//                'GRACE absolute FSA 5w-20',
+//                'GRACE СТО-4 FS 0w-20',
+//                'GRACE CHAIN',
+//                'GRACE CHAIN S',
+//                'GRACE CHAIN W',
+//                'GRACE ATF FS DEX VI',
+//                'GRACE FLUID ZINCLESS HLP 100',
+//                'GRACE ANTIFREEZE -65 G12 red',
+//                'GRACE ANTIFREEZE -65 G11 green'
+//            ];
+//
+//            $exceptingOilImagesTare = [
+//                'GRACE perfect FSK 5w-30',
+//                'GRACE CNG C SAE-40',
+//                'GRACE INDUSTRIAL-32',
+//                'GRACE INDUSTRIAL-46',
+//                'GRACE INDUSTRIAL-68',
+//                'GRACE INDUSTRIAL-100',
+//                'GRACE INDUSTRIAL-150',
+//                'GRACE INDUSTRIAL-220',
+//                'GRACE IZOROL-68',
+//                'GRACE IZOROL-220',
+//                'GRACE SPINDLE 2',
+//                'GRACE SPINDLE 5',
+//                'GRACE SPINDLE 7',
+//                'GRACE SPINDLE 10',
+//                'GRACE OUTBOARD BIO 2T',
+//                'GRACE FLUID HLP 15',
+//                'GRACE FLUID HLP 22',
+//                'GRACE FLUID HLP 32',
+//                'GRACE FLUID HLP 46',
+//                'GRACE FLUID HLP 100',
+//                'GRACE FLUID HLP 150',
+//                'GRACE FLUID HVLP 15',
+//                'GRACE FLUID HVLP 22',
+//                'GRACE FLUID HVLP 32',
+//                'GRACE FLUID HVLP 46',
+//                'GRACE FLUID HVLP 68',
+//                'GRACE FLUID HVLP 100',
+//                'GRACE FLUID ZINCLESS HLP 15',
+//                'GRACE FLUID ZINCLESS HLP 22',
+//                'GRACE FLUID ZINCLESS HLP 32',
+//                'GRACE FLUID ZINCLESS HLP 46',
+//                'GRACE FLUID ZINCLESS HLP 68',
+//                'GRACE FLUID ZINCLESS HVLP 15',
+//                'GRACE FLUID ZINCLESS HVLP 22',
+//                'GRACE FLUID ZINCLESS HVLP 32',
+//                'GRACE FLUID ZINCLESS HVLP 46',
+//                'GRACE FLUID ZINCLESS HVLP 68',
+//                'GRACE FLUID ZINCLESS HVLP 100',
+//                'GRACE FLUID Arctic 10 (-65°C)',
+//                'GRACE FLUID Arctic 15 (-65ºC)',
+//                'GRACE FLUID Arctic 22 (-65ºC)',
+//                'GRACE FLUID Arctic 32 (-60ºC)',
+//                'GRACE FLUID Arctic 46 (-55ºC)',
+//                'GRACE FLUID POLAR Plus 22',
+//                'GRACE FLUID POLAR Plus 32',
+//                'GRACE FLUID POLAR Plus 46',
+//                'GRACE TURBINE 32',
+//                'GRACE TURBINE 46',
+//                'GRACE TURBINE 68',
+//                'GRACE TURBINE EP 32',
+//                'GRACE TURBINE EP 46',
+//                'GRACE GEAR 68',
+//                'GRACE GEAR 100',
+//                'GRACE GEAR 150',
+//                'GRACE GEAR 220',
+//                'GRACE GEAR 320',
+//                'GRACE GEAR 460',
+//                'GRACE GEAR 680',
+//                'GRACE GEAR S 68',
+//                'GRACE GEAR S 100',
+//                'GRACE GEAR S 150',
+//                'GRACE GEAR S 220',
+//                'GRACE GEAR S 320',
+//                'GRACE GEAR S 460',
+//                'GRACE GEAR S 680',
+//                'GRACE GEAR FS 220',
+//                'GRACE GEAR FS 320',
+//                'GRACE COMP RC-32',
+//                'GRACE COMP RC-46',
+//                'GRACE COMP RC-68',
+//                'GRACE COMP RS-32',
+//                'GRACE COMP RS-46',
+//                'GRACE COMP RS-68',
+//                'GRACE COMP PC-68',
+//                'GRACE COMP PC-100',
+//                'GRACE COMP PC-150',
+//                'GRACE COMP PS-68',
+//                'GRACE COMP PS-100',
+//                'GRACE COMP PS-150'
+//            ];
+
             foreach ($rows as $row) {
                 $cells = explode('>',$row);
 
@@ -53,19 +148,27 @@ class OilTableSeeder extends Seeder
                 } else $subsectionId = null;
 
                 // Get base image
-                $oilUpperName = $this->formatString($cells[3]);
+                $oilUpperName = strtoupper(str_replace([' ','/','','(',')'], '_', $cells[3]));
                 $baseImage = 'images/catalogue/'.$oilType->slug.'/'.$oilUpperName.'.jpg';
 
                 // Get tare images
                 $tares = [];
                 $baseImageTare = 'images/catalogue/'.$oilType->slug.'/packaging/'.$oilUpperName.'/';
                 $docFilesDefImagesDir = 'images/oil/';
+                $oilUnit = $oilType->slug == 'coolants';
 
                 foreach (explode(',',$cells[5]) as $k => $tareVal) {
-                    //Mask 1,4,5,10,20,29,180,210,230,1000
-                    if ($k < 6 && (int)$tareVal) {
-                        $image = $baseImageTare.$tareVal.'L.jpg';
-                        $tares[] = file_exists(base_path('public/'.$image)) ? $image : $docFilesDefImagesDir.'oil_'.$tareVal.'L.jpg';
+                    //Mask 1,4,5,10,20,180,210,230,1000
+                    if ($k < 5 && (int)$tareVal) {
+                        $image = $baseImageTare.$tareVal.($oilUnit ? 'kg' : 'L').'.jpg';
+
+//                        if (
+//                            !file_exists(base_path('public/'.$image)) &&
+//                            !in_array($cells[3], $exceptingOilImagesBase) &&
+//                            !in_array($cells[3], $exceptingOilImagesTare)
+//                        ) dd($cells, $image);
+
+                        $tares[] = file_exists(base_path('public/'.$image)) ? $image : $docFilesDefImagesDir.'oil_'.$tareVal.'jpg';
                     }
                     elseif ($k >= 6 && $k < 9 && (int)$tareVal) $tares[] = $docFilesDefImagesDir.'oil_180kg.jpg';
                     elseif ((int)$tareVal) $tares[] = $docFilesDefImagesDir.'oil_1000L.jpg';
@@ -83,9 +186,13 @@ class OilTableSeeder extends Seeder
                     $viscosityGradeId = $viscosityGrade->id;
                 } else $viscosityGradeId = $viscosityGradesDone[$viscosityGradeName];
 
+//                if (!file_exists(base_path('public/'.$baseImage)) && !in_array($cells[3], $exceptingOilImagesBase))
+//                    dd($cells, $baseImage);
+
                 if (!$oil = Oil::where('name',$cells[3])->first()) {
                     $oilFields = [
-                        'image_base' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : $docFilesDefImagesDir.'oil_4L.jpg',
+                        'units' => $oilUnit,
+                        'image_base' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : $docFilesDefImagesDir.'oil_base.jpg',
                         'image_1' => $tares[0],
                         'image_4' => $tares[1],
                         'image_5' => $tares[2],
@@ -115,8 +222,12 @@ class OilTableSeeder extends Seeder
                 //Get Engine type
                 if ($cells[15] != 'нет') {
                     $engineTypeNames = explode(';', $cells[15]);
-                    foreach ($engineTypeNames as $name) {
-                        list($engineTypesDone, $engineTypeId) = $this->getEngineTypeId($engineTypes, $engineTypesDone, $name);
+                    foreach ($engineTypeNames as $engineTypeName) {
+                        if (!isset($engineTypesDone[$engineTypeName])) {
+                            $engineType = $engineTypes->where('name_ru',$engineTypeName)->first();
+                            $engineTypeId = $engineType->id;
+                        } else $engineTypeId = $engineTypesDone[$engineTypeName];
+
                         if (!OilEngineType::where('oil_id',$oil->id)->where('engine_type_id', $engineTypeId)->first()) {
                             OilEngineType::create([
                                 'oil_id' => $oil->id,
@@ -201,7 +312,6 @@ class OilTableSeeder extends Seeder
                     $toleranceName = strtoupper(trim($toleranceName));
                     if (!isset($tolerancesDone[$toleranceName])) {
                         if (!$tolerance = $tolerances->where('name',$toleranceName)->first()) {
-//                            dd($toleranceName);
                             $tolerance = Tolerance::create(['name' => $toleranceName]);
                             $tolerancesDone[$toleranceName] = $tolerance->id;
                         }
@@ -221,7 +331,7 @@ class OilTableSeeder extends Seeder
                     foreach (explode(',', $cells[14]) as $solutionName) {
                         $solutionName = ucfirst(trim($solutionName));
                         $solution = IndustrySolution::where('name_ru',$solutionName)->first();
-                        if (!$solution) dd($solutionName);
+//                        if (!$solution) dd($solutionName);
                         if (!OilSolution::where('oil_id',$oil->id)->where('industry_solution_id',$solution->id)->first()) {
                             OilSolution::create([
                                 'oil_id' => $oil->id,
@@ -232,20 +342,6 @@ class OilTableSeeder extends Seeder
                 }
             }
         }
-    }
-
-    private function formatString($string)
-    {
-        return strtoupper(str_replace(' ', '_', $string));
-    }
-
-    private function getEngineTypeId($engineTypes, $engineTypesDone, $engineTypeName)
-    {
-        if (!isset($engineTypesDone[$engineTypeName])) {
-            $engineType = $engineTypes->where('name_ru',$engineTypeName)->first();
-            $engineTypeId = $engineType->id;
-        } else $engineTypeId = $engineTypesDone[$engineTypeName];
-        return [$engineTypesDone, $engineTypeId];
     }
 
     private function findOrCreateDoc($docHref, $nameRu, $nameEn, $oilId)

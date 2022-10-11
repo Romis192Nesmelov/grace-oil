@@ -18,12 +18,12 @@ class CatalogueController extends StaticController
         $this->data['breadcrumbs'][] = ['href' => $menu->slug, 'name' => $menu[App::getLocale()]];
         $this->data['menu_active_id'] = $menu->id;
         $this->data['types'] = OilType::where('active', 1)->get();
-        
+
         if ($slug) {
             if (!$oilType = OilType::where('slug',$slug)->where('active', 1)->pluck('name_'.App::getLocale(),'id')->toArray()) abort(404);
             $this->data['oil_type_id'] = array_key_first($oilType);
             $this->data['breadcrumbs'][] = ['href' => $menu->slug.'/'.$slug, 'name' => $oilType[$this->data['oil_type_id']]];
-            
+
             if ($sub_slug) {
                 if ($subsection = Subsection::where('slug',$sub_slug)->first()) {
                     $this->data['breadcrumbs'][] = ['href' => $menu->slug.'/'.$slug.'/'.$sub_slug, 'name' => $subsection['name_'.App::getLocale()]];
@@ -57,22 +57,31 @@ class CatalogueController extends StaticController
     private function getCounters()
     {
         $this->data['viscosity'] = [];
+        $this->data['engine_types'] = [];
         $this->data['tolerances'] = [];
         $this->data['gas_engine_count'] = 0;
         $this->data['diesel_engine_count'] = 0;
 
         foreach($this->data['oil'] as $oil) {
-            $viscosityName = $oil->viscosity->name; $viscosityKey = strtolower(str_replace(' ','_',$oil->viscosity->slug));
+            $viscosityName = $oil->viscosity->name;
+            $viscosityKey = $oil->viscosity->slug;
             if (!count($this->data['viscosity']) || !in_array($viscosityKey, array_keys($this->data['viscosity']))) 
                 $this->data['viscosity'][$viscosityKey] = ['counter' => 1, 'name' => $viscosityName];
             else 
                 $this->data['viscosity'][$viscosityKey]['counter']++;
 
-            if (!$oil->engine_type) $this->data['gas_engine_count']++;
-            else $this->data['diesel_engine_count']++;
+            foreach ($oil->engineTypes as $engineType) {
+                $oilTypeName = $engineType['name_'.App::getLocale()];
+                $oilTypeKey = $engineType->slug;
+                if (!count($this->data['engine_types']) || !in_array($oilTypeKey, array_keys($this->data['engine_types'])))
+                    $this->data['engine_types'][$oilTypeKey] = ['counter' => 1, 'name' => $oilTypeName];
+                else
+                    $this->data['engine_types'][$oilTypeKey]['counter']++;
+            }
 
             foreach($oil->tolerances as $tolerance) {
-                $toleranceName = $tolerance->name; $toleranceKey = strtolower(str_replace([' ','/','.','`'],'_',$toleranceName));
+                $toleranceName = $tolerance->name;
+                $toleranceKey = strtolower(str_replace([' ','/','.','`'],'_',$toleranceName));
                 if (!count($this->data['tolerances']) || !in_array($toleranceKey, array_keys($this->data['tolerances'])))
                     $this->data['tolerances'][$toleranceKey] = ['counter' => 1, 'name' => $toleranceName];
                 else

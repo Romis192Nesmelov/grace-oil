@@ -11,20 +11,20 @@ class EngineTypesTableSeeder extends Seeder
     {
         $data = [
             [
-                'name_ru' => 'бензиновый',
-                'name_en' => 'petrol'
+                'name_ru' => 'Бензиновый',
+                'name_en' => 'Petrol'
             ],
             [
-                'name_ru' => 'дизельный',
-                'name_en' => 'diesel'
+                'name_ru' => 'Дизельный',
+                'name_en' => 'Diesel'
             ],
             [
-                'name_ru' => 'газовый',
-                'name_en' => 'gas'
+                'name_ru' => 'Газовый',
+                'name_en' => 'Gas'
             ],
             [
-                'name_ru' => 'газовый на пропано-бутановой смеси',
-                'name_en' => 'gas propane-butane mixture'
+                'name_ru' => 'Газовый на пропано-бутановой смеси',
+                'name_en' => 'Gas propane-butane mixture'
             ],
         ];
 

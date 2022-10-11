@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Oil extends Model
 {
     protected $fillable = [
+        'units',
         'image_base',
         'image_1',
         'image_4',

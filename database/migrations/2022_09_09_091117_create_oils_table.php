@@ -15,6 +15,7 @@ class CreateOilsTable extends Migration
     {
         Schema::create('oil', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('units');
             $table->string('image_base');
             $table->string('image_1')->nullable();
             $table->string('image_4')->nullable();

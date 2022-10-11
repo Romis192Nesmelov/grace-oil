@@ -58,15 +58,15 @@
                     </table>
                     <div class="tovar-descr-title bottle-size-title">{{ trans('content.packing') }}</div>
                     <div class="bottle-size-list wrap-image-packing">
-                        @foreach(['1','4','20','180','1000'] as $k => $packing)
+                        @foreach(['1','4','5','10','20','180','210','230','1000'] as $k => $packing)
                             @if ($oil['image_'.$packing])
                                 <div class="bottle-item packing-active" data-packing="packing_{{ $packing }}" title="{{ trans('content.click_to_view_image') }}">
                                     <div class="prev"><img src="{{ asset('images/packing_icons/icon_'.$packing.'.png') }}" alt="bottle"></div>
                                     <div class="desc">
                                         <div class="bottle-title-title">
-                                            @if ($k <= 2)
-                                                {{ $packing.trans('content.l') }}
-                                            @elseif ($k == 3)
+                                            @if ($k <= 5)
+                                                {{ $oil->units ? $packing.trans('content.kg') : $packing.trans('content.l') }}
+                                            @elseif ($k == 5)
                                                 {{ $packing.trans('content.kg') }}
                                             @else
                                                 {{ trans('content.cube').$packing.trans('content.l') }}
