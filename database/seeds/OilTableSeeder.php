@@ -34,13 +34,6 @@ class OilTableSeeder extends Seeder
             $tolerancesDone = [];
 
 //            $exceptingOilImagesBase = [
-//                'GRACE FF-D 5w-30',
-//                'GRACE absolute FSA 5w-20',
-//                'GRACE СТО-4 FS 0w-20',
-//                'GRACE CHAIN',
-//                'GRACE CHAIN S',
-//                'GRACE CHAIN W',
-//                'GRACE ATF FS DEX VI',
 //                'GRACE FLUID ZINCLESS HLP 100',
 //                'GRACE ANTIFREEZE -65 G12 red',
 //                'GRACE ANTIFREEZE -65 G11 green'
