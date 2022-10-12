@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Oil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Menu;
@@ -187,8 +186,8 @@ class StaticController extends Controller
                 })
             ]));
     }
-    
-//    public function temp1()
+
+//    public function temp2()
 //    {
 //        foreach (glob(base_path('public/images/catalogue/*')) as $oilTypeDir) {
 //            foreach (glob($oilTypeDir.'/*') as $oilDir) {
