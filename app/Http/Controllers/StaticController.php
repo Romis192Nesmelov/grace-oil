@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\IndustrySolution;
+use App\Models\Oil;
+use App\Models\Tolerance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Menu;
@@ -8,7 +11,15 @@ use App\Models\SubMenu;
 use App\Models\Slide;
 use App\Models\HomeBlock;
 use App\Models\Content;
+
 use App\Models\OilType;
+use App\Models\Subsection;
+use App\Models\EngineType;
+use App\Models\OilEngineType;
+use App\Models\ViscosityGrade;
+use App\Models\Documentation;
+use App\Models\OilTolerance;
+use App\Models\OilSolution;
 
 class StaticController extends Controller
 {

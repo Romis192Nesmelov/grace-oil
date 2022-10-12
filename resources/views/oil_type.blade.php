@@ -70,8 +70,8 @@
                     </div>
                     <div class="col-lg-9 col-md-8">
                         <div class="category_menu">
-                            <a href="{{ url('/'.$breadcrumbs[1]['href']) }}" {{ !isset($subsection_id) ? 'class=active' : '' }}>{{ trans('content.all') }}</a>
                             @if (count($subsections))
+                                <a href="{{ url('/'.$breadcrumbs[1]['href']) }}" {{ !isset($subsection_id) ? 'class=active' : '' }}>{{ trans('content.all') }}</a>
                                 <ul>
                                     @foreach ($subsections as $subsection)
                                         <li {{ isset($subsection_id) && $subsection['id'] == $subsection_id ? 'class=active' : '' }}><a href="{{ url('/'.$breadcrumbs[1]['href'].'/'.$subsection['slug']) }}">{{ $subsection['name'] }}</a></li>
