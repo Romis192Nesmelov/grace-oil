@@ -148,7 +148,7 @@ class OilTableSeeder extends Seeder
                 } else $subsectionId = null;
 
                 // Get base image
-                $oilUpperName = strtoupper(str_replace([' ','/','','(',')'], '_', $cells[3]));
+                $oilUpperName = strtoupper(str_replace([' ','/','(',')','°','º'], ['_','_','','','',''], $cells[3]));
                 $baseImage = 'images/catalogue/'.$oilType->slug.'/'.$oilUpperName.'.jpg';
 
                 // Get tare images

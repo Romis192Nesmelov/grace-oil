@@ -51,7 +51,19 @@ class CatalogueController extends StaticController
     
     private function getOilSubsections()
     {
-        $this->data['subsections'] = Oil::where('oil_type_id',$this->data['oil_type_id'])->where('subsection_id','!=',null)->where('active',1)->get();
+        $this->data['subsections'] = [];
+        $subsectionsDone = [];
+        $oil = Oil::where('oil_type_id',$this->data['oil_type_id'])->where('subsection_id','!=',null)->where('active',1)->get();
+        foreach ($oil as $item) {
+            if (!in_array($item->subsection_id, $subsectionsDone)) {
+                $this->data['subsections'][] = [
+                    'id' => $item->subsection_id,
+                    'slug' => $item->subsection->slug,
+                    'name' => $item->subsection['name_'.app()->getLocale()]
+                ];
+            }
+            $subsectionsDone[] = $item->subsection_id;
+        }
     }
     
     private function getCounters()

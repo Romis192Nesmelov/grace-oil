@@ -69,17 +69,16 @@
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-8">
-                        @if (count($subsections))
-                            <div class="category_menu">
-                                <a href="{{ url('/'.$breadcrumbs[1]['href']) }}" {{ !isset($subsection_id) ? 'class=active' : '' }}>{{ trans('content.all') }}</a>
+                        <div class="category_menu">
+                            <a href="{{ url('/'.$breadcrumbs[1]['href']) }}" {{ !isset($subsection_id) ? 'class=active' : '' }}>{{ trans('content.all') }}</a>
+                            @if (count($subsections))
                                 <ul>
-                                    @foreach ($subsections as $item)
-                                        <li {{ isset($subsection_id) && $item->subsection_id == $subsection_id ? 'class=active' : '' }}><a href="{{ url('/'.$breadcrumbs[1]['href'].'/'.$item->subsection->slug) }}">{{ $item->subsection['name_'.app()->getLocale()] }}</a></li>
+                                    @foreach ($subsections as $subsection)
+                                        <li {{ isset($subsection_id) && $subsection['id'] == $subsection_id ? 'class=active' : '' }}><a href="{{ url('/'.$breadcrumbs[1]['href'].'/'.$subsection['slug']) }}">{{ $subsection['name'] }}</a></li>
                                     @endforeach
                                 </ul>
-                            </div>
-                        @endif
-
+                            @endif
+                        </div>
                         <div class="tovar-list" id="mse2_results">
                             @foreach($oil as $item)
 
