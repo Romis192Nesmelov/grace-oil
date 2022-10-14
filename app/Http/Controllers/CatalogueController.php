@@ -14,6 +14,12 @@ class CatalogueController extends StaticController
 
     public function _default(Request $request, $slug=null, $sub_slug=null)
     {
+        $arrayKeyFirst = function (array $oilType) {
+            foreach ($oilType as $key => $val) {
+                return $key;
+            }
+        };
+        
         $menu = Menu::find(3);
         $this->data['breadcrumbs'][] = ['href' => $menu->slug, 'name' => $menu[App::getLocale()]];
         $this->data['menu_active_id'] = $menu->id;
@@ -21,7 +27,7 @@ class CatalogueController extends StaticController
 
         if ($slug) {
             if (!$oilType = OilType::where('slug',$slug)->where('active', 1)->pluck('name_'.App::getLocale(),'id')->toArray()) abort(404);
-            $this->data['oil_type_id'] = array_key_first($oilType);
+            $this->data['oil_type_id'] = $arrayKeyFirst($oilType);
             $this->data['breadcrumbs'][] = ['href' => $menu->slug.'/'.$slug, 'name' => $oilType[$this->data['oil_type_id']]];
 
             if ($sub_slug) {
