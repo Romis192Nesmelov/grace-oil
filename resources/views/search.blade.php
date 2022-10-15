@@ -5,7 +5,7 @@
         <div class="container">
             @include('blocks._breadcrumbs_block')
             <div class="text_edit page_title">
-                <h1>{{ trans('content.search_results') }}</h1>
+                <h1>{{ trans('content.search_results').': «'.$searching.'»' }}</h1>
             </div>
             <div class="search_result_block">
                 @foreach($found as $k => $item)

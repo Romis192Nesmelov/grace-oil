@@ -39,6 +39,7 @@ class CreateOilsTable extends Migration
             $table->boolean('active');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE oil ADD FULLTEXT search(name,head_ru,head_en)');
     }
 
     /**
@@ -48,6 +49,9 @@ class CreateOilsTable extends Migration
      */
     public function down()
     {
+        Schema::table('about_lubricants', function($table) {
+            $table->dropIndex('search');
+        });
         Schema::dropIfExists('oil');
     }
 }

@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
-
 use App\Models\Menu;
 use App\Models\SubMenu;
+use App\Models\Oil;
 use App\Models\Content;
 use App\Models\News;
 
@@ -13,13 +12,17 @@ class SearchController extends StaticController
 {
     use HelperTrait;
 
+    private $foundOilIds = [];
+
     public function find($searchString)
     {
 //        $this->validate($request, ['find' => 'required|min:3']);
-
-//        $searchString = $request->input('find');
         $this->data['breadcrumbs'][] = ['href' => url('/search?find='.$searchString), 'name' => trans('content.search_results')];
         $this->data['found'] = collect();
+        $this->data['searching'] = $searchString;
+
+        $this->addFoundOil(Oil::where('name',$searchString)->get());
+        $this->addFoundOil($this->searchInModel(new Oil(), $searchString));
 
         $foundContents = $this->searchInModel(new Content(), $searchString);
         foreach ($foundContents as $content) {
@@ -60,6 +63,7 @@ class SearchController extends StaticController
         $fields = $model->getFillable();
         $searchInFields = '';
         $validFields = [
+            'name',
             'name_ru',
             'name_en',
             'head_ru',
@@ -103,5 +107,22 @@ class SearchController extends StaticController
     private function findMenu(Model $menuModel, $addContentModelName)
     {
         return $menuModel->where('add_content_model',$addContentModelName)->first();
+    }
+
+    private function addFoundOil($foundOil)
+    {
+        $menu = Menu::find(3);
+        foreach ($foundOil as $oil) {
+            if (!in_array($oil->id, $this->foundOilIds)) {
+                $this->data['found']->push([
+                    'href' => url('/'.$menu->slug.'/'.$oil->oilType->slug.'/'.$oil->slug),
+                    'title_ru' => $oil->name,
+                    'title_en' => $oil->name,
+                    'text_ru' => $oil->head_ru,
+                    'text_en' => $oil->head_en
+                ]);
+                $this->foundOilIds[] = $oil->id;
+            }
+        }
     }
 }
