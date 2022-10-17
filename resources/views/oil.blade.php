@@ -45,7 +45,12 @@
             </div>
             <div class="tovar-block">
                 <div class="tovar-image">
-                    <img src="{{ asset($oil->image_4 ? $oil->image_4 : $oil->image_base) }}" alt="{{ $oil->name }}">
+                    @foreach(['20','10','5','4', 'base'] as $val)
+                        @if ($oil['image_'.$val])
+                            <img src="{{ asset($oil['image_'.$val]) }}" alt="{{ $oil->name }}">
+                            @break
+                        @endif
+                    @endforeach
                 </div>
                 <div class="tovar-descr">
                     <div class="tovar-descr-title">{{ trans('content.compliance') }}:</div>

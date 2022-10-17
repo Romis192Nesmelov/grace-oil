@@ -49,7 +49,7 @@ class CreateOilsTable extends Migration
      */
     public function down()
     {
-        Schema::table('about_lubricants', function($table) {
+        Schema::table('oil', function($table) {
             $table->dropIndex('search');
         });
         Schema::dropIfExists('oil');
