@@ -25,7 +25,7 @@
 {{--                                            <form action="{{ Request::url() }}" method="POST">--}}
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="oil_type_id" value="{{ $oil_type_id }}" />
-                                                <input type="hidden" name="subsection_id" value="{{ isset($subsection_id) ? subsection_id : 0 }}" />
+                                                <input type="hidden" name="subsection_id" value="{{ isset($subsection_id) ? $subsection_id : 0 }}" />
 
                                                 <div class="filter-category-block" id="viscosity_grade">
                                                     <div class="trigger-filter-title">{{ trans('content.viscosity_grade') }}</div>

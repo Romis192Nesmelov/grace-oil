@@ -77,10 +77,14 @@ $(document).ready(function ($) {
             'oil_type_id': $('input[name=oil_type_id]').val(),
             'subsection_id': $('input[name=subsection_id]').val()
         }).done(function(data) {
-            console.log(data);
-            var oilList = $('#oil-list');
-            oilList.html(data.html);
-            removingLoader();
+            if (!data.oil_count) {
+                var newUrl = window.location.href.replace(/(\?page=\d+)$/g, '');
+                document.location.href = newUrl;
+            } else {
+                var oilList = $('#oil-list');
+                oilList.html(data.html);
+                removingLoader();
+            }
         });
     });
 });

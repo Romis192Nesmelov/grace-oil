@@ -25,6 +25,7 @@ class StaticController extends Controller
 
     public function _default(Request $request, $slug=null)
     {
+        if (session()->has('filters')) session()->forget('filters');
         return $this->showView($this->crumbsAndContent($request, $slug));
     }
 

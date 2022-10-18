@@ -120,7 +120,7 @@ class CatalogueController extends StaticController
     private function getAjaxHtml()
     {
         $html = view('blocks._oil_list_block', $this->data)->render();
-        return response()->json(['success' => true, 'html' => $html]);
+        return response()->json(['success' => true, 'html' => $html, 'oil_count' => count($this->data['oil'])]);
     }
 
     private function processingFilters($item, $foreignPropName, array $filtersIds, $addingItem = true)
