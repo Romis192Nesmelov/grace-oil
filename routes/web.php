@@ -18,7 +18,7 @@ Route::post('/partner', 'FeedbackController@toBeAPartner')->name('partner');
 Route::post('/resume', 'FeedbackController@resume')->name('resume');
 Route::post('/offer', 'FeedbackController@offer')->name('offer');
 
-Route::get('/parse', 'ParserController@run');
+//Route::get('/parse', 'ParserController@run');
 
 foreach (Cache::remember('menu', 60*60*24*365, function () {
     return Menu::where('active',1)->with('subMenu')->get();
@@ -38,12 +38,10 @@ foreach (Cache::remember('menu', 60*60*24*365, function () {
             return Manager::find(3);
         });
         foreach (OilType::where('active',1)->get() as $oilType) {
-            Route::get('/'.$menu->slug.'/{slug?}/{sub_slug?}', $manager->controller.'@'.$manager->method);
+            Route::any('/'.$menu->slug.'/{slug?}/{sub_slug?}', $manager->controller.'@'.$manager->method);
         }
     }
 }
 
 Route::get('/how-to-become-a-dealer', 'StaticController@howToBecomeADealer');
 Route::get('/terms-of-use', 'StaticController@termsOfUse');
-
-Route::get('/processing_catalogue', 'StaticController@processingCatalogue');

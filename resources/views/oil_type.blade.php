@@ -8,7 +8,7 @@
                 <h1>{{ end($breadcrumbs)['name'] }}</h1>
             </div>
             <div class="main-struct">
-                <div class="row" id="mse2_mfilter">
+                <div class="row">
                     <div class="col-lg-3 col-md-4">
                         <div class="sidebar">
                             <div class="site-list">
@@ -21,55 +21,65 @@
                                                 </li>
                                             @endforeach
                                         </ul>
-                                        <div id="checkboxes-list" class="filter-side popup-filter">
-                                            <div class="filter-category-block" id="viscosity_grade">
-                                                <div class="trigger-filter-title">{{ trans('content.viscosity_grade') }}</div>
+                                        <div id="checkboxes-list-catalogue" class="filter-side popup-filter">
+{{--                                            <form action="{{ Request::url() }}" method="POST">--}}
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="oil_type_id" value="{{ $oil_type_id }}" />
+                                                <input type="hidden" name="subsection_id" value="{{ isset($subsection_id) ? subsection_id : 0 }}" />
 
-                                                @if (count($viscosity) > 1)
-                                                    <div class="checkbox-toggle-list open">
-                                                        @foreach($viscosity as $key => $item)
-                                                            @include('blocks._checkbox_block',[
-                                                                'inputId' => 'viscosity_'.$key,
-                                                                'inputName' => 'viscosity_'.$key,
-                                                                'inputVal' => 'viscosity_'.$key,
-                                                                'inputLabel' => $item['name'].'<span>('.$item['counter'].')</span>'
-                                                            ])
-                                                        @endforeach
+                                                <div class="filter-category-block" id="viscosity_grade">
+                                                    <div class="trigger-filter-title">{{ trans('content.viscosity_grade') }}</div>
+
+                                                    @if (count($viscosity) > 1)
+                                                        <div id="viscosity-filters" class="checkbox-toggle-list open">
+                                                            @foreach($viscosity as $key => $item)
+                                                                @include('blocks._checkbox_block',[
+                                                                    'inputId' => 'viscosity_'.$key,
+                                                                    'inputName' => 'viscosity_'.$key,
+                                                                    'inputVal' => $item['id'],
+                                                                    'inputLabel' => $item['name'].'<span>('.$item['counter'].')</span>',
+                                                                    'checked' => session()->has('filters') && isset(session()->get('filters')['viscosity']) && in_array($item['id'], session()->get('filters')['viscosity'])
+                                                                ])
+                                                            @endforeach
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                                @if (count($engine_types) > 1)
+                                                    <div class="filter-category-block" id="engine_type">
+                                                        <div class="trigger-filter-title">{{ trans('content.engine_type') }}</div>
+                                                        <div id="engine_type-filters" class="checkbox-toggle-list open">
+                                                            @foreach($engine_types as $key => $item)
+                                                                @include('blocks._checkbox_block',[
+                                                                    'inputId' => 'engine_type_'.$key,
+                                                                    'inputName' => 'engine_type_'.$key,
+                                                                    'inputVal' => $item['id'],
+                                                                    'inputLabel' => $item['name'].'<span>('.$item['counter'].')</span>',
+                                                                    'checked' => session()->has('filters') && isset(session()->get('filters')['engine_type']) && in_array($item['id'], session()->get('filters')['engine_type'])
+                                                                ])
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 @endif
-                                            </div>
 
-                                            @if (count($engine_types) > 1)
-                                                <div class="filter-category-block" id="engine_type">
-                                                    <div class="trigger-filter-title">{{ trans('content.engine_type') }}</div>
-                                                    <div class="checkbox-toggle-list open">
-                                                        @foreach($engine_types as $key => $item)
-                                                            @include('blocks._checkbox_block',[
-                                                                'inputId' => 'engine_type_'.$key,
-                                                                'inputName' => 'engine_type_'.$key,
-                                                                'inputVal' => 'engine_type_'.$key,
-                                                                'inputLabel' => $item['name'].'<span>('.$item['counter'].')</span>'
-                                                            ])
-                                                        @endforeach
+                                                @if (count($tolerances) > 1)
+                                                    <div class="filter-category-block" id="tolerances">
+                                                        <div class="trigger-filter-title">{{ trans('content.tolerances_and_compliances') }}</div>
+                                                        <div id="tolerances-filters" class="checkbox-toggle-list open">
+                                                            @foreach($tolerances as $key => $item)
+                                                                @include('blocks._checkbox_block',[
+                                                                    'inputId' => 'tolerances_'.$key,
+                                                                    'inputName' => 'tolerances_'.$key,
+                                                                    'inputVal' => $item['id'],
+                                                                    'inputLabel' => $item['name'].'<span>('.$item['counter'].')</span>',
+                                                                    'checked' => session()->has('filters') && isset(session()->get('filters')['tolerances']) && in_array($item['id'], session()->get('filters')['tolerances'])
+                                                                ])
+                                                            @endforeach
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endif
-
-                                            @if (count($tolerances) > 1)
-                                                <div class="filter-category-block" id="specification">
-                                                    <div class="trigger-filter-title">{{ trans('content.tolerances_and_compliances') }}</div>
-                                                    <div class="checkbox-toggle-list open">
-                                                        @foreach($tolerances as $key => $item)
-                                                            @include('blocks._checkbox_block',[
-                                                                'inputId' => 'tolerance_'.$key,
-                                                                'inputName' => 'tolerance_'.$key,
-                                                                'inputVal' => 'tolerance_'.$key,
-                                                                'inputLabel' => $item['name'].'<span>('.$item['counter'].')</span>'
-                                                            ])
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            @endif
+                                                @endif
+                                                {{--<button type="submit">Ok!</button>--}}
+                                            {{--</form>--}}
                                         </div>
                                     </li>
                                 </ul>
@@ -87,32 +97,9 @@
                                 </ul>
                             @endif
                         </div>
-                        <div class="tovar-list" id="mse2_results">
-                            @foreach($oil as $item)
-
-                                @php $toleranceClassName = ''; @endphp
-                                @foreach($item->tolerances as $tolerance)
-                                    @php $toleranceClassName .= 'tolerance_'.strtolower(str_replace([' ','/','.','`'],'_',$tolerance->name)).' '; @endphp
-                                @endforeach
-
-                                @php $engineTypeClassName = ''; @endphp
-                                @foreach($item->engineTypes as $engineType)
-                                    @php $engineTypeClassName .= 'engine_type_'.$engineType->slug.' '; @endphp
-                                @endforeach
-
-                                <div class="tovar-item item viscosity_{{ strtolower(str_replace(' ','_',$item->viscosity->slug)) }} {{ $engineTypeClassName }} {{ $toleranceClassName }}">
-                                    <div class="prev">
-                                        <a href="{{ url('/'.$breadcrumbs[0]['href'].'/'.$item->oilType->slug.'/'.$item->slug) }}">
-                                            <img class="lazyload" data-src="{{ asset($item->image_base) }}" src="{{ asset($item->image_base) }}" alt="{{ $item->name }}">
-                                        </a>
-                                    </div>
-                                    <div class="descr">
-                                        <a href="{{ url('/'.$breadcrumbs[0]['href'].'/'.$item->oilType->slug.'/'.$item->slug) }}" class="tovar-title">{{ $item->name }}</a>
-                                    </div>
-                                </div>
-                            @endforeach
+                        <div id="oil-list">
+                            @include('blocks._oil_list_block')
                         </div>
-                        <div class="mse2_pagination text-center">{{ $oil->render() }}</div>
                     </div>
                 </div>
             </div>

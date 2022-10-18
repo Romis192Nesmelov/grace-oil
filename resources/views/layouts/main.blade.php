@@ -44,6 +44,7 @@
     <script src="{{ asset('js/libs/lazyload.min.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
 
+    <script src="{{ asset('js/loader.js') }}"></script>
     <script src="{{ asset('js/feedback.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 </head>

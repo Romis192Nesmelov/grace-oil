@@ -6,9 +6,6 @@ $(document).ready(function ($) {
             form = $(this),
             button = form.find('button[type=submit]'),
             agree = form.find('input[name=i_agree]').is(':checked'),
-            loader = $('<div></div>').addClass('loader').append(
-                $('<div></div>').addClass('loader_inner')
-            ),
             formData = new FormData;
 
         if (!agree) return false;
@@ -27,7 +24,7 @@ $(document).ready(function ($) {
 
         $('.error_text').html('');
         form.find('input, select, textarea, button').attr('disabled','disabled');
-        $('body').prepend(loader.css('top',window.scrollY));
+        addingLoader();
 
         $.ajax({
             url: form.attr('action'),
@@ -37,7 +34,7 @@ $(document).ready(function ($) {
             type: 'POST',
             success: function (data) {
                 closePopup(popup.attr('id'));
-                unlockAll(form,loader);
+                unlockAll(form);
                 form.find('input, textarea').val('');
 
                 $('#thanx_popup h3').html(data.message);
@@ -64,7 +61,7 @@ $(document).ready(function ($) {
                     });
                     errorBlock.html(errorMsg);
                 });
-                unlockAll(form,loader);
+                unlockAll(form);
             }
         });
     });
@@ -93,9 +90,9 @@ function processingCheckFields(formData, inputObj) {
     return formData;
 }
 
-function unlockAll(form,loader) {
+function unlockAll(form) {
     form.find('input, select, textarea, button').removeAttr('disabled');
-    loader.remove();
+    removingLoader();
 }
 
 function closePopup(id) {
