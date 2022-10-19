@@ -3,12 +3,12 @@ $(document).ready(function ($) {
         e.preventDefault();
 
         var popup = $(this).parents('.base-form.popup'),
-            form = $(this),
+            form = $(this).parents('form'),
             button = form.find('button[type=submit]'),
-            agree = form.find('input[name=i_agree]').is(':checked'),
+            agree = form.find('input[name=i_agree]'),
             formData = new FormData;
 
-        if (!agree) return false;
+        if (!agree.is(':checked')) return false;
 
         agree.change(function () {
             if (agree.is(':checked')) button.removeAttr('disabled');

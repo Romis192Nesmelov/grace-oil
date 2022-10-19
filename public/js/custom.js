@@ -54,37 +54,36 @@ $(document).ready(function ($) {
 
     checkBoxesFiltersCatalogueContainer.find('input[type=checkbox]').change(function () {
         var catalogueFilters = {},
-            oneOfChecked = false;
+            oilList = $('#oil-list');
 
-        allCheckboxesFiltersCatalogue.each(function () {
-            var checked = $(this).hasClass('checked'),
-                filtersBlock = $(this).parents('.checkbox-toggle-list').attr('id').replace('-filters',''),
-                filterId = $(this).find('input[type=checkbox]').val();
-        
-            if (checked) {
-                oneOfChecked = true;
-                if (typeof catalogueFilters[filtersBlock] == 'undefined') catalogueFilters[filtersBlock] = [];
-                catalogueFilters[filtersBlock].push(filterId);
-            }
-        });
+        oilList.fadeOut('fast',function () {
+            allCheckboxesFiltersCatalogue.each(function () {
+                var checked = $(this).hasClass('checked'),
+                    filtersBlock = $(this).parents('.checkbox-toggle-list').attr('id').replace('-filters',''),
+                    filterId = $(this).find('input[type=checkbox]').val();
 
-        // console.log(window.location.href);
+                if (checked) {
+                    if (typeof catalogueFilters[filtersBlock] == 'undefined') catalogueFilters[filtersBlock] = [];
+                    catalogueFilters[filtersBlock].push(filterId);
+                }
+            });
 
-        addingLoader();
-        $.post(window.location.href, {
-            '_token': $('input[name=_token]').val(),
-            'filters': catalogueFilters,
-            'oil_type_id': $('input[name=oil_type_id]').val(),
-            'subsection_id': $('input[name=subsection_id]').val()
-        }).done(function(data) {
-            if (!data.oil_count) {
-                var newUrl = window.location.href.replace(/(\?page=\d+)$/g, '');
-                document.location.href = newUrl;
-            } else {
-                var oilList = $('#oil-list');
-                oilList.html(data.html);
-                removingLoader();
-            }
+            // addingLoader();
+            $.post(window.location.href, {
+                '_token': $('input[name=_token]').val(),
+                'filters': catalogueFilters,
+                'oil_type_id': $('input[name=oil_type_id]').val(),
+                'subsection_id': $('input[name=subsection_id]').val()
+            }).done(function(data) {
+                if (!data.oil_count) {
+                    var newUrl = window.location.href.replace(/(\?page=\d+)$/g, '');
+                    document.location.href = newUrl;
+                } else {
+                    oilList.html(data.html);
+                    oilList.fadeIn('fast');
+                    // removingLoader();
+                }
+            });
         });
     });
 });
