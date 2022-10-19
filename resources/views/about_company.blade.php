@@ -16,7 +16,13 @@
                                     </div>
                                     <div class="descr">
                                         <div class="comp-item-title">{{ $point['head_'.app()->getLocale()] }}</div>
-                                        <div class="comp-item-text">{{ $point['text_'.app()->getLocale()] }}</div>
+                                        <div class="comp-item-text">
+                                            @if ($loop->first)
+                                                {{ preg_replace('/^(\d)/i', (date('Y') - 2013), $point['text_'.app()->getLocale()]) }}
+                                            @else
+                                                {{ $point['text_'.app()->getLocale()] }}
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
