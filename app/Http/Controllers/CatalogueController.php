@@ -102,7 +102,6 @@ class CatalogueController extends StaticController
         $tolerancesFiltersOn = isset($filters['tolerances']) && is_array($filters['tolerances']) && count($filters['tolerances']);
 
         foreach ($oil as $item) {
-            $this->data['oil']->push($item);
             if (!$engineTypeFiltersOn && !$tolerancesFiltersOn) $this->data['oil']->push($item);
             else if ($engineTypeFiltersOn && !$tolerancesFiltersOn) {
                 $this->processingFilters($item, 'engineTypes', $filters['engine_type'], true);
