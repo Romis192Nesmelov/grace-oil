@@ -653,10 +653,17 @@ h3.head_triangle:before {
 }
 
 @media screen and (max-width: 610px) {
-  .service-item {
-    width: 270px;
+.service-item {
+    width: 100%;
     display: block;
-    margin: 0 auto 20px; }
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.service-item img {
+    width: 100%;
+}
+
   .banner-item .descr {
     max-width: 66%;
     top: 60px; }
@@ -814,11 +821,7 @@ h3.head_triangle:before {
     font-size: 14px; }
   .banner-item .slide-title, .banner-item .slide-title-sub {
     font-size: 25px;
-    line-height: 28px;
-    color: white;}
-  .banner-item .slide-descr {
-    font-size: 12px;
-    line-height: 14px; }
+    line-height: 28px;}
   header .h-contact-wp .chahge-lang {
     right: -35px;
     top: -97px; }

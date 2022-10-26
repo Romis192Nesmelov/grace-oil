@@ -823,7 +823,6 @@ th {
     font-weight: 400;
   }
 
-
 @media screen and (max-width: 600px) {
   table.default {
     border: 0;
@@ -1782,36 +1781,53 @@ header {
     margin-top: 0; }
   .main.home > .container {
     padding-top: 16px; }
-  .main.internal .text_edit.page_title h1 {
-    margin-bottom: 40px; }
+.main.internal .text_edit.page_title h1 {
+    text-align: left;
+    margin-bottom: 40px;
+  }
   .main.internal > .container {
     padding-top: 25px;
     padding-bottom: 30px; }
 
 .banner-item {
-  position: relative; }
+  position: relative;
+}
+
   .banner-item .slide-title, .banner-item .slide-title-sub {
     color: #EB7C1E;
     font-family: "Raleway", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-weight: 500;
-    font-size: 35px;
-    line-height: 40px;
-    margin-bottom: 16px; }
+    /*font-style: normal;*/
+    font-weight: bolder;
+    font-size: 50px;
+    line-height: 1.2em;
+    text-shadow:
+        3px 0 0 #fff,
+        0 3px 0 #fff,
+        -3px 0 0 #fff,
+        0 -3px 0 #fff;
+    margin-bottom: 16px;
+}
+
   .banner-item .slide-title-sub {
     color: #061A40;
     margin-bottom: 17px; }
-  .banner-item .slide-descr {
+.banner-item .slide-descr {
     color: #061A40;
     font-family: "Raleway", sans-serif;
+    text-shadow:
+        3px 0 0 #fff,
+        0 3px 0 #fff,
+        -3px 0 0 #fff,
+        0 -3px 0 #fff;
     font-size: 15px;
-    line-height: 22px;
+    line-height: 1.2em;
     font-weight: 500;
-    word-spacing: 3px; }
+    word-spacing: 3px;
+
+}
   .banner-item .prev {
     min-height: 480px;
-    background-position: center center;
+    background-position: left center;
     background-repeat: no-repeat;
     background-size: cover; }
   .banner-item .descr {
@@ -1820,10 +1836,12 @@ header {
     top: 105px;
     left: 64px;
     z-index: 5; }
-  .banner-item .def-btn {
+.banner-item .def-btn {
     width: 176px;
     font-size: 18px;
-    margin-top: 58px; }
+    margin-top: 58px;
+    border: 2px solid white;
+}
 
 .top-carousel.owl-carousel, .services-carousel.owl-carousel {
   position: relative;
@@ -1983,7 +2001,7 @@ header {
     line-height: 24px;
     color: #18191A;
     margin-bottom: 16px;
-      text-align: justify;
+    text-align: left;
   }
     .service-item .text-item:last-of-type {
       margin-bottom: 0; }
@@ -3374,10 +3392,6 @@ script{
 .sidebar_filters_btn{
     display: none;
 }
-
-
-
-
 /* search */
 .search_result_block .search_item{
     margin-bottom: 25px;

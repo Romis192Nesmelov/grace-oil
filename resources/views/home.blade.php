@@ -8,8 +8,7 @@
                  <div class="top-carousel">
                     @foreach($slider as $slide)
                        <div class="banner-item">
-                          <div class="prev" style="background-image: url({{ asset($slide->image) }})">
-                          </div>
+                          <div class="prev" style="background-image: url({{ asset($slide->image) }})"></div>
                           <div class="descr">
                              <div class="slide-title">{!! $slide['head_'.app()->getLocale()] !!}</div>
                              <div class="slide-title-sub">{!! $slide['sub_head_'.app()->getLocale()] !!}</div>
