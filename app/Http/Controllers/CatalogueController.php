@@ -103,9 +103,11 @@ class CatalogueController extends StaticController
 
         foreach ($oil as $item) {
             if (!$engineTypeFiltersOn && !$tolerancesFiltersOn) $this->data['oil']->push($item);
-            else if ($engineTypeFiltersOn && !$tolerancesFiltersOn) {
+            else if (!$engineTypeFiltersOn && $tolerancesFiltersOn) {
+                $this->processingFilters($item, 'tolerances', $filters['tolerances'], true);
+            } else if ($engineTypeFiltersOn && !$tolerancesFiltersOn) {
                 $this->processingFilters($item, 'engineTypes', $filters['engine_type'], true);
-            } else if ($tolerancesFiltersOn && $tolerancesFiltersOn && $this->processingFilters($item, 'engineTypes', (isset($filters['engine_type']) ? $filters['engine_type'] : []), false)) {
+            } else if ($tolerancesFiltersOn && $engineTypeFiltersOn && $this->processingFilters($item, 'engineTypes', (isset($filters['engine_type']) ? $filters['engine_type'] : []), false)) {;
                 $this->processingFilters($item, 'tolerances', $filters['tolerances'], true);
             }
         }
