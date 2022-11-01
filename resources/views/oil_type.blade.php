@@ -27,16 +27,9 @@
                                                 <input type="hidden" name="oil_type_id" value="{{ $oil_type_id }}" />
                                                 <input type="hidden" name="subsection_id" value="{{ isset($subsection_id) ? $subsection_id : 0 }}" />
 
-<<<<<<< HEAD
                                                 @if (count($viscosity) > 1)
                                                     <div class="filter-category-block" id="viscosity_grade">
                                                         <div class="trigger-filter-title">{{ trans('content.viscosity_grade') }}</div>
-=======
-                                                <div class="filter-category-block" id="viscosity_grade">
-                                                    <div class="trigger-filter-title">{{ trans('content.viscosity_grade') }}</div>
-
-                                                    @if (count($viscosity) > 1)
->>>>>>> 4057d90d0fe8bf03d22bacd85f54913cb8d2c63e
                                                         <div id="viscosity-filters" class="checkbox-toggle-list open">
                                                             @foreach($viscosity as $key => $item)
                                                                 @include('blocks._checkbox_block',[
@@ -48,13 +41,8 @@
                                                                 ])
                                                             @endforeach
                                                         </div>
-<<<<<<< HEAD
                                                     </div>
                                                 @endif
-=======
-                                                    @endif
-                                                </div>
->>>>>>> 4057d90d0fe8bf03d22bacd85f54913cb8d2c63e
 
                                                 @if (count($engine_types) > 1)
                                                     <div class="filter-category-block" id="engine_type">
