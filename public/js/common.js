@@ -32,11 +32,8 @@ $(function() {
     ( function() {
 
         var youtube = document.querySelectorAll( ".youtube" );
-        
         for (var i = 0; i < youtube.length; i++) {
-            
             var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/0.jpg";
-            
             var image = new Image();
                     image.src = source;
                     image.addEventListener( "load", function() {
@@ -463,8 +460,11 @@ $(function() {
 });
 
 $(window).load(function() {
-
-	$(".loader_inner").fadeOut();
-	$(".loader").delay(400).fadeOut("slow");
+    console.log($(document).scrollTop());
+    addingLoader();
+    setTimeout(function () {
+        removingLoader();
+    },1000);
+	// $(".loader").delay(400).fadeOut("slow");
 
 });

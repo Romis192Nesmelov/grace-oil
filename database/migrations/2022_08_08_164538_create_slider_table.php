@@ -15,6 +15,7 @@ class CreateSliderTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('href');
             $table->string('image')->unique();
             $table->string('head_ru')->unique();
             $table->string('sub_head_ru')->unique();

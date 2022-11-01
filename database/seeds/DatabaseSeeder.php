@@ -37,7 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuTableSeeder::class);
         $this->call(SubMenuTableSeeder::class);
         $this->call(ContentsTableSeeder::class);
-        $this->call(SliderTableSeeder::class);
         $this->call(HomeBlocksTableSeeder::class);
         $this->call(HistoryPointsTableSeeder::class);
         $this->call(DiplomasTableSeeder::class);
@@ -53,5 +52,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsTableSeeder::class);
         $this->call(ClassificationsTableSeeder::class);
         $this->call(ReviewsTableSeeder::class);
+        $this->call(SliderTableSeeder::class);
     }
 }

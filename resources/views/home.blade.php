@@ -13,7 +13,7 @@
                              <div class="slide-title">{!! $slide['head_'.app()->getLocale()] !!}</div>
                              <div class="slide-title-sub">{!! $slide['sub_head_'.app()->getLocale()] !!}</div>
                              <div class="slide-descr">{!! $slide['text_'.app()->getLocale()] !!}</div>
-                             <a href="#" class="def-btn">{{ trans('content.more_details') }}</a>
+                             <a href="{{ url($slide->href) }}" class="def-btn">{{ trans('content.more_details') }}</a>
                           </div>
                        </div>
                     @endforeach
