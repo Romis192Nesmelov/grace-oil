@@ -28,7 +28,7 @@ class CatalogueController extends StaticController
         if ($isGetRequest) {
             $this->data['menu_active_id'] = $menu->id;
             $this->data['types'] = OilType::where('active', 1)->get();
-            if (!session()->has('last_slug') || session()->get('last_slug') != $slug) session()->forget('filters');
+            if (!$request->session()->has('last_slug') || $request->session()->get('last_slug') != $slug) $request->session()->forget('filters');
             $request->session()->put('last_slug', $slug);
         } else {
 //            $filters = [];
