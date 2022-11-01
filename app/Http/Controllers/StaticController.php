@@ -182,9 +182,11 @@ class StaticController extends Controller
                 'menu' => Cache::remember('menu', 60*60*24*365, function () {
                     return Menu::where('active',1)->get();
                 }),
-                'catalogue' => Cache::remember('oil_types', 60*60*24*365, function () {
-                    return OilType::where('active',1)->get();
-                })
+                'catalogue' => OilType::where('active',1)->get()
+
+//                'catalogue' => Cache::remember('oil_types', 60*60*24*365, function () {
+//                    return OilType::where('active',1)->get();
+//                })
             ]));
     }
 
