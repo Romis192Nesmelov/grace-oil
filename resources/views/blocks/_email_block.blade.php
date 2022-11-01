@@ -1,0 +1,1 @@
+<a href="mailto:{{ $settings['email'] }}" target="_blank">{{ $settings['email'] }}</a>
