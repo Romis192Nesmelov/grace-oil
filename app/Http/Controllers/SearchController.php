@@ -21,6 +21,7 @@ class SearchController extends StaticController
         $this->data['found'] = collect();
         $this->data['searching'] = $searchString;
 
+
         $this->addFoundOil(Oil::where('name_ru',$searchString)->orWhere('name_en',$searchString)->get());
         $this->addFoundOil($this->searchInModel(new Oil(), $searchString));
 
