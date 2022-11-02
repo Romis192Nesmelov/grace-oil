@@ -1,8 +1,4 @@
-// $(document).ready(function () {
-//     $(window).scroll(function() {
-//         window.scrollY = $(this).scrollTop();
-//     });
-// });
+addingLoader();
 
 function addingLoader() {
     var loader = $('<div></div>').addClass('loader').append($('<div></div>').addClass('loader_inner'));
