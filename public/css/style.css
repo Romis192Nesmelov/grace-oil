@@ -1827,9 +1827,9 @@ header {
 }
   .banner-item .prev {
     min-height: 480px;
-    background-position: left center;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover; }
+    background-size: 100% auto; }
   .banner-item .descr {
     position: absolute;
     max-width: 50%;
