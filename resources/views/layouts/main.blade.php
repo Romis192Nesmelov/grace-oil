@@ -290,10 +290,6 @@
         @endif
     </div>
     <!-- /popups -->
-
-    <div class="loader">
-        <div class="loader_inner"></div>
-    </div>
 </div>
 <!-- /page container -->
 </body>
