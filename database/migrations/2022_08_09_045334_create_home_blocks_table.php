@@ -16,10 +16,13 @@ class CreateHomeBlocksTable extends Migration
         Schema::create('home_blocks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image');
-            $table->string('head_ru')->unique();
-            $table->text('text_ru')->nullable();
-            $table->string('head_en')->unique();
-            $table->text('text_en')->nullable();
+            $table->string('head_ru');
+            $table->text('text_ru');
+            $table->string('head_en');
+            $table->text('text_en');
+            $table->string('href');
+            $table->string('button_text_ru');
+            $table->string('button_text_en');
             $table->boolean('active');
             $table->timestamps();
         });

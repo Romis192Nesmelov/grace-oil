@@ -1,4 +1,6 @@
 $(document).ready(function ($) {
+    //show wrapper
+    $('.page-wrapper').css('display','flex');
 
     // Get search
     var findForm = $('#search-form');

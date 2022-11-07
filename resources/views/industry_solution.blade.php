@@ -69,7 +69,7 @@
                                             <div class="box {{ $loop->first ? 'visible' : '' }}">
                                                 <ul>
                                                     @foreach($oils as $oil)
-                                                        <li><a href="{{ url('/'.$menu[2]->slug.'/'.$oil->oilType->slug.'/'.$oil->slug) }}/">{{ $oil->name }}</a></li>
+                                                        <li><a href="{{ url('/'.$menu[2]->slug.'/'.$oil->oilType->slug.'/'.$oil->slug) }}/">{{ $oil['name_'.app()->getLocale()] }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </div>

@@ -32,12 +32,12 @@
                                    </a>
                                </div>
                                <div class="descr">
-                                   <a href="#" class="title-item">{!! $block['head_'.app()->getLocale()] !!}</a>
+                                   <a href="{{ $block->href }}" class="title-item">{!! $block['head_'.app()->getLocale()] !!}</a>
                                    {!! $block['text_'.app()->getLocale()] !!}
                                </div>
                                @include('blocks._button_type1_block',[
-                                    'btnHref' => '/',
-                                    'btnText' => trans('content.more_details')
+                                    'btnHref' => $block->href,
+                                    'btnText' => $block['button_text_'.app()->getLocale()]
                                 ])
                            </div>
                         @endforeach

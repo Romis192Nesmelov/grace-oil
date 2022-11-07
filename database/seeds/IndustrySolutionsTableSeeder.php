@@ -18,7 +18,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>Every car owner knows how important it is to use high-quality lubricants that reliably protect vehicle components and assemblies, prevent their failure and increase engine life.</p><p>Grace Lubricants offers a wide range of lubricants for passenger cars - engine oils, gear oils and coolants.</p><p>Continuous product improvement, testing in our own laboratory, studying the requirements for lubricants of the world\'s leading car manufacturers allow Grace Lubricants to produce innovative products that meet the requirements of the latest standards, norms and OEM.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для легкового транспорта',
                 'head_en' => 'Range of lubricants for Passenger Vehicles',
-                'brochure_id' => 9
+                'brochure_id' => 8
             ],
             [
                 'image' => 'images/industry_solutions/image2.jpg',
@@ -28,7 +28,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>The correct selection of oils for modern commercial vehicles has always been one of the factors determining its resource.</p><p>Grace Lubricants manufactures high quality commercial vehicle lubricants to help trucking companies reduce maintenance costs and maximize productivity.</p><p>GRACE commercial vehicle lubricants offer extended drain intervals, trouble-free engine operation in harsh operating conditions and mixed fleet operation.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для коммерческого транспорта',
                 'head_en' => 'Range of lubricants for Commercial Vehicles',
-                'brochure_id' => 10
+                'brochure_id' => 9
             ],
             [
                 'image' => 'images/industry_solutions/image3.jpg',
@@ -38,7 +38,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>Lubricants for construction machinery and equipment must not only work effectively in extreme conditions, but also provide the maximum possible service intervals.</p><p>A wide range of GRACE lubricants for construction equipment ensures reliable and trouble-free operation of the equipment, which guarantees a significant reduction in costs.</p><p>Specialized GRACE oils for special equipment have high anti-wear characteristics, viscosity stability, low foaming and high anti-corrosion properties.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для строительной техники',
                 'head_en' => 'Range of lubricants for Construction Equipment',
-                'brochure_id' => 11
+                'brochure_id' => 10
             ],
             [
                 'image' => 'images/industry_solutions/image4.jpg',
@@ -48,7 +48,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>During the sowing and harvesting period, the success of the agricultural business directly depends on the smooth operation of the equipment.</p><p>Grace Lubricants offers a complete range of lubricants specifically designed for agricultural machinery and equipment.</p><p>GRACE lubricants are designed to meet the stringent requirements of leading agricultural equipment manufacturers to significantly reduce the risk of breakdowns, minimize downtime and provide reliable performance even under the most demanding conditions.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для сельскохозяйственной техники',
                 'head_en' => 'Range of lubricants for Agricultural Machinery',
-                'brochure_id' => 12
+                'brochure_id' => 11
             ],
             [
                 'image' => 'images/industry_solutions/image5.jpg',
@@ -58,7 +58,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>The list of industrial equipment in the mining industry includes such machines as: mining dump trucks, loaders, excavators, bulldozers, drilling tools and other equipment.</p><p>Under extreme operating conditions, such equipment requires mandatory maintenance using high-tech lubricants to increase the safety margin, extend the service life and oil change intervals.</p><p>GRACE lubricants for the mining industry are specifically designed to protect equipment in the most severe climatic conditions, including in regions with sharp changes in average daily temperatures.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для горнодобывающей промышленности',
                 'head_en' => 'Range of lubricants for the Mining Industry',
-                'brochure_id' => 13
+                'brochure_id' => 12
             ],
             [
                 'image' => 'images/industry_solutions/image6.jpg',
@@ -68,7 +68,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>The logging and wood processing industries are industries equipped with modern high-performance equipment that require specialized lubricants.</p><p>GRACE lubricants are advanced performance lubricants that exceed the basic requirements of equipment manufacturers to provide maximum performance in severe operating conditions.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для лесной промышленности',
                 'head_en' => 'Range of lubricants for the Forest Industry',
-                'brochure_id' => 14
+                'brochure_id' => 13
             ],
             [
                 'image' => 'images/industry_solutions/image7.jpg',
@@ -78,7 +78,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>The metallurgical industry is characterized by increased requirements for lubricants when operating in conditions of constant high temperatures, heavy loads and dustiness.</p><p>Lubricants GRACE fully comply with the increased requirements of the metallurgical industry and provide: reduction of power losses due to friction, reduction of the intensity of wear of rubbing surfaces, as well as their protection from seizing, scoring, corrosion and for better heat dissipation.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для металлурнии',
                 'head_en' => 'Range of lubricants for the Metallurgical Industry',
-                'brochure_id' => 15
+                'brochure_id' => 14
             ],
             [
                 'image' => 'images/industry_solutions/image8.jpg',
@@ -88,7 +88,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>A characteristic feature of machine-building enterprises is a large fleet of equipment. The average enterprise of the industry has procurement, manufacturing and assembly facilities. In addition, in different technological operations, similar equipment can operate under different load, water and temperature conditions.</p><p>Grace Lubricants\' range of lubricants includes more than 60 high-quality specialized products to meet all the needs of machine-building industries.</p><p>The above range meets the requirements of DIN, ISO standards. GRACE oils meet the requirements of leading Russian and foreign equipment manufacturers.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для машиностроения',
                 'head_en' => 'Range of lubricants for Machine-building Industry',
-                'brochure_id' => 16
+                'brochure_id' => 15
             ],
             [
                 'image' => 'images/industry_solutions/image9.jpg',
@@ -108,7 +108,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>In the energy industry, uninterrupted power generation is a key indicator. Lubricants for the power industry must meet the stringent requirements of manufacturers of equipment and machinery for power plants of various types, eliminate emergency shutdowns and ensure reduced maintenance times.</p><p>GRACE lubricants for the power industry will ensure the reliable operation of power plant components in typical power industry conditions of high temperatures, pressure drops and extreme loads.</p><p>The wide range of GRACE oils and coolants is designed for all industrial applications in the energy sector.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для энергетической отрасли',
                 'head_en' => 'Range of lubricants for the Energy Industry',
-                'brochure_id' => 18
+                'brochure_id' => 17
             ],
             [
                 'image' => 'images/industry_solutions/image11.jpg',
@@ -118,7 +118,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>Operation of ship equipment takes place in conditions of high humidity. In order for all mechanisms to work smoothly, it is necessary to use special marine oils.</p><p>Most ships around the world run on diesel engines. Regardless of the principle of their operation, the cylinder-piston system of the unit is subject to lubrication, which should support the easy sliding of parts, prevent the formation of scoring, and the development of corrosion. Since the cylinders in a diesel engine operate at extremely high temperatures, special requirements are placed on lubricants.</p><p>GRACE lubricants for trunk and crosshead engines: contribute to the reduction of carbon deposits, are resistant to foam formation, have anti-corrosion properties, and neutralize oxidation products resulting from combustion.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для судовой промышленности',
                 'head_en' => 'Range of lubricants for the Shipping Industry',
-                'brochure_id' => 19
+                'brochure_id' => 18
             ],
             [
                 'image' => 'images/industry_solutions/image12.jpg',
@@ -128,7 +128,7 @@ class IndustrySolutionsTableSeeder extends Seeder
                 'text_en' => '<p>In addition to complex solutions for basic industries, Grace Lubricants offers specific products for other activities.</p><p>Lubricants "GRACE" for garden equipment are represented by a range of motor, chain and transmission-hydraulic oils. Regular maintenance with high-quality GRACE oils for garden equipment guarantees the preservation and increase in the life of lawn mowers and cultivators, chainsaws and trimmers, garden tractors, as well as various winter equipment.</p>',
                 'head_ru' => 'Ассортимент смазочных материалов для садовой техники',
                 'head_en' => 'Range of lubricants for Small Engine Vehicles',
-                'brochure_id' => 20
+                'brochure_id' => 19
             ]
         ];
         

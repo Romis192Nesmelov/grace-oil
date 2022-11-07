@@ -12,7 +12,7 @@ class SubMenuTableSeeder extends Seeder
         $data = [
             ['ru' => 'О компании', 'en' => 'About company', 'menu_id' => 1, 'add_content_model' => '\HistoryPoint', 'view' => 'about_company', 'manager_id' => 1],
             ['ru' => 'Достижения', 'en' => 'Achievements', 'menu_id' => 1, 'add_content_model' => '\Diploma', 'view' => 'achievements', 'manager_id' => 1],
-            ['ru' => 'Вакансии', 'en' => 'Vacancies', 'menu_id' => 1, 'add_content_model' => '\Vacancy', 'view' => 'vacancies', 'manager_id' => 1],
+//            ['ru' => 'Вакансии', 'en' => 'Vacancies', 'menu_id' => 1, 'add_content_model' => '\Vacancy', 'view' => 'vacancies', 'manager_id' => 1],
 
             ['ru' => 'О продукции', 'en' => 'About products', 'menu_id' => 2, 'add_content_model' => '\AboutProduct', 'view' => 'about_products', 'manager_id' => 1],
             ['ru' => 'О GRACE® Lubricants', 'en' => 'About GRACE® Lubricants', 'menu_id' => 2, 'add_content_model' => '\AboutLubricant', 'view' => 'about_lubricants', 'manager_id' => 1],

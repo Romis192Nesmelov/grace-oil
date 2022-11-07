@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="col-lg-9 col-md-8">
-                            <div id="mse2_results">
+                            <div class="reviews_list" id="mse2_results">
                                 @foreach($add_content as $review)
                                     <div class="item">
                                         <div class="item_image">
@@ -46,7 +46,7 @@
                                         <div class="item_info">
                                             <div class="item_name title-base">{{ $review['name_'.app()->getLocale()] }}</div>
                                             <div class="item_segment">
-                                                <p class="review-segments">{{ trans('content.segment') }}:
+                                                <p class="review-segments"><b>{{ trans('content.segment') }}:
                                                     @if (count($review->solutions))
                                                         @foreach($review->solutions as $counter => $solution)
                                                             <span class="{{ strtolower(str_replace(' ','_',$solution->industrySolution->name_en)) }}">{{ $solution->industrySolution['name_'.app()->getLocale()].($counter != count($review->solutions)-1 ? ', ' : '') }}</span>
@@ -54,7 +54,7 @@
                                                     @else
                                                         <span class="dealer">{{ trans('content.dealer_review') }}</span>
                                                     @endif
-                                                </p>
+                                                </b></p>
                                             </div>
                                             {{--<div class="item_link">--}}
                                                 {{--<a href="assets/content/reviews/ООО Мехземстрой-Липецк_page-0001.jpg" target="_blank" class="def-btn">Смотреть отзыв 0</a>--}}

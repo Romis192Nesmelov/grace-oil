@@ -217,8 +217,7 @@
                     <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
                         <div class="f-menu-wp">
                             <ul class="f-menu">
-                                <li><a href="#}">{{ trans('footer.grace_partner') }}</a></li>
-                                <li><a href="{{ url('/how-to-become-a-dealer') }}">{{ trans('footer.how_to_become_a_dealer') }}</a></li>
+                                <li><a href="{{ route('сooperation') }}">{{ trans('footer.сooperation') }}</a></li>
                                 <li><a href="{{ url('/'.App\Models\SubMenu::find(6)->slug) }}">{{ App\Models\SubMenu::find(6)[app()->getLocale()] }}</a></li>
                             </ul>
                         </div>
@@ -226,9 +225,9 @@
                     <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
                         <div class="f-menu-wp">
                             <ul class="f-menu">
-                                <li><a href="#">{{ trans('footer.site_map') }}</a></li>
-                                <li><a href="{{ url('/terms-of-use') }}">{{ trans('footer.user_agreement') }}</a></li>
-                                <li><a href="{{ url('/'.App\Models\SubMenu::find(3)->slug) }}">{{ App\Models\SubMenu::find(3)[app()->getLocale()] }}</a></li>
+{{--                                <li><a href="#">{{ trans('footer.site_map') }}</a></li>--}}
+                                <li><a href="{{ route('terms_of_use') }}">{{ trans('footer.user_agreement') }}</a></li>
+                                <li><a href="{{ route('vacancies') }}">{{ trans('footer.vacancies') }}</a></li>
                             </ul>
                         </div>
                     </div>

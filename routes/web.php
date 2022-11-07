@@ -43,5 +43,6 @@ foreach (Cache::remember('menu', 60*60*24*365, function () {
     }
 }
 
-Route::get('/how-to-become-a-dealer', 'StaticController@howToBecomeADealer');
-Route::get('/terms-of-use', 'StaticController@termsOfUse');
+Route::get('/сooperation', 'StaticController@сooperation')->name('сooperation');
+Route::get('/terms-of-use', 'StaticController@termsOfUse')->name('terms_of_use');
+Route::get('/vacancies', 'StaticController@vacancies')->name('vacancies');

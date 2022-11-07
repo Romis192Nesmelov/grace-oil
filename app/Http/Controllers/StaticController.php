@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Menu;
@@ -68,17 +69,26 @@ class StaticController extends Controller
         return redirect()->back();
     }
     
-    public function howToBecomeADealer()
+    public function сooperation()
     {
-        $this->data['breadcrumbs'] = [['href' => '#', 'name' => trans('footer.how_to_become_a_dealer')]];
-        return $this->showView('dealer');
+        $this->data['breadcrumbs'] = [['href' => route('сooperation'), 'name' => trans('footer.сooperation')]];
+        return $this->showView('сooperation');
     }
     
     public function termsOfUse()
     {
-        $this->data['breadcrumbs'] = [['href' => '#', 'name' => trans('footer.user_agreement')]];
+        $this->data['breadcrumbs'] = [['href' => route('terms_of_use'), 'name' => trans('footer.user_agreement')]];
         $this->data['content'] = Content::find(10)['text_'.app()->getLocale()];
         return $this->showView('user_agreement');
+    }
+
+    public function vacancies()
+    {
+        $this->data['breadcrumbs'] = [['href' => route('vacancies'), 'name' => trans('footer.vacancies')]];
+        $this->data['head'] = trans('footer.vacancies');
+        $this->data['content'] = Content::find(2);
+        $this->data['add_content'] = Vacancy::where('active',1)->orderBy('created_at', 'desc')->get();
+        return $this->showView('vacancies');
     }
 
     protected function crumbsAndContent(Request $request, $slug)
@@ -189,14 +199,4 @@ class StaticController extends Controller
 //                })
             ]));
     }
-
-//    public function temp2()
-//    {
-//        foreach (glob(base_path('public/images/catalogue/*')) as $oilTypeDir) {
-//            foreach (glob($oilTypeDir.'/*') as $oilDir) {
-//                $oilImage = (str_replace(base_path('public/'),'',$oilDir));
-//                if (!Oil::where('image_base',$oilImage)->first() && !is_dir($oilImage)) dd($oilImage);
-//            }
-//        }
-//    }
 }

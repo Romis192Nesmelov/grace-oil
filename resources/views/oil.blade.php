@@ -41,11 +41,11 @@
             @include('blocks._breadcrumbs_block')
             <div class="text_edit page_title">
                 <h1>{{ $oil['name_'.app()->getLocale()] }}</h1>
-                <div class="title-base">{{ $oil['head_'.app()->getLocale()] }}</div>
+                <div class="title-image_base">{{ $oil['head_'.app()->getLocale()] }}</div>
             </div>
             <div class="tovar-block">
                 <div class="tovar-image">
-                    @foreach(['20','10','5','4', 'base'] as $val)
+                    @foreach(['base','20','10','5','4','1'] as $val)
                         @if ($oil['image_'.$val])
                             <img src="{{ asset($oil['image_'.$val]) }}" alt="{{ $oil['name_'.app()->getLocale()] }}">
                             @break
@@ -53,11 +53,11 @@
                     @endforeach
                 </div>
                 <div class="tovar-descr">
-                    <div class="tovar-descr-title">{{ trans('content.compliance') }}:</div>
+                    <div class="tovar-descr-title">{{ trans('content.compliance') }}</div>
                     <table class="tovar-table">
                         <tr>
                             @foreach($oil->tolerances as $tolerance)
-                                <td>{{ $tolerance['name_'.app()->getLocale()] }}</td>
+                                <td>{{ $tolerance['name'] }}</td>
                             @endforeach
                         </tr>
                     </table>

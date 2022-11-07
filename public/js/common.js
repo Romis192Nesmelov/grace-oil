@@ -458,13 +458,3 @@ $(function() {
     }
     packingImg.init();
 });
-
-$(window).load(function() {
-    console.log($(document).scrollTop());
-    addingLoader();
-    setTimeout(function () {
-        removingLoader();
-    },1000);
-	// $(".loader").delay(400).fadeOut("slow");
-
-});
