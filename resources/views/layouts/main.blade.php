@@ -43,13 +43,11 @@
     <script src="{{ asset('js/libs/tabs/tabs.jquery.js') }}"></script>
     <script src="{{ asset('js/libs/lazyload.min.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
-
-    <script src="{{ asset('js/loader.js') }}"></script>
     <script src="{{ asset('js/feedback.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 </head>
 <body>
-
+<div class="loader"><div class="loader_inner"></div></div>
 <!-- Yandex.Metrika counter -->
 {{--<script type="text/javascript" >--}}
     {{--(function (d, w, c) {--}}
@@ -217,7 +215,7 @@
                     <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
                         <div class="f-menu-wp">
                             <ul class="f-menu">
-                                <li><a href="{{ route('сooperation') }}">{{ trans('footer.сooperation') }}</a></li>
+                                <li><a href="{{ route('cooperation1') }}">{{ trans('footer.cooperation') }}</a></li>
                                 <li><a href="{{ url('/'.App\Models\SubMenu::find(6)->slug) }}">{{ App\Models\SubMenu::find(6)[app()->getLocale()] }}</a></li>
                             </ul>
                         </div>

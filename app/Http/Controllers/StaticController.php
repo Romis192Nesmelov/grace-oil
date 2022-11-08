@@ -69,10 +69,10 @@ class StaticController extends Controller
         return redirect()->back();
     }
     
-    public function сooperation()
+    public function cooperation1()
     {
-        $this->data['breadcrumbs'] = [['href' => route('сooperation'), 'name' => trans('footer.сooperation')]];
-        return $this->showView('сooperation');
+        $this->data['breadcrumbs'] = [['href' => route('cooperation1'), 'name' => trans('footer.cooperation')]];
+        return $this->showView('cooperation_footer');
     }
     
     public function termsOfUse()

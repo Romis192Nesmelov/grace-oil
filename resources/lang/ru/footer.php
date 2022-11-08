@@ -2,7 +2,7 @@
 
 return [
     'grace_partner' => 'Стать партнером',
-    'сooperation' => 'Сотрудничество',
+    'cooperation' => 'Сотрудничество',
     'industry_solutions' => 'Отраслевые решения',
     'site_map' => 'Карта сайта',
     'user_agreement' => 'Пользовательское соглашение',

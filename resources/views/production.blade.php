@@ -6,14 +6,14 @@
             @include('blocks._breadcrumbs_block')
             <div class="text_edit page_title">
                 <h1>{{ $head }}</h1>
-                @foreach($content as $content)
+                @foreach($content as $item)
                     <div class="row">
-                        <h2 align="center">{{ $content['head_'.app()->getLocale()] }}</h2>
+                        <h2 align="center">{{ $item['head_'.app()->getLocale()] }}</h2>
                         <div class="col-sm-8" style="margin: 0 0 50px">
-                            {!! $content['text_'.app()->getLocale()] !!}
+                            {!! $item['text_'.app()->getLocale()] !!}
                         </div>
                         <div class="col-sm-4" style="margin: 0 0 50px; text-align: center;">
-                            <img class="lazyload" data-src="{{ asset($content->full) }}" src="{{ asset($content->full) }}" alt="{{ $content['head_'.app()->getLocale()] }}">
+                            <img class="lazyload" data-src="{{ asset($item->full) }}" src="{{ asset($item->full) }}" alt="{{ $item['head_'.app()->getLocale()] }}">
                         </div>
                     </div>
                 @endforeach

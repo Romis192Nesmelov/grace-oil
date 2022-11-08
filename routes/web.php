@@ -43,6 +43,6 @@ foreach (Cache::remember('menu', 60*60*24*365, function () {
     }
 }
 
-Route::get('/сooperation', 'StaticController@сooperation')->name('сooperation');
+Route::get('/cooperation1', 'StaticController@cooperation1')->name('cooperation1');
 Route::get('/terms-of-use', 'StaticController@termsOfUse')->name('terms_of_use');
 Route::get('/vacancies', 'StaticController@vacancies')->name('vacancies');
