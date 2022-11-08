@@ -189,9 +189,10 @@ class StaticController extends Controller
                 'seo' => $settings->getSeoTags(),
                 'metas' => $this->metas,
                 'settings' => $settings->getSettings(),
-                'menu' => Cache::remember('menu', 60*60*24*365, function () {
-                    return Menu::where('active',1)->get();
-                }),
+                'menu' => Menu::where('active',1)->get(),
+//                'menu' => Cache::remember('menu', 60*60*24*365, function () {
+//                    return Menu::where('active',1)->get();
+//                }),
                 'catalogue' => OilType::where('active',1)->get()
 
 //                'catalogue' => Cache::remember('oil_types', 60*60*24*365, function () {
