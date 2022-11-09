@@ -13,9 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <link rel="stylesheet" href="{{ asset('css/font/fonts/Raleway/Raleway.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/font/fonts/OpenSans/OpenSans.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/font/fonts/MaterialIcons/MaterialIcons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}" />
     <link rel="stylesheet" href="{{ asset('js/libs/bootstrap/css/bootstrap-grid.min.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('js/libs/fontawesome/css/font-awesome.css') }}">

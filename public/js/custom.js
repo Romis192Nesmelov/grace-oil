@@ -113,7 +113,7 @@ function removingLoader() {
 function windowResize() {
     var mainContainer = $('.main > .container'),
         body = $('body');
-    if (mainContainer.height() < 420) {
+    if (mainContainer.height() < 500) {
         body.css('overflow-y','hidden');
         mainContainer.css('height',(parseInt($('body').height()) - parseInt($('header').height()) - parseInt($('footer').height()) - 96));
     } else {

@@ -14,45 +14,20 @@
                 <h1>{{ $head }}</h1>
                 <p>{{ trans('content.programs_aimed_at_supporting') }}</p>
 
-                <table class="default">
-                    <tr>
-                        <th>&nbsp;</th>
-                        @foreach($add_content as $program)
-                            <th>{{ $program['name_'.app()->getLocale()] }}</th>
-                        @endforeach
-                    </tr>
-                    <tr>
-                        <td><b>{{ trans('content.about_program') }}</b></td>
-                        @foreach($add_content as $programNName)
-                            <td data-label="{{ $program['name_'.app()->getLocale()] }}">{{ $program['about_program_'.app()->getLocale()] }}</td>
-                        @endforeach
-                    </tr>
-                    <tr>
-                        <td><b>{{ trans('content.for_whom') }}</b></td>
-                        @foreach($add_content as $programNName)
-                            <td data-label="{{ $program['name_'.app()->getLocale()] }}">{{ $program['for_whom_'.app()->getLocale()] }}</td>
-                        @endforeach
-                    </tr>
-                    <tr class="vertical_top">
-                        <td><b>{{ trans('content.advantages') }}</b></td>
-                        @foreach($add_content as $programNName)
-                            <td data-label="{{ $program['name_'.app()->getLocale()] }}">{!! $program['advantages_'.app()->getLocale()] !!}</td>
-                        @endforeach
-                    </tr>
-                    <tr>
-                        <td><b>{!! trans('content.become_a_member') !!}</b></td>
-
-                        @foreach($add_content as $programNName)
-                            <td data-label="{{ $program['name_'.app()->getLocale()] }}">
-                                @include('blocks._button_type1_block',[
-                                    'btnHref' => '#partner_popup',
-                                    'btnText' => trans('content.request'),
-                                    'addClass' => 'fancybox'
-                                ])
-                            </td>
-                        @endforeach
-                    </tr>
-                </table>
+                @for ($i=0;$i<4;$i++)
+                    @include('blocks._partnership_legend_block',['addClass' => ($i ? 'hidden-4col visible-'.$i.'col' : '')])
+                    @include('blocks._partnership_column_block', [
+                        'head' => $add_content[$i]['name_'.app()->getLocale()],
+                        'row1' => $add_content[$i]['about_program_'.app()->getLocale()],
+                        'row2' => $add_content[$i]['for_whom_'.app()->getLocale()],
+                        'row3' => $add_content[$i]['advantages_'.app()->getLocale()],
+                        'row4' => view('blocks._button_type1_block',[
+                                        'btnHref' => '#partner_popup',
+                                        'btnText' => trans('content.request'),
+                                        'addClass' => 'fancybox'
+                                    ])->render()
+                    ])
+                @endfor
             </div>
         </div>
     </div>

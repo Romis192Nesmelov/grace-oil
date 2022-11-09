@@ -1,0 +1,71 @@
+.partnership {
+    float: left;
+}
+
+.partnership table.default tr {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.partnership.hidden-4col {
+    display: none;
+}
+
+.partnership-legend {
+    width: 10%;
+}
+
+.partnership table.default td.first-row {
+    height: 76px;
+}
+
+.partnership table.default td.second-row {
+    height: 105px;
+}
+
+.partnership table.default td.third-row {
+    vertical-align: top;
+    height: 500px;
+}
+
+.partnership table.default td.fourth-row {
+    height: 130px;
+}
+
+.partnership-column {
+    width: 22.5%;
+}
+
+@media (max-width: 1560px) {
+    .partnership-legend {
+        width: 16%;
+    }
+
+    .partnership-column {
+        width: 42%;
+    }
+
+    .partnership.visible-2col {
+        display: block;
+    }
+}
+
+@media (max-width: 991px) {
+    .partnership.hidden-4col {
+        display: block;
+    }
+
+    .partnership-legend {
+        width: 25%;
+    }
+
+    .partnership-column {
+        width: 75%;
+    }
+}
+
+@media (max-width: 650px) {
+    .partnership table.default td {
+        font-size: 10px !important;
+    }
+}
