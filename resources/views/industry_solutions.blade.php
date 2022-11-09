@@ -5,7 +5,7 @@
         <div class="container">
             @include('blocks._breadcrumbs_block')
             <div class="text_edit page_title">
-                <div class="indstr-solutions-banner" style="background-image: url('{{ asset($content->preview) }}')">
+                <div class="indstr-solutions-banner" style="background-image: url('{{ asset($content->full) }}')">
                     <div class="banner_text">
                         <div class="banner-title"><h1>{{ $head }}</h1></div>
                         <div class="banner-descr">{!! $content['head_'.app()->getLocale()] !!}</div>
