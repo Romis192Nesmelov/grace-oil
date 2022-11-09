@@ -1,5 +1,53 @@
 @charset "UTF-8";
+
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('../fonts/CenturyGothic-Italic.eot');
+    src: local('Century Gothic Italic'), local('CenturyGothic-Italic'),
+    url('../fonts/CenturyGothic-Italic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/CenturyGothic-Italic.woff') format('woff'),
+    url('../fonts/CenturyGothic-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('../fonts/CenturyGothic.eot');
+    src: local('Century Gothic'), local('CenturyGothic'),
+    url('../fonts/CenturyGothic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/CenturyGothic.woff') format('woff'),
+    url('../fonts/CenturyGothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('../fonts/CenturyGothic-Bold.eot');
+    src: local('Century Gothic Bold'), local('CenturyGothic-Bold'),
+    url('../fonts/CenturyGothic-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/CenturyGothic-Bold.woff') format('woff'),
+    url('../fonts/CenturyGothic-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('../fonts/CenturyGothic-BoldItalic.eot');
+    src: local('Century Gothic Bold Italic'), local('CenturyGothic-BoldItalic'),
+    url('../fonts/CenturyGothic-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/CenturyGothic-BoldItalic.woff') format('woff'),
+    url('../fonts/CenturyGothic-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 html {
+    font-family: 'Century Gothic', sans-serif;
+    font-weight: normal;
+    font-style: normal;
   height: 100%; }
   html .loader {
     width: 100%;
@@ -154,7 +202,6 @@ textarea::-moz-focus-inner {
 
 /*normailze*/
 html {
-  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-size: 10px;
@@ -569,7 +616,7 @@ th {
     text-align: justify;
 }
 .text_edit h1 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -580,7 +627,7 @@ th {
   color: #18191A; }
 
 .text_edit h2 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 21px;
@@ -591,7 +638,7 @@ th {
   color: #18191A; }
 
 .text_edit h3 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 17px;
@@ -602,7 +649,7 @@ th {
   color: #18191A; }
 
 .text_edit p {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-weight: normal;
   font-size: 17px;
   line-height: 24px;
@@ -620,7 +667,7 @@ th {
     font-weight: 600; }
 
 .text_edit a {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   color: #EB7C1E;
   font-weight: 600;
   text-decoration: none; }
@@ -644,7 +691,7 @@ th {
     margin: 0 0 17px 0;
     font-size: 17px;
     line-height: 23px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     color: #18191A;
     position: relative;
 }
@@ -729,7 +776,7 @@ th {
     color: #061A40;
     font-size: 16px;
     line-height: 24px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-weight: 500; }
     .text_edit table.second-row th:first-of-type {
       text-align: left; }
@@ -741,7 +788,7 @@ th {
     color: #18191A;
     font-size: 16px;
     line-height: 24px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-weight: 500; }
     .text_edit table.second-row td:last-of-type {
       text-align: center; }
@@ -770,7 +817,7 @@ th {
       text-align: center; }
 
 .text_edit table.character td {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -865,7 +912,7 @@ th {
 }
 
 .title-base {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-size: 21px;
   line-height: 32px;
   margin-top: 0;
@@ -981,7 +1028,7 @@ th {
   display: inline-block;
   height: 24px;
   padding: 0 18px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -999,7 +1046,7 @@ th {
     color: #18191A; }
 
 .download-btn {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 17px;
@@ -1040,7 +1087,7 @@ html, body, .page-wrapper {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-size: 17px;
   font-weight: normal;
   background: #f4f7fb; }
@@ -1591,7 +1638,7 @@ header {
     top: 0;
     left: 0;
     padding: 0 45px 0 15px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     background-color: #FFFFFF;
     color: #18191A;
     -webkit-transition: background-color ease 0.4s;
@@ -1602,19 +1649,19 @@ header {
     .search-inp input::-webkit-input-placeholder {
       color: #737480;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .search-inp input::-moz-placeholder {
       color: #737480;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .search-inp input:-moz-placeholder {
       color: #737480;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .search-inp input:-ms-input-placeholder {
       color: #737480;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .search-inp input:hover, .search-inp input:focus {
       background-color: #F4F7FB;
       /* Firefox 19+ */
@@ -1723,7 +1770,7 @@ header {
     .overlay-menu ul li:last-child {
       margin-bottom: 0; }
     .overlay-menu ul li a {
-      font-family: "Open Sans", sans-serif;
+      font-family: "Century Gothic", sans-serif;
       font-size: 16px;
       line-height: 24px;
       color: #061A40;
@@ -1738,7 +1785,7 @@ header {
       .overlay-menu ul li li:last-child {
         margin-bottom: 0; }
       .overlay-menu ul li li a {
-        font-family: "Open Sans", sans-serif;
+        font-family: "Century Gothic", sans-serif;
         font-size: 15px;
         line-height: 20px;
         color: #18191A;
@@ -1862,7 +1909,7 @@ header {
       display: table-cell;
       vertical-align: middle; }
   .catalog-item .catalog-item-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 16px;
     line-height: 20px;
     color: #061A40;
@@ -1985,7 +2032,7 @@ header {
     height: 298px;
     overflow: hidden; }
   .service-item .title-item {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 18px;
     line-height: 24px;
     color: #18191A;
@@ -1998,7 +2045,7 @@ header {
       color: #EB7C1E;
       text-decoration: none; }
   .service-item .text-item {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 15px;
     line-height: 24px;
     color: #18191A;
@@ -2047,7 +2094,7 @@ header {
     padding-left: 24px;
     padding-top: 22px; }
   .news-item .news-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 18px;
     line-height: 24px;
     color: #061A40;
@@ -2058,7 +2105,7 @@ header {
       color: #EB7C1E;
       text-decoration: none; }
   .news-item .news-txt {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 15px;
     line-height: 24px;
     color: #18191A;
@@ -2067,7 +2114,7 @@ header {
     height: 68px;
     overflow: hidden; }
   .news-item .data {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 13px;
     line-height: 20px;
     color: #737780;
@@ -2105,7 +2152,7 @@ header {
   .tovar-item .descr {
     text-align: center; }
   .tovar-item .tovar-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -2145,7 +2192,7 @@ header {
   .category-item .descr {
     text-align: center; }
   .category-item .category-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -2180,7 +2227,7 @@ header {
     padding-left: 64px;
     padding-top: 7px; }
   .tovar-block .tovar-descr-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
@@ -2194,7 +2241,7 @@ header {
     margin-bottom: 20px; }
     .tovar-block .tovar-table td {
       width: 50%;
-      font-family: "Open Sans", sans-serif;
+      font-family: "Century Gothic", sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 17px;
@@ -2219,7 +2266,7 @@ header {
   margin-right: 30px;
   text-align: center; }
   .bottle-item .bottle-title-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 17px;
     line-height: 32px;
     color: #18191A; }
@@ -2244,7 +2291,7 @@ header {
     height: 56px;
     padding: 0 16px 0 56px;
     color: #18191A;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-weight: 600;
     font-size: 21px;
     line-height: 56px;
@@ -2335,7 +2382,7 @@ header {
   opacity: 0.8; }
 
 .article-data {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-size: 13px;
   line-height: 20px;
   color: #737780;
@@ -2609,7 +2656,7 @@ header {
       display: table-cell;
       vertical-align: middle; }
   .about-comp-item .comp-item-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
@@ -2655,7 +2702,7 @@ header {
 }
     
   .sidebar .site-list ul li a {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -2735,7 +2782,7 @@ header {
     padding: 15px 0;
     border-top: 1px solid #E3E4E8; }
   .filter-side .trigger-filter-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-weight: 500;
     font-size: 15px;
     line-height: 24px;
@@ -2841,7 +2888,7 @@ header {
       display: table-cell;
       vertical-align: middle; }
     .filter-side .check-item p {
-      font-family: "Open Sans", sans-serif;
+      font-family: "Century Gothic", sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 15px;
@@ -2866,7 +2913,7 @@ header {
       font-size: 12px;
       line-height: 16px;
       font-weight: 400;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
       .crumbs-list .crumbs-ul li:last-child {
         margin-left: 10px; }
       .crumbs-list .crumbs-ul li:first-child a {
@@ -2877,7 +2924,7 @@ header {
         font-weight: 400;
         line-height: 16px;
         color: #061A40;
-        font-family: "Open Sans", sans-serif;
+        font-family: "Century Gothic", sans-serif;
         position: relative;
         padding-right: 5px;
         padding-left: 10px;
@@ -2902,7 +2949,7 @@ header {
   border-radius: 6px;
   padding: 30px 40px 40px; }
   .popup > form p {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 16px;
     line-height: 28px;
     margin: 0 0 35px; }
@@ -3009,7 +3056,7 @@ header {
         line-height: 38px;
         font-size: 16px;
         background-color: transparent;
-        font-family: "Open Sans", sans-serif;
+        font-family: "Century Gothic", sans-serif;
         -webkit-transition: background-color ease 0.4s;
         -o-transition: background-color ease 0.4s;
         transition: background-color ease 0.4s;
@@ -3080,7 +3127,7 @@ header {
     font-size: 11px;
     line-height: 16px;
     color: #2D3140;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     display: inline-block;
     vertical-align: top;
     margin: 0; }
@@ -3113,7 +3160,7 @@ header {
             box-sizing: border-box;
     border-radius: 2px;
     height: 40px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     -webkit-transition: border ease 0.4s;
     -o-transition: border ease 0.4s;
     transition: border ease 0.4s;
@@ -3126,35 +3173,35 @@ header {
       .base-form .form-body input:hover::-webkit-input-placeholder, .base-form .form-body input:focus::-webkit-input-placeholder {
         color: #04040D;
         font-size: 15px;
-        font-family: "Open Sans", sans-serif; }
+        font-family: "Century Gothic", sans-serif; }
       .base-form .form-body input:hover::-moz-placeholder, .base-form .form-body input:focus::-moz-placeholder {
         color: #04040D;
         font-size: 15px;
-        font-family: "Open Sans", sans-serif; }
+        font-family: "Century Gothic", sans-serif; }
       .base-form .form-body input:hover:-moz-placeholder, .base-form .form-body input:focus:-moz-placeholder {
         color: #04040D;
         font-size: 15px;
-        font-family: "Open Sans", sans-serif; }
+        font-family: "Century Gothic", sans-serif; }
       .base-form .form-body input:hover:-ms-input-placeholder, .base-form .form-body input:focus:-ms-input-placeholder {
         color: #04040D;
         font-size: 15px;
-        font-family: "Open Sans", sans-serif; }
+        font-family: "Century Gothic", sans-serif; }
     .base-form .form-body input::-webkit-input-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .base-form .form-body input::-moz-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .base-form .form-body input:-moz-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .base-form .form-body input:-ms-input-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
   .base-form .form-body input.error {
     border: 1px solid #E65B4E; }
 
@@ -3169,7 +3216,7 @@ header {
           box-sizing: border-box;
   border-radius: 2px;
   height: 72px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   -webkit-transition: border ease 0.4s;
   -o-transition: border ease 0.4s;
   transition: border ease 0.4s;
@@ -3184,40 +3231,40 @@ header {
     .base-form .textarea-default:hover::-webkit-input-placeholder, .base-form .textarea-default:focus::-webkit-input-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .base-form .textarea-default:hover::-moz-placeholder, .base-form .textarea-default:focus::-moz-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .base-form .textarea-default:hover:-moz-placeholder, .base-form .textarea-default:focus:-moz-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
     .base-form .textarea-default:hover:-ms-input-placeholder, .base-form .textarea-default:focus:-ms-input-placeholder {
       color: #04040D;
       font-size: 15px;
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Century Gothic", sans-serif; }
   .base-form .textarea-default::-webkit-input-placeholder {
     color: #04040D;
     font-size: 15px;
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Century Gothic", sans-serif; }
   .base-form .textarea-default::-moz-placeholder {
     color: #04040D;
     font-size: 15px;
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Century Gothic", sans-serif; }
   .base-form .textarea-default:-moz-placeholder {
     color: #04040D;
     font-size: 15px;
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Century Gothic", sans-serif; }
   .base-form .textarea-default:-ms-input-placeholder {
     color: #04040D;
     font-size: 15px;
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Century Gothic", sans-serif; }
 
 .base-form label {
   color: #737480;
   font-size: 15px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic", sans-serif;
   font-weight: 400;
   left: 15px;
   position: absolute;
@@ -3331,7 +3378,7 @@ footer {
     vertical-align: top;
     width: 240px; }
   footer .rights, footer .footer-adress {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 15px;
     line-height: 24px;
     color: #FFFFFF;
@@ -3377,7 +3424,7 @@ footer {
   .f-btn-wp .foot-phone p {
     margin: 0 0 2px; }
   .f-btn-wp .phone {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Century Gothic", sans-serif;
     font-size: 22px;
     line-height: 24px;
     color: #FFFFFF; }
@@ -3544,7 +3591,7 @@ input[type=file] {
 .popup>form p.file_title {
     color: #737480;
     font-size: 15px;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Century Gothic",sans-serif;
     font-weight: 400;
     margin: 0 0 10px;
     text-align: left;
@@ -3565,7 +3612,7 @@ input[type=file] {
     border-radius: 2px;
     color: #737480;
     font-size: 15px;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Century Gothic",sans-serif;
     font-weight: 400;
 }
 .jq-file__browse {
@@ -3740,7 +3787,7 @@ touch-action: none;
 }
 .indstr-solutions-banner .banner-title h1,
 .indstr-solutions-banner .banner-title{
-    font-family: Open Sans;
+    font-family: Century Gothic;
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
@@ -3751,7 +3798,7 @@ touch-action: none;
     text-align: left;
 }
 .indstr-solutions-banner .banner-descr {
-    font-family: Open Sans;
+    font-family: Century Gothic;
     font-style: normal;
     font-size: 15px;
     line-height: 24px;
@@ -3795,7 +3842,7 @@ touch-action: none;
     padding: 8px;
 }
 .industry-item-title {
-    font-family: Open Sans;
+    font-family: Century Gothic;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -3838,7 +3885,7 @@ touch-action: none;
     overflow: auto;
 }
 .category-list-wp li {
-    font-family: Open Sans;
+    font-family: Century Gothic;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -3869,7 +3916,7 @@ touch-action: none;
     transform: translateY(-50%); 
 }
 .category-tovar-list li a {
-    font-family: Open Sans;
+    font-family: Century Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 17px;
@@ -3888,7 +3935,7 @@ touch-action: none;
 }
 
 h3.head_triangle {
-    font-family: "Open Sans",sans-serif;
+    font-family: "Century Gothic",sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
@@ -3969,7 +4016,7 @@ h3.head_triangle:before {
 }
 
 .phone-header {
-    font-family: Open Sans;
+    font-family: Century Gothic;
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
