@@ -27,7 +27,7 @@
                         @foreach($home_blocks as $block)
                            <div class="service-item">
                                <div class="prev">
-                                   <a href="#">
+                                   <a href="{{ $block->href }}">
                                        <img src="{{ asset($block->image) }}" alt="service_img">
                                    </a>
                                </div>
