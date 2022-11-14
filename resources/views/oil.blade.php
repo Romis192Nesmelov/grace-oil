@@ -72,6 +72,8 @@
                                             @php $packing = str_replace('_',',',$packing); @endphp
                                             @if ($k <= 6)
                                                 {{ $oil->units ? $packing.trans('content.kg') : $packing.trans('content.l') }}
+                                            @elseif ($k == 7)
+                                                {{ trans('content.cube').$packing.trans('content.kg') }}
                                             @else
                                                 {{ trans('content.cube').$packing.trans('content.l') }}
                                             @endif
