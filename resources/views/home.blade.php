@@ -27,16 +27,16 @@
                         @foreach($home_blocks as $block)
                            <div class="service-item">
                                <div class="prev">
-                                   <a href="{{ $block->href }}">
+                                   <a href="{{ $block->menu ? url('/'.$block->menu->slug) : url('/'.$block->subMenu->slug) }}">
                                        <img src="{{ asset($block->image) }}" alt="service_img">
                                    </a>
                                </div>
                                <div class="descr">
-                                   <a href="{{ $block->href }}" class="title-item">{!! $block['head_'.app()->getLocale()] !!}</a>
+                                   <a href="{{ $block->menu ? url('/'.$block->menu->slug) : url('/'.$block->subMenu->slug) }}" class="title-item">{!! $block['head_'.app()->getLocale()] !!}</a>
                                    {!! $block['text_'.app()->getLocale()] !!}
                                </div>
                                @include('blocks._button_type1_block',[
-                                    'btnHref' => $block->href,
+                                    'btnHref' => $block->menu ? url('/'.$block->menu->slug) : url('/'.$block->subMenu->slug),
                                     'btnText' => $block['button_text_'.app()->getLocale()]
                                 ])
                            </div>

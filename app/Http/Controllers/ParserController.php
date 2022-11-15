@@ -151,7 +151,7 @@ class ParserController extends Controller
                 if (!file_exists(base_path('public/'.$baseImage)) && !in_array($oilNameEn, $exceptingOilImagesBase))
                     dd('Not exist base image', $baseImage);
 
-//                if (!$oil = Oil::where('name_en',$oilNameEn)->first()) {
+                if (!$oil = Oil::where('name_en',$oilNameEn)->first()) {
                     $oilFields = [
                         'units' => $oilUnit == 'kg',
                         'image_base' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : $docFilesDefImagesDir.'oil_base.jpg',
@@ -182,7 +182,7 @@ class ParserController extends Controller
                         'subsection_id' => $subsectionId
                     ];
                     $oil = Oil::create($oilFields);
-//                }
+                }
 
                 //Get Engine type
                 $engineType = $cells[17];
@@ -242,8 +242,44 @@ class ParserController extends Controller
                     ]
                 ];
 
+                $oilsMissingDocs = [
+                    'GRACE FF-D 5w-30',
+                    'GRACE REN 5W-40',
+                    'GRACE REN 10W-40',
+                    'GRACE daily SS 10w-40',
+                    'GRACE superb C 15w-40',
+                    'GRACE CHAIN',
+                    'GRACE CHAIN S',
+                    'GRACE CHAIN W',
+                    'GRACE GYP C 80w-90',
+                    'GRACE UNIS 75w-90 (GL-4/GL-5)',
+                    'GRACE ANTIFREEZE -65 G12 red',
+                    'GRACE ANTIFREEZE -65 G11 green',
+                    'GRACE ANTIFREEZE concentrate G12 red',
+                    'GRACE ANTIFREEZE concentrate G11 green',
+                    'Litol-24',
+                    'Ciatim-201',
+                    'Ciatim-203',
+                    'Ciatim-221',
+                    'GRACE GREASE Synth LX EP',
+                    'GRACE GREASE LX EP',
+                    'GRACE GREASE L EP',
+                    'GRACE GREASE Synth Moly LX EP',
+                    'GRACE GREASE Moly LX 300 EP',
+                    'GRACE GREASE Moly EP',
+                    'GRACE GREASE CARBON',
+                    'GRACE GREASE NORD',
+                    'GRACE GREASE POLY-M EP 2',
+                    'GRACE GREASE ALUMINIX EP 2',
+                    'GRACE GREASE Aqua'
+                ];
+
                 $docFiles = 'documentations/';
-                $oilDocs = glob(base_path('public/'.$docFiles.$oilType->slug.'/'.$oilUpperName.'*'));
+                $pathToDocs = 'public/'.$docFiles.$oilType->slug.'/'.$oilUpperName.'*';
+                $oilDocs = glob(base_path($pathToDocs));
+
+                if (!count($oilDocs) && !in_array($oilNameEn, $oilsMissingDocs)) dd('Missing documentation',$oilNameEn,$pathToDocs);
+
                 if (count($oilDocs)) {
                     foreach ($oilDocs as $oilDoc) {
                         $doc = pathinfo($oilDoc);

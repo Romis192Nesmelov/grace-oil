@@ -20,7 +20,7 @@ class CreateHomeBlocksTable extends Migration
             $table->text('text_ru');
             $table->string('head_en');
             $table->text('text_en');
-            $table->string('href');
+//            $table->string('href');
             $table->string('button_text_ru');
             $table->string('button_text_en');
             $table->boolean('active');

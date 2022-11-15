@@ -11,9 +11,21 @@ class HomeBlock extends Model
         'text_ru',
         'head_en',
         'text_en',
-        'href',
+//        'href',
         'button_text_ru',
         'button_text_en',
-        'active'
+        'active',
+        'menu_id',
+        'sub_menu_id'
     ];
+
+    public function menu()
+    {
+        return $this->belongsTo('App\Models\Menu');
+    }
+
+    public function subMenu()
+    {
+        return $this->belongsTo('App\Models\Menu');
+    }
 }

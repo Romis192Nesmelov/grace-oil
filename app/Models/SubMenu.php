@@ -50,4 +50,9 @@ class SubMenu extends Model
     {
         return $this->hasMany('App\Models\Content')->where('active',1);
     }
+
+    public function homeBlocks()
+    {
+        return $this->hasMany('App\Models\HomeBlock')->where('active',1);
+    }
 }

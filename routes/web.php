@@ -18,7 +18,7 @@ Route::post('/partner', 'FeedbackController@toBeAPartner')->name('partner');
 Route::post('/resume', 'FeedbackController@resume')->name('resume');
 Route::post('/offer', 'FeedbackController@offer')->name('offer');
 
-//Route::get('/parse', 'ParserController@run');
+//Route::get('/parser', 'ParserController@run');
 
 //foreach (Cache::remember('menu', 60*60*24*365, function () {
 //    return Menu::where('active',1)->with('subMenu')->get();

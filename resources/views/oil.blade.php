@@ -73,9 +73,9 @@
                                             @if ($k <= 6)
                                                 {{ $oil->units ? $packing.trans('content.kg') : $packing.trans('content.l') }}
                                             @elseif ($k == 7)
-                                                {{ trans('content.cube').$packing.trans('content.kg') }}
+                                                {{ $packing.trans('content.kg') }}
                                             @else
-                                                {{ trans('content.cube').$packing.trans('content.l') }}
+                                                {{ $packing.trans('content.l') }}
                                             @endif
                                         </div>
                                     </div>

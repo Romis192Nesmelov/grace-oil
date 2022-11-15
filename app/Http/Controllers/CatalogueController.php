@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Menu;
 use App\Models\OilType;
 use App\Models\Oil;
+use App\Models\OilTolerance;
+use App\Models\OilEngineType;
 use App\Models\Subsection;
 
 class CatalogueController extends StaticController
 {
     use HelperTrait;
-    private $oilDoneIds = [];
+//    private $oilDoneIds = [];
 
     public function _default(Request $request, $slug = null, $sub_slug = null)
     {
@@ -42,6 +45,7 @@ class CatalogueController extends StaticController
 //            }
             $request->session()->put('filters', $request->filters);
         }
+
 
         if ($slug) {
             if (!$oilType = OilType::where('slug', $slug)->where('active', 1)->pluck('name_' . App::getLocale(), 'id')->toArray()) abort(404);
@@ -85,9 +89,10 @@ class CatalogueController extends StaticController
         }
     }
 
-    private function getFilteredOil($oilTypeId, $subsectionId = null, $filters = [])
+    private function getFilteredOil($oilTypeId, $subsectionId = null, array $filters = [])
     {
-        $this->data['oil'] = collect();
+
+//        $this->data['oil'] = collect();
         $oil = Oil::where('oil_type_id', $oilTypeId)->where('active', 1);
 
         if ($subsectionId)
@@ -96,21 +101,33 @@ class CatalogueController extends StaticController
         if (isset($filters['viscosity']) && is_array($filters['viscosity']) && count($filters['viscosity']))
             $oil = $oil->whereIn('viscosity_grade_id', $filters['viscosity']);
 
-        $oil = $oil->get();
-
-        $engineTypeFiltersOn = isset($filters['engine_type']) && is_array($filters['engine_type']) && count($filters['engine_type']);
-        $tolerancesFiltersOn = isset($filters['tolerances']) && is_array($filters['tolerances']) && count($filters['tolerances']);
-
-        foreach ($oil as $item) {
-            if (!$engineTypeFiltersOn && !$tolerancesFiltersOn) $this->data['oil']->push($item);
-            else if (!$engineTypeFiltersOn && $tolerancesFiltersOn) {
-                $this->processingFilters($item, 'tolerances', $filters['tolerances'], true);
-            } else if ($engineTypeFiltersOn && !$tolerancesFiltersOn) {
-                $this->processingFilters($item, 'engineTypes', $filters['engine_type'], true);
-            } else if ($tolerancesFiltersOn && $engineTypeFiltersOn && $this->processingFilters($item, 'engineTypes', (isset($filters['engine_type']) ? $filters['engine_type'] : []), false)) {;
-                $this->processingFilters($item, 'tolerances', $filters['tolerances'], true);
-            }
+        if (isset($filters['engine_type']) && is_array($filters['engine_type']) && count($filters['engine_type'])) {
+            $oilEngineTypesIds = OilEngineType::whereIn('engine_type_id',$filters['engine_type'])->pluck('oil_id')->toArray();
+            $oil->whereIn('id',$oilEngineTypesIds);
         }
+
+        if (isset($filters['tolerances']) && is_array($filters['tolerances']) && count($filters['tolerances'])) {
+            $oilTolerancesIds = OilTolerance::whereIn('tolerance_id',$filters['tolerances'])->pluck('oil_id')->toArray();
+            $oil->whereIn('id',$oilTolerancesIds);
+        }
+
+        $this->data['oil'] = $oil->get();
+
+//        dd($oil);
+//
+//        $engineTypeFiltersOn = isset($filters['engine_type']) && is_array($filters['engine_type']) && count($filters['engine_type']);
+//        $tolerancesFiltersOn = isset($filters['tolerances']) && is_array($filters['tolerances']) && count($filters['tolerances']);
+//
+//        foreach ($oil as $item) {
+//            if (!$engineTypeFiltersOn && !$tolerancesFiltersOn) $this->data['oil']->push($item);
+//            else if (!$engineTypeFiltersOn && $tolerancesFiltersOn) {
+//                $this->processingFilters($item, 'tolerances', $filters['tolerances'], true);
+//            } else if ($engineTypeFiltersOn && !$tolerancesFiltersOn) {
+//                $this->processingFilters($item, 'engineTypes', $filters['engine_type'], true);
+//            } else if ($tolerancesFiltersOn && $engineTypeFiltersOn && $this->processingFilters($item, 'engineTypes', (isset($filters['engine_type']) ? $filters['engine_type'] : []), false)) {;
+//                $this->processingFilters($item, 'tolerances', $filters['tolerances'], true);
+//            }
+//        }
     }
 
     private function getOilPaginate()
@@ -124,21 +141,21 @@ class CatalogueController extends StaticController
         return response()->json(['success' => true, 'html' => $html, 'oil_count' => count($this->data['oil'])]);
     }
 
-    private function processingFilters($item, $foreignPropName, array $filtersIds, $addingItem = true)
-    {
-        $match = false;
-        foreach ($item[$foreignPropName] as $foreignProp) {
-            if (in_array($foreignProp->id, $filtersIds) && !in_array($item->id, $this->oilDoneIds)) {
-                $match = true;
-                if ($addingItem) {
-                    $this->oilDoneIds[] = $item->id;
-                    $this->data['oil']->push($item);
-                }
-                break;
-            }
-        }
-        return $match;
-    }
+//    private function processingFilters($item, $foreignPropName, array $filtersIds, $addingItem = true)
+//    {
+//        $match = false;
+//        foreach ($item[$foreignPropName] as $foreignProp) {
+//            if (in_array($foreignProp->id, $filtersIds) && !in_array($item->id, $this->oilDoneIds)) {
+//                $match = true;
+//                if ($addingItem) {
+//                    $this->oilDoneIds[] = $item->id;
+//                    $this->data['oil']->push($item);
+//                }
+//                break;
+//            }
+//        }
+//        return $match;
+//    }
 
     private function getCatalogueMenu()
     {
