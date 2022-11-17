@@ -70,10 +70,10 @@
                                     <div class="desc">
                                         <div class="bottle-title-title">
                                             @php $packing = str_replace('_',',',$packing); @endphp
-                                            @if ($k <= 6)
+                                            @if ($k <= 9)
                                                 {{ $oil->units ? $packing.trans('content.kg') : $packing.trans('content.l') }}
-                                            @elseif ($k == 7)
-                                                {{ $packing.trans('content.kg') }}
+                                            {{--@elseif ($k == 7)--}}
+                                                {{--{{ $packing.trans('content.kg') }}--}}
                                             @else
                                                 {{ $packing.trans('content.l') }}
                                             @endif

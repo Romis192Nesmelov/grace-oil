@@ -61,8 +61,10 @@ class ParserController extends Controller
             $tolerancesDone = [];
 
             $exceptingOilImagesBase = [
+                'GRACE UNIS 75w-90',
                 'GRACE ANTIFREEZE -65 G12 red',
-                'GRACE ANTIFREEZE -65 G11 green'
+                'GRACE ANTIFREEZE -65 G11 green',
+                'GRACE FLUID HLP 68'
             ];
 
             foreach ($rows as $row) {
@@ -100,7 +102,7 @@ class ParserController extends Controller
 
                 // Get tares
                 $taresVals = explode(',',$cells[6]);
-                if (count($taresVals) != 11) dd('not enough tares', $oilNameEn);
+                if (count($taresVals) != 11) dd('not enough tares', $oilNameEn, $oilNameEn);
 
                 foreach ($taresVals as $k => $tareVal) {
                     
@@ -112,7 +114,7 @@ class ParserController extends Controller
                         if (
                             !file_exists(base_path('public/'.$image)) &&
                             !in_array($oilNameEn, $exceptingOilImagesBase)
-                        ) dd('Not exist', base_path('public/'.$image));
+                        ) dd('Not exist tare', $oilNameEn, base_path('public/'.$image));
 
                         $tares[] = file_exists(base_path('public/'.$image)) ? $image : $docFilesDefImagesDir.'oil_'.$tareVal.'jpg';
                     }
@@ -149,7 +151,7 @@ class ParserController extends Controller
                 }
 
                 if (!file_exists(base_path('public/'.$baseImage)) && !in_array($oilNameEn, $exceptingOilImagesBase))
-                    dd('Not exist base image', $baseImage);
+                    dd('Not exist base image', $oilNameEn, $baseImage);
 
                 if (!$oil = Oil::where('name_en',$oilNameEn)->first()) {
                     $oilFields = [
@@ -242,71 +244,14 @@ class ParserController extends Controller
                     ]
                 ];
 
-                $oilsMissingDocs = [
-                    'GRACE FF-D 5w-30',
-                    'GRACE REN 5W-40',
-                    'GRACE REN 10W-40',
-                    'GRACE daily SS 10w-40',
-                    'GRACE superb C 15w-40',
-                    'GRACE CHAIN',
-                    'GRACE CHAIN S',
-                    'GRACE CHAIN W',
-                    'GRACE GYP C 80w-90',
-                    'GRACE UNIS 75w-90 (GL-4/GL-5)',
-                    'GRACE ANTIFREEZE -65 G12 red',
-                    'GRACE ANTIFREEZE -65 G11 green',
-                    'GRACE ANTIFREEZE concentrate G12 red',
-                    'GRACE ANTIFREEZE concentrate G11 green',
-                    'Litol-24',
-                    'Ciatim-201',
-                    'Ciatim-203',
-                    'Ciatim-221',
-                    'GRACE GREASE Synth LX EP',
-                    'GRACE GREASE LX EP',
-                    'GRACE GREASE L EP',
-                    'GRACE GREASE Synth Moly LX EP',
-                    'GRACE GREASE Moly LX 300 EP',
-                    'GRACE GREASE Moly EP',
-                    'GRACE GREASE CARBON',
-                    'GRACE GREASE NORD',
-                    'GRACE GREASE POLY-M EP 2',
-                    'GRACE GREASE ALUMINIX EP 2',
-                    'GRACE GREASE Aqua'
-                ];
+//                $missingDocsItem = $this->processingDocFiles($docsSuffixes, $oilUpperName, $oilType->slug, $oilType->name_ru,  $oil->id);
+//                if (count($missingDocsItem)) $missingDocs[] = $missingDocsItem;
 
-                $docFiles = 'documentations/';
-                $pathToDocs = 'public/'.$docFiles.$oilType->slug.'/'.$oilUpperName.'*';
-                $oilDocs = glob(base_path($pathToDocs));
-
-                if (!count($oilDocs) && !in_array($oilNameEn, $oilsMissingDocs)) dd('Missing documentation',$oilNameEn,$pathToDocs);
-
-                if (count($oilDocs)) {
-                    foreach ($oilDocs as $oilDoc) {
-                        $doc = pathinfo($oilDoc);
-                        $docType = str_replace('_','',substr($doc['filename'],-3));
-                        $docHref = str_replace(base_path('public/'),'',$doc['dirname']).'/'.$doc['basename'];
-
-                        if ($docType == 'reg' || $docType == 'apr') {
-                            // adding exstended docs
-                            $docUpperName = str_replace('_'.$docType,'',$doc['filename']);
-                            if (isset($specialDocSuffixes[$docUpperName])) {
-                                $this->findOrCreateDoc(
-                                    $docHref,
-                                    $specialDocSuffixes[$docUpperName][$docType]['ru'],
-                                    $specialDocSuffixes[$docUpperName][$docType]['en'],
-                                    $oil->id
-                                );
-                            }
-                        } else {
-                            // adding standart docs
-                            $this->findOrCreateDoc(
-                                $docHref,
-                                $docsSuffixes[$docType]['ru'],
-                                $docsSuffixes[$docType]['en'],
-                                $oil->id
-                            );
-                        }
-                    }
+                $this->processingDocFiles($docsSuffixes, $oilUpperName, $oilType->slug, $oilType->name_ru,  $oil->id);
+                
+                foreach ($specialDocSuffixes as $oilName => $params) {
+                    if ($oilName == $oilUpperName) $this->processingDocFiles($params, $oilUpperName, $oilType->slug, $oilType->name_ru, $oil->id);
+                    else break;
                 }
 
                 //Get tolerances
@@ -343,19 +288,215 @@ class ParserController extends Controller
                     }
                 }
             }
+
+//            $missingString = '';
+//            foreach ($missingDocs as $arr) {
+//                foreach ($arr as $oilTypeName => $oilArr) {
+//                    $missingString .= $oilTypeName.';';
+//                    foreach ($oilArr as $oilName => $missDocs) {
+//                        $missingString .= $oilName.';';
+//                        $docCount = 1;
+//                        foreach ($missDocs as $docType) {
+//                            if ($docCount == 1 && $docType == 'dc') $missingString .= ';';
+//                            elseif ($docCount == 1 && $docType == 'cc') $missingString .= ';;';
+//                            $missingString .= $docType.';';
+//                            $docCount++;
+//                        }
+//                    }
+//                    $missingString .= "<br>";
+//                }
+//            }
+//            echo $missingString;
         }
 //        echo 'Done!';
     }
 
-    private function findOrCreateDoc($docHref, $nameRu, $nameEn, $oilId)
+    private function processingDocFiles($docsSuffixes, $oilUpperName, $oilType, $oilTypeName, $oilId)
     {
-        if (!Documentation::where('href',$docHref)->first()) {
-            Documentation::create([
-                'href' => $docHref,
-                'name_ru' => $nameRu,
-                'name_en' => $nameEn,
-                'oil_id' => $oilId
-            ]);
+
+        $oilsMissingDocs = [
+            'GRACE_FF-D_5W-30' => ['td','dc','cc'],
+            'GRACE_FF_5W-20' => ['cc'],
+            'GRACE_REN_5W-40' => ['td','dc','cc'],
+            'GRACE_REN_10W-40' => ['td','dc','cc'],
+            'GRACE_DAILY_SS_10W-40' => ['td','dc','cc'],
+            'GRACE_SUPERB_C_15W-40' => ['td','dc','cc'],
+            'GRACE_CHAIN' => ['td','dc','cc'],
+            'GRACE_CHAIN_S' => ['td','dc','cc'],
+            'GRACE_CHAIN_W' => ['td','dc','cc'],
+            'GRACE_GYP_C_80W-90' => ['td','dc','cc'],
+            'GRACE_UNIS_75W-90' => ['cc'],
+            'GRACE_ANTIFREEZE_-65_G12_RED' => ['td','dc','cc'],
+            'GRACE_ANTIFREEZE_-65_G11_GREEN' => ['td','dc','cc'],
+            'GRACE_ANTIFREEZE_CONCENTRATE_G12_RED' => ['td','dc','cc'],
+            'GRACE_ANTIFREEZE_CONCENTRATE_G11_GREEN' => ['td','dc','cc'],
+            'LITOL-24' => ['td','dc','cc'],
+            'CIATIM-201' => ['td','dc','cc'],
+            'CIATIM-203' => ['td','dc','cc'],
+            'CIATIM-221' => ['td','dc','cc'],
+            'GRACE_GREASE_SYNTH_LX_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_LX_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_L_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_SYNTH_MOLY_LX_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_MOLY_LX_300_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_MOLY_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_CARBON' => ['td','dc','cc'],
+            'GRACE_GREASE_NORD' => ['td','dc','cc'],
+            'GRACE_GREASE_POLY-M EP_2' => ['td','dc','cc'],
+            'GRACE_GREASE_ALUMINIX_EP_2' => ['td','dc','cc'],
+            'GRACE_GREASE_AQUA' => ['td','dc','cc'],
+            'GRACE_ABSOLUTE_FSA_5W-30' => ['td'],
+            'GRACE_PERFECT_FS_0W-30' => ['cc'],
+            'GRACE_PERFECT_SS_10W-40' => ['td','dc','cc'],
+            'GRACE_PEASANT_STOU_SS_5W-30' => ['cc'],
+            'GRACE_PEASANT_STOU_C_10W-30' => ['cc'],
+            'GRACE_PEASANT_STOU_SS_10W-40' => ['cc'],
+            'GRACE_PEASANT_STOU_C_15W-40' => ['cc'],
+            'GRACE_PEASANT_UTTO_SS_5W-30' => ['cc'],
+            'GRACE_PEASANT_UTTO_C_10W-30' => ['cc'],
+            'GRACE_PEASANT_UTTO_SS_10W-40' => ['cc'],
+            'GRACE_PEASANT_UTTO_C_15W-40' => ['cc'],
+            'GRACE_СТО-4_FS_0W-20' => ['cc'],
+            'GRACE_СТО-4_10W' => ['td', 'cc'],
+            'GRACE_СТО-4_SAE-30' => ['cc'],
+            'GRACE_СТО-4_SAE-40' => ['cc'],
+            'GRACE_СТО-4_SAE-50' => ['cc'],
+            'GRACE_INDUSTRIAL-32' => ['cc'],
+            'GRACE_INDUSTRIAL-46' => ['cc'],
+            'GRACE_INDUSTRIAL-68' => ['cc'],
+            'GRACE_INDUSTRIAL-100' => ['cc'],
+            'GRACE_INDUSTRIAL-150' => ['cc'],
+            'GRACE_INDUSTRIAL-220' => ['cc'],
+            'GRACE_IZOROL-68' => ['cc'],
+            'GRACE_IZOROL-220' => ['cc'],
+            'GRACE_SPINDLE_2' => ['cc'],
+            'GRACE_SPINDLE_5' => ['cc'],
+            'GRACE_SPINDLE_7' => ['cc'],
+            'GRACE_SPINDLE_10' => ['cc'],
+            'GRACE_OCEANIC_TD_30_30' => ['cc'],
+            'GRACE_EP_4_80W-90' => ['cc'],
+            'GRACE_EP_4_75W-90' => ['cc'],
+            'GRACE_EP_4_75W-80' => ['cc'],
+            'GRACE_EP_4+_75W-90' => ['cc'],
+            'GRACE_EP_4+_75W-80' => ['cc'],
+            'GRACE_GYP_С_85W-140' => ['cc'],
+            'GRACE_GYP_С_85W-90' => ['cc'],
+            'GRACE_UNIS_75W-90_GL-4_GL-5' => ['td', 'dc', 'cc'],
+            'GRACE_GYP_SS_75W-90' => ['cc'],
+            'GRACE_GYP_LS_75W-90' => ['cc'],
+            'GRACE_GYP_LS_75W-140' => ['cc'],
+            'GRACE_GYP_LS_80W-90' => ['cc'],
+            'GRACE_GYP_FS_75W-90' => ['cc'],
+            'GRACE_GYP_FS_75W-140' => ['cc'],
+            'GRACE_GYP_FS_80W-140' => ['cc'],
+            'GRACE_ATF_DEX-II' => ['cc'],
+            'GRACE_ATF_DEX-III' => ['cc'],
+            'GRACE_ATF_FS_DEX_VI' => ['cc'],
+            'GRACE_ATF_WS' => ['cc'],
+            'GRACE_SUPER_ATF' => ['cc'],
+            'GRACE_ATF_ZF_PLUS' => ['cc'],
+            'GRACE_ATF_MULTI' => ['cc'],
+            'GRACE_PSF' => ['cc'],
+            'GRACE_CVT_NS-II' => ['cc'],
+            'GRACE_CVT_NS-III' => ['cc'],
+            'GRACE_MULTI_CVT' => ['cc'],
+            'GRACE_FLUID_HLP_15' => ['cc'],
+            'GRACE_FLUID_HLP_22' => ['cc'],
+            'GRACE_FLUID_HLP_32' => ['cc'],
+            'GRACE_FLUID_HLP_46' => ['cc'],
+            'GRACE_FLUID_HLP_100' => ['cc'],
+            'GRACE_FLUID_HLP_150' => ['cc'],
+            'GRACE_FLUID_HVLP_15' => ['cc'],
+            'GRACE_FLUID_HVLP_22' => ['cc'],
+            'GRACE_FLUID_HVLP_32' => ['cc'],
+            'GRACE_FLUID_HVLP_46' => ['cc'],
+            'GRACE_FLUID_HVLP_68' => ['cc'],
+            'GRACE_FLUID_HVLP_100' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HLP_15' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HLP_22' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HLP_32' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HLP_46' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HLP_68' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HLP_100' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HVLP_15' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HVLP_22' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HVLP_32' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HVLP_46' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HVLP_68' => ['cc'],
+            'GRACE_FLUID_ZINCLESS_HVLP_100' => ['cc'],
+            'GRACE_FLUID_HLP_68' => ['cc'],
+            'GRACE_FLUID_ARCTIC_10_-65C' => ['cc'],
+            'GRACE_FLUID_ARCTIC_15_-65C' => ['cc'],
+            'GRACE_FLUID_ARCTIC_22_-65C' => ['cc'],
+            'GRACE_FLUID_ARCTIC_32_-60C' => ['cc'],
+            'GRACE_FLUID_ARCTIC_46_-55C' => ['cc'],
+            'GRACE_FLUID_POLAR_PLUS_22' => ['cc'],
+            'GRACE_FLUID_POLAR_PLUS_32' => ['cc'],
+            'GRACE_FLUID_POLAR_PLUS_46' => ['cc'],
+            'GRACE_TURBINE_32' => ['cc'],
+            'GRACE_TURBINE_46' => ['cc'],
+            'GRACE_TURBINE_68' => ['cc'],
+            'GRACE_TURBINE_EP_32' => ['cc'],
+            'GRACE_TURBINE_EP_46' => ['cc'],
+            'GRACE_GEAR_68' => ['cc'],
+            'GRACE_GEAR_100' => ['cc'],
+            'GRACE_GEAR_150' => ['cc'],
+            'GRACE_GEAR_220' => ['cc'],
+            'GRACE_GEAR_320' => ['cc'],
+            'GRACE_GEAR_460' => ['cc'],
+            'GRACE_GEAR_680' => ['cc'],
+            'GRACE_GEAR_S_68' => ['cc'],
+            'GRACE_GEAR_S_100' => ['cc'],
+            'GRACE_GEAR_S_150' => ['cc'],
+            'GRACE_GEAR_S_220' => ['cc'],
+            'GRACE_GEAR_S_320' => ['cc'],
+            'GRACE_GEAR_S_460' => ['cc'],
+            'GRACE_GEAR_S_680' => ['cc'],
+            'GRACE_GEAR_FS_220' => ['cc'],
+            'GRACE_GEAR_FS_320' => ['cc'],
+            'GRACE_COMP_RC-32' => ['cc'],
+            'GRACE_COMP_RC-46' => ['cc'],
+            'GRACE_COMP_RC-68' => ['cc'],
+            'GRACE_COMP_RS-32' => ['cc'],
+            'GRACE_COMP_RS-46' => ['cc'],
+            'GRACE_COMP_RS-68' => ['cc'],
+            'GRACE_COMP_PC-68' => ['cc'],
+            'GRACE_COMP_PC-100' => ['cc'],
+            'GRACE_COMP_PC-150' => ['cc'],
+            'GRACE_COMP_PS-68' => ['cc'],
+            'GRACE_COMP_PS-100' => ['cc'],
+            'GRACE_COMP_PS-150' => ['cc'],
+            'GRACE_ANTIFREEZE_-40_G12_RED' => ['cc'],
+            'GRACE_ANTIFREEZE_-40_G11_GREEN' => ['cc'],
+            'GRACE_ANTIFREEZE-40_G11_HD' => ['cc'],
+            'GRACE_ANTIFREEZE-40_G12_HD' => ['cc'],
+            'GRACE_TOSOL-40' => ['cc'],
+            'GRACE_GREASE_POLY-M_EP_2' => ['td', 'dc', 'cc'],
+        ];
+
+//        $missingDocs = [];
+
+        $docFiles = 'documentations/';
+        $pathToDocs = 'public/'.$docFiles.$oilType.'/'.$oilUpperName;
+
+        foreach ($docsSuffixes as $docType => $description) {
+            $docHref = $pathToDocs.'_'.$docType.'.pdf';
+            if (file_exists(base_path($docHref))) {
+                if (!Documentation::where('href',$docHref)->first()) {
+                    Documentation::create([
+                        'href' => $docHref,
+                        'name_ru' => $description['ru'],
+                        'name_en' => $description['en'],
+                        'oil_id' => $oilId
+                    ]);
+                }
+            } elseif (!in_array($oilUpperName, array_keys($oilsMissingDocs)) || (isset($oilsMissingDocs[$oilUpperName]) && !in_array($docType, $oilsMissingDocs[$oilUpperName]))) {
+                dd('Missing documentation', $oilUpperName, base_path($docHref));
+//                if (!isset($missingDocs[$oilTypeName])) $missingDocs[$oilTypeName] = [];
+//                if (!isset($missingDocs[$oilTypeName][$oilUpperName])) $missingDocs[$oilTypeName][$oilUpperName] = [];
+//                $missingDocs[$oilTypeName][$oilUpperName][] = $docType;
+            }
         }
+//        return $missingDocs;
     }
 }
