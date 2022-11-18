@@ -208,7 +208,7 @@ class CatalogueController extends StaticController
 
             foreach($oil->tolerances as $tolerance) {
                 $toleranceName = $tolerance->name;
-                $toleranceKey = strtolower(str_replace([' ','/','.','`'],'_',$toleranceName));
+                $toleranceKey = strtolower(str_replace([' ','/','.','`','(',')'],'_',$toleranceName));
                 if (!count($this->data['tolerances']) || !in_array($toleranceKey, array_keys($this->data['tolerances'])))
                     $this->data['tolerances'][$toleranceKey] = ['counter' => 1, 'name' => $toleranceName, 'id' => $tolerance->id];
                 else $this->data['tolerances'][$toleranceKey]['counter']++;
