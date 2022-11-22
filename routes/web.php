@@ -11,7 +11,6 @@ Route::get('/search/{slug}', 'SearchController@find');
 Route::get('/', 'StaticController@index')->name('home');
 Route::get('/change-lang', 'StaticController@changeLang')->name('change_lang');
 Route::post('/feedback', 'FeedbackController@feedback')->name('feedback');
-Route::post('/become_dealer', 'FeedbackController@becomeDealer');
 Route::post('/submit_application', 'FeedbackController@submitApplication')->name('submit_application');
 Route::post('/grace_test_request', 'FeedbackController@graceTestRequest')->name('grace_test_request');
 Route::post('/partner', 'FeedbackController@toBeAPartner')->name('partner');

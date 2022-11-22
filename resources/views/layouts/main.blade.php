@@ -241,28 +241,8 @@
     </footer>
     <!-- /footer -->
     <!-- Popup -->
-    @php ob_start(); @endphp
-    @include('blocks._input_block',[
-        'inputName' => 'name',
-        'inputId' => 'firstName',
-        'inputLabel' => trans('content.name').'*',
-        'useAjax' => true,
-    ])
-    @include('blocks._input_block',[
-        'inputName' => 'email',
-        'inputId' => 'email',
-        'inputLabel' => trans('content.email').'*',
-        'useAjax' => true,
-    ])
-    @include('blocks._textarea_block',[
-        'taName' => 'question',
-        'taId' => 'question',
-        'taLabel' => trans('content.your_question'),
-        'useAjax' => true,
-    ])
-
     @include('blocks._popup_block',[
-        'popupContent' => ob_get_clean(),
+        'popupContent' => view('blocks._feedback_fields_block')->render(),
         'popupId' => 'consl_popup',
         'popupRoute' => 'feedback',
         'popupHead' => trans('content.feedback'),
