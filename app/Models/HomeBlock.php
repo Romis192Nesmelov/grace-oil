@@ -11,7 +11,6 @@ class HomeBlock extends Model
         'text_ru',
         'head_en',
         'text_en',
-//        'href',
         'button_text_ru',
         'button_text_en',
         'active',

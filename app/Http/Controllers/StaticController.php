@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Menu;
@@ -10,6 +9,7 @@ use App\Models\Slide;
 use App\Models\HomeBlock;
 use App\Models\Content;
 use App\Models\OilType;
+use App\Models\Vacancy;
 
 class StaticController extends Controller
 {
@@ -19,8 +19,16 @@ class StaticController extends Controller
 
     public function index()
     {
-        $this->data['slider'] = Slide::where('active',1)->get();
-        $this->data['home_blocks'] = HomeBlock::where('active', 1)->orderBy('created_at', 'desc')->limit(3)->get();
+        $this->data['slider'] = Slide::where('active',1)->select(
+            'href',
+            'image',
+            'head_'.app()->getLocale(),
+            'sub_head_'.app()->getLocale(),
+            'text_'.app()->getLocale()
+        )->get();
+        $this->data['home_blocks'] = HomeBlock::where('active', 1)
+            ->with('menu','subMenu')
+            ->orderBy('created_at', 'desc')->limit(3)->get();
         return $this->showView('home');
     }
 
@@ -65,7 +73,7 @@ class StaticController extends Controller
     public function changeLang(Request $request)
     {
         $this->validate($request, ['lang' => 'required|in:en,ru']);
-        setcookie('lang', $request->input('lang'), time()+(60*60*24*365));
+        setcookie('lang', $request->input('lang'), time()+($this->cacheTime));
         return redirect()->back();
     }
     
@@ -78,7 +86,7 @@ class StaticController extends Controller
     public function termsOfUse()
     {
         $this->data['breadcrumbs'] = [['href' => route('terms_of_use'), 'name' => trans('footer.user_agreement')]];
-        $this->data['content'] = Content::find(10)['text_'.app()->getLocale()];
+        $this->data['content'] = Content::select('text_'.app()->getLocale())->find(10)['text_'.app()->getLocale()];
         return $this->showView('user_agreement');
     }
 
@@ -86,7 +94,12 @@ class StaticController extends Controller
     {
         $this->data['breadcrumbs'] = [['href' => route('vacancies'), 'name' => trans('footer.vacancies')]];
         $this->data['head'] = trans('footer.vacancies');
-        $this->data['content'] = Content::find(2);
+        $this->data['content'] = Content::select(
+            'preview',
+            'full',
+            'head_'.app()->getLocale(),
+            'text_'.app()->getLocale()
+        )->find(2);
         $this->data['add_content'] = Vacancy::where('active',1)->orderBy('created_at', 'desc')->get();
         return $this->showView('vacancies');
     }
@@ -189,15 +202,15 @@ class StaticController extends Controller
                 'seo' => $settings->getSeoTags(),
                 'metas' => $this->metas,
                 'settings' => $settings->getSettings(),
-                'menu' => Menu::where('active',1)->get(),
-//                'menu' => Cache::remember('menu', 60*60*24*365, function () {
-//                    return Menu::where('active',1)->get();
-//                }),
-                'catalogue' => OilType::where('active',1)->get()
+//                'menu' => Menu::where('active',1)->select('id','subMenu','href','slug',app()->getLocale())->get(),
+                'menu' => Cache::remember('menu', $this->cacheTime, function () {
+                    return Menu::where('active',1)->with('subMenu')->select('id','href','slug',app()->getLocale())->get();
+                }),
+//                'catalogue' => OilType::where('active',1)->select(['id','slug','name_'.app()->getLocale()])->get()
 
-//                'catalogue' => Cache::remember('oil_types', 60*60*24*365, function () {
-//                    return OilType::where('active',1)->get();
-//                })
+                'catalogue' => Cache::remember('oil_types', $this->cacheTime, function () {
+                    return OilType::where('active',1)->select('id','slug','name_'.app()->getLocale())->get();
+                })
             ]));
     }
 }

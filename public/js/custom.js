@@ -2,12 +2,7 @@ $(document).ready(function ($) {
     //show wrapper
     setTimeout(function () {
         removingLoader();
-        windowResize();
     },1000);
-
-    $(window).resize(function () {
-        windowResize();
-    });
 
     // Get search
     var findForm = $('#search-form');
@@ -62,6 +57,8 @@ $(document).ready(function ($) {
         allCheckboxesFiltersCatalogue = checkBoxesFiltersCatalogueContainer.find('.jq-checkbox');
 
     checkBoxesFiltersCatalogueContainer.find('input[type=checkbox]').change(function () {
+        addingLoader();
+
         var catalogueFilters = {},
             oilList = $('#oil-list');
 
@@ -85,12 +82,11 @@ $(document).ready(function ($) {
                 'subsection_id': $('input[name=subsection_id]').val()
             }).done(function(data) {
                 if (!data.oil_count) {
-                    var newUrl = window.location.href.replace(/(\?page=\d+)$/g, '');
-                    document.location.href = newUrl;
+                    document.location.href = window.location.href.replace(/(\?page=\d+)$/g, '');
                 } else {
                     oilList.html(data.html);
                     oilList.fadeIn('fast');
-                    // removingLoader();
+                    removingLoader();
                 }
             });
         });

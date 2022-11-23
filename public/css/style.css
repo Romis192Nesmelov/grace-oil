@@ -569,6 +569,7 @@ th {
 /*colors*/
 /*fonts*/
 .text_edit{
+    /*min-height: 250px;*/
     text-align: justify;
 }
 .text_edit h1 {

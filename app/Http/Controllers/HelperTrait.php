@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 
 trait HelperTrait
 {
-    public $validationPhone = 'regex:/^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/';
-    public $validationFeedback = [
+    private $cacheTime = 60*60*24*365;
+    private $validationPhone = 'regex:/^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/';
+    private $validationFeedback = [
         'organization_name' => 'required|min:3|max:255',
         'email' => 'required|email',
         'phone' => 'max:2000',
         'i_agree' => 'required|accepted'
     ];
-    public $validationDoc = 'required|mimes:doc,docx';
-    
-    public function getRequestValidation()
+    private $validationDoc = 'required|mimes:doc,docx';
+
+    private function getRequestValidation()
     {
         return [
             'organization_name' => 'required|min:3|max:255',
@@ -42,14 +43,9 @@ trait HelperTrait
         'meta_google_site_verification' => ['name' => 'robots', 'property' => false],
     ];
 
-    public function transliteration($string)
-    {
-        return str_replace('_',' ',str_slug($string));
-    }
 
     public function processingFields(Request $request, $checkboxFields=null, $ignoreFields=null, $timeFields=null, $colorFields=null)
     {
-
         $exceptFields = ['id'];
         if ($ignoreFields) {
             if (is_array($ignoreFields)) $exceptFields = array_merge($exceptFields, $ignoreFields);
@@ -93,13 +89,13 @@ trait HelperTrait
         return $fields;
     }
 
-    public function convertTime($time)
-    {
-        $time = explode('/', $time);
-        return $time[1].'/'.$time[0].'/'.$time[2];
-    }
+//    private function convertTime($time)
+//    {
+//        $time = explode('/', $time);
+//        return $time[1].'/'.$time[0].'/'.$time[2];
+//    }
 
-    public function sendMessage($template, array $fields, $pathToFile=null, $copyTo=null)
+    private function sendMessage($template, array $fields, $pathToFile=null, $copyTo=null)
     {
         $title = trans('content.company_name');
         $fields['title'] = $title;

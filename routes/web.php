@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Menu;
-use App\Models\OilType;
-use App\Models\Manager;
 use Illuminate\Support\Facades\Cache;
 //Route::auth();
 
@@ -19,11 +17,13 @@ Route::post('/offer', 'FeedbackController@offer')->name('offer');
 
 //Route::get('/parser', 'ParserController@run');
 
-//foreach (Cache::remember('menu', 60*60*24*365, function () {
-//    return Menu::where('active',1)->with('subMenu')->get();
-//}) as $menu) {
+foreach (Cache::remember('menu', 60*60*24*365, function () {
+    return Menu::where('active',1)
+        ->with('subMenu','manager')
+        ->select('slug','use_slug','use_sub_slug')->get();
+}) as $menu) {
 
-foreach (Menu::where('active',1)->with('subMenu')->get() as $menu) {
+//foreach (Menu::where('active',1)->with('subMenu')->get() as $menu) {
 
     if ($menu->href && $menu->manager) {
         Route::get('/'.$menu->slug.(isset($menu->use_slug) && $menu->use_slug ? '/{slug?}' : '').(isset($menu->use_sub_slug) && $menu->use_sub_slug ? '/{sub_slug?}' : ''), $menu->manager->controller.'@'.$menu->manager->method);
@@ -36,12 +36,7 @@ foreach (Menu::where('active',1)->with('subMenu')->get() as $menu) {
             }
         }
     } elseif ($menu->id == 3) {
-        $manager = Cache::remember('manager_catalogue', 60*60*24*365, function () {
-            return Manager::find(3);
-        });
-        foreach (OilType::where('active',1)->get() as $oilType) {
-            Route::any('/'.$menu->slug.'/{slug?}/{sub_slug?}', $manager->controller.'@'.$manager->method);
-        }
+        Route::any('/'.$menu->slug.'/{slug?}/{sub_slug?}', $menu->manager->controller.'@'.$menu->manager->method);
     }
 }
 

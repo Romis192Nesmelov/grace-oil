@@ -46,7 +46,6 @@ class CatalogueController extends StaticController
             $request->session()->put('filters', $request->filters);
         }
 
-
         if ($slug) {
             if (!$oilType = OilType::where('slug', $slug)->where('active', 1)->pluck('name_' . App::getLocale(), 'id')->toArray()) abort(404);
             $this->data['oil_type_id'] = $arrayKeyFirst($oilType);
@@ -67,7 +66,15 @@ class CatalogueController extends StaticController
                         return $this->getAjaxHtml();
                     }
                 } else {
-                    if (!$this->data['oil'] = Oil::where('slug', $sub_slug)->where('active', 1)->first()) abort(404);
+                    if (!$this->data['oil'] = Oil::where('slug', $sub_slug)->where('active', 1)
+                        ->with(
+                            'viscosity',
+                            'documentations',
+                            'tolerances',
+                            'engineTypes',
+                            'solutions'
+                        )->first()
+                    ) abort(404);
                     $this->data['breadcrumbs'][] = ['href' => $menu->slug . '/' . $slug . '/' . $sub_slug, 'name' => $this->data['oil']['name_'.app()->getLocale()]];
                     return $this->showView('oil');
                 }
@@ -93,7 +100,15 @@ class CatalogueController extends StaticController
     {
 
 //        $this->data['oil'] = collect();
-        $oil = Oil::where('oil_type_id', $oilTypeId)->where('active', 1);
+        $oil = Oil::where('oil_type_id', $oilTypeId)
+            ->where('active', 1)
+            ->with(
+                'viscosity',
+                'documentations',
+                'tolerances',
+                'engineTypes',
+                'solutions'
+            );
 
         if ($subsectionId)
             $oil = $oil->where('subsection_id', $subsectionId);
@@ -166,7 +181,12 @@ class CatalogueController extends StaticController
     {
         $this->data['subsections'] = [];
         $subsectionsDone = [];
-        $oil = Oil::where('oil_type_id', $this->data['oil_type_id'])->where('subsection_id', '!=', null)->where('active', 1)->get();
+        $oil = Oil::where('oil_type_id', $this->data['oil_type_id'])
+            ->where('subsection_id', '!=', null)
+            ->where('active', 1)
+            ->select('subsection_id','name_' . app()->getLocale())
+            ->with('subsection')
+            ->get();
         foreach ($oil as $item) {
             if (!in_array($item->subsection_id, $subsectionsDone)) {
                 $this->data['subsections'][] = [
