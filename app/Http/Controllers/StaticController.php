@@ -19,6 +19,7 @@ class StaticController extends Controller
 
     public function index()
     {
+        Cache::flush();
         $this->data['slider'] = Slide::where('active',1)->select(
             'href',
             'image',
