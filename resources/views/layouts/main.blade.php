@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Wed Mar 21 2018 11:43:04 GMT+0000 (UTC)  -->
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-language" content="{{ app()->getLocale() }}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <title>{{ $seo['title'].(isset($title) ? ' '.$title : '') }}</title>
     @foreach($metas as $meta => $params)
@@ -13,10 +14,7 @@
             <meta {{ $params['name'] ? 'name='.$params['name'] : 'property='.$params['property'] }} content="{{ $seo[$meta] }}">
         @endif
     @endforeach
-
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <link rel="stylesheet" href="{{ asset('js/libs/bootstrap/css/bootstrap-grid.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('js/libs/fontawesome/css/font-awesome.css') }}">
@@ -47,35 +45,35 @@
 <body>
 <div class="loader"><div class="loader_inner"></div></div>
 <!-- Yandex.Metrika counter -->
-{{--<script type="text/javascript" >--}}
-    {{--(function (d, w, c) {--}}
-        {{--(w[c] = w[c] || []).push(function() {--}}
-            {{--try {--}}
-                {{--w.yaCounter46988226 = new Ya.Metrika({--}}
-                    {{--id:46988226,--}}
-                    {{--clickmap:true,--}}
-                    {{--trackLinks:true,--}}
-                    {{--accurateTrackBounce:true--}}
-                {{--});--}}
-            {{--} catch(e) { }--}}
-        {{--});--}}
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter46988226 = new Ya.Metrika({
+                    id:46988226,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
 
-        {{--var n = d.getElementsByTagName("script")[0],--}}
-                {{--s = d.createElement("script"),--}}
-                {{--f = function () { n.parentNode.insertBefore(s, n); };--}}
-        {{--s.type = "text/javascript";--}}
-        {{--s.async = true;--}}
-        {{--s.src = "https://mc.yandex.ru/metrika/watch.js";--}}
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
 
-        {{--if (w.opera == "[object Opera]") {--}}
-            {{--d.addEventListener("DOMContentLoaded", f, false);--}}
-        {{--} else { f(); }--}}
-    {{--})(document, window, "yandex_metrika_callbacks");--}}
-{{--</script>--}}
-{{--<noscript><div><img src="https://mc.yandex.ru/watch/46988226" style="position:absolute; left:-9999px;" alt="" /></div></noscript>--}}
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/46988226" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
 <!-- Page container -->
-<div class="page-wrapper">
+<div class="page-wrapper" lang="{{ app()->getLocale() }}">
     <div id="mob-menu-list">
         @include('blocks._main_menu_block')
     </div>
