@@ -106,5 +106,6 @@ return [
     'all' => 'Все',
     'description' => 'Описание',
     'application_area' => 'Область применения',
-    'documentation' => 'Документация'
+    'documentation' => 'Документация',
+    'no_matches_found' => 'Совпадений не найдено'
 ];

@@ -106,5 +106,6 @@ return [
     'all' => 'All',
     'description' => 'description',
     'application_area' => 'Application area',
-    'documentation' => 'Documentation'
+    'documentation' => 'Documentation',
+    'no_matches_found' => 'No matches found'
 ];
