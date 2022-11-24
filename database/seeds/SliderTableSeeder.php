@@ -11,7 +11,6 @@ class SliderTableSeeder extends Seeder
 
     public function run()
     {
-        
         $menu = Menu::all();
         $oilTypes = OilType::all();
         

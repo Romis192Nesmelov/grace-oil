@@ -2,6 +2,7 @@
 
 //namespace Database\Seeders;
 use Illuminate\Database\Seeder;
+use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ManagerTableSeeder;
 use Database\Seeders\MenuTableSeeder;
 use Database\Seeders\SubMenuTableSeeder;
@@ -32,7 +33,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(ManagerTableSeeder::class);
         $this->call(MenuTableSeeder::class);
         $this->call(SubMenuTableSeeder::class);
