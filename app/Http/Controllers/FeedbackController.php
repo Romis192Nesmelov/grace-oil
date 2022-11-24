@@ -16,14 +16,14 @@ class FeedbackController extends Controller
             'question' => 'max:2000',
             'i_agree' => 'required|accepted'
         ]);
-        $fields = $this->processingFields($request);
-        return $this->sendMail($request,'dealer',$fields);
+        $fields = $request->all();
+        return $this->sendMail($request,'feedback',$fields);
     }
 
     public function toBeAPartner(Request $request)
     {
         $this->validate($request, $this->getRequestValidation());
-        $fields = $this->processingFields($request);
+        $fields = $request->all();
         $fields['mailTitle'] = trans('content.to_make_a_partner');
         return $this->sendMail($request,'request',$fields);
     }
@@ -37,7 +37,7 @@ class FeedbackController extends Controller
             'my_message' => 'max:2000',
             'i_agree' => 'required|accepted'
         ]);
-        $fields = $this->processingFields($request);
+        $fields = $request->all();
         return $this->sendMail($request,'application',$fields);
     }
 
@@ -56,7 +56,7 @@ class FeedbackController extends Controller
             'i_agree' => 'required|accepted'
         ]);
 
-        $fields = $this->processingFields($request);
+        $fields = $request->all();
         return $this->sendMail($request,'grace_test',$fields);
     }
     
@@ -74,7 +74,7 @@ class FeedbackController extends Controller
             'i_agree' => 'required|accepted'
         ]);
 
-        $fields = $this->processingFields($request);
+        $fields = $request->all();
         return $this->sendMail($request,'resume',$fields,'resume_file');
     }
 
@@ -87,7 +87,7 @@ class FeedbackController extends Controller
             'offer_file' => $this->validationDoc,
             'i_agree' => 'required|accepted'
         ]);
-        $fields = $this->processingFields($request);
+        $fields = $request->all();
         return $this->sendMail($request,'offer',$fields,'offer_file');
     }
     

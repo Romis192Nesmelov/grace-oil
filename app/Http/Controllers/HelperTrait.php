@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Request;
 
 trait HelperTrait
 {
@@ -42,52 +41,6 @@ trait HelperTrait
         'meta_googlebot' => ['name' => 'googlebot', 'property' => false],
         'meta_google_site_verification' => ['name' => 'robots', 'property' => false],
     ];
-
-
-    public function processingFields(Request $request, $checkboxFields=null, $ignoreFields=null, $timeFields=null, $colorFields=null)
-    {
-        $exceptFields = ['id'];
-        if ($ignoreFields) {
-            if (is_array($ignoreFields)) $exceptFields = array_merge($exceptFields, $ignoreFields);
-            else $exceptFields[] = $ignoreFields;
-        }
-
-//        $exceptFields = array_merge($exceptFields, $this->ignoringFields);
-        $fields = $request->except($exceptFields);
-
-        if ($checkboxFields) {
-            if (is_array($checkboxFields)) {
-                foreach ($checkboxFields as $field) {
-                    $fields[$field] = isset($fields[$field]) && $fields[$field] == 'on' ? 1 : 0;
-                }
-            } else {
-                $fields[$checkboxFields] = isset($fields[$checkboxFields]) && $fields[$checkboxFields] == 'on' ? 1 : 0;
-            }
-        }
-
-        if ($timeFields) {
-            if (is_array($timeFields)) {
-                foreach ($timeFields as $field) {
-//                    $fields[$field] = Carbon::createFromTimestamp($this->convertDate($fields[$field]))->toDateTimeString();
-                    $fields[$field] = $this->convertDate($fields[$field]);
-                }
-            } else {
-//                $fields[$timeFields] = Carbon::createFromTimestamp($this->convertDate($fields[$timeFields]))->toDateTimeString();
-                $fields[$timeFields] = $this->convertDate($fields[$timeFields]);
-            }
-        }
-
-        if ($colorFields) {
-            if (is_array($colorFields)) {
-                foreach ($colorFields as $field) {
-                    $fields[$field] = $this->convertColor($fields[$field]);
-                }
-            } else {
-                $fields[$colorFields] = $this->convertColor($fields[$colorFields]);
-            }
-        }
-        return $fields;
-    }
 
 //    private function convertTime($time)
 //    {
