@@ -108,7 +108,7 @@ class ParserController extends Controller
                     
                     //Mask 0.4,1,4,5,10,18,20,180,210,230,1000
                     
-                    if ($k < 6 && (int)$tareVal) {
+                    if ($k <= 6 && (int)$tareVal) {
                         $image = $baseImageTare.str_replace(',','_',$tareVal).$oilUnit.'.jpg';
 
                         if (

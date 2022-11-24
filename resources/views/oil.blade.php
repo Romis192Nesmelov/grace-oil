@@ -47,7 +47,7 @@
                 <div class="tovar-image">
                     @foreach(['base','20','10','5','4','1'] as $val)
                         @if ($oil['image_'.$val])
-                            <img src="{{ asset($oil['image_'.$val]) }}" alt="{{ $oil['name_'.app()->getLocale()] }}">
+                            <img width="520" src="{{ asset($oil['image_'.$val]) }}" alt="{{ $oil['name_'.app()->getLocale()] }}">
                             @break
                         @endif
                     @endforeach
