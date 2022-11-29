@@ -208,6 +208,18 @@ class NewsTableSeeder extends Seeder
 
                 'sub_photos' => 2
             ],
+            [
+                'image' => 'images/news/new18.jpg',
+                'head_ru' => 'Расширение ассортимента антифризов GRACE',
+                'head_en' => 'Expansion of the range of GRACE antifreezes',
+                'time' => '29 November 2022',
+                'text_short_ru' => 'Охлаждающая жидкость GRACE ANTIFREEZE concentrate G12 yellow, специально разработанная для двигателей грузовых автомобилей Volvo',
+                'text_short_en' => 'GRACE ANTIFREEZE concentrate G12 yellow coolant specially developed for Volvo truck engines',
+                'text_full_ru' => '<p><strong>ООО «Грейс Лубрикантс» выводит на рынок послепродажного обслуживания новый антифриз GRACE ANTIFREEZE concentrate G12 yellow, специально разработанный для двигателей автомобилей Volvo.</strong></p><ul><li><i>ООО «Грейс Лубрикантс» запускает производство охлаждающей жидкости GRACE ANTIFREEZE concentrate G12 yellow, предназначенной для использования в замкнутых системах охлаждения двигателей грузовых автомобилей Volvo.</i></li><li><i>Благодаря уникальной формуле, антифриз полностью отвечает стандарту STD 1285.1 автопроизводителя Volvo и увеличивает интервал замены.</i></li><li><i>Охлаждающая жидкость GRACE ANTIFREEZE concentrate G12 yellow совместима со всеми металлами, сплавами, резиновыми и пластиковыми элементами двигателя Volvo, обеспечивая более высокую защиту от коррозии и замерзания по сравнению с другими охлаждающими жидкостями.</i></li></ul><p>ООО «Грейс Лубрикантс» расширяет свой ассортимент охлаждающих жидкостей для грузового автотранспорта.</p><p>GRACE ANTIFREEZE concentrate G12 yellow – качественная охлаждающая жидкость желтого цвета с увеличенным интервалом службы. Производится на основе гликолей и не содержит потенциально вредных веществ (нитритов, аминов, фосфатов и др.). Предназначена для использования в замкнутых системах охлаждения двигателей внутреннего сгорания грузовых автомобилей Volvo.</p><p><i>GRACE ANTIFREEZE concentrate G12 yellow разработан с использованием карбоксилатной технологии, которая повышает эффективность охлаждения двигателя и снижает воздействие гидродинамической кавитации.</i></p><p>По заявлению технического специалиста компании, «особый состав охлаждающей жидкости GRACE ANTIFREEZE concentrate G12 yellow обеспечивает максимальную защиту от замерзания, предотвращает коррозию, а также имеет повышенный теплоперенос. Данный Антифриз с увеличенным сроком службы совместим со всеми элементами охлаждающей системы грузового автотранспорта Volvo, а также превосходно ее защищает. Важно, что данная жидкость не выпадает в осадок в системе охлаждения и, как результат, не образует отложений и накипи. Основной целью нашей компании является полноценное и комплексное обеспечение потребителей смазочными материалами, доступными по цене, но, при этом, соответствующими мировым стандартам качества и экологической безопасности».</p><p>Более подробную информацию о линейке смазочных материалов ООО «Грейс Лубрикантс» вы сможете найти на сайте <a href="https://grace-oil.com" target="_blank">https://grace-oil.com</a>.</p>',
+                'text_full_en' => '<p><strong>Grace Lubricants LLC introduces a new antifreeze GRACE ANTIFREEZE concentrate G12 yellow, specially developed for Volvo car engines, to the aftersales market.</strong></p><ul><li><i>Grace Lubricants LLC launches production of GRACE ANTIFREEZE concentrate G12 yellow coolant, designed for use in closed cooling systems of Volvo truck engines.</i></li><li><i>Thanks to a unique formula, the antifreeze fully complies with Volvo\'s STD 1285.1 standard and extends the drain interval.</i></li><li><i>GRACE ANTIFREEZE concentrate G12 yellow coolant is compatible with all metals, alloys, rubber and plastic parts of the Volvo engine, providing better protection against corrosion and freezing than other coolants.</i></li></ul><p>Grace Lubricants LLC is expanding its range of coolants for trucks.</p><p>GRACE ANTIFREEZE concentrate G12 yellow is a high-quality yellow coolant with an extended service interval. Produced on the basis of glycols and does not contain potentially harmful substances (nitrites, amines, phosphates, etc.). Designed for use in closed cooling systems of internal combustion engines of Volvo trucks.</p><p><i>GRACE ANTIFREEZE concentrate G12 yellow is formulated with carboxylate technology to improve engine cooling and reduce hydrodynamic cavitation.</i></p><p>According to the company\'s technical specialist, “GRACE ANTIFREEZE concentrate G12 yellow coolant is specially formulated to provide maximum freeze protection, prevent corrosion, and also has increased heat transfer. This Extended Life Antifreeze is compatible with all parts of the Volvo truck cooling system and provides excellent protection. It is important that this liquid does not precipitate in the cooling system and, as a result, does not form deposits and scale. The main goal of our company is to fully and comprehensively provide consumers with lubricants that are affordable, but at the same time comply with international quality and environmental safety standards.</p><p>For more information about Grace Lubricants\' range of lubricants, please visit <a href="https://grace-oil.com" target="_blank">https://grace-oil.com </a>.</p>',
+
+                'sub_photos' => 0
+            ],
         ];
 
         $newsCounter = 1;
@@ -317,6 +329,11 @@ class NewsTableSeeder extends Seeder
             ['news_id' => 17,'similar_id' => 9],
             ['news_id' => 17,'similar_id' => 6],
             ['news_id' => 17,'similar_id' => 5],
+
+            ['news_id' => 18,'similar_id' => 17],
+            ['news_id' => 18,'similar_id' => 16],
+            ['news_id' => 18,'similar_id' => 15],
+            ['news_id' => 18,'similar_id' => 14],
         ];
 
         foreach ($similarNewsData as $data) {
