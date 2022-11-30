@@ -19,7 +19,7 @@ class SubMenuTableSeeder extends Seeder
             ['ru' => 'Отраслевые решения', 'en' => 'Industry Solutions', 'menu_id' => 2, 'add_content_model' => '\IndustrySolution', 'slug_model' => '\IndustrySolution', 'view' => 'industry_solutions', 'slug_view' => 'industry_solution', 'manager_id' => 1, 'active' => 1],
 
             ['ru' => 'Производство', 'en' => 'Production', 'menu_id' => 4, 'view' => 'production', 'manager_id' => 1, 'active' => 1],
-            ['ru' => 'Программа GRACE Test', 'en' => 'GRACE Test Program', 'menu_id' => 4, 'view' => 'grace_test', 'manager_id' => 1, 'active' => 1],
+            ['ru' => 'Программа GRACE Тест', 'en' => 'GRACE Test Program', 'menu_id' => 4, 'view' => 'grace_test', 'manager_id' => 1, 'active' => 1],
             ['ru' => 'Отзывы', 'en' => 'Reviews', 'menu_id' => 4, 'add_content_model' => '\Review', 'view' => 'reviews', 'manager_id' => 4, 'active' => 1],
 
             ['ru' => 'Сотрудничество', 'en' => 'Cooperation', 'menu_id' => 5, 'view' => 'cooperation', 'manager_id' => 1, 'active' => 1],

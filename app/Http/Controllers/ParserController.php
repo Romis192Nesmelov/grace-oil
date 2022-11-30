@@ -35,14 +35,17 @@ class ParserController extends Controller
         $getAdvantages = function ($string)
         {
             $advantages = explode('. ',$string);
-            if (count($advantages) == 1) return '<p>'.$string.'</p>';
+            if (count($advantages) == 1) {
+                $advantages = explode(';',$string);
+                if (count($advantages) == 1) return '<p>'.$string.'</p>';
+            }
             $html = '';
             foreach ($advantages as $k => $advantage) {
                 if (!$k) {
                     if (preg_match('/(\:)$/',$advantage)) $html = '<p>'.$advantage.'</p><ul>';
                     else $html = '<ul>';
                 }
-                $html .= '<li>'.$advantage.'.</li>';
+                $html .= '<li>'.trim($advantage).'.</li>';
             }
             $html .= '</ul>';
             return $html;
@@ -322,19 +325,19 @@ class ParserController extends Controller
             'GRACE_ANTIFREEZE_-65_G11_GREEN' => ['td','dc','cc'],
             'GRACE_ANTIFREEZE_CONCENTRATE_G12_RED' => ['td','dc','cc'],
             'GRACE_ANTIFREEZE_CONCENTRATE_G11_GREEN' => ['td','dc','cc'],
-            'LITOL-24' => ['td','dc','cc'],
+            'LITOL-24' => ['dc','cc'],
             'CIATIM-201' => ['dc','cc'],
             'CIATIM-203' => ['dc','cc'],
             'CIATIM-221' => ['dc','cc'],
             'GRACE_GREASE_SYNTH_LX_EP' => ['td','dc','cc'],
-            'GRACE_GREASE_LX_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_LX_EP' => ['dc','cc'],
             'GRACE_GREASE_L_EP' => ['td','dc','cc'],
-            'GRACE_GREASE_SYNTH_MOLY_LX_EP' => ['td','dc','cc'],
-            'GRACE_GREASE_MOLY_LX_300_EP' => ['td','dc','cc'],
-            'GRACE_GREASE_MOLY_EP' => ['td','dc','cc'],
+            'GRACE_GREASE_SYNTH_MOLY_LX_EP' => ['dc','cc'],
+            'GRACE_GREASE_MOLY_LX_300_EP' => ['dc','cc'],
+            'GRACE_GREASE_MOLY_EP' => ['dc','cc'],
             'GRACE_GREASE_CARBON' => ['dc','cc'],
             'GRACE_GREASE_NORD' => ['td','dc','cc'],
-            'GRACE_GREASE_POLY-M EP_2' => ['td','dc','cc'],
+            'GRACE_GREASE_POLY-M_EP_2' => ['dc','cc'],
             'GRACE_GREASE_ALUMINIX_EP_2' => ['dc','cc'],
             'GRACE_GREASE_AQUA' => ['td','dc','cc'],
             'GRACE_PEASANT_STOU_SS_5W-30' => ['cc'],
@@ -458,8 +461,7 @@ class ParserController extends Controller
             'GRACE_ANTIFREEZE_-40_G11_GREEN' => ['cc'],
             'GRACE_ANTIFREEZE-40_G11_HD' => ['cc'],
             'GRACE_ANTIFREEZE-40_G12_HD' => ['cc'],
-            'GRACE_TOSOL-40' => ['cc'],
-            'GRACE_GREASE_POLY-M_EP_2' => ['td', 'dc', 'cc'],
+            'GRACE_TOSOL-40' => ['cc']
         ];
 
 //        $missingDocs = [];

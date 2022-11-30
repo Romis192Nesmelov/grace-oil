@@ -69,9 +69,9 @@
                                 <div class="desc">
                                     <div class="bottle-title-title">
                                         @php $packing = str_replace('_',',',$tare->value); @endphp
-                                        @if ((int)$packing <= 6)
+                                        @if ((int)$packing <= 20)
                                             {{ $oil->units ? $packing.trans('content.kg') : $packing.trans('content.l') }}
-                                        @elseif ((int)$packing == 7)
+                                        @elseif ((int)$packing == 180)
                                             {{ $packing.trans('content.kg') }}
                                         @else
                                             {{ $packing.trans('content.l') }}
