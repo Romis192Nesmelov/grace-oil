@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\IndustrySolution;
 use App\Models\Oil;
+use App\Models\Tare;
 use App\Models\Tolerance;
 use App\Models\OilType;
 use App\Models\Subsection;
@@ -75,6 +76,7 @@ class ParserController extends Controller
                 $oilType = $oilTypes->where('name_ru',$oilTypeNameRu)->first();
                 $oilNameRu = $cells[3];
                 $oilNameEn = $cells[4];
+                $oilUnit = $cells[7];
 
                 // Get subsections
                 $subsectionRu = $cells[1];
@@ -93,35 +95,6 @@ class ParserController extends Controller
                 // Get base image
                 $oilUpperName = strtoupper(str_replace([' ','/','(',')','°','º'], ['_','_','','','',''], $oilNameEn));
                 $baseImage = 'images/catalogue/'.$oilType->slug.'/'.$oilUpperName.'.jpg';
-
-                // Get tare images
-                $tares = [];
-                $baseImageTare = 'images/catalogue/'.$oilType->slug.'/packaging/'.$oilUpperName.'/';
-                $docFilesDefImagesDir = 'images/oil/';
-                $oilUnit = $cells[7];
-
-                // Get tares
-                $taresVals = explode(',',$cells[6]);
-                if (count($taresVals) != 11) dd('not enough tares', $oilNameEn, $oilNameEn);
-
-                foreach ($taresVals as $k => $tareVal) {
-                    
-                    //Mask 0.4,1,4,5,10,18,20,180,210,230,1000
-                    
-                    if ($k <= 6 && (int)$tareVal) {
-                        $image = $baseImageTare.str_replace(',','_',$tareVal).$oilUnit.'.jpg';
-
-                        if (
-                            !file_exists(base_path('public/'.$image)) &&
-                            !in_array($oilNameEn, $exceptingOilImagesBase)
-                        ) dd('Not exist tare', $oilNameEn, base_path('public/'.$image));
-
-                        $tares[] = file_exists(base_path('public/'.$image)) ? $image : $docFilesDefImagesDir.'oil_'.$tareVal.'jpg';
-                    }
-                    elseif ($k >= 7 && $k < 10 && (int)$tareVal) $tares[] = $docFilesDefImagesDir.'oil_180kg.jpg';
-                    elseif ((int)$tareVal) $tares[] = $docFilesDefImagesDir.'oil_1000L.jpg';
-                    else $tares[] = null;
-                }
 
                 // Get descriptions
                 $descriptionRu = '<b>'.$oilNameRu.' – </b>'.$firstCharToLowercase($cells[10]);
@@ -156,18 +129,7 @@ class ParserController extends Controller
                 if (!$oil = Oil::where('name_en',$oilNameEn)->first()) {
                     $oilFields = [
                         'units' => $oilUnit == 'kg',
-                        'image_base' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : $docFilesDefImagesDir.'oil_base.jpg',
-                        'image_0_4' => $tares[0],
-                        'image_1' => $tares[1],
-                        'image_4' => $tares[2],
-                        'image_5' => $tares[3],
-                        'image_10' => $tares[4],
-                        'image_18' => $tares[5],
-                        'image_20' => $tares[6],
-                        'image_180' => $tares[7],
-                        'image_210' => $tares[8],
-                        'image_230' => $tares[9],
-                        'image_1000' => $tares[10],
+                        'image' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : $oilUpperName.'oil_base.jpg',
                         'name_ru' => $oilNameRu,
                         'name_en' => $oilNameEn,
                         'head_ru' => $cells[8] != 'empty' ? $cells[8] : '',
@@ -184,6 +146,42 @@ class ParserController extends Controller
                         'subsection_id' => $subsectionId
                     ];
                     $oil = Oil::create($oilFields);
+                }
+
+                // Get tare images
+                $defTaresImagesDir = 'images/oil/';
+
+                $taresVals = explode(',',$cells[6]);
+                $taresMatrix = ['0_4','1','4','5','10','18','20','180','210','230','1000'];
+                if (count($taresVals) != 11) dd('not enough tares', $oilNameEn, $oilNameEn);
+
+                foreach ($taresVals as $k => $tareVal) {
+                    if ($k <= 6 && ((int)$tareVal || $tareVal == '0_4')) {
+                        $image = 'images/catalogue/'.$oilType->slug.'/packaging/'.$oilUpperName.'/'.str_replace(',','_',$tareVal).$oilUnit.'.jpg';
+
+                        if (
+                            !file_exists(base_path('public/'.$image)) &&
+                            !in_array($oilNameEn, $exceptingOilImagesBase)
+                        ) dd('Not exist tare', $oilNameEn, base_path('public/'.$image));
+
+                        Tare::create([
+                            'image' => file_exists(base_path('public/'.$image)) ? $image : $defTaresImagesDir.'oil_'.$tareVal.'jpg',
+                            'value' => $taresMatrix[$k],
+                            'oil_id' => $oil->id
+                        ]);
+                    } elseif ($k >= 7 && $k < 10 && (int)$tareVal) {
+                        Tare::create([
+                            'image' => $defTaresImagesDir.'oil_180kg.jpg',
+                            'value' => $taresMatrix[$k],
+                            'oil_id' => $oil->id
+                        ]);
+                    } elseif ((int)$tareVal) {
+                        Tare::create([
+                            'image' => $defTaresImagesDir.'oil_1000L.jpg',
+                            'value' => $taresMatrix[$k],
+                            'oil_id' => $oil->id
+                        ]);
+                    }
                 }
 
                 //Get Engine type
@@ -325,19 +323,19 @@ class ParserController extends Controller
             'GRACE_ANTIFREEZE_CONCENTRATE_G12_RED' => ['td','dc','cc'],
             'GRACE_ANTIFREEZE_CONCENTRATE_G11_GREEN' => ['td','dc','cc'],
             'LITOL-24' => ['td','dc','cc'],
-            'CIATIM-201' => ['td','dc','cc'],
-            'CIATIM-203' => ['td','dc','cc'],
-            'CIATIM-221' => ['td','dc','cc'],
+            'CIATIM-201' => ['dc','cc'],
+            'CIATIM-203' => ['dc','cc'],
+            'CIATIM-221' => ['dc','cc'],
             'GRACE_GREASE_SYNTH_LX_EP' => ['td','dc','cc'],
             'GRACE_GREASE_LX_EP' => ['td','dc','cc'],
             'GRACE_GREASE_L_EP' => ['td','dc','cc'],
             'GRACE_GREASE_SYNTH_MOLY_LX_EP' => ['td','dc','cc'],
             'GRACE_GREASE_MOLY_LX_300_EP' => ['td','dc','cc'],
             'GRACE_GREASE_MOLY_EP' => ['td','dc','cc'],
-            'GRACE_GREASE_CARBON' => ['td','dc','cc'],
+            'GRACE_GREASE_CARBON' => ['dc','cc'],
             'GRACE_GREASE_NORD' => ['td','dc','cc'],
             'GRACE_GREASE_POLY-M EP_2' => ['td','dc','cc'],
-            'GRACE_GREASE_ALUMINIX_EP_2' => ['td','dc','cc'],
+            'GRACE_GREASE_ALUMINIX_EP_2' => ['dc','cc'],
             'GRACE_GREASE_AQUA' => ['td','dc','cc'],
             'GRACE_PEASANT_STOU_SS_5W-30' => ['cc'],
             'GRACE_PEASANT_STOU_C_10W-30' => ['cc'],

@@ -45,9 +45,9 @@
             </div>
             <div class="tovar-block">
                 <div class="tovar-image">
-                    @foreach(['base','20','10','5','4','1'] as $val)
-                        @if ($oil['image_'.$val])
-                            <img width="520" src="{{ asset($oil['image_'.$val]) }}" alt="{{ $oil['name_'.app()->getLocale()] }}">
+                    @foreach(['','_20','_10','_5','_4','_1'] as $val)
+                        @if ($oil['image'.$val])
+                            <img width="520" src="{{ asset($oil['image'.$val]) }}" alt="{{ $oil['name_'.app()->getLocale()] }}">
                             @break
                         @endif
                     @endforeach
@@ -63,25 +63,23 @@
                     </table>
                     <div class="tovar-descr-title bottle-size-title">{{ trans('content.packing') }}</div>
                     <div class="bottle-size-list wrap-image-packing">
-                        @foreach(['0_4', '1','4','5','10','18','20','180','210','230','1000'] as $k => $packing)
-                            @if ($oil['image_'.$packing])
-                                <div class="bottle-item packing-active" data-packing="packing_{{ $packing }}" title="{{ trans('content.click_to_view_image') }}">
-                                    <div class="prev"><img src="{{ asset('images/packing_icons/icon_'.$packing.'.png') }}" alt="bottle"></div>
-                                    <div class="desc">
-                                        <div class="bottle-title-title">
-                                            @php $packing = str_replace('_',',',$packing); @endphp
-                                            @if ($k <= 6)
-                                                {{ $oil->units ? $packing.trans('content.kg') : $packing.trans('content.l') }}
-                                            @elseif ($k == 7)
-                                                {{ $packing.trans('content.kg') }}
-                                            @else
-                                                {{ $packing.trans('content.l') }}
-                                            @endif
-                                        </div>
+                        @foreach($oil->tares as $tare)
+                            <div class="bottle-item packing-active" data-packing="packing_{{ $tare->value }}" title="{{ trans('content.click_to_view_image') }}">
+                                <div class="prev"><img src="{{ asset('images/packing_icons/icon_'.$tare->value.'.png') }}" alt="bottle"></div>
+                                <div class="desc">
+                                    <div class="bottle-title-title">
+                                        @php $packing = str_replace('_',',',$tare->value); @endphp
+                                        @if ((int)$packing <= 6)
+                                            {{ $oil->units ? $packing.trans('content.kg') : $packing.trans('content.l') }}
+                                        @elseif ((int)$packing == 7)
+                                            {{ $packing.trans('content.kg') }}
+                                        @else
+                                            {{ $packing.trans('content.l') }}
+                                        @endif
                                     </div>
-                                    <div id="packing_{{ $packing }}" data-src="{{ asset($oil['image_'.$packing]) }}"></div>
                                 </div>
-                            @endif
+                                <div id="packing_{{ $packing }}" data-src="{{ asset($tare->image) }}"></div>
+                            </div>
                         @endforeach
                     </div>
 

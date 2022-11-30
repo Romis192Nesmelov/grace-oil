@@ -68,6 +68,7 @@ class CatalogueController extends StaticController
                 } else {
                     if (!$this->data['oil'] = Oil::where('slug', $sub_slug)->where('active', 1)
                         ->with(
+                            'tares',
                             'viscosity',
                             'documentations',
                             'tolerances',

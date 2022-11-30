@@ -9,18 +9,7 @@ class Oil extends Model
 {
     protected $fillable = [
         'units',
-        'image_base',
-        'image_0_4',
-        'image_1',
-        'image_4',
-        'image_5',
-        'image_10',
-        'image_18',
-        'image_20',
-        'image_180',
-        'image_210',
-        'image_230',
-        'image_1000',
+        'image',
         'name_ru',
         'name_en',
         'head_ru',
@@ -64,6 +53,11 @@ class Oil extends Model
     public function viscosity()
     {
         return $this->belongsTo('App\Models\ViscosityGrade','viscosity_grade_id');
+    }
+
+    public function tares()
+    {
+        return $this->hasMany('App\Models\Tare');
     }
 
     public function documentations()
