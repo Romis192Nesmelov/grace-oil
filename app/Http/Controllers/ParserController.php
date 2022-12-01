@@ -45,7 +45,7 @@ class ParserController extends Controller
                     if (preg_match('/(\:)$/',$advantage)) $html = '<p>'.$advantage.'</p><ul>';
                     else $html = '<ul>';
                 }
-                $html .= '<li>'.trim($advantage).'.</li>';
+                $html .= '<li>'.trim($advantage).'</li>';
             }
             $html .= '</ul>';
             return $html;
@@ -336,7 +336,7 @@ class ParserController extends Controller
             'GRACE_GREASE_MOLY_LX_300_EP' => ['dc','cc'],
             'GRACE_GREASE_MOLY_EP' => ['dc','cc'],
             'GRACE_GREASE_CARBON' => ['dc','cc'],
-            'GRACE_GREASE_NORD' => ['td','dc','cc'],
+            'GRACE_GREASE_NORD' => ['dc','cc'],
             'GRACE_GREASE_POLY-M_EP_2' => ['dc','cc'],
             'GRACE_GREASE_ALUMINIX_EP_2' => ['dc','cc'],
             'GRACE_GREASE_AQUA' => ['td','dc','cc'],
