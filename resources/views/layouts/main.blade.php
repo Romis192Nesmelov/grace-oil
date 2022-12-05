@@ -72,6 +72,9 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/46988226" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YCFWVM2BZD"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YCFWVM2BZD'); </script>
+
 <!-- Page container -->
 <div class="page-wrapper" lang="{{ app()->getLocale() }}">
     <div id="mob-menu-list">
