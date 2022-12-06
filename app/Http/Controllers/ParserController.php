@@ -132,7 +132,7 @@ class ParserController extends Controller
                 if (!$oil = Oil::where('name_en',$oilNameEn)->first()) {
                     $oilFields = [
                         'units' => $oilUnit == 'kg',
-                        'image' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : $oilUpperName.'oil_base.jpg',
+                        'image' => file_exists(base_path('public/'.$baseImage)) ? $baseImage : 'images/oil_base.jpg',
                         'name_ru' => $oilNameRu,
                         'name_en' => $oilNameEn,
                         'head_ru' => $cells[8] != 'empty' ? $cells[8] : '',
