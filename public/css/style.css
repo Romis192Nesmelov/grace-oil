@@ -1996,7 +1996,7 @@ header {
     font-weight: 600;
     margin-bottom: 18px;
     display: block;
-    max-height: 48px;
+    /*max-height: 48px;*/
     overflow: hidden; }
     .service-item .title-item:hover, .service-item .title-item:focus {
       color: #EB7C1E;
