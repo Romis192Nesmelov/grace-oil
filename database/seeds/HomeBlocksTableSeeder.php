@@ -24,9 +24,9 @@ class HomeBlocksTableSeeder extends Seeder
             ],
             [
                 'image' => 'images/home_blocks/home_block2.jpg',
-                'head_ru' => 'Производство GRACE<br>Запатентованная технология кавитационно-вакуумного комплекса.',
+                'head_ru' => 'Производство продукции GRACE<br>Запатентованная технология.',
                 'text_ru' => '<div class="text-item">Смазочные материалы производятся на сертифицированной установке по модификации технических масел в соответствии с запатентованной уникальной технологией «Комплекс кавитационно-вакуумного смешения вязких жидкостей».</div><div class="text-item">Полностью автоматизированное производство позволяет выпускать более 100 тонн масла в сутки.</div><div class="text-item">Резервуарный парк на производстве обеспечивает хранение свыше 200 тонн готовой продукции.</div>',
-                'head_en' => 'Production GRACE<br>Patented technology of cavitation-vacuum complex.',
+                'head_en' => 'Production of GRACE products<br>Patented technology.',
                 'text_en' => '<div class="text-item">Lubricants are produced at a certified plant for the modification of technical oils in accordance with the patented unique technology "Complex of cavitation-vacuum mixing of viscous liquids".</div><div class="text-item"> Fully automated production allows the production of more than 100 tons of oil per day.</div><div class="text-item">The production tank farm provides storage for over 200 tons of finished products.</div>',
                 'button_text_ru' => 'О продукции',
                 'button_text_en' => 'About products',

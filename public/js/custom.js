@@ -1,8 +1,13 @@
 $(document).ready(function ($) {
     //show wrapper
     setTimeout(function () {
+        windowResize();
         removingLoader();
     },1000);
+
+    $(window).resize(function() {
+        windowResize();
+    });
 
     // Get search
     var findForm = $('#search-form');
@@ -99,21 +104,32 @@ function addingLoader() {
 }
 
 function removingLoader() {
-    var loader = $('.loader');
     // $('body').css('overflow','auto')
-    loader.animate({'opacity':0},'slow',function () {
+    $('.loader').animate({'opacity':0},'slow',function () {
         $(this).remove();
     });
 }
 
 function windowResize() {
-    var mainContainer = $('.main > .container'),
-        body = $('body');
-    if (mainContainer.height() < 500) {
-        body.css('overflow-y','hidden');
-        mainContainer.css('height',(parseInt($('body').height()) - parseInt($('header').height()) - parseInt($('footer').height()) - 96));
-    } else {
-        mainContainer.css('height','auto');
-        body.css('overflow-y','auto');
-    }
+    maxHeight($('.service-item .descr'));
+    // var mainContainer = $('.main > .container'),
+    //     body = $('body');
+    // if (mainContainer.height() < 500) {
+    //     body.css('overflow-y','hidden');
+    //     mainContainer.css('height',(parseInt($('body').height()) - parseInt($('header').height()) - parseInt($('footer').height()) - 96));
+    // } else {
+    //     mainContainer.css('height','auto');
+    //     body.css('overflow-y','auto');
+    // }
+}
+
+
+function maxHeight(objs) {
+    if ($(window).width() > 991) {
+        var maxHeight = 0;
+        objs.each(function(){
+            if (maxHeight < $(this).height()) maxHeight = $(this).height();
+        });
+    } else maxHeight = 'auto';
+    objs.css('height',maxHeight);
 }

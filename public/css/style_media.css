@@ -40,7 +40,8 @@
   .service-item {
     width: 368px; }
     .service-item .descr {
-      height: 394px; }
+      display: table;
+    }
     .service-item .def-btn {
       font-size: 13px;
       width: 152px;
