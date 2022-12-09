@@ -112,6 +112,7 @@ function removingLoader() {
 
 function windowResize() {
     maxHeight($('.service-item .descr'));
+    maxHeight($('.about-comp-item .comp-item-text'));
     // var mainContainer = $('.main > .container'),
     //     body = $('body');
     // if (mainContainer.height() < 500) {

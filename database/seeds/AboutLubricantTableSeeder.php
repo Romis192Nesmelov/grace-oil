@@ -13,9 +13,9 @@ class AboutLubricantTableSeeder extends Seeder
             [
                 'image' => 'images/icons/icon1.png',
                 'head_ru' => 'Качество',
-                'text_ru' => 'Вся продукция компании «Грейс Лубрикантс» производится по уникальной технологии HDT в соответствии с новейшими требованиями мировых стандартов и проходит строгий контроль качества.',
+                'text_ru' => 'Вся продукция компании «Грейс Лубрикантс» производится по запатентованной уникальной технологией в соответствии с новейшими требованиями мировых стандартов.',
                 'head_en' => 'Quality',
-                'text_en' => 'All Grace Lubricants products are manufactured using the unique HDT technology in accordance with the latest requirements of world standards and undergo strict quality control.'
+                'text_en' => 'All Grace Lubricants products are manufactured using a patented unique technology in accordance with the latest requirements of world standards.'
             ],
             [
                 'image' => 'images/icons/icon2.png',
