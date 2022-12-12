@@ -16,7 +16,6 @@ $(document).ready(function ($) {
         location.href = '/search/'+findForm.find('input').val();
     });
 
-
     // Review filters
     var checkBoxesFiltersContainer = $('#checkboxes-list'),
         allCheckboxesFilters = checkBoxesFiltersContainer.find('.jq-checkbox'),
@@ -126,7 +125,7 @@ function windowResize() {
 
 
 function maxHeight(objs) {
-    if ($(window).width() > 991) {
+    if ($(window).width() > 650) {
         var maxHeight = 0;
         objs.each(function(){
             if (maxHeight < $(this).height()) maxHeight = $(this).height();
