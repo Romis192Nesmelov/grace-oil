@@ -243,6 +243,18 @@ class NewsTableSeeder extends Seeder
                 'text_full_en' => '<p>Dear Clients,</p><p>we would like to inform you about the change in the design of caps for the GRACE OEM line of motor oils. The new caps for the 5 liter jerry cans will be introduced to the market in orange in an updated form.</p><p>The transition to the new version of the cover will be carried out in stages. Therefore, canisters with both lid options will be on sale.</p><div class="mw-100 mx-auto my-3"><img class="w-100" src="/images/news/news_caps.jpg" /></div>',
 
                 'sub_photos' => 0
+            ],
+            [
+                'image' => 'images/news/new21.jpg',
+                'head_ru' => 'Обновление дизайна 20-литровых канистр технических жидкостей',
+                'head_en' => 'Design update for 20-liter cans of technical fluids',
+                'time' => '13 December 2022',
+                'text_short_ru' => 'Более удобные канистры 20 литров',
+                'text_short_en' => 'More convenient canisters of 20 liters',
+                'text_full_ru' => '<p>Уважаемые клиенты,</p><p>сообщаем вам, что с декабря 2022 года будут использоваться 20-литровые канистры новой формы и цвета. Обращаем ваше внимание, что технические жидкости могут поставляться как в старой 20-литровой канистре, так и в новой.</p><p>Новые канистры отличаются более эргономичной ручкой, благодаря которой переносить емкость и удерживать ее при заливке масла стало удобнее. Крышки канистр также будут иметь обновленный цвет - оранжевый.</p><p>Продукция GRACE производится на основе запатентованной уникальной технологии «Комплекс кавитационно-вакуумного смешения вязких жидкостей», проходит испытания в сложных и экстремальных условиях эксплуатации и застрахована в крупнейшей страховой компании «Ренессанс Страхование».</p><div class="mw-100 mx-auto my-3"><img class="w-100" src="/images/news/new_design.jpg" /></div>',
+                'text_full_en' => '<p>Dear Clients,</p><p>We would like to inform you that from December 2022, 20-liter canisters of a new shape and color will be used. Please note that technical fluids can be supplied both in the old 20-liter canister and in the new one.</p><p>The new canisters feature a more ergonomic handle, which makes it easier to carry the container and hold it while filling the oil. Canister lids will also have an updated color - orange.</p><p>GRACE products are manufactured on the basis of the patented unique technology «Complex of cavitation-vacuum mixing of viscous liquids», are tested in difficult and extreme operating conditions and are insured by the largest insurance company «Renaissance Insurance».</p><div class="mw-100 mx-auto my-3"><img class="w-100" src="/images/news/new_design.jpg" /></div>',
+
+                'sub_photos' => 0
             ]
         ];
 
@@ -368,6 +380,11 @@ class NewsTableSeeder extends Seeder
             ['news_id' => 20,'similar_id' => 18],
             ['news_id' => 20,'similar_id' => 17],
             ['news_id' => 20,'similar_id' => 16],
+
+            ['news_id' => 21,'similar_id' => 20],
+            ['news_id' => 21,'similar_id' => 19],
+            ['news_id' => 21,'similar_id' => 18],
+            ['news_id' => 21,'similar_id' => 17],
         ];
 
         foreach ($similarNewsData as $data) {
