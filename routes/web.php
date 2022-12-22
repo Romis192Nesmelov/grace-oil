@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Menu;
-use Illuminate\Support\Facades\Cache;
+//use Illuminate\Support\Facades\Cache;
 //Route::auth();
 
 Route::get('/search/{slug}', 'SearchController@find');
@@ -17,10 +17,10 @@ Route::post('/offer', 'FeedbackController@offer')->name('offer');
 
 //Route::get('/parser', 'ParserController@run');
 //Cache::flush();
-foreach (Cache::remember('menu', 60*60*24*365, function () {
-    return Menu::where('active',1)->with('subMenu')->get();
-}) as $menu) {
-//foreach (Menu::where('active',1)->with('subMenu')->get() as $menu) {
+//foreach (Cache::remember('menu', 60*60*24*365, function () {
+//    return Menu::where('active',1)->with('subMenu')->get();
+//}) as $menu) {
+foreach (Menu::where('active',1)->with('subMenu')->get() as $menu) {
 
     if ($menu->href && $menu->manager) {
         Route::get('/'.$menu->slug.(isset($menu->use_slug) && $menu->use_slug ? '/{slug?}' : '').(isset($menu->use_sub_slug) && $menu->use_sub_slug ? '/{sub_slug?}' : ''), $menu->manager->controller.'@'.$menu->manager->method);
