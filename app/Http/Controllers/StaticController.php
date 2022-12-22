@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+//use Illuminate\Support\Facades\Cache;
 use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Slide;
@@ -207,11 +207,10 @@ class StaticController extends Controller
 //                'menu' => Cache::remember('menu', $this->cacheTime, function () {
 //                    return Menu::where('active',1)->with('subMenu')->select('id','href','slug',app()->getLocale())->get();
 //                }),
-//                'catalogue' => OilType::where('active',1)->select(['id','slug','name_'.app()->getLocale()])->get()
-
-                'catalogue' => Cache::remember('oil_types', $this->cacheTime, function () {
-                    return OilType::where('active',1)->select('id','slug','name_'.app()->getLocale())->get();
-                })
+                'catalogue' => OilType::where('active',1)->select(['id','slug','name_'.app()->getLocale()])->get()
+//                'catalogue' => Cache::remember('oil_types', $this->cacheTime, function () {
+//                    return OilType::where('active',1)->select('id','slug','name_'.app()->getLocale())->get();
+//                })
             ]));
     }
 }
