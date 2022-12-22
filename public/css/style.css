@@ -3504,15 +3504,17 @@ script{
     font-size: 17px;
 }
 .lubricant-item .lubricant-download {
-    background-color: #45474d;
+    /*background-color: #45474d;*/
     width: 290px;
     position: relative;
 }
 .lubricant-item .title-download {
-    color: white;
-    font-size: 20px;
-    line-height: 28px;
-    margin: 30px 0 0;
+    /*color: white;*/
+    font-size: 17px;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: center;
+    /*margin: 30px 0 0;*/
 }
 .lubricant-item .def-btn {
     color: #fff;
@@ -3525,7 +3527,16 @@ script{
     height: 65px;
     line-height: 65px;
 }
-.lubricant-item .def-btn:hover, .lubricant-item .def-btn:focus {
+
+.lubricant-item .def-btn.round {
+    width: 280px;
+    position: relative;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.lubricant-item .def-btn:hover,
+.lubricant-item .def-btn:focus {
     color: #fff;
 }
 .lubricant-item .lubricant-prev {

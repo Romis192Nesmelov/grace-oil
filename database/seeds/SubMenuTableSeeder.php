@@ -15,7 +15,7 @@ class SubMenuTableSeeder extends Seeder
             ['ru' => 'Вакансии', 'en' => 'Vacancies', 'menu_id' => 1, 'add_content_model' => '\Vacancy', 'view' => 'vacancies', 'manager_id' => 1, 'active' => 0],
 
             ['ru' => 'О продукции', 'en' => 'About products', 'menu_id' => 2, 'add_content_model' => '\AboutProduct', 'view' => 'about_products', 'manager_id' => 1, 'active' => 1],
-            ['ru' => 'О GRACE® Lubricants', 'en' => 'About GRACE® Lubricants', 'menu_id' => 2, 'add_content_model' => '\AboutLubricant', 'view' => 'about_lubricants', 'manager_id' => 1, 'active' => 1],
+            ['ru' => 'О бренде GRACE', 'en' => 'About the GRACE brand', 'menu_id' => 2, 'add_content_model' => '\AboutLubricant', 'view' => 'about_lubricants', 'manager_id' => 1, 'active' => 1],
             ['ru' => 'Отраслевые решения', 'en' => 'Industry Solutions', 'menu_id' => 2, 'add_content_model' => '\IndustrySolution', 'slug_model' => '\IndustrySolution', 'view' => 'industry_solutions', 'slug_view' => 'industry_solution', 'manager_id' => 1, 'active' => 1],
 
             ['ru' => 'Производство', 'en' => 'Production', 'menu_id' => 4, 'view' => 'production', 'manager_id' => 1, 'active' => 1],

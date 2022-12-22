@@ -52,6 +52,7 @@ return [
     'you_will_be_provided_with' => 'You will be provided with',
     
     'download' => 'Download',
+    'download_brochure' => 'Download Brochure',
     
     'other_sections_of_the_catalog' => 'Other sections of the catalog',
     'how_to_become_a_dealer' => 'A business entity registered in the territory of the Russian Federation, regardless of its organizational and legal form, can become a dealer. For questions about assigning the status of a dealer, call: :phone, contact: :address or fill out the form below.',

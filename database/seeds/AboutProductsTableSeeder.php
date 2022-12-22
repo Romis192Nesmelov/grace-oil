@@ -56,7 +56,7 @@ class AboutProductsTableSeeder extends Seeder
                 'head_en' => 'Transmission Oils',
                 'text_ru' => '<p>Трансмиссионные масла GRACE представлены достаточно большим ассортиментом, состоящим из нескольких линеек:</p><ul><li>GRACE GYP, UNIS и EP-4 – масла для механических трансмиссий, мостов и дифференциалов;</li><li>GRACE ATF – масла для автоматических трансмиссий;</li><li>GRACE CVT – масла для бесступенчатых трансмиссий (вариаторов).</li></ul><p>Ассортимент трансмиссионных масел GRACE включает минеральные, полусинтетические, синтетические масла, предназначенные для эксплуатации в легковых, грузовых автомобилях и специальной техники.</p>',
                 'text_en' => '<p>GRACE gear oils are represented by a fairly large assortment, consisting of several lines:</p><ul><li>GRACE GYP, UNIS and EP-4 - oils for mechanical transmissions, axles and differentials;</li><li>GRACE ATF - oils for automatic transmissions;</li><li>GRACE CVT - oils for continuously variable transmissions (variators).</li></ul><p>The range of GRACE gear oils includes mineral, semi-synthetic, synthetic oils designed for use in cars, trucks and special vehicles.</p>',
-                'brochure_id' => 6
+                'brochure_id' => 25
             ],
             [
                 'image' => 'images/about_products/image7.jpg',
@@ -64,7 +64,7 @@ class AboutProductsTableSeeder extends Seeder
                 'head_en' => 'Industrial Oils',
                 'text_ru' => '<p>Высокоэффективные смазочные материалы GRACE для промышленного оборудования:</p><ul><li>Гидравлические жидкости</li><li>Турбинные масла</li><li>Редукторные масла</li><li>Компрессорные масла</li><li>Масла для направляющих скольжения</li><li>Шпиндельные масла</li></ul>',
                 'text_en' => '<p>GRACE High Performance Lubricants for Industrial Equipment:</p><ul><li>Hydraulic fluids</li><li>Turbine oils</li><li>gear oils</li><li>Compressor oils</li><li>Guide oils</li><li>Spindle oils</li></ul>',
-                'brochure_id' => 7
+                'brochure_id' => 6
             ],
             [
                 'image' => 'images/about_products/image8.jpg',
@@ -72,7 +72,7 @@ class AboutProductsTableSeeder extends Seeder
                 'head_en' => 'Coolants',
                 'text_ru' => '<p>В ассортименте компании «Грейс Лубрикантс» присутствуют охлаждающие жидкости: антифризы и тосол, закрывающие все потребности потребителей. Они используются в легковом, грузовом, коммерческом автотранспорте, а также в сельскохозяйственной, тяжелой и спецтехнике.</p><p>Предназначены для использования в качестве охлаждающей жидкости и жидкого теплоносителя в двигателях внутреннего сгорания, независимо от того, сделаны они из чугуна, алюминия или комбинации обоих этих материалов, а также в системах охлаждения из алюминиевых и медных сплавов.</p><p>Охлаждающие жидкости GRACE гарантируют быстрое и качественное охлаждение работающих двигателей внутреннего сгорания любых транспортных средств.</p>',
                 'text_en' => '<p>The range of GRACE Lubricants contains coolants: antifreeze and antifreeze, covering all the needs of consumers. They are used in cars, trucks, commercial vehicles, as well as in agricultural, heavy and special equipment.</p><p>Designed for use as a coolant and heat transfer fluid in internal combustion engines, whether they are made of cast iron, aluminum or a combination of both, as well as in cooling systems made of aluminum and copper alloys.</p><p>GRACE coolants guarantee fast and high-quality cooling of working internal combustion engines of any vehicles.</p>',
-                'brochure_id' => 8
+                'brochure_id' => 7
             ],
        ];
         
