@@ -131,6 +131,11 @@ class BrochuresTableSeeder extends Seeder
                 'description_ru' => 'Брошюра «Смазочные материалы GRACE для малоразмерной техники»',
                 'description_en' => 'Leaflet «GRACE Oils for Moto and Garden Equipment»',
             ],
+            [
+                'link' => 'brochures/brochure6.pdf',
+                'description_ru' => 'Брошюра «Трансмиссионые масла GRACE»',
+                'description_en' => '"GRACE Gear Oil" brochure"',
+            ],
        ];
         
         foreach ($data as $item) {

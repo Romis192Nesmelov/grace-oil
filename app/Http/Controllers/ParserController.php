@@ -339,7 +339,7 @@ class ParserController extends Controller
             'GRACE_GREASE_NORD' => ['dc','cc'],
             'GRACE_GREASE_POLY-M_EP_2' => ['dc','cc'],
             'GRACE_GREASE_ALUMINIX_EP_2' => ['dc','cc'],
-            'GRACE_GREASE_AQUA' => ['td','dc','cc'],
+            'GRACE_GREASE_AQUA' => ['dc','cc'],
             'GRACE_PEASANT_STOU_SS_5W-30' => ['cc'],
             'GRACE_PEASANT_STOU_C_10W-30' => ['cc'],
             'GRACE_PEASANT_STOU_SS_10W-40' => ['cc'],

@@ -1986,7 +1986,6 @@ header {
     margin-bottom: 12px; }
   .service-item .descr {
     padding: 0 16px;
-    height: 298px;
     overflow: hidden; }
   .service-item .title-item {
     font-family: "Century Gothic", sans-serif;
@@ -1996,7 +1995,7 @@ header {
     font-weight: 600;
     margin-bottom: 18px;
     display: block;
-    max-height: 48px;
+    /*max-height: 48px;*/
     overflow: hidden; }
     .service-item .title-item:hover, .service-item .title-item:focus {
       color: #EB7C1E;
@@ -2632,7 +2631,6 @@ header {
     line-height: 24px;
     color: #061A40;
     overflow: hidden;
-    height: 119px;
     margin-bottom: 20px;
   }
 
@@ -3455,7 +3453,7 @@ script{
     margin-bottom: 15px;
 }
 #success p {
-  color: #1143744;
+  color: #114374;
   margin: 0;
   padding: 0 20px 20px 20px;
   text-align: center;
@@ -3506,15 +3504,17 @@ script{
     font-size: 17px;
 }
 .lubricant-item .lubricant-download {
-    background-color: #45474d;
+    /*background-color: #45474d;*/
     width: 290px;
     position: relative;
 }
 .lubricant-item .title-download {
-    color: white;
-    font-size: 20px;
-    line-height: 28px;
-    margin: 30px 0 0;
+    /*color: white;*/
+    font-size: 17px;
+    line-height: 25px;
+    font-weight: bold;
+    text-align: center;
+    /*margin: 30px 0 0;*/
 }
 .lubricant-item .def-btn {
     color: #fff;
@@ -3527,7 +3527,16 @@ script{
     height: 65px;
     line-height: 65px;
 }
-.lubricant-item .def-btn:hover, .lubricant-item .def-btn:focus {
+
+.lubricant-item .def-btn.round {
+    width: 280px;
+    position: relative;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.lubricant-item .def-btn:hover,
+.lubricant-item .def-btn:focus {
     color: #fff;
 }
 .lubricant-item .lubricant-prev {
