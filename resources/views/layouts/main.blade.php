@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style_media.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/additional.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/paginator.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/partner_programs.css') }}" />
 
@@ -105,6 +106,7 @@
                     <div class="h-contact-wp">
                         <div class="row-flex">
                             <div class="btn-wp">
+                                @include('blocks._marketplaces_block')
                                 @include('blocks._phone_block', ['className' => 'phone-header'])
                                 <div class="chahge-lang">
                                     <span class="lang-btn"><img src="{{ asset('images/'.(app()->getLocale() == 'ru' ? 'flag.png' : 'flag-amer.png')) }}" alt="flag"><i>{{ ucfirst(app()->getLocale()) }}</i></span>
