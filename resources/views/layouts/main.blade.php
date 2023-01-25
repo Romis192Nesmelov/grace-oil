@@ -236,6 +236,7 @@
                                 @include('blocks._phone_block')
                                 @include('blocks._button_feedback_block')
                             </div>
+                            @include('blocks._marketplaces_block')
                         </div>
                     </div>
                 </div>

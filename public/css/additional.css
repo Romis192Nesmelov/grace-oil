@@ -18,6 +18,14 @@
     filter: opacity(70%);
 }
 
+.f-btn-wp .marketplace-icon {
+    margin: 10px 0 0 7px !important;
+}
+
+.f-btn-wp .marketplace-icon:nth-child(2) {
+    margin-right: 0;
+}
+
 @media (max-width: 991px) {
     .marketplace-icon {
         width: 30px;
