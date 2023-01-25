@@ -1478,6 +1478,7 @@ header {
   text-align: right; }
 
 .chahge-lang {
+  width: 55px;
   display: inline-block;
   position: relative;
   margin-right: 43px;
