@@ -84,4 +84,9 @@ class Oil extends Model
     {
         return $this->belongsTo('App\Models\Subsection');
     }
+
+    public function marketplaces()
+    {
+        return $this->hasMany('App\Models\Marketplace');
+    }
 }

@@ -45,12 +45,18 @@
             </div>
             <div class="tovar-block">
                 <div class="tovar-image">
-                    @foreach(['','_20','_10','_5','_4','_1'] as $val)
-                        @if ($oil['image'.$val])
-                            <img width="520" src="{{ asset($oil['image'.$val]) }}" alt="{{ $oil['name_'.app()->getLocale()] }}">
-                            @break
-                        @endif
-                    @endforeach
+                    @php
+                        $imageMatches = '';
+                        $defTare = 0;
+                        for ($i=count($oil->tares)-1;$i!=0;$i--) {
+                            if ($oil->tares[$i]->value <= 5) {
+                                $imageMatches = $oil->tares[$i]->image;
+                                $defTare = $oil->tares[$i]->value;
+                                break;
+                            }
+                        }
+                    @endphp
+                    <img src="{{ asset($imageMatches ? $imageMatches : $oil->image) }}" alt="{{ $oil['name_'.app()->getLocale()] }}">
                 </div>
                 <div class="tovar-descr">
                     <div class="tovar-descr-title">{{ trans('content.compliance') }}</div>
@@ -82,10 +88,28 @@
                             </div>
                         @endforeach
                     </div>
+                    @php $defTareMpFlag = false; @endphp
+                    @foreach($oil->marketplaces as $marketplace)
+                        @foreach(['ozon','wb'] as $mp)
+                            @if ($marketplace[$mp])
+                                @if ($marketplace->tare == $defTare)
+                                    @php $defTareMpFlag = true; @endphp
+                                @endif
+                                @include('blocks._button_type2_block',[
+                                    'btnHref' => $marketplace[$mp],
+                                    'btnBlank' => true,
+                                    'addClassWrap' => 'wp_button packing_'.$marketplace->tare.' hide_on_mp'.($marketplace->tare != $defTare ? ' hidden' : ''),
+                                    'mpIcon' => asset('images/logo_'.$mp.'.png'),
+                                    'btnText' => trans('content.buy_on_'.$mp)
+                                ])
+                            @endif
+                        @endforeach
+                    @endforeach
 
                     @include('blocks._button_type2_block',[
                         'btnHref' => '#request_popup',
-                        'addClass' => 'fancybox',
+                        'addClassWrap' => 'request_button hide_on_mp'.($defTareMpFlag ? ' hidden' : ''),
+                        'addClassButton' => 'fancybox',
                         'btnBlank' => false,
                         'btnText' => trans('content.submit_your_application')
                     ])

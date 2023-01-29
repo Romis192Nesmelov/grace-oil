@@ -108,5 +108,9 @@ return [
     'description' => 'description',
     'application_area' => 'Application area',
     'documentation' => 'Documentation',
-    'no_matches_found' => 'No matches found'
+    'no_matches_found' => 'No matches found',
+
+    'buy_on_ozon' => 'Buy on OZON',
+    'buy_on_wb' => 'Buy on Wildberries',
+    'buy_on_sber' => 'Buy on Sbermarket',
 ];

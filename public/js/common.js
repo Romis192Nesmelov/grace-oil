@@ -30,15 +30,14 @@ $(function() {
     
     //lazy youtube
     ( function() {
-
         var youtube = document.querySelectorAll( ".youtube" );
         for (var i = 0; i < youtube.length; i++) {
             var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/0.jpg";
             var image = new Image();
-                    image.src = source;
-                    image.addEventListener( "load", function() {
-                        youtube[ i ].appendChild( image );
-                    }( i ) );   
+            image.src = source;
+            image.addEventListener( "load", function() {
+                youtube[ i ].appendChild( image );
+            }( i ) );
         };
         
     } )();
@@ -424,7 +423,9 @@ $(function() {
             this.defImg = this.curImg = $(this.options.parentImgSelector).find('img').attr('src');
             //вешаем обработчик клика по иконке
             $(this.options.itemBtnSelector).on('click', function(){
-                var src = packingImg.getSrc($(this).data('packing'));
+                var tare = $(this).data('packing'),
+                    src = packingImg.getSrc(tare);
+
                 packingImg.removeImg(packingImg.curImg);
                 if(src){
                     packingImg.appendImg(src);
@@ -432,6 +433,14 @@ $(function() {
                 }else{
                     packingImg.appendImg(packingImg.defImg);
                     packingImg.curImg = packingImg.defImg;
+                }
+
+                if ($('.wp_button').length) {
+                    $('.hide_on_mp').addClass('hidden');
+                    var marketPlaceTareButton = $('.btn_more_wrap.'+tare);
+                    if (marketPlaceTareButton.length) {
+                        marketPlaceTareButton.removeClass('hidden');
+                    } else $('.request_button').removeClass('hidden');
                 }
             });
             $(this.options.itemBtnSelector).each(function(){
