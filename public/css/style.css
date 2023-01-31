@@ -2083,6 +2083,7 @@ header {
 
 .tovar-item {
   display: inline-block;
+  position: relative;
   vertical-align: top;
   width: 366px;
   padding: 8px;

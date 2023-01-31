@@ -26,6 +26,18 @@
     margin-right: 0;
 }
 
+.tovar-item.item > .mp-icons-container {
+    right: 5px;
+    position: absolute;
+}
+
+.tovar-item.item > .mp-icons-container > .mp-icon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-right: 3px;
+}
+
 .btn_more_wrap img {
     width: 40px;
     height: 40px;
