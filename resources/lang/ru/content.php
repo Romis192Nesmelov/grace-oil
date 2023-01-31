@@ -108,5 +108,9 @@ return [
     'description' => 'Описание',
     'application_area' => 'Область применения',
     'documentation' => 'Документация',
-    'no_matches_found' => 'Совпадений не найдено'
+    'no_matches_found' => 'Совпадений не найдено',
+
+    'buy_on_ozon' => 'Купить на OZON',
+    'buy_on_wb' => 'Купить на Wildberries',
+    'buy_on_sber' => 'Купить на Сбермакет',
 ];

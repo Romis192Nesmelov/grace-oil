@@ -13,10 +13,11 @@ use App\Models\ViscosityGrade;
 use App\Models\Documentation;
 use App\Models\OilTolerance;
 use App\Models\OilSolution;
+use App\Models\Marketplace;
 
 class ParserController extends Controller
 {
-    public function run()
+    public function catalogue()
     {
         $srcFile = base_path('resources/catalogue.txt');
         $firstCharToLowercase = function ($string)
@@ -52,7 +53,7 @@ class ParserController extends Controller
         };
 
         if (file_exists($srcFile)) {
-            $rows = explode('$',file_get_contents($srcFile));
+            $rows = $this->getRows($srcFile);
 
             $oilTypes = OilType::all();
             $subsections = Subsection::all();
@@ -72,10 +73,10 @@ class ParserController extends Controller
             ];
 
             foreach ($rows as $row) {
-                $cells = explode('>',$row);
+                $cells = $this->getCells($row);
 
                 // Get oil type
-                $oilTypeNameRu = str_replace(["\r","\n","\r\n"],'',$cells[0]);
+                $oilTypeNameRu = $this->getOilName($cells[0]);
                 $oilType = $oilTypes->where('name_ru',$oilTypeNameRu)->first();
                 $oilNameRu = $cells[3];
                 $oilNameEn = $cells[4];
@@ -290,6 +291,8 @@ class ParserController extends Controller
                 }
             }
 
+            $this->marketplaces();
+
 //            $missingString = '';
 //            foreach ($missingDocs as $arr) {
 //                foreach ($arr as $oilTypeName => $oilArr) {
@@ -310,6 +313,45 @@ class ParserController extends Controller
 //            echo $missingString;
         }
 //        echo 'Done!';
+    }
+
+    public function marketplaces()
+    {
+        $srcFile = base_path('resources/marketplaces.txt');
+        if (file_exists($srcFile)) {
+            $rows = $this->getRows($srcFile);
+            foreach ($rows as $row) {
+                $cells = $this->getCells($row);
+                $oilId = Oil::where('name_en', $this->getOilName($cells[0]))->pluck('id')->first();
+                if (!$oilId) dd($cells[0]);
+                Marketplace::create([
+                    'tare' => $cells[2],
+                    'bar_code' => $cells[1],
+                    'ozon' => $cells[3] == 'empty' ? null : $cells[3],
+                    'wb' => $cells[4] == 'empty' ? null : $cells[4],
+                    'oil_id' => $oilId
+                ]);
+            }
+//            echo 'Done!';
+        }
+    }
+
+    private function getRows($srcFile)
+    {
+        $srcFile = base_path('resources/marketplaces.txt');
+        if (file_exists($srcFile)) {
+            return explode('$', file_get_contents($srcFile));
+        }
+    }
+
+    private function getCells($row)
+    {
+        return explode('>',$row);
+    }
+
+    private function getOilName($cell)
+    {
+        return str_replace(["\r","\n","\r\n"],'',$cell);
     }
 
     private function processingDocFiles($docsSuffixes, $oilUpperName, $oilType, $oilTypeName, $oilId)

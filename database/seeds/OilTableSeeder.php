@@ -10,6 +10,6 @@ class OilTableSeeder extends Seeder
     public function run()
     {
         $parser = new ParserController();
-        $parser->run();
+        $parser->catalogue();
     }
 }

@@ -26,6 +26,13 @@
     margin-right: 0;
 }
 
+.btn_more_wrap img {
+    width: 40px;
+    height: 40px;
+    margin-top: 2px;
+    float: right;
+}
+
 @media (max-width: 991px) {
     .marketplace-icon {
         width: 30px;

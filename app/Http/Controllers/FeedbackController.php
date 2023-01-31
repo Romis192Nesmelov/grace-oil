@@ -13,11 +13,12 @@ class FeedbackController extends Controller
             'name' => 'required|min:3|max:100',
             'phone' => $this->validationPhone,
             'email' => 'required|email',
-            'question' => 'max:2000',
+            'my_message' => 'min:5|max:2000',
             'i_agree' => 'required|accepted'
         ]);
         $fields = $request->all();
-        return $this->sendMail($request,'feedback',$fields);
+        if (!$this->checkSpamWords($fields['my_message'])) return $this->sendMail($request,'feedback',$fields);
+        else return $this->returnWithMessage($request);
     }
 
     public function toBeAPartner(Request $request)
@@ -38,7 +39,9 @@ class FeedbackController extends Controller
             'i_agree' => 'required|accepted'
         ]);
         $fields = $request->all();
-        return $this->sendMail($request,'application',$fields);
+
+        if (!$this->checkSpamWords($fields['my_message'])) return $this->sendMail($request,'application',$fields);
+        else return $this->returnWithMessage($request);
     }
 
     public function graceTestRequest(Request $request)
@@ -93,7 +96,6 @@ class FeedbackController extends Controller
     
     private function sendMail(Request $request, $template, $fields, $fileName=null)
     {
-        $message = trans('content.thanx_feedback');
         if ($fileName) {
             $file = $request->file($fileName);
             $fileName = $file->getClientOriginalName();
@@ -104,9 +106,29 @@ class FeedbackController extends Controller
         $this->sendMessage($template, $fields, $pathToFile);
 
         if ($pathToFile) unlink($pathToFile);
+        return $this->returnWithMessage($request);
+    }
 
+    private function returnWithMessage(Request $request)
+    {
+        $message = trans('content.thanx_feedback');
         return $request->ajax()
             ? response()->json(['success' => true, 'message' => $message])
             : redirect()->back()->with('message', $message);
+    }
+
+    private function checkSpamWords($field) {
+        $match = false;
+        $spamWords = explode("\r",file_get_contents(base_path('resources/spam_words.txt')));
+        if (preg_match("/<\/?\w+((\s+\w+(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/",$field)) return true;
+        else {
+            foreach ($spamWords as $word) {
+                if (preg_match('/\b'.$word.'\b/ui',$field)) {
+                    $match = true;
+                    break;
+                }
+            }
+            return $match;
+        }
     }
 }
