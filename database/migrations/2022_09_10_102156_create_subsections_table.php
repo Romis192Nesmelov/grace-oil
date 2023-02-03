@@ -11,24 +11,24 @@ class CreateSubsectionsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('subsections', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('slug');
-            $table->string('name_ru');
-            $table->string('name_en');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('subsections');
-    }
+//    public function up()
+//    {
+//        Schema::create('subsections', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('slug');
+//            $table->string('name_ru');
+//            $table->string('name_en');
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('subsections');
+//    }
 }

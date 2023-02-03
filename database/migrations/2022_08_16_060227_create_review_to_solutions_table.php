@@ -11,20 +11,20 @@ class CreateReviewToSolutionsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('review_to_solutions', function (Blueprint $table) {
-            $table->increments('id');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('review_to_solutions');
-    }
+//    public function up()
+//    {
+//        Schema::create('review_to_solutions', function (Blueprint $table) {
+//            $table->increments('id');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('review_to_solutions');
+//    }
 }

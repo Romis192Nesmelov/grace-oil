@@ -11,26 +11,26 @@ class CreateDiplomasTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('diplomas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('preview');
-            $table->string('full');
-            $table->text('text_ru')->nullable();
-            $table->text('text_en')->nullable();
-            $table->boolean('active');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('diplomas');
-    }
+//    public function up()
+//    {
+//        Schema::create('diplomas', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('preview');
+//            $table->string('full');
+//            $table->text('text_ru')->nullable();
+//            $table->text('text_en')->nullable();
+//            $table->boolean('active');
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('diplomas');
+//    }
 }

@@ -11,26 +11,26 @@ class CreateOilTypesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('oil_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('icon');
-            $table->string('slug');
-            $table->string('name_ru')->unique();
-            $table->string('name_en')->unique();
-            $table->boolean('active');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('oil_types');
-    }
+//    public function up()
+//    {
+//        Schema::create('oil_types', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('icon');
+//            $table->string('slug');
+//            $table->string('name_ru')->unique();
+//            $table->string('name_en')->unique();
+//            $table->boolean('active');
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('oil_types');
+//    }
 }

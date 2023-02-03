@@ -11,20 +11,20 @@ class CreateOilSolutionsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('oil_solutions', function (Blueprint $table) {
-            $table->increments('id');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('oil_solutions');
-    }
+//    public function up()
+//    {
+//        Schema::create('oil_solutions', function (Blueprint $table) {
+//            $table->increments('id');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('oil_solutions');
+//    }
 }

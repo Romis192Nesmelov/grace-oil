@@ -11,22 +11,22 @@ class CreateTaresTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('tares', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('image');
-            $table->string('value',4);
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('tares');
-    }
+//    public function up()
+//    {
+//        Schema::create('tares', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('image');
+//            $table->string('value',4);
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('tares');
+//    }
 }

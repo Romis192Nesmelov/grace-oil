@@ -11,21 +11,21 @@ class CreateTolerancesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('tolerances', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('tolerances');
-    }
+//    public function up()
+//    {
+//        Schema::create('tolerances', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('name')->unique();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('tolerances');
+//    }
 }

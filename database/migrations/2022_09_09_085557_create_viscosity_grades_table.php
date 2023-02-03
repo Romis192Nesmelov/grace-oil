@@ -11,22 +11,22 @@ class CreateViscosityGradesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('viscosity_grades', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('slug');
-            $table->string('name')->unique();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('viscosity_grades');
-    }
+//    public function up()
+//    {
+//        Schema::create('viscosity_grades', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('slug');
+//            $table->string('name')->unique();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('viscosity_grades');
+//    }
 }

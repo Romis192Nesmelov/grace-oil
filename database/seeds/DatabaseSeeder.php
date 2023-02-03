@@ -34,25 +34,25 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-        $this->call(ManagerTableSeeder::class);
-        $this->call(MenuTableSeeder::class);
-        $this->call(SubMenuTableSeeder::class);
-        $this->call(ContentsTableSeeder::class);
-        $this->call(HomeBlocksTableSeeder::class);
-        $this->call(HistoryPointsTableSeeder::class);
-        $this->call(DiplomasTableSeeder::class);
-        $this->call(VacanciesTableSeeder::class);
-        $this->call(BrochuresTableSeeder::class);
-        $this->call(AboutProductsTableSeeder::class);
-        $this->call(AboutLubricantTableSeeder::class);
-        $this->call(IndustrySolutionsTableSeeder::class);
-        $this->call(OilTypesTableSeeder::class);
-        $this->call(EngineTypesTableSeeder::class);
-        $this->call(OilTableSeeder::class);
-        $this->call(PartnerProgramsTableSeeder::class);
-        $this->call(NewsTableSeeder::class);
-        $this->call(ClassificationsTableSeeder::class);
-        $this->call(ReviewsTableSeeder::class);
+//        $this->call(ManagerTableSeeder::class);
+//        $this->call(MenuTableSeeder::class);
+//        $this->call(SubMenuTableSeeder::class);
+//        $this->call(ContentsTableSeeder::class);
+//        $this->call(HomeBlocksTableSeeder::class);
+//        $this->call(HistoryPointsTableSeeder::class);
+//        $this->call(DiplomasTableSeeder::class);
+//        $this->call(VacanciesTableSeeder::class);
+//        $this->call(BrochuresTableSeeder::class);
+//        $this->call(AboutProductsTableSeeder::class);
+//        $this->call(AboutLubricantTableSeeder::class);
+//        $this->call(IndustrySolutionsTableSeeder::class);
+//        $this->call(OilTypesTableSeeder::class);
+//        $this->call(EngineTypesTableSeeder::class);
+//        $this->call(OilTableSeeder::class);
+//        $this->call(PartnerProgramsTableSeeder::class);
+//        $this->call(NewsTableSeeder::class);
+//        $this->call(ClassificationsTableSeeder::class);
+//        $this->call(ReviewsTableSeeder::class);
         $this->call(SliderTableSeeder::class);
     }
 }

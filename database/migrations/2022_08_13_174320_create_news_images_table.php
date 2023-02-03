@@ -11,23 +11,23 @@ class CreateNewsImagesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('news_images', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('preview')->unique();
-            $table->string('full')->unique();
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('news_images');
-    }
+//    public function up()
+//    {
+//        Schema::create('news_images', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('preview')->unique();
+//            $table->string('full')->unique();
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('news_images');
+//    }
 }
