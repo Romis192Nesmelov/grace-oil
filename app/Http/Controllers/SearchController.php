@@ -43,10 +43,10 @@ class SearchController extends StaticController
             $menu = Menu::find(6);
             $this->data['found']->push([
                 'href' => url('/'.$menu->slug.'/'.$new->slug),
-                'title_ru' => $content->head_ru,
-                'title_en' => $content->head_en,
-                'text_ru' => $content->text_short_ru,
-                'text_en' => $content->text_short_en,
+                'title_ru' => $new->head_ru,
+                'title_en' => $new->head_en,
+                'text_ru' => $new->text_short_ru,
+                'text_en' => $new->text_short_en,
             ]);
         }
 
