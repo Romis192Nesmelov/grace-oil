@@ -45,8 +45,18 @@
     float: right;
 }
 
-#reliable-company {
-    margin-top: 15px;
+.reliable-company {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid gray;
+}
+
+.reliable-company.small {
+    display: none;
+}
+
+.reliable-company.big {
+
 }
 
 @media (max-width: 991px) {
@@ -92,5 +102,15 @@
         width: 50px;
         height: 50px;
         margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reliable-company.small {
+        display: block;
+    }
+
+    .reliable-company.big {
+        display: none;
     }
 }
