@@ -208,10 +208,7 @@
                                         <img src="{{ asset('images/logo-footer.png') }}" alt="logo">
                                     </a>
                                 </div>
-                                <div class="reliable-company big">
-                                    @include('blocks._reliable_company_big_block')
-                                </div>
-                                <div class="reliable-company small">
+                                <div class="reliable-company">
                                     @include('blocks._reliable_company_small_block')
                                 </div>
                             </div>
