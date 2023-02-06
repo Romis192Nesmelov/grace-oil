@@ -11,23 +11,23 @@ class CreateDocumentationsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('documentations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('href');
-            $table->string('name_ru');
-            $table->string('name_en');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('documentations');
-    }
+//    public function up()
+//    {
+//        Schema::create('documentations', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('href');
+//            $table->string('name_ru');
+//            $table->string('name_en');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('documentations');
+//    }
 }

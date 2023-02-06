@@ -203,9 +203,14 @@
                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6 col-xxs">
                         <div class="logo-foot-wp">
                             <div class="logo">
-                                <a href="#">
-                                    <img src="{{ asset('images/logo-footer.png') }}" alt="logo">
-                                </a>
+                                <div>
+                                    <a href="{{ route('home') }}">
+                                        <img src="{{ asset('images/logo-footer.png') }}" alt="logo">
+                                    </a>
+                                </div>
+                                <div class="reliable-company">
+                                    @include('blocks._reliable_company_small_block')
+                                </div>
                             </div>
                             <div class="footer-info">
                                 <div class="rights">{{ trans('content.company_name') }}</div>
@@ -224,7 +229,7 @@
                     <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
                         <div class="f-menu-wp">
                             <ul class="f-menu">
-{{--                                <li><a href="#">{{ trans('footer.site_map') }}</a></li>--}}
+{{--                                <li><a href="{{ route('home') }}">{{ trans('footer.site_map') }}</a></li>--}}
                                 <li><a href="{{ route('terms_of_use') }}">{{ trans('footer.user_agreement') }}</a></li>
                                 <li><a href="{{ route('vacancies') }}">{{ trans('footer.vacancies') }}</a></li>
                             </ul>

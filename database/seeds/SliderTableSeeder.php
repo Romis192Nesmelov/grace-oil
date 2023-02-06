@@ -37,7 +37,7 @@ class SliderTableSeeder extends Seeder
                 'href' => '/'.$menu[2]->slug.'/'.$oilTypes[3]->slug,
                 'image' => 'images/slider/slide_block3.png',
                 'head_ru' => 'Grace Absolute –',
-                'sub_head_ru' => 'моторные масла для легковых автомобилей',
+                'sub_head_ru' => 'моторные масла<br>для легковых автомобилей',
                 'head_en' => 'Grace Absolute –',
                 'sub_head_en' => 'Motor oils for<br>Passenger Vehicle'
             ],

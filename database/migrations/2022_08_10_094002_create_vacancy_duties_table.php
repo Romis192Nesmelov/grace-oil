@@ -11,23 +11,23 @@ class CreateVacancyDutiesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('vacancy_duties', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('text_ru');
-            $table->text('text_en');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('vacancy_duties');
-    }
+//    public function up()
+//    {
+//        Schema::create('vacancy_duties', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->text('text_ru');
+//            $table->text('text_en');
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('vacancy_duties');
+//    }
 }

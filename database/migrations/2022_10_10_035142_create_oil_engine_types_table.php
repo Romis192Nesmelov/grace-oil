@@ -11,20 +11,20 @@ class CreateOilEngineTypesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('oil_engine_types', function (Blueprint $table) {
-            $table->increments('id');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('oil_engine_types');
-    }
+//    public function up()
+//    {
+//        Schema::create('oil_engine_types', function (Blueprint $table) {
+//            $table->increments('id');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('oil_engine_types');
+//    }
 }

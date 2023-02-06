@@ -11,24 +11,24 @@ class CreateDisplacementsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('displacements', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('icon');
-            $table->smallInteger('val')->unique();
-            $table->smallInteger('dim');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('displacements');
-    }
+//    public function up()
+//    {
+//        Schema::create('displacements', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('icon');
+//            $table->smallInteger('val')->unique();
+//            $table->smallInteger('dim');
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('displacements');
+//    }
 }

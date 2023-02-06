@@ -11,24 +11,24 @@ class AddSimilarIdToSimilarNewsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::table('similar_news', function (Blueprint $table) {
-            $table->integer('similar_id', false, true);
-            $table->foreign('similar_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('similar_news', function (Blueprint $table) {
-            $table->dropForeign('similar_news_similar_id_foreign');
-            $table->dropColumn('similar_id');
-        });
-    }
+//    public function up()
+//    {
+//        Schema::table('similar_news', function (Blueprint $table) {
+//            $table->integer('similar_id', false, true);
+//            $table->foreign('similar_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::table('similar_news', function (Blueprint $table) {
+//            $table->dropForeign('similar_news_similar_id_foreign');
+//            $table->dropColumn('similar_id');
+//        });
+//    }
 }

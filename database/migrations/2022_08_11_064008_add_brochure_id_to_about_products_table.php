@@ -11,24 +11,24 @@ class AddBrochureIdToAboutProductsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::table('about_products', function (Blueprint $table) {
-            $table->integer('brochure_id', false, true);
-            $table->foreign('brochure_id')->references('id')->on('brochures')->onDelete('cascade')->onUpdate('cascade');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('about_products', function (Blueprint $table) {
-            $table->dropForeign('about_products_brochure_id_foreign');
-            $table->dropColumn('brochure_id');
-        });
-    }
+//    public function up()
+//    {
+//        Schema::table('about_products', function (Blueprint $table) {
+//            $table->integer('brochure_id', false, true);
+//            $table->foreign('brochure_id')->references('id')->on('brochures')->onDelete('cascade')->onUpdate('cascade');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::table('about_products', function (Blueprint $table) {
+//            $table->dropForeign('about_products_brochure_id_foreign');
+//            $table->dropColumn('brochure_id');
+//        });
+//    }
 }

@@ -11,20 +11,20 @@ class CreateOilsTolerancesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('oil_tolerances', function (Blueprint $table) {
-            $table->increments('id');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('oil_tolerances');
-    }
+//    public function up()
+//    {
+//        Schema::create('oil_tolerances', function (Blueprint $table) {
+//            $table->increments('id');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('oil_tolerances');
+//    }
 }

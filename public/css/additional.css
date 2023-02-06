@@ -26,11 +26,29 @@
     margin-right: 0;
 }
 
+.tovar-item.item > .mp-icons-container {
+    right: 5px;
+    position: absolute;
+}
+
+.tovar-item.item > .mp-icons-container > .mp-icon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-right: 3px;
+}
+
 .btn_more_wrap img {
     width: 40px;
     height: 40px;
     margin-top: 2px;
     float: right;
+}
+
+.reliable-company {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid gray;
 }
 
 @media (max-width: 991px) {

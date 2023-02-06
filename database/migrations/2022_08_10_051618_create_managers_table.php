@@ -11,23 +11,23 @@ class CreateManagersTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('managers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('controller');
-            $table->string('method');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('managers');
-    }
+//    public function up()
+//    {
+//        Schema::create('managers', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('controller');
+//            $table->string('method');
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('managers');
+//    }
 }

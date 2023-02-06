@@ -11,23 +11,23 @@ class CreateVacancyTermsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('vacancy_terms', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('text_ru');
-            $table->text('text_en');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('vacancy_terms');
-    }
+//    public function up()
+//    {
+//        Schema::create('vacancy_terms', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->text('text_ru');
+//            $table->text('text_en');
+//            $table->timestamps();
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('vacancy_terms');
+//    }
 }

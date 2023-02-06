@@ -11,20 +11,20 @@ class CreateSimilarNewsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('similar_news', function (Blueprint $table) {
-            $table->increments('id');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('similar_news');
-    }
+//    public function up()
+//    {
+//        Schema::create('similar_news', function (Blueprint $table) {
+//            $table->increments('id');
+//        });
+//    }
+//
+//    /**
+//     * Reverse the migrations.
+//     *
+//     * @return void
+//     */
+//    public function down()
+//    {
+//        Schema::dropIfExists('similar_news');
+//    }
 }

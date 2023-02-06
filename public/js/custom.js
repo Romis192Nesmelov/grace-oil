@@ -130,6 +130,40 @@ function maxHeight(objs) {
         objs.each(function(){
             if (maxHeight < $(this).height()) maxHeight = $(this).height();
         });
-    } else maxHeight = 'auto';
+    } else {
+        maxHeight = 'auto';
+    }
     objs.css('height',maxHeight);
+
+    let header = $('header'),
+        middleBlock = $('.main.internal'),
+        contentContainer = middleBlock.find('.container'),
+        footer = $('footer'),
+        headerHeight = parseInt(header.height()),
+        middleBlockHeight = parseInt(middleBlock.height()),
+        footerHeight = parseInt(footer.css('padding-top'))+parseInt(footer.height())+parseInt(footer.css('padding-bottom')),
+        windowHeight = $(window).height();
+
+    if (
+        $(window).width() > 650 &&
+        (headerHeight + middleBlockHeight + footerHeight < windowHeight)
+    ) {
+        contentContainer.css({
+            'height':(windowHeight - headerHeight - footerHeight - 1),
+            // 'position':'absolute',
+        });
+        footer.css({
+            'position':'fixed',
+            'bottom':0
+        });
+    } else {
+        contentContainer.css({
+            'height':'auto',
+            // 'position':'auto',
+        });
+        footer.css({
+            'position':'relative',
+            'bottom':'auto'
+        });
+    }
 }

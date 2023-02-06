@@ -15,8 +15,8 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('apg192')
             ],
             [
-                'email' => 'kei@grace-oil.com',
-                'password' => bcrypt('kei')
+                'email' => 'test@grace-oil.com',
+                'password' => bcrypt('test')
             ],
             [
                 'email' => 'alf@grace-oil.com',
