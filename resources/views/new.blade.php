@@ -46,7 +46,7 @@
                                         </a>
                                     </div>
                                     <div class="descr">
-                                        <a href="{{ '/'.$breadcrumbs[count($breadcrumbs)-2]['href'].'/'.$similarNews->similar->slug }}" class="news-title">Новые масла GRACE по международному стандарту API CK-4</a>
+                                        <a href="{{ '/'.$breadcrumbs[count($breadcrumbs)-2]['href'].'/'.$similarNews->similar->slug }}" class="news-title">{{ $similarNews->similar['head_'.app()->getLocale()] }}</a>
                                         <div class="news-txt">{{ $similarNews->similar['head_'.app()->getLocale()] }}</div>
                                         <div class="data">{{ date('d.m.Y', $similarNews->similar->time) }}</div>
                                     </div>
