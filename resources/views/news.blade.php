@@ -18,7 +18,7 @@
                             </div>
                             <div class="descr">
                                 <a href="{{ '/'.end($breadcrumbs)['href'].'/'.$new->slug }}" class="news-title">{{ $new['head_'.app()->getLocale()] }}</a>
-                                <div class="news-txt">{{ $new['text_short_'.app()->getLocale()] }}</div>
+                                <div class="news-txt">{!! $new['text_short_'.app()->getLocale()] !!}</div>
                                 <div class="data">{{ date('d.m.Y', $new->time) }}</div>
                             </div>
                         </div>
