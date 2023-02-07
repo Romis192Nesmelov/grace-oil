@@ -51,6 +51,28 @@
     border-top: 1px solid gray;
 }
 
+.news-banner {
+    width: 750px;
+    padding-left: 35px;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.news-banner > img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.news-banner .btn_more_wrap {
+    width: 49%;
+    padding: 0 3px;
+    display: inline-block;
+}
+
+.news-banner .btn_more_wrap a {
+    width: 100%;
+}
+
 @media (max-width: 991px) {
     .marketplace-icon {
         width: 30px;
@@ -66,6 +88,11 @@
     .marketplace-icon:nth-child(2),
     .chahge-lang {
         margin-right: 10px;
+    }
+
+    .news-banner {
+        width: 100%;
+        padding-left: 0;
     }
 }
 
@@ -94,5 +121,9 @@
         width: 50px;
         height: 50px;
         margin-top: 10px;
+    }
+
+    .news-banner .btn_more_wrap {
+        width: 100%;
     }
 }
