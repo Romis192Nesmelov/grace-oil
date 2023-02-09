@@ -3,7 +3,7 @@
         <div class="tovar-item item">
             @if (count($item->marketplaces))
                 <div class="mp-icons-container">
-                    @foreach(['wb','ozon'] as $mp)
+                    @foreach(['ozon'] as $mp)
                         @if ($item->marketplaces[0][$mp])
                             <img class="mp-icon" src="{{ asset('images/logo_'.$mp.'.png') }}" />
                         @endif

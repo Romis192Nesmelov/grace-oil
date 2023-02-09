@@ -90,7 +90,7 @@
                     </div>
                     @php $defTareMpFlag = false; @endphp
                     @foreach($oil->marketplaces as $marketplace)
-                        @foreach(['ozon','wb'] as $mp)
+                        @foreach(['ozon'] as $mp)
                             @if ($marketplace[$mp])
                                 @if ($marketplace->tare == $defTare)
                                     @php $defTareMpFlag = true; @endphp
