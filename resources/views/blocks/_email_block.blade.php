@@ -1,1 +1,1 @@
-<a href="mailto:{{ $settings['email'] }}" target="_blank">{{ $settings['email'] }}</a>
+@include('blocks._custom_email_block',['email' => $settings['email']])

@@ -1,3 +1,13 @@
+.h-menu li:nth-child(8) a {
+    border: 1px solid whitesmoke;
+    background-color: #e24a00;
+}
+
+.h-menu li:nth-child(8) a.active,
+.h-menu li:nth-child(8) a:hover {
+    background-color: #808285;
+}
+
 .marketplace-icon {
     width: 40px;
     height: 40px;
@@ -73,6 +83,30 @@
     width: 100%;
 }
 
+.dealer {
+    padding: 15px 0;
+    border-bottom: 1px solid lightgrey;
+}
+
+.dealer p {
+    margin-bottom: 5px;
+}
+
+.dealer p a {
+    color: #EB7C1E;
+}
+
+.retail-img {
+    height: 60px;
+    display: inline-block;
+    margin: 10px 15px;
+}
+
+.retail-img img {
+    width: auto;
+    height: 100%;
+}
+
 @media (max-width: 991px) {
     .marketplace-icon {
         width: 30px;
@@ -125,5 +159,9 @@
 
     .news-banner .btn_more_wrap {
         width: 100%;
+    }
+
+    .retail-block {
+        text-align: center;
     }
 }

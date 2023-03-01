@@ -1,0 +1,1 @@
+<a href="tel:{{ str_replace([' ','(',')','-'],'',$phone) }}" {{ !isset($className) || !$className ? 'class=phone' : 'class='.$className }}><nobr>{{ $phone }}</nobr></a>

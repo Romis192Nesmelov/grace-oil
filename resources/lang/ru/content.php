@@ -113,4 +113,9 @@ return [
     'buy_on_ozon' => 'Купить на OZON',
     'buy_on_wb' => 'Купить на Wildberries',
     'buy_on_sber' => 'Купить на Сбермакет',
+
+    'dealers_and_distributors' => 'Дилеры и дистрибьюторы',
+    'retail_sales' => 'Розничные продажи',
+
+    'town' => 'г. '
 ];

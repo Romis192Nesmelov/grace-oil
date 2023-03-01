@@ -17,6 +17,7 @@ class MenuTableSeeder extends Seeder
             ['ru' => 'Стать партнером', 'en' => 'Grace Partner', 'href' => 0],
             ['ru' => 'Новости и акции', 'en' => 'News and promotions', 'href' => 1, 'use_slug' => 1, 'manager_id' => 2],
             ['ru' => 'Полезная информация', 'en' => 'Useful information', 'href' => 0],
+            ['ru' => 'Где купить?', 'en' => 'Where can I buy?', 'view' => 'where_buy', 'href' => 1, 'use_slug' => 1, 'manager_id' => 5],
             ['ru' => 'Контакты', 'en' => 'Contacts', 'href' => 1, 'view' => 'contacts', 'manager_id' => 1],
         ];
         

@@ -113,4 +113,9 @@ return [
     'buy_on_ozon' => 'Buy on OZON',
     'buy_on_wb' => 'Buy on Wildberries',
     'buy_on_sber' => 'Buy on Sbermarket',
+
+    'dealers_and_distributors' => 'Dealers and distributors',
+    'retail_sales' => 'Retail sales',
+
+    'town' => 'Town '
 ];

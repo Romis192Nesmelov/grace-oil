@@ -10,7 +10,7 @@ class SettingsController extends Controller
 
     public function __construct()
     {
-        $this->xml = simplexml_load_file(base_path(env('SETTINGS_XML')));
+        $this->xml = simplexml_load_file(base_path(config('app.settings')));
     }
 
     // Seo
