@@ -83,6 +83,10 @@
     width: 100%;
 }
 
+.where-buy h1 {
+    text-align: center !important;
+}
+
 .dealer {
     padding: 15px 0;
     border-bottom: 1px solid lightgrey;
@@ -105,6 +109,15 @@
 .retail-img img {
     width: auto;
     height: 100%;
+}
+
+.retail-block {
+    background-color: #FFFFFF;
+    border: 1px solid #E3E4E6;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    padding: 20px;
 }
 
 @media (max-width: 991px) {
@@ -159,9 +172,5 @@
 
     .news-banner .btn_more_wrap {
         width: 100%;
-    }
-
-    .retail-block {
-        text-align: center;
     }
 }
