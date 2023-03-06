@@ -2,27 +2,7 @@
 
 //namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UsersTableSeeder;
-use Database\Seeders\ManagerTableSeeder;
-use Database\Seeders\MenuTableSeeder;
-use Database\Seeders\SubMenuTableSeeder;
-use Database\Seeders\SliderTableSeeder;
-use Database\Seeders\HomeBlocksTableSeeder;
-use Database\Seeders\HistoryPointsTableSeeder;
-use Database\Seeders\DiplomasTableSeeder;
-use Database\Seeders\ContentsTableSeeder;
-use Database\Seeders\VacanciesTableSeeder;
-use Database\Seeders\BrochuresTableSeeder;
-use Database\Seeders\AboutProductsTableSeeder;
-use Database\Seeders\AboutLubricantTableSeeder;
-use Database\Seeders\IndustrySolutionsTableSeeder;
-use Database\Seeders\OilTypesTableSeeder;
-use Database\Seeders\EngineTypesTableSeeder;
-use Database\Seeders\OilTableSeeder;
-use Database\Seeders\PartnerProgramsTableSeeder;
-use Database\Seeders\NewsTableSeeder;
-use Database\Seeders\ClassificationsTableSeeder;
-use Database\Seeders\ReviewsTableSeeder;
+use Database\Seeders\DealersTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,26 +13,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call(UsersTableSeeder::class);
-//        $this->call(ManagerTableSeeder::class);
-//        $this->call(MenuTableSeeder::class);
-//        $this->call(SubMenuTableSeeder::class);
-//        $this->call(ContentsTableSeeder::class);
-//        $this->call(HomeBlocksTableSeeder::class);
-//        $this->call(HistoryPointsTableSeeder::class);
-//        $this->call(DiplomasTableSeeder::class);
-//        $this->call(VacanciesTableSeeder::class);
-//        $this->call(BrochuresTableSeeder::class);
-//        $this->call(AboutProductsTableSeeder::class);
-//        $this->call(AboutLubricantTableSeeder::class);
-//        $this->call(IndustrySolutionsTableSeeder::class);
-//        $this->call(OilTypesTableSeeder::class);
-//        $this->call(EngineTypesTableSeeder::class);
-//        $this->call(OilTableSeeder::class);
-//        $this->call(PartnerProgramsTableSeeder::class);
-        $this->call(NewsTableSeeder::class);
-//        $this->call(ClassificationsTableSeeder::class);
-//        $this->call(ReviewsTableSeeder::class);
-//        $this->call(SliderTableSeeder::class);
+//        $this->call(Database\Seeders\UsersTableSeeder::class);
+//        $this->call(Database\Seeders\ManagerTableSeeder::class);
+//        $this->call(Database\Seeders\MenuTableSeeder::class);
+//        $this->call(Database\Seeders\SubMenuTableSeeder::class);
+//        $this->call(Database\Seeders\ContentsTableSeeder::class);
+//        $this->call(Database\Seeders\HomeBlocksTableSeeder::class);
+//        $this->call(Database\Seeders\HistoryPointsTableSeeder::class);
+//        $this->call(Database\Seeders\DiplomasTableSeeder::class);
+//        $this->call(Database\Seeders\VacanciesTableSeeder::class);
+//        $this->call(Database\Seeders\BrochuresTableSeeder::class);
+//        $this->call(Database\Seeders\AboutProductsTableSeeder::class);
+//        $this->call(Database\Seeders\AboutLubricantTableSeeder::class);
+//        $this->call(Database\Seeders\IndustrySolutionsTableSeeder::class);
+//        $this->call(Database\Seeders\OilTypesTableSeeder::class);
+//        $this->call(Database\Seeders\EngineTypesTableSeeder::class);
+//        $this->call(Database\Seeders\OilTableSeeder::class);
+//        $this->call(Database\Seeders\PartnerProgramsTableSeeder::class);
+//        $this->call(Database\Seeders\NewsTableSeeder::class);
+//        $this->call(Database\Seeders\ClassificationsTableSeeder::class);
+//        $this->call(Database\Seeders\ReviewsTableSeeder::class);
+//        $this->call(Database\Seeders\SliderTableSeeder::class);
+        $this->call(DealersTableSeeder::class);
     }
 }

@@ -1,1 +1,1 @@
-<a href="tel:{{ str_replace([' ','(',')','-'],'',$settings['phone']) }}" {{ !isset($className) || !$className ? 'class=phone' : 'class='.$className }}><nobr>{{ $settings['phone'] }}</nobr></a>
+@include('blocks._custom_phone_block',['phone' => $settings['phone']])

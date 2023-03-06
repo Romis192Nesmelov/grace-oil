@@ -10,6 +10,8 @@ use App\Models\HomeBlock;
 use App\Models\Content;
 use App\Models\OilType;
 use App\Models\Vacancy;
+use App\Models\DealersArea;
+use App\Models\Dealer;
 
 class StaticController extends Controller
 {
@@ -69,6 +71,15 @@ class StaticController extends Controller
             }
         }
         return $this->showView($subMenu->view);
+    }
+
+    public function whereBuy(Request $request, $slug=null)
+    {
+        list($menu, $uri) = $this->getMenu($request, $slug);
+        $this->getBreadcrumbsMenu($menu);
+        $this->data['areas'] = DealersArea::with('dealers')->get();
+        $this->data['retail'] = Dealer::where('dealers_area_id',null)->get();
+        return $this->showView('where_buy');
     }
 
     public function changeLang(Request $request)

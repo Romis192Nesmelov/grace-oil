@@ -1,3 +1,13 @@
+.h-menu li:nth-child(8) a {
+    border: 1px solid whitesmoke;
+    background-color: #e24a00;
+}
+
+.h-menu li:nth-child(8) a.active,
+.h-menu li:nth-child(8) a:hover {
+    background-color: #808285;
+}
+
 .marketplace-icon {
     width: 40px;
     height: 40px;
@@ -71,6 +81,42 @@
 
 .news-banner .btn_more_wrap a {
     width: 100%;
+}
+
+.where-buy h1 {
+    text-align: center !important;
+}
+
+.dealer {
+    padding: 15px 0;
+    border-bottom: 1px solid lightgrey;
+}
+
+.dealer p {
+    margin-bottom: 5px;
+}
+
+.dealer p a {
+    color: #EB7C1E;
+}
+
+.retail-img {
+    height: 60px;
+    margin-bottom: 30px;
+}
+
+.retail-img img {
+    width: auto;
+    height: 100%;
+}
+
+.retail-block {
+    background-color: #FFFFFF;
+    border: 1px solid #E3E4E6;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+    padding: 50px;
 }
 
 @media (max-width: 991px) {
