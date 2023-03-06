@@ -102,8 +102,7 @@
 
 .retail-img {
     height: 60px;
-    display: inline-block;
-    margin: 10px 15px;
+    margin-bottom: 30px;
 }
 
 .retail-img img {
@@ -117,7 +116,7 @@
     box-sizing: border-box;
     border-radius: 6px;
     text-align: center;
-    padding: 20px;
+    padding: 50px;
 }
 
 @media (max-width: 991px) {

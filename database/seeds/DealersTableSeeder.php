@@ -191,6 +191,13 @@ class DealersTableSeeder extends Seeder
                 'url' => 'https://www.autoopt.ru/',
                 'active' => 1,
             ],
+            [
+                'image' => 'logo_yandex.png',
+                'name_ru' => 'Яндекс-маркет',
+                'name_en' => 'Yandex-market',
+                'url' => 'https://market.yandex.ru/business--ooo-greis-lubrikants/881711',
+                'active' => 1,
+            ],
         ];
         
         foreach ($areas as $area) {

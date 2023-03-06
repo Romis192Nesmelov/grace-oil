@@ -6,7 +6,7 @@
             @include('blocks._breadcrumbs_block')
             <div class="text_edit page_title where-buy">
 {{--                <h1>{{ $head }}</h1>--}}
-                <div class="col-md-8 col-xs-12">
+                <div class="col-md-9 col-xs-12">
                     <h1>{{ trans('content.dealers_and_distributors') }}</h1>
                     @foreach($areas as $area)
                         @php ob_start(); @endphp
@@ -33,7 +33,7 @@
                         ])
                     @endforeach
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="col-md-3 col-12">
                     <h1>{{ trans('content.retail_sales') }}</h1>
                     <div class="retail-block">
                         @foreach($retail as $item)
