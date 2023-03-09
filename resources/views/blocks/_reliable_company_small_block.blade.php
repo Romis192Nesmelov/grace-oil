@@ -1,4 +1,4 @@
-<a href="https://vbankcenter.ru/contragent/1137746059230" style="
+<a href="https://vbankcenter.ru/contragent/1137746059230/reviews" style="
   background : 0 !important;
   background-color : transparent !important;
   border : 0 !important;

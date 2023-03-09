@@ -52,6 +52,10 @@ class DealersTableSeeder extends Seeder
                 'name_en' => 'Kazan'
             ],
             [
+                'name_ru' => 'Пермь',
+                'name_en' => 'Permian'
+            ],
+            [
                 'name_ru' => 'Армавир',
                 'name_en' => 'Armavir'
             ],
@@ -157,11 +161,18 @@ class DealersTableSeeder extends Seeder
                 'dealers_area_id' => 10
             ],
             [
+                'name_ru' => 'ООО «Альянс Ойл»',
+                'name_en' => 'LLC «Alliance Oil»',
+                'email' => 'perm@grace-oil.com',
+                'active' => 1,
+                'dealers_area_id' => 11
+            ],
+            [
                 'name_ru' => 'ООО «Союз-ВИТАЛ+»',
                 'name_en' => 'LLC «Souz-VITAL+»',
                 'email' => 'armavir@grace-oil.com',
                 'active' => 1,
-                'dealers_area_id' => 11
+                'dealers_area_id' => 12
             ],
             [
                 'image' => 'logo_ozon.png',
@@ -174,7 +185,7 @@ class DealersTableSeeder extends Seeder
                 'image' => 'logo_kamp.png',
                 'name_ru' => 'КЭМП',
                 'name_en' => 'KAMP',
-                'url' => 'https://www.kemp1.ru/shops/',
+                'url' => 'https://kemp103.ru/',
                 'active' => 1,
             ],
             [
