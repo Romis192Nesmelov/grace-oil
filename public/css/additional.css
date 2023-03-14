@@ -56,9 +56,11 @@
 }
 
 .reliable-company {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid gray;
+    display: inline-block;
+    margin-right: 10px;
+    /*margin-top: 10px;*/
+    /*padding-top: 10px;*/
+    /*border-top: 1px solid gray;*/
 }
 
 .news-banner {
