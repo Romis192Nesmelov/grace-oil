@@ -106,6 +106,9 @@
                     <div class="h-contact-wp">
                         <div class="row-flex">
                             <div class="btn-wp">
+                                <div class="reliable-company">
+                                    @include('blocks._reliable_company_small_block')
+                                </div>
 {{--                                @include('blocks._marketplaces_block')--}}
                                 @include('blocks._phone_block', ['className' => 'phone-header'])
                                 <div class="chahge-lang">
@@ -207,9 +210,6 @@
                                     <a href="{{ route('home') }}">
                                         <img src="{{ asset('images/logo-footer.png') }}" alt="logo">
                                     </a>
-                                </div>
-                                <div class="reliable-company">
-                                    @include('blocks._reliable_company_small_block')
                                 </div>
                             </div>
                             <div class="footer-info">

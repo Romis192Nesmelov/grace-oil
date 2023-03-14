@@ -25,7 +25,6 @@
   border-top-width : medium !important;
   box-shadow : none !important;
   box-sizing : content-box !important;
-  cursor : auto !important;
   display : inline !important;
   height : auto !important;
   margin : 0 !important;
@@ -75,7 +74,6 @@
   border-top-width : medium !important;
   box-shadow : none !important;
   box-sizing : content-box !important;
-  cursor : auto !important;
   display : inline !important;
   height : auto !important;
   margin : 0 !important;
