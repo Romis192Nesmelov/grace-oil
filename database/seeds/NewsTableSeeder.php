@@ -280,15 +280,27 @@ class NewsTableSeeder extends Seeder
 //
 //                'sub_photos' => 0
 //            ],
+//            [
+//                'image' => 'images/news/new24.jpg',
+//                'head_ru' => 'Ответственный подход!',
+//                'head_en' => 'Responsible Approach!',
+//                'time' => '21 February 2023',
+//                'text_short_ru' => '<a href="/catalogue" target="_blank">ООО «Грейс Лубрикантс»</a> уже много лет гарантирует высокое качество производимой продукции. Наши гарантии подтверждаются крупнейшей страховой компанией Ренессанс Страхование, с которой мы сотрудничаем не один год.',
+//                'text_short_en' => '<a href="/" target="_blank">Grace Lubricants LLC</a> has been guaranteeing the high quality of its products for many years. Our guarantees are confirmed by the largest insurance company Renaissance Insurance, with which we have been cooperating for many years.',
+//                'text_full_ru' => '<p><a href="/" target="_blank">ООО «Грейс Лубрикантс»</a> уже много лет гарантирует высокое качество производимой продукции. Наши гарантии подтверждаются крупнейшей страховой компанией Ренессанс Страхование, с которой мы сотрудничаем не один год.</p><p>В текущем году мы увеличили сумму возмещения по страховому случаю до 20 миллионов рублей! Это важнейший показатель нашего ответственного отношения к продукции <a href="/catalogue" target="_blank">ООО «Грейс Лубрикантс»</a> и её потребителям.</p><p class="text-center"><b>Мы уверены в своём продукте и его стабильном качестве!</b></p>',
+//                'text_full_en' => '<p><a href="/catalogue" target="_blank">Grace Lubricants LLC</a> has been guaranteeing the high quality of its products for many years. Our guarantees are confirmed by the largest insurance company Renaissance Insurance, with which we have been cooperating for many years.</p><p>This year we have increased the amount of compensation for an insured event up to 20 million rubles! This is the most important indicator of our responsible attitude towards products <a href="/catalogue" target="_blank">Grace Lubricants LLC</a> and its consumers.</p><p class="text-center">< b>We are confident in our product and its stable quality!</b></p>',
+//
+//                'sub_photos' => 0
+//            ],
             [
-                'image' => 'images/news/new24.jpg',
-                'head_ru' => 'Ответственный подход!',
-                'head_en' => 'Responsible Approach!',
-                'time' => '21 February 2023',
-                'text_short_ru' => '<p><a href="/catalogue" target="_blank">ООО «Грейс Лубрикантс»</a> уже много лет гарантирует высокое качество производимой продукции. Наши гарантии подтверждаются крупнейшей страховой компанией Ренессанс Страхование, с которой мы сотрудничаем не один год.',
-                'text_short_en' => '<a href="/" target="_blank">Grace Lubricants LLC</a> has been guaranteeing the high quality of its products for many years. Our guarantees are confirmed by the largest insurance company Renaissance Insurance, with which we have been cooperating for many years.',
-                'text_full_ru' => '<p><a href="/" target="_blank">ООО «Грейс Лубрикантс»</a> уже много лет гарантирует высокое качество производимой продукции. Наши гарантии подтверждаются крупнейшей страховой компанией Ренессанс Страхование, с которой мы сотрудничаем не один год.</p><p>В текущем году мы увеличили сумму возмещения по страховому случаю до 20 миллионов рублей! Это важнейший показатель нашего ответственного отношения к продукции <a href="/catalogue" target="_blank">ООО «Грейс Лубрикантс»</a> и её потребителям.</p><p class="text-center"><b>Мы уверены в своём продукте и его стабильном качестве!</b></p>',
-                'text_full_en' => '<p><a href="/catalogue" target="_blank">Grace Lubricants LLC</a> has been guaranteeing the high quality of its products for many years. Our guarantees are confirmed by the largest insurance company Renaissance Insurance, with which we have been cooperating for many years.</p><p>This year we have increased the amount of compensation for an insured event up to 20 million rubles! This is the most important indicator of our responsible attitude towards products <a href="/catalogue" target="_blank">Grace Lubricants LLC</a> and its consumers.</p><p class="text-center">< b>We are confident in our product and its stable quality!</b></p>',
+                'image' => 'images/news/new25.jpg',
+                'head_ru' => 'Моторные масла GRACE Lubricants на Яндекс.Маркет',
+                'head_en' => 'Motor oils GRACE Lubricants on Yandex.Market',
+                'time' => '16 March 2023',
+                'text_short_ru' => 'Мы расширяем границы своего присутствия на маркетплейсах. Теперь вы можете приобрести моторные масла Grace на <a href="https://market.yandex.ru/business--ooo-greis-lubrikants/881711?" target="_blank">Яндекс.Маркет.</a>',
+                'text_short_en' => 'We are expanding the boundaries of our presence on marketplaces. Now you can purchase Grace engine oils on <a href="https://market.yandex.ru/business--ooo-greis-lubrikants/881711?" target="_blank">Yandex.Market.</a>',
+                'text_full_ru' => '<p>Мы расширяем границы своего присутствия на маркетплейсах. Теперь вы можете приобрести моторные масла Grace на <a href="https://market.yandex.ru/business--ooo-greis-lubrikants/881711?" target="_blank">Яндекс.Маркет.</a></p><p>В стартовом ассортименте уже знакомая <a href="/catalogue/original-engine-oils" target="_blank">OEM-линейка</a>, масла которой положительно влияют на состояние автомобиля. Высокий уровень защиты двигателя в разных условиях движения и температурных режимах, а также увеличение межсервисных интервалов замены масла – весомые причины выбрать масла GRACE OEM. </p><p></p>Высокое качество от партии к партии застраховано, а значит гарантировано!</p><p>С <a href="https://market.yandex.ru/business--ooo-greis-lubrikants/881711?" target="_blank">Яндекс.Маркет</a> совершать покупки моторных масел стало ещё удобнее!</p>',
+                'text_full_en' => '<p>We are expanding the boundaries of our presence on marketplaces. Now you can purchase Grace engine oils on <a href="https://market.yandex.ru/business--ooo-greis-lubrikants/881711?" target="_blank">Yandex.Market.</a></p><p>The starting range includes the already familiar <a href="/catalogue/original-engine-oils" target="_blank">OEM line</a>, the oils of which have a positive effect on the condition of the car. A high level of engine protection in different driving conditions and temperature conditions, as well as an increase in oil change intervals are good reasons to choose GRACE OEM oils.</p><p>High quality from batch to batch is insured, which means guaranteed!</p><p>With <a href="https://market.yandex.ru/business--ooo-greis-lubrikants/881711?" target="_blank">Yandex.Market</a>, shopping for motor oils has become even more convenient!</p>',
 
                 'sub_photos' => 0
             ],
@@ -432,10 +444,15 @@ class NewsTableSeeder extends Seeder
 //                    ['news_id' => 23,'similar_id' => 20],
 //                    ['news_id' => 23,'similar_id' => 19],
 
-                    ['news_id' => 24,'similar_id' => 23],
-                    ['news_id' => 24,'similar_id' => 22],
-                    ['news_id' => 24,'similar_id' => 21],
-                    ['news_id' => 24,'similar_id' => 20],
+//                    ['news_id' => 24,'similar_id' => 23],
+//                    ['news_id' => 24,'similar_id' => 22],
+//                    ['news_id' => 24,'similar_id' => 21],
+//                    ['news_id' => 24,'similar_id' => 20],
+
+                    ['news_id' => 25,'similar_id' => 24],
+                    ['news_id' => 25,'similar_id' => 23],
+                    ['news_id' => 25,'similar_id' => 22],
+                    ['news_id' => 25,'similar_id' => 21],
                 ];
 
                 foreach ($similarNewsData as $data) {

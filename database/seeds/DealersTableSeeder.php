@@ -98,8 +98,8 @@ class DealersTableSeeder extends Seeder
                 'dealers_area_id' => 2
             ],
             [
-                'name_ru' => 'ООО «ВладМоторз»',
-                'name_en' => 'LLC «VladМоторз»',
+                'name_ru' => 'ООО «ВЛАД МОТОРС»',
+                'name_en' => 'LLC «VLAD MOTORS»',
                 'email' => 'vladimir@grace-oil.com',
                 'active' => 1,
                 'dealers_area_id' => 3
