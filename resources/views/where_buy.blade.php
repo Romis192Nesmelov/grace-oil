@@ -33,7 +33,7 @@
                         ])
                     @endforeach
                 </div>
-                <div class="col-md-3 col-12">
+                <div class="col-md-3 col-xs-12">
                     <h1>{{ trans('content.retail_sales') }}</h1>
                     <div class="retail-block">
                         @foreach($retail as $item)
