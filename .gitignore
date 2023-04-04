@@ -1,3 +1,4 @@
+/app/Http/Kernel.php
 /node_modules
 /vendor
 /.idea
