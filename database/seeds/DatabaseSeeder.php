@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
 //        $this->call(Database\Seeders\EngineTypesTableSeeder::class);
 //        $this->call(Database\Seeders\OilTableSeeder::class);
 //        $this->call(Database\Seeders\PartnerProgramsTableSeeder::class);
-        $this->call(Database\Seeders\NewsTableSeeder::class);
+//        $this->call(Database\Seeders\NewsTableSeeder::class);
 //        $this->call(Database\Seeders\ClassificationsTableSeeder::class);
 //        $this->call(Database\Seeders\ReviewsTableSeeder::class);
 //        $this->call(Database\Seeders\SliderTableSeeder::class);
-//        $this->call(DealersTableSeeder::class);
+        $this->call(DealersTableSeeder::class);
     }
 }

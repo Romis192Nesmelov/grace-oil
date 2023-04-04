@@ -63,6 +63,10 @@ class DealersTableSeeder extends Seeder
                 'name_ru' => 'Армавир',
                 'name_en' => 'Armavir'
             ],
+            [
+                'name_ru' => 'Екатеринбург',
+                'name_en' => 'Ekaterinburg'
+            ],
         ];
 
         $dealers = [
@@ -187,10 +191,17 @@ class DealersTableSeeder extends Seeder
                 'dealers_area_id' => 13
             ],
             [
+                'name_ru' => 'ТЕКТОР',
+                'name_en' => 'TEKTOR',
+                'email' => 'ekaterinburg@grace-oil.com',
+                'active' => 1,
+                'dealers_area_id' => 14
+            ],
+            [
                 'image' => 'logo_ozon.png',
                 'name_ru' => 'ОЗОН',
                 'name_en' => 'OZON',
-                'url' => 'https://www.ozon.ru/seller/ooo-greys-lubrikants-679534/avtomobilnye-motornye-masla-34118/?miniapp=seller_679534',
+                'url' => 'https://www.ozon.ru/seller/ofitsialnyy-distribyutor-total-i-elf-art-oyl-premer-67058/avtotovary-8500/?miniapp=seller_67058&text=grace',
                 'active' => 1,
             ],
             [
@@ -218,17 +229,24 @@ class DealersTableSeeder extends Seeder
                 'image' => 'logo_yandex.png',
                 'name_ru' => 'Яндекс-маркет',
                 'name_en' => 'Yandex-market',
-                'url' => 'https://market.yandex.ru/business--ooo-greis-lubrikants/881711',
+                'url' => 'https://market.yandex.ru/search?businessId=741068&text=grace&allowCollapsing=1&local-offers-first=0',
+                'active' => 1,
+            ],
+            [
+                'image' => 'logo_tektor.png',
+                'name_ru' => 'ТЕКТОР',
+                'name_en' => 'TEKTOR',
+                'url' => 'https://tektor.pro',
                 'active' => 1,
             ],
         ];
         
         foreach ($areas as $area) {
-            if (!DealersArea::where('name_ru',$area['name_ru'])->first()) DealersArea::create($area);
+            DealersArea::create($area);
         }
 
         foreach ($dealers as $dealer) {
-            if (!Dealer::where('name_ru',$dealer['name_ru'])->first()) Dealer::create($dealer);
+            Dealer::create($dealer);
         }
     }
 }

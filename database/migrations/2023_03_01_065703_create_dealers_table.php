@@ -18,8 +18,8 @@ class CreateDealersTable extends Migration
             $table->string('image',50)->nullable();
             $table->string('town_ru',50)->nullable();
             $table->string('town_en',50)->nullable();
-            $table->string('name_ru',50)->unique();
-            $table->string('name_en',50)->unique();
+            $table->string('name_ru',50);
+            $table->string('name_en',50);
             $table->string('phone',20)->nullable();
             $table->string('email')->nullable();
             $table->string('url')->nullable();
