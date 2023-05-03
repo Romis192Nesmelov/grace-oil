@@ -88,27 +88,35 @@
                             </div>
                         @endforeach
                     </div>
-                    @php $defTareMpFlag = false; @endphp
-                    @foreach($oil->marketplaces as $marketplace)
-                        @foreach(['ozon'] as $mp)
-                            @if ($marketplace[$mp])
-                                @if ($marketplace->tare == $defTare)
-                                    @php $defTareMpFlag = true; @endphp
-                                @endif
-                                @include('blocks._button_type2_block',[
-                                    'btnHref' => $marketplace[$mp],
-                                    'btnBlank' => true,
-                                    'addClassWrap' => 'wp_button packing_'.$marketplace->tare.' hide_on_mp'.($marketplace->tare != $defTare ? ' hidden' : ''),
-                                    'mpIcon' => asset('images/logo_'.$mp.'.png'),
-                                    'btnText' => trans('content.buy_on_'.$mp)
-                                ])
-                            @endif
-                        @endforeach
-                    @endforeach
+{{--                    @php $defTareMpFlag = false; @endphp--}}
+{{--                    @foreach($oil->marketplaces as $marketplace)--}}
+{{--                        @foreach(['ozon'] as $mp)--}}
+{{--                            @if ($marketplace[$mp])--}}
+{{--                                @if ($marketplace->tare == $defTare)--}}
+{{--                                    @php $defTareMpFlag = true; @endphp--}}
+{{--                                @endif--}}
+{{--                                @include('blocks._button_type2_block',[--}}
+{{--                                    'btnHref' => $marketplace[$mp],--}}
+{{--                                    'btnBlank' => true,--}}
+{{--                                    'addClassWrap' => 'wp_button packing_'.$marketplace->tare.' hide_on_mp'.($marketplace->tare != $defTare ? ' hidden' : ''),--}}
+{{--                                    'mpIcon' => asset('images/logo_'.$mp.'.png'),--}}
+{{--                                    'btnText' => trans('content.buy_on_'.$mp)--}}
+{{--                                ])--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
+{{--                    @endforeach--}}
+
+{{--                    @include('blocks._button_type2_block',[--}}
+{{--                        'btnHref' => '#request_popup',--}}
+{{--                        'addClassWrap' => 'request_button hide_on_mp'.($defTareMpFlag ? ' hidden' : ''),--}}
+{{--                        'addClassButton' => 'fancybox',--}}
+{{--                        'btnBlank' => false,--}}
+{{--                        'btnText' => trans('content.submit_your_application')--}}
+{{--                    ])--}}
 
                     @include('blocks._button_type2_block',[
                         'btnHref' => '#request_popup',
-                        'addClassWrap' => 'request_button hide_on_mp'.($defTareMpFlag ? ' hidden' : ''),
+                        'addClassWrap' => 'request_button hide_on_mp',
                         'addClassButton' => 'fancybox',
                         'btnBlank' => false,
                         'btnText' => trans('content.submit_your_application')

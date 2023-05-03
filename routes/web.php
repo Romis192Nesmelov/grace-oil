@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Menu;
 //use Illuminate\Support\Facades\Cache;
 //Route::auth();
+use App\Http\Controllers\LoginController;
 
 Route::get('/search/{slug}', 'SearchController@find');
 Route::get('/', 'StaticController@index')->name('home');
@@ -36,7 +37,10 @@ foreach (Menu::where('active',1)->with('subMenu')->get() as $menu) {
         Route::any('/'.$menu->slug.'/{slug?}/{sub_slug?}', $menu->manager->controller.'@'.$menu->manager->method);
     }
 }
-
 Route::get('/cooperation1', 'StaticController@cooperation1')->name('cooperation1');
 Route::get('/terms-of-use', 'StaticController@termsOfUse')->name('terms_of_use');
 Route::get('/vacancies', 'StaticController@vacancies')->name('vacancies');
+
+Route::get('/login', function () { return view('auth.login'); })->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('enter');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
