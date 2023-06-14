@@ -13,9 +13,9 @@
                         @foreach($area->dealers as $dealer)
                             <div class="dealer">
                                 @if ($dealer->town_ru)
-                                    <p>{{ trans('content.town').$dealer['town_'.app()->getLocale()] }}</p>
+                                    <p>{!! trans('content.town').$dealer['town_'.app()->getLocale()] !!}</p>
                                 @endif
-                                <h3>{{ $dealer['name_'.app()->getLocale()] }}</h3>
+                                <h3>{!! $dealer['name_'.app()->getLocale()] !!}</h3>
                                 @if ($dealer->phone)
                                     <p>@include('blocks._custom_phone_block',['phone' => $dealer->phone])</p>
                                 @endif
