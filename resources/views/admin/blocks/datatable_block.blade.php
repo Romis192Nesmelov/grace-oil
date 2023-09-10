@@ -56,7 +56,7 @@
 @if ($addMode)
     <div class="panel-body">
         @include('admin.blocks._add_button_block',[
-            'href' => isset($route) ? route('admin.'.$route, 'add', ).(isset($parentId) && $parentId ? '?parent_id='.$parentId : '') : route($menu[$menu_key]['href'], 'add'),
+            'href' => isset($route) ? route('admin.'.$route, ['slug' => 'add', 'parent_id' => (isset($parentId) && $parentId ? $parentId : '')]) : route($menu[$menu_key]['href'], 'add'),
             'text' => isset($addButtonText) ? $addButtonText : trans('admin.add_'.$menu_key)
         ])
     </div>
