@@ -21,7 +21,6 @@ td.image img,
 .edit-image-preview img,
 .main-image img {
     width: 100%;
-    border: 2px solid grey;
 }
 
 td.image .image-cover {
@@ -39,6 +38,10 @@ td.value .percents {
     font-weight: bold;
     cursor: pointer;
     background-color: red;
+}
+
+td.delete .glyphicon.glyphicon-remove-circle {
+    color: #166dba;
 }
 
 .table-items td.edit,

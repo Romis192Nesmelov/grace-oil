@@ -1,12 +1,43 @@
 $(document).ready(function () {
     // Initialize lightbox
-    $('a.img-preview').fancybox({
+    $('a.fancybox').fancybox({
         padding: 3
     });
     window.token = $('input[name=_token]').val();
 
     // Phone mask
     $('input[name=phone]').mask("+7(999)999-99-99");
+
+    // Setting datatable defaults
+    $.extend( $.fn.dataTable.defaults, {
+        autoWidth: false,
+        columnDefs: [{
+            targets: [5]
+        }],
+        order: [],
+        dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+        language: {
+            search: '<span>Фильтр:</span> _INPUT_',
+            lengthMenu: '<span>Показывать:</span> _MENU_',
+            paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' },
+            emptyTable: 'No data available in table',
+            info: 'Показано с _START_ по _END_ из _TOTAL_',
+            infoEmpty: 'Показано с 0 по 0 из 0',
+            infoFiltered:   '(Фильтровать от _MAX_ общего числа)',
+            thousands:      ',',
+            loadingRecords: 'Загрузка...',
+            zeroRecords:    'Нет данных',
+        },
+        drawCallback: function () {
+            $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+        },
+        preDrawCallback: function() {
+            $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+        }
+    });
+
+    // Basic datatable
+    $('.datatable-basic').DataTable();
 
     // Single picker
     // $('.daterange-single').daterangepicker({
@@ -41,10 +72,6 @@ $(document).ready(function () {
         }
     });
 
-
-    // Basic datatable
-    $('.datatable-basic').DataTable();
-
     // Alternative pagination
     $('.datatable-pagination').DataTable({
         pagingType: "simple",
@@ -52,6 +79,16 @@ $(document).ready(function () {
             paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
         }
     });
+
+    // Click to delete items
+    window.deleteId = null;
+    window.deleteRow = null;
+
+    // Change pagination on data-tables
+    $('table.datatable-basic').on('draw.dt', function () {
+        bindDelete();
+    });
+    bindDelete();
 
     // Preview upload image
     $('input[type=file]').change(function () {
@@ -74,21 +111,19 @@ $(document).ready(function () {
         }
     });
 
-    // Click to delete items
-    $('.glyphicon-remove-circle').click(function () {
-        deleteItem($(this));
-    });
-
     // Click YES on delete modal
     $('.delete-yes').click(function () {
-        $('#'+localStorage.getItem('delete_modal')).modal('hide');
-        $.post('/admin/'+localStorage.getItem('delete_function'), {
-            '_token': window.token,
-            'id': localStorage.getItem('delete_id'),
+        let deleteModal = $(this).parents('.modal');
+        deleteModal.modal('hide');
+        addLoader();
+
+        $.post(deleteModal.find('.modal-body').attr('del-function'), {
+            '_token': $('input[name=_token]').val(),
+            'id': window.deleteId,
         }, function (data) {
             if (data.success) {
-                var row = localStorage.getItem('delete_row');
-                $('#'+row).remove();
+                window.deleteRow.remove();
+                removeLoader();
             }
         });
     });
@@ -98,16 +133,20 @@ $(document).ready(function () {
     // });
 });
 
-function deleteItem(obj) {
-    var deleteModal = $('#'+obj.attr('modal-data'));
+function bindDelete() {
+    let deleteIcon = $('.glyphicon-remove-circle');
+    deleteIcon.unbind();
+    deleteIcon.click(function () {
+        let deleteModal = $('#' + $(this).attr('modal-data')),
+            inputId = deleteModal.find('input[name=id]');
 
-    localStorage.clear();
-    localStorage.setItem('delete_id',obj.attr('del-data'));
-    localStorage.setItem('delete_function',deleteModal.find('.modal-body').attr('del-function'));
-    localStorage.setItem('delete_row', (obj.parents('tr').length ? obj.parents('tr').attr('id') : obj.parents('.col-lg-2').attr('id')));
-    localStorage.setItem('delete_modal',obj.attr('modal-data'));
+        window.deleteId = $(this).attr('del-data');
+        window.deleteRow = $(this).parents('tr');
 
-    deleteModal.modal('show');
+        if (inputId.length) inputId.val(window.deleteId);
+
+        deleteModal.modal('show');
+    });
 }
 
 function translit(text, engToRus) {

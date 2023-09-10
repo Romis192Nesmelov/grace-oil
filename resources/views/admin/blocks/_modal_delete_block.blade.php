@@ -6,12 +6,12 @@
 <div class="modal-footer">
     @include('admin.blocks._button_block', [
         'type' => 'button',
-        'text' => trans('content.yes'),
+        'text' => trans('admin.yes'),
         'addClass' => 'delete-yes'
     ])
     @include('admin.blocks._button_block', [
         'type' => 'button',
-        'text' => trans('content.no'),
+        'text' => trans('admin.no'),
         'addAttr' => ['data-dismiss' => 'modal']
     ])
 </div>

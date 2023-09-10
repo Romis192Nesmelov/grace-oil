@@ -11,7 +11,7 @@
         <div class="modal-footer">
             @include('admin.blocks._button_block', [
                 'type' => 'button',
-                'text' => trans('content.close'),
+                'text' => trans('admin.close'),
                 'addAttr' => ['data-dismiss' => 'modal']
             ])
         </div>

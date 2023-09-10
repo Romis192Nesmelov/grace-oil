@@ -43,6 +43,11 @@ class Menu extends Model
         return $this->hasMany('App\Models\SubMenu')->where('active',1);
     }
 
+    public function subMenuAll()
+    {
+        return $this->hasMany('App\Models\SubMenu');
+    }
+
     public function manager()
     {
         return $this->belongsTo('App\Models\Manager');

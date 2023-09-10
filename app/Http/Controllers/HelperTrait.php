@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 trait HelperTrait
 {
     private $cacheTime = 60*60*24*365;
-    private $validationPhone = 'regex:/^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/';
+    public $validationPhone = 'regex:/^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/';
+    public $validationPassword = 'required|confirmed|min:3|max:50';
+    public $validationString = 'required|min:5|max:255';
+    public $validationId = 'required|integer|exists:';
+    public $validationText = 'required|min:5|max:3000';
+    public $validationJpgAndPng = 'mimes:jpg,png|max:2000';
     private $validationFeedback = [
         'organization_name' => 'required|min:3|max:255',
         'email' => 'required|email',
@@ -42,13 +48,24 @@ trait HelperTrait
         'meta_google_site_verification' => ['name' => 'robots', 'property' => false],
     ];
 
-//    private function convertTime($time)
-//    {
-//        $time = explode('/', $time);
-//        return $time[1].'/'.$time[0].'/'.$time[2];
-//    }
+    private function convertTime($time)
+    {
+        $time = explode('/', $time);
+        return $time[1].'/'.$time[0].'/'.$time[2];
+    }
 
-    private function sendMessage($template, array $fields, $pathToFile=null, $copyTo=null)
+    public function saveCompleteMessage()
+    {
+        Session::flash('message','Сохранение произведено');
+    }
+
+    public function unlinkFile($table, $file, $path='')
+    {
+        $fullPath = base_path('public/'.$path.$table[$file]);
+        if (isset($table[$file]) && $table[$file] && file_exists($fullPath)) unlink($fullPath);
+    }
+
+    public function sendMessage($template, array $fields, $pathToFile=null, $copyTo=null)
     {
         $title = trans('content.company_name');
         $fields['title'] = $title;

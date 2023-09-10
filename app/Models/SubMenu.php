@@ -14,6 +14,7 @@ class SubMenu extends Model
         'view',
         'slug_view',
         'active',
+        'menu_id',
         'manager_id'
     ];
 

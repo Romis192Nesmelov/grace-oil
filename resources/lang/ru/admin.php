@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'email' => 'E-mail',
+    'updated_at' => 'Редактировалось',
+    'created_at' => 'Создано',
     'yes' => 'Да',
     'no' => 'Нет',
     'home_page' => 'Главная страница',
@@ -14,7 +17,6 @@ return [
     'date' => 'Дата',
     'delete' => 'Удалить',
     'edit' => 'Редактировать',
-    'created_at' => 'Создан',
     'return_back' => 'Вернуться назад',
 
     'enter' => 'Вход',
@@ -29,9 +31,9 @@ return [
 
     'do_you_really_want_delete_this_user' => 'Вы действительно хотите удалить этого пользователя?',
     'if_you_doesnt_want_to_change_password' => 'Если вы не хотите менять пароль, то оставьте эти поля пустыми',
-    'add_user' => 'Добавить пользователя',
+    'add_users' => 'Добавить пользователя',
     'adding_user' => 'Добавление пользователя',
-    'editing_user' => 'Редактирование пользователя :user',
+    'edit_user' => 'Редактирование пользователя :user',
     'user_password' => 'Пароль пользователя',
     'confirm_password' => 'Подтверждение пароля',
 
@@ -39,13 +41,17 @@ return [
     'section_title' => 'Заголовок страницы',
     'last_edit' => 'Последняя редакция',
 
+    'edit_main_menu' => 'Редактирование меню «:main_menu»',
+    'sub_menu' => 'Подменю',
+    'edit_sub_menu' => 'Редактирование подменю «:sub_menu»',
+
     'edit_icon' => 'Редактирование иконки №:id',
     'icon' => 'Иконка',
     'head_icon' => 'Заголовок иконки',
     'description_icon' => 'Описание иконки',
     'icon_status' => 'Статус иконки',
-    'icon_is_active' => 'Иконка активна',
-    'icon_not_active' => 'Иконка не активна',
+    'active' => 'Активно',
+    'not_active' => 'Не активно',
     'add_icon' => 'Добавить иконку',
     'adding_icon' => 'Добавление иконки',
     'do_you_really_want_delete_this_icon' => 'Вы действительно хотите удалить эту иконку?',
@@ -57,8 +63,6 @@ return [
     'news_content' => 'Содержание новости',
     'news_date' => 'Дата новости',
     'news_status' => 'Статус новости',
-    'news_is_active' => 'Новость активна',
-    'news_not_active' => 'Новость не активна',
     'add_news' => 'Добавить новость',
     'adding_news' => 'Добавление новости',
     'do_you_really_want_delete_this_news' => 'Вы действительно хотите удалить эту новость?',
@@ -73,8 +77,6 @@ return [
     'question' => 'Вопрос',
     'answer' => 'Ответ',
     'question_status' => 'Статус вопроса',
-    'question_is_active' => 'Вопрос активен',
-    'question_not_active' => 'Вопрос не активен',
     'do_you_really_want_delete_this_question' => 'Вы действительно хотите удалить этот вопрос?',
 
     'contact_type' => 'Тип контакта',
@@ -84,4 +86,23 @@ return [
     'contact' => 'Контакт',
     'map' => 'Карта',
     'do_you_really_want_delete_this_contact' => 'Вы действительно хотите удалить этот контакт?',
+
+    'name_ru' => 'Название по русски',
+    'name_en' => 'Название по английски',
+    'head_ru' => 'Заголовок по русски',
+    'head_en' => 'Заголовок по английски',
+    'description_ru' => 'Описание по русски',
+    'description_en' => 'Описание по английски',
+    'application_area_ru' => 'Область применения по русски',
+    'application_area_en' => 'Область применения по английски',
+    'advantages_ru' => 'Преимущевтва по русски',
+    'advantages_en' => 'Преимущевтва по английски',
+
+    'do_you_really_want_delete_this_oil' => 'Вы действительно хотите удалить это масло?',
+    'add_oils' => 'Добавить масло',
+    'adding_oil' => 'Добавление масла',
+    'edit_oil' => 'Редактирование масла :oil',
+    'oil_type' => 'Тип масла',
+    'viscosity' => 'Вязкозть',
+    'subsection' => 'Подсекция',
 ];
