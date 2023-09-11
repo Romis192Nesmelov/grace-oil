@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperTrait;
+use App\Models\Dealer;
+use App\Models\DealersArea;
+use App\Models\News;
 use App\Models\Oil;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +25,21 @@ class AdminApiController extends Controller
     public function deleteOil(Request $request)
     {
         return $this->deleteSomething($request, new Oil(), 'image');
+    }
+
+    public function deleteArea(Request $request)
+    {
+        return $this->deleteSomething($request, new DealersArea());
+    }
+
+    public function deleteDealer(Request $request)
+    {
+        return $this->deleteSomething($request, new Dealer(), 'image');
+    }
+
+    public function deleteNews(Request $request)
+    {
+        return $this->deleteSomething($request, new News(), 'image');
     }
 
     private function deleteSomething(Request $request, Model $model, $imageFields=null, $addPathToFile='')

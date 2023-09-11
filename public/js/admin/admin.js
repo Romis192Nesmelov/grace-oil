@@ -8,6 +8,19 @@ $(document).ready(function () {
     // Phone mask
     $('input[name=phone]').mask("+7(999)999-99-99");
 
+    // Single picker
+    $('.daterange-single').daterangepicker({
+        singleDatePicker: true,
+        locale: {
+            format: 'DD/MM/YYYY',
+            monthNames : ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+            daysOfWeek : ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+            week: moment.locale('en', {
+                week: { dow: 1 }
+            })
+        }
+    });
+
     // Setting datatable defaults
     $.extend( $.fn.dataTable.defaults, {
         autoWidth: false,

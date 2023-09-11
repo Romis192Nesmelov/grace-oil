@@ -65,4 +65,16 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::get('/oils/{slug?}', 'Admin\AdminViewController@oils')->name('oils');
     Route::post('/edit-oil', 'Admin\AdminEditController@editOil')->name('edit_oil');
     Route::post('/delete-oil', 'Admin\AdminApiController@deleteOil')->name('delete_oil');
+
+    Route::get('/areas/{slug?}', 'Admin\AdminViewController@areas')->name('areas');
+    Route::post('/edit-area', 'Admin\AdminEditController@editArea')->name('edit_area');
+    Route::post('/delete-area', 'Admin\AdminApiController@deleteArea')->name('delete_area');
+
+    Route::get('/dealers/{slug?}', 'Admin\AdminViewController@dealers')->name('dealers');
+    Route::post('/edit-dealer', 'Admin\AdminEditController@editDealer')->name('edit_dealer');
+    Route::post('/delete-dealer', 'Admin\AdminApiController@deleteDealer')->name('delete_dealer');
+
+    Route::get('/news/{slug?}', 'Admin\AdminViewController@news')->name('news');
+    Route::post('/edit-news', 'Admin\AdminEditController@editNews')->name('edit_news');
+    Route::post('/delete-news', 'Admin\AdminApiController@deleteNews')->name('delete_news');
 });

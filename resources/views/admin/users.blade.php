@@ -8,9 +8,7 @@
     ])
 
     <div class="panel panel-flat">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ trans('admin_menu.admins') }}</h3>
-        </div>
+        @include('admin.blocks._title_block')
         <div class="panel-body">
             @include('admin.blocks.datatable_block',[
                 'items' => $users,

@@ -16,4 +16,9 @@ class DealersArea extends Model
     {
         return $this->hasMany('App\Models\Dealer')->where('active',1);
     }
+
+    public function allDealers()
+    {
+        return $this->hasMany('App\Models\Dealer');
+    }
 }

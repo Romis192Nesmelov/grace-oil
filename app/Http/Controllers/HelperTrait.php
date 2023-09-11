@@ -8,10 +8,12 @@ trait HelperTrait
 {
     private $cacheTime = 60*60*24*365;
     public $validationPhone = 'regex:/^((\+)?(\d)(\s)?(\()?[0-9]{3}(\))?(\s)?([0-9]{3})(\-)?([0-9]{2})(\-)?([0-9]{2}))$/';
+    public $validationDate = 'required|regex:/^((\d){2}\/(\d){2}\/(\d){4})$/';
     public $validationPassword = 'required|confirmed|min:3|max:50';
     public $validationString = 'required|min:5|max:255';
     public $validationId = 'required|integer|exists:';
-    public $validationText = 'required|min:5|max:3000';
+    public $validationArrayIds = 'required|array|exists:';
+    public $validationText = 'required|min:5|max:5000';
     public $validationJpgAndPng = 'mimes:jpg,png|max:2000';
     private $validationFeedback = [
         'organization_name' => 'required|min:3|max:255',

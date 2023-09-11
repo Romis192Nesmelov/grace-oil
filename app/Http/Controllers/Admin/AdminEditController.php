@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperTrait;
+use App\Models\Dealer;
+use App\Models\DealersArea;
 use App\Models\Menu;
+use App\Models\News;
 use App\Models\Oil;
 use App\Models\OilType;
 use App\Models\SubMenu;
@@ -55,12 +58,12 @@ class AdminEditController extends Controller
 
     public function editSubmenu(Request $request)
     {
-        $this->editSomething(
+        $subMenu = $this->editSomething(
             $request,
             new SubMenu(),
             ['ru' => $this->validationString, 'en' => $this->validationString, 'menu_id' => $this->validationId.'menus,id']
         );
-        return redirect(route('admin.menus',['slug' => null, 'id' => $request->input('menu_id')]));
+        return redirect(route('admin.menus',['slug' => null, 'id' => $subMenu->menu_id]));
     }
 
     public function editOil(Request $request)
@@ -69,7 +72,7 @@ class AdminEditController extends Controller
         $pathToImage = 'images/catalogue/'.$oilType->slug.'/';
         $imageName = strtoupper(Str::slug($request->input('name_en')));
 
-        $this->editSomething(
+        $oil = $this->editSomething(
             $request,
             new Oil(),
             [
@@ -85,7 +88,11 @@ class AdminEditController extends Controller
                 'advantages_ru' => $this->validationText,
                 'advantages_en' => $this->validationText,
                 'oil_type_id' => $this->validationId.'oil_types,id',
-                'viscosity_grade_id' => $this->validationId.'viscosity_grades,id'
+                'viscosity_grade_id' => $this->validationId.'viscosity_grades,id',
+                'subsection_id' => 'nullable|integer|exists:subsections',
+                'tolerance_id' => $this->validationArrayIds.'tolerances,id',
+                'engine_type_id' => $this->validationArrayIds.'tolerances,id',
+                'industry_solution_id' => $this->validationArrayIds.'tolerances,id',
             ],
             [],
             'image',
@@ -93,10 +100,67 @@ class AdminEditController extends Controller
             $pathToImage,
             $imageName
         );
+        $oil->tolerances()->sync($request->input('tolerance_id'));
+        $oil->engineTypes()->sync($request->input('engine_type_id'));
+        $oil->solutions()->sync($request->input('industry_solution_id'));
         return redirect(route('admin.oils'));
     }
 
-    private function editSomething (
+    public function editArea(Request $request)
+    {
+        $this->editSomething(
+            $request,
+            new DealersArea(),
+            ['name_ru' => $this->validationString, 'name_en' => $this->validationString]
+        );
+        return redirect(route('admin.areas'));
+    }
+
+    public function editDealer(Request $request)
+    {
+        $dealer = $this->editSomething(
+            $request,
+            new Dealer(),
+            [
+                'town_ru' => 'nullable|min:5|max:255',
+                'town_en' => 'nullable|min:5|max:255',
+                'name_ru' => $this->validationString,
+                'name_en' => $this->validationString,
+                'phone' => 'nullable|'.$this->validationPhone,
+                'email' => 'nullable|email',
+                'url' => 'nullable|min:5|max:255',
+                'dealers_area_id' => $this->validationId.'dealers_areas,id'
+            ]
+        );
+        return redirect(route('admin.areas',['slug' => null, 'id' => $dealer->dealers_area_id]));
+    }
+
+    public function editNews(Request $request)
+    {
+        $lastId = News::latest()->first()->id;
+        $news = $this->editSomething(
+            $request,
+            new News(),
+            [
+                'head_ru' => $this->validationString,
+                'head_en' => $this->validationString,
+                'time' => $this->validationDate,
+                'text_short_ru' => $this->validationText,
+                'text_short_en' => $this->validationText,
+                'text_full_ru' => $this->validationText,
+                'text_full_en' => $this->validationText,
+            ],
+            [],
+            'image',
+            ['image' => $this->validationJpgAndPng],
+            'images/news/',
+            'news'.($lastId + 1)
+        );
+        $news->similar()->sync($request->input('similar_ids'));
+        return redirect(route('admin.news'));
+    }
+
+    protected function editSomething (
         Request $request,
         Model $model,
         array $validationArr,
@@ -112,44 +176,43 @@ class AdminEditController extends Controller
             if ($imageField && $validationImage && $request->hasFile($imageField)) $validationArr[$imageField] = $validationImage;
             $this->validate($request, $validationArr);
 
-            $fields = array_merge($fields, $this->processingFields($request, 'active'));
+            $fields = array_merge($fields, $this->processingFields($request, 'active', ($request->has('time') ? 'time' : null)));
 
-            $table = $model->findOrFail($request->input('id'));
-            $table->update($fields);
+            $item = $model->findOrFail($request->input('id'));
+            $item->update($fields);
         } else {
             if ($imageField && $validationImage) $validationArr[$imageField] = 'required|'.$validationImage;
             $this->validate($request, $validationArr);
-            $fields = array_merge($fields, $this->processingFields($request, 'active', (isset($fields['time']) ? $fields['time'] : null)));
-            $table = $model->create($fields);
+            $fields = array_merge($fields, $this->processingFields($request, 'active', ($request->has('time') ? 'time' : null)));
+            $item = $model->create($fields);
         }
 
         if ($imageField && $validationImage && $request->hasFile($imageField)) {
-            $this->processingImage($request, $table, $imageField, $imageName, $pathToImage);
+            $this->processingImage($request, $item, $imageField, $imageName, $pathToImage);
         }
 
         $this->saveCompleteMessage();
+        return $item;
     }
 
     private function processingImage(Request $request, Model $model, $field, $name=null, $path=null)
     {
         $this->unlinkFile($model, $field);
-        $info = pathinfo($model[$field]);
-        $imageName = ($name ? $name : $info['filename']).'.'.$request->file($field)->getClientOriginalExtension();
-        $path = $path ? $path : $info['dirname'];
+        if ($model[$field]) {
+            $info = pathinfo($model[$field]);
+            $imageName = $info['filename'].'.'.$request->file($field)->getClientOriginalExtension();
+            $path = $info['dirname'];
+        } else {
+            $imageName = $name.'.'.$request->file($field)->getClientOriginalExtension();
+        }
 
         $request->file($field)->move(base_path('public/'.$path), $imageName);
         $model->update([$field => $path.'/'.$imageName]);
     }
 
-    private function processingFields(Request $request, $checkboxFields = null, $timeFields = null, $ignoreFields = null)
+    private function processingFields(Request $request, $checkboxFields = null, $timeFields = null)
     {
-        $exceptFields = ['_token','id','password'];
-        if ($ignoreFields) {
-            if (is_array($ignoreFields)) $exceptFields = array_merge($exceptFields, $ignoreFields);
-            else $exceptFields[] = $ignoreFields;
-        }
-        $fields = $request->except($exceptFields);
-
+        $fields = $request->except(['_token','id']);
         if ($checkboxFields) {
             if (is_array($checkboxFields)) {
                 foreach ($checkboxFields as $field) {

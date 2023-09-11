@@ -154,7 +154,7 @@
                     @foreach ($breadcrumbs as $breadcrumb)
                         @if ($loop->first)
                             <a {{ count($breadcrumbs) > 2 ? 'href='.route($breadcrumbs[count($breadcrumbs)-2]['href']) : '' }}><i class="icon-arrow-left52 position-left"></i></a>
-                            <span class="text-semibold">{{ $breadcrumb['name'] }}</span>
+                            <span class="text-semibold">{{ strip_tags($breadcrumb['name']) }}</span>
                         @else
                             {{ $breadcrumb['name'] }}
                         @endif

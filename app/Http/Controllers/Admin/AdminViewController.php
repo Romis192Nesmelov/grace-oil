@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Dealer;
+use App\Models\DealersArea;
+use App\Models\EngineType;
+use App\Models\IndustrySolution;
 use App\Models\Menu;
+use App\Models\News;
 use App\Models\Oil;
+use App\Models\OilEngineType;
+use App\Models\OilSolution;
+use App\Models\OilTolerance;
 use App\Models\OilType;
+use App\Models\SimilarNews;
 use App\Models\SubMenu;
 use App\Models\Subsection;
+use App\Models\Tolerance;
 use App\Models\User;
 use App\Models\ViscosityGrade;
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +48,7 @@ class AdminViewController extends Controller
                 'icon' => 'icon-menu2',
             ],
             'sub_menus' => [
+                'id' => 'sub_menus',
                 'hidden' => 'true',
                 'href' => 'admin.sub_menu',
                 'name' => trans('admin.sub_menu'),
@@ -55,6 +66,26 @@ class AdminViewController extends Controller
                 'name' => trans('admin_menu.oils'),
                 'description' => trans('admin_menu.oils_description'),
                 'icon' => 'icon-droplet',
+            ],
+            'areas' => [
+                'id' => 'areas',
+                'href' => 'admin.areas',
+                'name' => trans('admin_menu.dealers'),
+                'description' => trans('admin_menu.dealers_description'),
+                'icon' => 'icon-share3',
+            ],
+            'dealers' => [
+                'id' => 'dealers',
+                'hidden' => 'true',
+                'href' => 'admin.dealers',
+                'name' => trans('admin.dealers'),
+            ],
+            'news' => [
+                'id' => 'news',
+                'href' => 'admin.news',
+                'name' => trans('admin_menu.news'),
+                'description' => trans('admin_menu.news_description'),
+                'icon' => 'icon-share3',
             ],
 //            'settings' => [
 //                'id' => 'settings',
@@ -108,17 +139,18 @@ class AdminViewController extends Controller
         );
     }
 
-    public function oils(Request $request)
+    public function oils(Request $request, $slug=null)
     {
-        if ($request->has('id')) {
+        if ($request->has('id') || ($slug && $slug == 'add')) {
             $this->data['oil_types'] = OilType::all();
             $this->data['viscosity'] = ViscosityGrade::all();
+
             $this->data['subsections'] = Subsection::all()->toArray();
-            array_unshift($this->data['subsections'], [
-                'id' => null,
-                'name_ru' => 'Нет',
-                'name_en' => 'None'
-            ]);
+            array_unshift($this->data['subsections'], ['id' => null, 'name_ru' => 'Нет', 'name_en' => 'None']);
+
+            $this->getOilBelongsToMany($request, 'tolerances', 'oil_id','tolerance_id', new Tolerance(), new OilTolerance());
+            $this->getOilBelongsToMany($request,'engine_types','oil_id', 'engine_type_id', new EngineType(), new OilEngineType());
+            $this->getOilBelongsToMany($request,'solutions', 'oil_id','industry_solution_id', new IndustrySolution(), new OilSolution());
         }
 
         return $this->getSomething(
@@ -126,6 +158,45 @@ class AdminViewController extends Controller
             'oil',
             'name_'.app()->getLocale(),
             new Oil()
+        );
+    }
+
+    public function areas(Request $request, $slug=null)
+    {
+        return $this->getSomething(
+            $request,
+            'area',
+            'name_'.app()->getLocale(),
+            new DealersArea(),
+            $slug
+        );
+    }
+
+    public function dealers(Request $request, $slug=null)
+    {
+        return $this->getSomething(
+            $request,
+            'dealer',
+            'name_'.app()->getLocale(),
+            new Dealer(),
+            $slug,
+            'area',
+            'name_'.app()->getLocale(),
+            new DealersArea()
+        );
+    }
+
+    public function news(Request $request, $slug=null)
+    {
+        if ($request->has('id') || ($slug && $slug == 'add')) {
+            $this->getOilBelongsToMany($request, 'news', 'news_id','similar_id', new News(), new SimilarNews());
+        }
+        return $this->getSomething(
+            $request,
+            'new',
+            'head_'.app()->getLocale(),
+            new News(),
+            $slug
         );
     }
 
@@ -204,7 +275,7 @@ class AdminViewController extends Controller
             ];
             return $this->showView($key);
         } else {
-            $this->data[$key.'s'] = $model->all();
+            $this->data[$key.'s'] = $model instanceof News ? $model->orderBy('time','desc')->get() : $model->all();
             return $this->showView($key.'s');
         }
     }
@@ -221,8 +292,14 @@ class AdminViewController extends Controller
     {
         $this->breadcrumbs[] = [
             'href' => $this->menu[$key.'s']['href'],
-            'params' => $params,
+            'params' => array_merge(['slug' => null], $params),
             'name' => trans('admin.edit_'.$key, [$key => $this->data[$paramKey ?: $key][$head]]),
         ];
+    }
+
+    protected function getOilBelongsToMany(Request $request, $key, $fieldId, $middleModelField, Model $model, Model $middleModel)
+    {
+        $this->data[$key] = $model->all()->toArray();
+        $this->data[$key.'_in'] = $request->has('id') ? $middleModel->where($fieldId,$request->input('id'))->pluck($middleModelField)->toArray() : [];
     }
 }

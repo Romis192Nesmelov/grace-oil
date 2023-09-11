@@ -116,6 +116,7 @@ return [
 
     'dealers_and_distributors' => 'Дилеры и дистрибьюторы',
     'retail_sales' => 'Розничные продажи',
+    'industry_solution' => 'Индустриальные решения',
 
     'town' => 'г. '
 ];

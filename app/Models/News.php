@@ -47,4 +47,9 @@ class News extends Model
     {
         return $this->hasMany('App\Models\SimilarNews');
     }
+
+    public function similar()
+    {
+        return $this->belongsToMany('App\Models\News', 'similar_news', 'news_id','similar_id');
+    }
 }

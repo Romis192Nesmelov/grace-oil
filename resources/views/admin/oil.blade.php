@@ -67,6 +67,39 @@
                                     ])
                                 </div>
                             </div>
+                            <div class="panel panel-flat">
+                                <div class="panel-body">
+                                    @include('admin.blocks.select_multiple_block',[
+                                        'name' => 'tolerance_id',
+                                        'label' => trans('content.tolerances_and_compliances'),
+                                        'values' => $tolerances,
+                                        'selectedIds' => $tolerances_in,
+                                        'option' => 'name'
+                                    ])
+                                </div>
+                            </div>
+                            <div class="panel panel-flat">
+                                <div class="panel-body">
+                                    @include('admin.blocks.select_multiple_block',[
+                                        'name' => 'engine_type_id',
+                                        'label' => trans('content.engine_type'),
+                                        'values' => $engine_types,
+                                        'selectedIds' => $engine_types_in,
+                                        'option' => 'name_'.app()->getLocale()
+                                    ])
+                                </div>
+                            </div>
+                            <div class="panel panel-flat">
+                                <div class="panel-body">
+                                    @include('admin.blocks.select_multiple_block',[
+                                        'name' => 'industry_solution_id',
+                                        'label' => trans('content.industry_solution'),
+                                        'values' => $solutions,
+                                        'selectedIds' => $solutions_in,
+                                        'option' => 'name_'.app()->getLocale()
+                                    ])
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-8 col-sm-6 col-sm-12">
                             <div class="panel panel-flat">
