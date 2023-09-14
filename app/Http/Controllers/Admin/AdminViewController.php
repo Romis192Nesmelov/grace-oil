@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\AboutProduct;
 use App\Models\Dealer;
 use App\Models\DealersArea;
 use App\Models\EngineType;
@@ -59,6 +60,13 @@ class AdminViewController extends Controller
                 'name' => trans('admin_menu.admins'),
                 'description' => trans('admin_menu.admins_description'),
                 'icon' => 'icon-users',
+            ],
+            'about_products' => [
+                'id' => 'about_products',
+                'href' => 'admin.about_products',
+                'name' => trans('admin_menu.about_products'),
+                'description' => trans('admin_menu.about_products_description'),
+                'icon' => 'icon-reading',
             ],
             'oil_types' => [
                 'id' => 'oil_types',
@@ -143,6 +151,16 @@ class AdminViewController extends Controller
             'email',
             new User(),
             $slug
+        );
+    }
+
+    public function aboutProducts(Request $request)
+    {
+        return $this->getSomething(
+            $request,
+            'about_product',
+            'head_'.app()->getLocale(),
+            new AboutProduct()
         );
     }
 

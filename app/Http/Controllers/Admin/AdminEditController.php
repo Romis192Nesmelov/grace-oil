@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperTrait;
+use App\Models\AboutProduct;
 use App\Models\Dealer;
 use App\Models\DealersArea;
 use App\Models\Menu;
@@ -64,6 +65,27 @@ class AdminEditController extends Controller
             ['ru' => $this->validationString, 'en' => $this->validationString, 'menu_id' => $this->validationId.'menus,id']
         );
         return redirect(route('admin.menus',['slug' => null, 'id' => $subMenu->menu_id]));
+    }
+
+    public function editAboutProduct(Request $request)
+    {
+        $lastId = AboutProduct::latest()->first()->id;
+        $this->editSomething(
+            $request,
+            new AboutProduct(),
+            [
+                'head_ru' => $this->validationString,
+                'head_en' => $this->validationString,
+                'text_ru' => $this->validationText,
+                'text_en' => $this->validationText,
+            ],
+            [],
+            'image',
+            ['image' => $this->validationJpgAndPng],
+            'images/about_products/',
+            $imageName = 'image'.($lastId+1)
+        );
+        return redirect(route('admin.about_products'));
     }
 
     public function editOilType(Request $request)

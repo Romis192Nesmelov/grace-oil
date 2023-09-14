@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HelperTrait;
+use App\Models\AboutProduct;
 use App\Models\Dealer;
 use App\Models\DealersArea;
 use App\Models\News;
@@ -21,6 +22,11 @@ class AdminApiController extends Controller
     public function deleteUser(Request $request)
     {
         return $this->deleteSomething($request, new User());
+    }
+
+    public function deleteAboutProduct(Request $request)
+    {
+        return $this->deleteSomething($request, new AboutProduct(), 'image');
     }
 
     public function deleteOilType(Request $request)

@@ -59,6 +59,10 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::get('/sub-menu', 'Admin\AdminViewController@subMenu')->name('sub_menu');
     Route::post('/edit-sub-menu', 'Admin\AdminEditController@editSubmenu')->name('edit_sub_menu');
 
+    Route::get('/about-products', 'Admin\AdminViewController@aboutProducts')->name('about_products');
+    Route::post('/edit-about-products', 'Admin\AdminEditController@editAboutProduct')->name('edit_about_product');
+    Route::post('/delete-about-products', 'Admin\AdminApiController@deleteAboutProduct')->name('delete_about_product');
+
     Route::get('/oil-types', 'Admin\AdminViewController@oilTypes')->name('oil_types');
     Route::post('/edit-oil-type', 'Admin\AdminEditController@editOilType')->name('edit_oil_type');
     Route::post('/delete-oil-type', 'Admin\AdminApiController@deleteOilType')->name('delete_oil_type');

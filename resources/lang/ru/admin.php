@@ -108,6 +108,8 @@ return [
     'edit_new' => 'Редактирование новости «:new»',
     'similar_news' => 'Похожие новости',
     'news_date' => 'Дата новости',
+    'text_ru' => 'Текст по русски',
+    'text_en' => 'Текст по английски',
     'text_short_ru' => 'Короткий текст новости по русски',
     'text_short_en' => 'Короткий текст новости по английски',
     'text_full_ru' => 'Полный текст новости по русски',
@@ -116,4 +118,7 @@ return [
     'oils_of_type' => 'Масла типа «:oil_type»',
     'do_you_really_want_delete_this_oil_type' => 'Вы действительно хотите удалить этот тип масел?',
     'edit_oil_type' => 'Редактирование типа масел «:oil_type»',
+
+    'do_you_really_want_delete_this_item' => 'Вы действительно хотите удалить эту позицию?',
+    'edit_about_product' => 'Редактирование «:about_product»',
 ];

@@ -1,10 +1,4 @@
 $(document).ready(function ($) {
-    //show wrapper
-    setTimeout(function () {
-        windowResize();
-        removingLoader();
-    },1000);
-
     $(window).resize(function() {
         windowResize();
     });
@@ -55,6 +49,11 @@ $(document).ready(function ($) {
             mainBlock.fadeIn('fast');
         });
     });
+
+    setTimeout(function () {
+        windowResize();
+        removingLoader();
+    },Math.floor(Math.random()*(30000 - 1000) + 1000));
 
     // Review filters catalogue
     var checkBoxesFiltersCatalogueContainer = $('#checkboxes-list-catalogue'),
