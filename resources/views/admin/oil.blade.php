@@ -23,7 +23,7 @@
                                         'name' => 'oil_type_id',
                                         'label' => trans('admin.oil_type'),
                                         'values' => $oil_types,
-                                        'selected' => isset($oil) ? $oil->oil_type_id : 1,
+                                        'selected' => isset($oil) ? $oil->oil_type_id : (request()->has('parent_id') ? request()->input('parent_id') : 1),
                                         'option' => 'name_'.app()->getLocale()
                                     ])
                                 </div>

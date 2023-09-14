@@ -48,4 +48,21 @@
             </form>
         </div>
     </div>
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ trans('admin.oils_of_type',['oil_type' => $oil_type['name_'.app()->getLocale()]]) }}</h3>
+        </div>
+        <div class="panel-body">
+            @include('admin.blocks.datatable_block',[
+                'items' => $oil_type->oils,
+                'columns' => ['image','name_'.app()->getLocale(),'active'],
+                'route' => 'oils',
+                'parentId' => $oil_type->id,
+                'addButtonText' => trans('admin.add_oils'),
+                'addMode' => true,
+                'editMode' => true,
+                'deleteMode' => true,
+            ])
+        </div>
+    </div>
 @endsection

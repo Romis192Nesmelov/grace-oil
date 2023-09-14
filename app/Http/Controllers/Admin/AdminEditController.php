@@ -119,7 +119,7 @@ class AdminEditController extends Controller
         $oil->tolerances()->sync($request->input('tolerance_id'));
         $oil->engineTypes()->sync($request->input('engine_type_id'));
         $oil->solutions()->sync($request->input('industry_solution_id'));
-        return redirect(route('admin.oils'));
+        return redirect(route('admin.oil_types',['slug' => null, 'id' => $oil->oil_type_id]));
     }
 
     public function editArea(Request $request)

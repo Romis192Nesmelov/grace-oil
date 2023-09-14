@@ -174,7 +174,8 @@ class AdminViewController extends Controller
             $request,
             'oil',
             'name_'.app()->getLocale(),
-            new Oil()
+            new Oil(),
+            $slug
         );
     }
 

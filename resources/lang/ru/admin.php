@@ -113,6 +113,7 @@ return [
     'text_full_ru' => 'Полный текст новости по русски',
     'text_full_en' => 'Полный текст новости по английски',
 
+    'oils_of_type' => 'Масла типа «:oil_type»',
     'do_you_really_want_delete_this_oil_type' => 'Вы действительно хотите удалить этот тип масел?',
     'edit_oil_type' => 'Редактирование типа масел «:oil_type»',
 ];
