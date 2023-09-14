@@ -66,6 +66,22 @@ class AdminEditController extends Controller
         return redirect(route('admin.menus',['slug' => null, 'id' => $subMenu->menu_id]));
     }
 
+    public function editOilType(Request $request)
+    {
+        $lastId = OilType::latest()->first()->id;
+        $this->editSomething(
+            $request,
+            new OilType(),
+            ['name_ru' => $this->validationString, 'name_en' => $this->validationString],
+            [],
+            'icon',
+            ['icon' => $this->validationPng],
+            'images/oil_types/',
+            $imageName = 'icon'.($lastId+1)
+        );
+        return redirect(route('admin.oil_types'));
+    }
+
     public function editOil(Request $request)
     {
         $oilType = OilType::findOrFail($request->input('oil_type_id'));
@@ -89,9 +105,9 @@ class AdminEditController extends Controller
                 'advantages_en' => $this->validationText,
                 'oil_type_id' => $this->validationId.'oil_types,id',
                 'viscosity_grade_id' => $this->validationId.'viscosity_grades,id',
-                'subsection_id' => 'nullable|integer|exists:subsections',
+                'subsection_id' => 'nullable|integer|exists:subsections,id',
                 'tolerance_id' => $this->validationArrayIds.'tolerances,id',
-                'engine_type_id' => $this->validationArrayIds.'tolerances,id',
+                'engine_type_id' => 'nullable|array|exists:tolerances,id',
                 'industry_solution_id' => $this->validationArrayIds.'tolerances,id',
             ],
             [],

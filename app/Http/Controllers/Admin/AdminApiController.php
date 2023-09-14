@@ -7,6 +7,7 @@ use App\Models\Dealer;
 use App\Models\DealersArea;
 use App\Models\News;
 use App\Models\Oil;
+use App\Models\OilType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -20,6 +21,11 @@ class AdminApiController extends Controller
     public function deleteUser(Request $request)
     {
         return $this->deleteSomething($request, new User());
+    }
+
+    public function deleteOilType(Request $request)
+    {
+        return $this->deleteSomething($request, new OilType(), 'icon');
     }
 
     public function deleteOil(Request $request)

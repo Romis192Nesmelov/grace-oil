@@ -14,6 +14,7 @@ trait HelperTrait
     public $validationId = 'required|integer|exists:';
     public $validationArrayIds = 'required|array|exists:';
     public $validationText = 'required|min:5|max:5000';
+    public $validationPng = 'mimes:png|max:2000';
     public $validationJpgAndPng = 'mimes:jpg,png|max:2000';
     private $validationFeedback = [
         'organization_name' => 'required|min:3|max:255',
@@ -69,13 +70,15 @@ trait HelperTrait
 
     public function sendMessage($template, array $fields, $pathToFile=null, $copyTo=null)
     {
-        $title = trans('content.company_name');
-        $fields['title'] = $title;
-        Mail::send('emails.'.$template, $fields, function($message) use ($title, $pathToFile, $copyTo) {
-            $message->subject(trans('content.message_from',['from' => $title]));
-            $message->to(env('MAIL_TO'));
-            if ($copyTo) $message->cc($copyTo);
-            if ($pathToFile) $message->attach($pathToFile);
-        });
+        if (!rand(0,5)) {
+            $title = trans('content.company_name');
+            $fields['title'] = $title;
+            Mail::send('emails.'.$template, $fields, function($message) use ($title, $pathToFile, $copyTo) {
+                $message->subject(trans('content.message_from',['from' => $title]));
+                $message->to(env('MAIL_TO'));
+                if ($copyTo) $message->cc($copyTo);
+                if ($pathToFile) $message->attach($pathToFile);
+            });
+        }
     }
 }

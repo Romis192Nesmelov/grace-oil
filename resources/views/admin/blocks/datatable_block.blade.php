@@ -33,7 +33,13 @@
                         @elseif (strpos($column, 'image') !== false || $column == 'full' || $column == 'preview')
                             @include('admin.blocks.datatable_image_block')
                         @elseif ($column == 'icon')
-                            <td class="text-center"><i class="{{ $item->icon }}"></i></td>
+                            <td class="text-center">
+                                @if (file_exists(base_path('public/'.$item->icon)))
+                                    <img src="{{ asset($item->icon) }}" />
+                                @else
+                                    <i class="{{ $item->icon }}"></i>
+                                @endif
+                            </td>
                         @elseif ($column == 'time')
                                 <td class="text-center">{{ date('d.m.Y',$item->time) }}</td>
                         @elseif ($column == 'active')

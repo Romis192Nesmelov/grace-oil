@@ -60,6 +60,13 @@ class AdminViewController extends Controller
                 'description' => trans('admin_menu.admins_description'),
                 'icon' => 'icon-users',
             ],
+            'oil_types' => [
+                'id' => 'oil_types',
+                'href' => 'admin.oil_types',
+                'name' => trans('admin_menu.oils_types'),
+                'description' => trans('admin_menu.oils_types_description'),
+                'icon' => 'icon-lab',
+            ],
             'oils' => [
                 'id' => 'oils',
                 'href' => 'admin.oils',
@@ -85,7 +92,7 @@ class AdminViewController extends Controller
                 'href' => 'admin.news',
                 'name' => trans('admin_menu.news'),
                 'description' => trans('admin_menu.news_description'),
-                'icon' => 'icon-share3',
+                'icon' => 'icon-newspaper',
             ],
 //            'settings' => [
 //                'id' => 'settings',
@@ -136,6 +143,16 @@ class AdminViewController extends Controller
             'email',
             new User(),
             $slug
+        );
+    }
+
+    public function oilTypes(Request $request)
+    {
+        return $this->getSomething(
+            $request,
+            'oil_type',
+            'name_'.app()->getLocale(),
+            new OilType()
         );
     }
 
