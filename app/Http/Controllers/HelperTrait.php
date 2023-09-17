@@ -16,6 +16,7 @@ trait HelperTrait
     public $validationText = 'required|min:5|max:5000';
     public $validationPng = 'mimes:png|max:2000';
     public $validationJpgAndPng = 'mimes:jpg,png|max:2000';
+    public $validationPdf = 'mimes:pdf|max:10000';
     private $validationFeedback = [
         'organization_name' => 'required|min:3|max:255',
         'email' => 'required|email',
@@ -64,7 +65,8 @@ trait HelperTrait
 
     public function unlinkFile($table, $file, $path='')
     {
-        $fullPath = base_path('public/'.$path.$table[$file]);
+        $path = $path.$table[$file];
+        $fullPath = base_path((strpos($path,'public/') === false ? 'public/' : '').$path);
         if (isset($table[$file]) && $table[$file] && file_exists($fullPath)) unlink($fullPath);
     }
 

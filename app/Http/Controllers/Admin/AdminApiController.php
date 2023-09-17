@@ -6,6 +6,7 @@ use App\Http\Controllers\HelperTrait;
 use App\Models\AboutProduct;
 use App\Models\Dealer;
 use App\Models\DealersArea;
+use App\Models\Documentation;
 use App\Models\News;
 use App\Models\Oil;
 use App\Models\OilType;
@@ -52,6 +53,11 @@ class AdminApiController extends Controller
     public function deleteNews(Request $request)
     {
         return $this->deleteSomething($request, new News(), 'image');
+    }
+
+    public function deleteOilDoc(Request $request)
+    {
+        return $this->deleteSomething($request, new Documentation(), 'href');
     }
 
     private function deleteSomething(Request $request, Model $model, $imageFields=null, $addPathToFile='')

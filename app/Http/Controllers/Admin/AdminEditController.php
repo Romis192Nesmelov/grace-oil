@@ -6,6 +6,7 @@ use App\Http\Controllers\HelperTrait;
 use App\Models\AboutProduct;
 use App\Models\Dealer;
 use App\Models\DealersArea;
+use App\Models\Documentation;
 use App\Models\Menu;
 use App\Models\News;
 use App\Models\Oil;
@@ -138,10 +139,37 @@ class AdminEditController extends Controller
             $pathToImage,
             $imageName
         );
+
         $oil->tolerances()->sync($request->input('tolerance_id'));
         $oil->engineTypes()->sync($request->input('engine_type_id'));
         $oil->solutions()->sync($request->input('industry_solution_id'));
-        return redirect(route('admin.oil_types',['slug' => null, 'id' => $oil->oil_type_id]));
+
+        return $request->has('return_flag')
+            ? redirect(route('admin.oil_types',['slug' => null, 'id' => $oil->oil_type_id]))
+            : redirect(route('admin.oils'));
+    }
+
+    public function editOilDoc(Request $request)
+    {
+        $pathInfo = $request->input('href') ? pathinfo($request->input('href')) : '';
+        $doc = $this->editSomething(
+            $request,
+            new Documentation(),
+            [
+                'href' => $this->validationString,
+                'name_ru' => $this->validationString,
+                'name_en' => $this->validationString,
+            ],
+            [],
+            'doc',
+            ['doc' => $this->validationPdf],
+            $pathInfo['dirname'],
+            $pathInfo['filename']
+        );
+
+        return $request->has('return_flag')
+            ? redirect(route('admin.oils',['slug' => null, 'id' => $doc->oil_id, 'parent_id' => $doc->oil->oil_type_id]))
+            : redirect(route('admin.oils',['slug' => null, 'id' => $doc->oil_id]));
     }
 
     public function editArea(Request $request)
@@ -244,7 +272,7 @@ class AdminEditController extends Controller
             $imageName = $name.'.'.$request->file($field)->getClientOriginalExtension();
         }
 
-        $request->file($field)->move(base_path('public/'.$path), $imageName);
+        $request->file($field)->move(base_path((strpos($path,'public/') === false ? 'public/' : '').$path), $imageName);
         $model->update([$field => $path.'/'.$imageName]);
     }
 

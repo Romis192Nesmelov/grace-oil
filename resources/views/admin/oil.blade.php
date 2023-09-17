@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+    @include('admin.blocks._modal_delete_block',[
+        'modalId' => 'delete-modal',
+        'action' => 'delete_oil_doc',
+        'head' => trans('admin.do_you_really_want_delete_this_doc')
+    ])
+
     <div class="panel panel-flat">
         @include('admin.blocks._title_block')
         <div class="panel-body">
@@ -9,6 +15,7 @@
                 @if (isset($oil))
                     @include('admin.blocks.hidden_id_block',['value' => $oil->id])
                 @endif
+                @include('admin.blocks.hidden_id_block',['hiddenName' => 'return_flag', 'value' => $return_flag])
                 <div class="panel panel-flat">
                     <div class="panel-body row">
                         <div class="col-md-4 col-sm-6 col-sm-12">
@@ -169,6 +176,25 @@
                                     ])
                                 </div>
                             </div>
+                            @if (isset($oil))
+                                <div class="panel panel-flat">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">{{ trans('admin.documentations') }}</div>
+                                    </div>
+                                    <div class="panel-body">
+                                        @include('admin.blocks.datatable_block',[
+                                            'items' => $oil->documentations,
+                                            'columns' => ['href','name_'.app()->getLocale()],
+                                            'route' => 'oil_docs',
+                                            'parentId' => $oil->id,
+                                            'parentParentId' => $return_flag ? $oil->oil_type_id : null,
+                                            'addMode' => false,
+                                            'editMode' => true,
+                                            'deleteMode' => true,
+                                        ])
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AboutProduct;
 use App\Models\Dealer;
 use App\Models\DealersArea;
+use App\Models\Documentation;
 use App\Models\EngineType;
 use App\Models\IndustrySolution;
 use App\Models\Menu;
@@ -81,6 +82,12 @@ class AdminViewController extends Controller
                 'name' => trans('admin_menu.oils'),
                 'description' => trans('admin_menu.oils_description'),
                 'icon' => 'icon-droplet',
+            ],
+            'oil_docs' => [
+                'id' => 'oil_docs',
+                'hidden' => 'true',
+                'href' => 'admin.oil_docs',
+                'name' => trans('admin.documentations'),
             ],
             'areas' => [
                 'id' => 'areas',
@@ -179,7 +186,6 @@ class AdminViewController extends Controller
         if ($request->has('id') || ($slug && $slug == 'add')) {
             $this->data['oil_types'] = OilType::all();
             $this->data['viscosity'] = ViscosityGrade::all();
-
             $this->data['subsections'] = Subsection::all()->toArray();
             array_unshift($this->data['subsections'], ['id' => null, 'name_ru' => 'Нет', 'name_en' => 'None']);
 
@@ -188,12 +194,36 @@ class AdminViewController extends Controller
             $this->getOilBelongsToMany($request,'solutions', 'oil_id','industry_solution_id', new IndustrySolution(), new OilSolution());
         }
 
+        $this->data['return_flag'] = $request->has('parent_id') && $request->input('parent_id');
+
         return $this->getSomething(
             $request,
             'oil',
             'name_'.app()->getLocale(),
             new Oil(),
-            $slug
+            $slug,
+            $request->has('parent_id') && $request->input('parent_id') ? 'oil_type' : null,
+            $request->has('parent_id') && $request->input('parent_id') ? 'name_'.app()->getLocale() : null,
+            $request->has('parent_id') && $request->input('parent_id') ? new OilType() : null
+        );
+    }
+
+    public function oilsDocs(Request $request)
+    {
+        $this->data['return_flag'] = $request->has('parent_parent_id') && $request->input('parent_parent_id');
+
+        return $this->getSomething(
+            $request,
+            'oil_doc',
+            'name_'.app()->getLocale(),
+            new Documentation(),
+            null,
+            'oil',
+            'name_'.app()->getLocale(),
+            new Oil(),
+            $request->has('parent_parent_id') && $request->input('parent_parent_id') ? 'oil_type' : null,
+            $request->has('parent_parent_id') && $request->input('parent_parent_id') ? 'name_'.app()->getLocale() : null,
+            $request->has('parent_parent_id') && $request->input('parent_parent_id') ? 'oilType' : null
         );
     }
 
@@ -249,9 +279,7 @@ class AdminViewController extends Controller
 
         $secondParentsKey=null,
         $secondParentsHead=null,
-
-        $thirdParentsKey=null,
-        $thirdParentsHead=null
+        $secondParentsRelation=null
     )
     {
         if ($parentKey) {
@@ -259,24 +287,13 @@ class AdminViewController extends Controller
             $this->data[$parentKey.'s'] = $parentModel->all();
 
             if ($secondParentsKey) {
-                if ($thirdParentsKey) {
-                    $this->data['menu_key'] = $thirdParentsKey.'s';
-                    $this->data[$thirdParentsKey] = $this->data[$parentKey][$secondParentsKey][$thirdParentsKey];
-                    $this->getBreadcrumbs(
-                        $thirdParentsKey,
-                        $thirdParentsHead,
-                        ['id' => $this->data[$thirdParentsKey]->id]
-                    );
-                } else {
-                    $this->data['menu_key'] = $secondParentsKey.'s';
-                }
-
-                $this->data[$secondParentsKey] = $this->data[$parentKey][$secondParentsKey];
+                $this->data['menu_key'] = $secondParentsKey.'s';
+                $this->data[$secondParentsKey] = $this->data[$parentKey][$secondParentsRelation];
                 $this->breadcrumbs[] = $this->menu[$secondParentsKey.'s'];
                 $this->getBreadcrumbs(
                     $secondParentsKey,
                     $secondParentsHead,
-                    ['id' => $this->data[$secondParentsKey]->id, 'parent_id' => ($thirdParentsKey ? $this->data[$thirdParentsKey]->id : '')]
+                    ['id' => $this->data[$secondParentsKey]->id]
                 );
             } else {
                 $this->data['menu_key'] = $parentKey.'s';

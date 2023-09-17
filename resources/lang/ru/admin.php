@@ -121,4 +121,9 @@ return [
 
     'do_you_really_want_delete_this_item' => 'Вы действительно хотите удалить эту позицию?',
     'edit_about_product' => 'Редактирование «:about_product»',
+
+    'href' => 'Ссылка',
+    'documentations' => 'Документация',
+    'do_you_really_want_delete_this_doc' => 'Вы действительно хотите удалить этот документ?',
+    'edit_oil_doc' => 'Редактирование типа документа «:oil_doc»',
 ];

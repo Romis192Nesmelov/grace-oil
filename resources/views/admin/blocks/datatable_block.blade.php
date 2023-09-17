@@ -40,8 +40,10 @@
                                     <i class="{{ $item->icon }}"></i>
                                 @endif
                             </td>
+                        @elseif ($column == 'href')
+                            <td class="text-center" width="5%"><a href="{{ asset(str_replace('public/','',$item->href)) }}" target="_blank"><i class="icon-file-pdf"></i></a></td>
                         @elseif ($column == 'time')
-                                <td class="text-center">{{ date('d.m.Y',$item->time) }}</td>
+                            <td class="text-center">{{ date('d.m.Y',$item->time) }}</td>
                         @elseif ($column == 'active')
                             <td class="text-center w-25">@include('admin.blocks._status_block', ['status' => $item->active, 'description' => ($item->active ? trans('admin.active') : trans('admin.not_active'))])</td>
                         @elseif ($column == 'text' || $column == 'answer')
@@ -50,7 +52,14 @@
                             <td class="text-center">{{ strip_tags($item[$column]) }}</td>
                         @endif
                     @endforeach
-                        @include('admin.blocks.edit_cell_block', ['href' => isset($route) ? route('admin.'.$route, ['slug' => null, 'id' => $item->id, 'parent_id' => (isset($parentId) && $parentId ? $parentId : '')]) : route($menu[$menu_key]['href'], ['slug' => null, 'id' => $item->id])])
+                        @include('admin.blocks.edit_cell_block', [
+                            'href' => isset($route)
+                                ? route('admin.'.$route, [
+                                    'slug' => null, 'id' => $item->id,
+                                    'parent_id' => (isset($parentId) && $parentId ? $parentId : ''),
+                                    'parent_parent_id' => (isset($parentParentId) && $parentParentId ? $parentParentId : '')
+                                ])
+                                : route($menu[$menu_key]['href'], ['slug' => null, 'id' => $item->id])])
                     @if ($deleteMode)
                         @include('admin.blocks.delete_cell_block',['id' => $item->id])
                     @else
@@ -64,7 +73,13 @@
 @if ($addMode)
     <div class="panel-body">
         @include('admin.blocks._add_button_block',[
-            'href' => isset($route) ? route('admin.'.$route, ['slug' => 'add', 'parent_id' => (isset($parentId) && $parentId ? $parentId : '')]) : route($menu[$menu_key]['href'], 'add'),
+            'href' => isset($route)
+                ? route('admin.'.$route, [
+                    'slug' => 'add',
+                    'parent_id' => (isset($parentId) && $parentId ? $parentId : ''),
+                    'parent_parent_id' => (isset($parentParentId) && $parentParentId ? $parentParentId : '')
+                ])
+                : route($menu[$menu_key]['href'], 'add'),
             'text' => isset($addButtonText) ? $addButtonText : trans('admin.add_'.$menu_key)
         ])
     </div>
