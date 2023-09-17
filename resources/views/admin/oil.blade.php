@@ -2,7 +2,12 @@
 
 @section('content')
     @include('admin.blocks._modal_delete_block',[
-        'modalId' => 'delete-modal',
+        'modalId' => 'delete-modal-tare',
+        'action' => 'delete_oil_doc',
+        'head' => trans('admin.do_you_really_want_delete_this_tare')
+    ])
+    @include('admin.blocks._modal_delete_block',[
+        'modalId' => 'delete-modal-doc',
         'action' => 'delete_oil_doc',
         'head' => trans('admin.do_you_really_want_delete_this_doc')
     ])
@@ -65,6 +70,28 @@
                                     ])
                                 </div>
                             </div>
+                            @if (isset($oil))
+                                <div class="panel panel-flat">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">{{ trans('admin.tares') }}</div>
+                                    </div>
+                                    <div class="panel-body">
+                                        @include('admin.blocks.datatable_block',[
+                                            'items' => $oil->tares,
+                                            'withoutId' => true,
+                                            'columns' => ['image','value'],
+                                            'modal' => 'delete-modal-tare',
+                                            'route' => 'oil_tares',
+                                            'parentId' => $oil->id,
+                                            'parentParentId' => $return_flag ? $oil->oil_type_id : null,
+                                            'addButtonText' => trans('admin.add_tare'),
+                                            'addMode' => true,
+                                            'editMode' => true,
+                                            'deleteMode' => true,
+                                        ])
+                                    </div>
+                                </div>
+                            @endif
                             <div class="panel panel-flat">
                                 <div class="panel-body">
                                     @include('admin.blocks._checkbox_block', [
@@ -185,6 +212,7 @@
                                         @include('admin.blocks.datatable_block',[
                                             'items' => $oil->documentations,
                                             'columns' => ['href','name_'.app()->getLocale()],
+                                            'modal' => 'delete-modal-doc',
                                             'route' => 'oil_docs',
                                             'parentId' => $oil->id,
                                             'parentParentId' => $return_flag ? $oil->oil_type_id : null,

@@ -12,6 +12,7 @@ use App\Models\News;
 use App\Models\Oil;
 use App\Models\OilType;
 use App\Models\SubMenu;
+use App\Models\Tare;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -126,7 +127,6 @@ class AdminEditController extends Controller
                 'application_area_en' => $this->validationText,
                 'advantages_ru' => $this->validationText,
                 'advantages_en' => $this->validationText,
-                'oil_type_id' => $this->validationId.'oil_types,id',
                 'viscosity_grade_id' => $this->validationId.'viscosity_grades,id',
                 'subsection_id' => 'nullable|integer|exists:subsections,id',
                 'tolerance_id' => $this->validationArrayIds.'tolerances,id',
@@ -147,6 +147,27 @@ class AdminEditController extends Controller
         return $request->has('return_flag')
             ? redirect(route('admin.oil_types',['slug' => null, 'id' => $oil->oil_type_id]))
             : redirect(route('admin.oils'));
+    }
+
+    public function editOilTare(Request $request)
+    {
+        $oil = Oil::findOrFail($request->input('oil_id'));
+        $pathToImage = 'images/catalogue/'.$oil->oilType->slug.'/packaging/'.strtoupper(str_replace('-','_',$oil->slug)).'/';
+        $imageName = $request->input('value').($oil->units ? 'L' : 'kg');
+        $tare = $this->editSomething(
+            $request,
+            new Tare(),
+            ['value' => 'required|integer|min:1|max:10000'],
+            [],
+            'image',
+            ['image' => $this->validationJpgAndPng],
+            $pathToImage,
+            $imageName
+        );
+
+        return $request->has('return_flag')
+            ? redirect(route('admin.oils',['slug' => null, 'id' => $tare->oil_id, 'parent_id' => $tare->oil->oil_type_id]))
+            : redirect(route('admin.oils',['slug' => null, 'id' => $tare->oil_id]));
     }
 
     public function editOilDoc(Request $request)

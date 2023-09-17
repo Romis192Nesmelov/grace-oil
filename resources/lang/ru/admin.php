@@ -83,6 +83,7 @@ return [
     'town_ru' => 'Город по русски',
     'town_en' => 'Город по английски',
 
+    'oil' => 'Масло',
     'do_you_really_want_delete_this_oil' => 'Вы действительно хотите удалить это масло?',
     'add_oils' => 'Добавить масло',
     'adding_oil' => 'Добавление масла',
@@ -126,4 +127,11 @@ return [
     'documentations' => 'Документация',
     'do_you_really_want_delete_this_doc' => 'Вы действительно хотите удалить этот документ?',
     'edit_oil_doc' => 'Редактирование типа документа «:oil_doc»',
+
+    'tares' => 'Тара',
+    'value' => 'Значение',
+    'do_you_really_want_delete_this_tare' => 'Вы действительно хотите удалить эту тару?',
+    'add_tare' => 'Добавить тару',
+    'adding_tare' => 'Добавление тары',
+    'edit_oil_tare' => 'Редактирование тары',
 ];

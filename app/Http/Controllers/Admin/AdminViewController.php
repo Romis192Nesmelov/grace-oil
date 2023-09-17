@@ -18,6 +18,7 @@ use App\Models\OilType;
 use App\Models\SimilarNews;
 use App\Models\SubMenu;
 use App\Models\Subsection;
+use App\Models\Tare;
 use App\Models\Tolerance;
 use App\Models\User;
 use App\Models\ViscosityGrade;
@@ -82,6 +83,12 @@ class AdminViewController extends Controller
                 'name' => trans('admin_menu.oils'),
                 'description' => trans('admin_menu.oils_description'),
                 'icon' => 'icon-droplet',
+            ],
+            'oil_tares' => [
+                'id' => 'oil_tares',
+                'hidden' => 'true',
+                'href' => 'admin.oil_tares',
+                'name' => trans('admin.tares'),
             ],
             'oil_docs' => [
                 'id' => 'oil_docs',
@@ -194,7 +201,7 @@ class AdminViewController extends Controller
             $this->getOilBelongsToMany($request,'solutions', 'oil_id','industry_solution_id', new IndustrySolution(), new OilSolution());
         }
 
-        $this->data['return_flag'] = $request->has('parent_id') && $request->input('parent_id');
+        $this->data['return_flag'] = $request->input('parent_id');
 
         return $this->getSomething(
             $request,
@@ -202,15 +209,38 @@ class AdminViewController extends Controller
             'name_'.app()->getLocale(),
             new Oil(),
             $slug,
-            $request->has('parent_id') && $request->input('parent_id') ? 'oil_type' : null,
-            $request->has('parent_id') && $request->input('parent_id') ? 'name_'.app()->getLocale() : null,
-            $request->has('parent_id') && $request->input('parent_id') ? new OilType() : null
+            $request->input('parent_id') ? 'oil_type' : null,
+            $request->input('parent_id') ? 'name_'.app()->getLocale() : null,
+            $request->input('parent_id') ? new OilType() : null
+        );
+    }
+
+    public function oilTares(Request $request, $slug=null)
+    {
+        $this->data['return_flag'] = $request->input('parent_parent_id');
+
+        if ($request->has('id') || ($slug && $slug == 'add')) {
+            $this->data['oils'] = Oil::all();
+        }
+
+        return $this->getSomething(
+            $request,
+            'oil_tare',
+            'value',
+            new Tare(),
+            $slug,
+            'oil',
+            'name_'.app()->getLocale(),
+            new Oil(),
+            $request->input('parent_parent_id') ? 'oil_type' : null,
+            $request->input('parent_parent_id') ? 'name_'.app()->getLocale() : null,
+            $request->input('parent_parent_id') ? 'oilType' : null
         );
     }
 
     public function oilsDocs(Request $request)
     {
-        $this->data['return_flag'] = $request->has('parent_parent_id') && $request->input('parent_parent_id');
+        $this->data['return_flag'] = $request->input('parent_parent_id');
 
         return $this->getSomething(
             $request,
@@ -221,9 +251,9 @@ class AdminViewController extends Controller
             'oil',
             'name_'.app()->getLocale(),
             new Oil(),
-            $request->has('parent_parent_id') && $request->input('parent_parent_id') ? 'oil_type' : null,
-            $request->has('parent_parent_id') && $request->input('parent_parent_id') ? 'name_'.app()->getLocale() : null,
-            $request->has('parent_parent_id') && $request->input('parent_parent_id') ? 'oilType' : null
+            $request->input('parent_parent_id') ? 'oil_type' : null,
+            $request->input('parent_parent_id') ? 'name_'.app()->getLocale() : null,
+            $request->input('parent_parent_id') ? 'oilType' : null
         );
     }
 

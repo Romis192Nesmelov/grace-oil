@@ -1,7 +1,7 @@
 <div class="panel-body">
     <table class="table {{ count($columns) < 3 ? 'table-striped' : 'datatable-basic' }} table-items{{ isset($addClass) && $addClass ? ' '.$addClass : '' }}">
         <tr>
-            @if (count($columns) < 4)
+            @if (count($columns) < 4 && (!isset($withoutId) || !$withoutId))
                 @include('admin.blocks.th_id_cell_block')
             @endif
 
@@ -24,7 +24,7 @@
         @if ($items)
             @foreach ($items as $item)
                 <tr role="row">
-                    @if (count($columns) < 4)
+                    @if (count($columns) < 4 && (!isset($withoutId) || !$withoutId))
                         <td class="id">{{ $item->id }}</td>
                     @endif
                     @foreach ($columns as $column)

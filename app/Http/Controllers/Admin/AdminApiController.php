@@ -10,6 +10,7 @@ use App\Models\Documentation;
 use App\Models\News;
 use App\Models\Oil;
 use App\Models\OilType;
+use App\Models\Tare;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -53,6 +54,11 @@ class AdminApiController extends Controller
     public function deleteNews(Request $request)
     {
         return $this->deleteSomething($request, new News(), 'image');
+    }
+
+    public function deleteOilTare(Request $request)
+    {
+        return $this->deleteSomething($request, new Tare(), 'image');
     }
 
     public function deleteOilDoc(Request $request)
